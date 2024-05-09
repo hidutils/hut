@@ -183,7 +183,9 @@ impl AsUsagePage for UsagePage {
 /// # use hut::*;
 /// let u1 = Usage::{{usage_page.name}} { usage: {{usage_page.name}}::{{usage_page.usages[2].name}} };
 /// let u2 = Usage::new_from_page_and_id(0x{{'%X' % usage_page.value}}, 0x{{'%X' % usage_page.usages[2].value}}).unwrap();
+/// let u3 = Usage::from({{usage_page.name}}::{{usage_page.usages[2].name}});
 /// assert_eq!(u1, u2);
+/// assert_eq!(u1, u3);
 ///
 /// assert_eq!(0x{{'%X' % usage_page.value}}, u1.usage_page_value());
 /// assert_eq!(0x{{'%X' % usage_page.usages[2].value}}, u1.usage_id_value());
@@ -286,6 +288,18 @@ impl From<{{usage_page.name}}> for UsagePage {
     fn from(up: {{usage_page.name}}) -> UsagePage {
         UsagePage::from(&up)
     }
+}
+
+impl From<&{{usage_page.name}}> for Usage {
+    fn from(u: &{{usage_page.name}}) -> Usage {
+        Usage::try_from(u32::from(u)).unwrap()
+      }
+}
+
+impl From<{{usage_page.name}}> for Usage {
+    fn from(u: {{usage_page.name}}) -> Usage {
+        Usage::from(&u)
+      }
 }
 
 impl BitOr<u16> for {{usage_page.name}} {
