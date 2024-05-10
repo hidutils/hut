@@ -167,7 +167,7 @@ def parse_usage_page(up) -> UsagePage:
         value=value,
         usages=usages,
         usage_page_type=uptype,
-        name_prefix=name_prefix
+        name_prefix=name_prefix,
     )
     return usage_page
 
@@ -176,15 +176,17 @@ def parse_data_file(datadir):
     js = json.load(open(datadir, "r"))
     usage_pages = [parse_usage_page(up) for up in js["UsagePages"]]
 
-    # For some reason the Unicode usage page isn't in the JSON but 
+    # For some reason the Unicode usage page isn't in the JSON but
     # it is described on page 213 of the HUT 1.5 document. Let's insert
     # it manually.
-    unicode_page = UsagePage(printable="Unicode",
-                                 name="Unicode",
-                                 value=0x10,
-                                 usages=[],
-                                 usage_page_type= UsagePageType.GENERATED,
-                                 name_prefix = "codepoint")
+    unicode_page = UsagePage(
+        printable="Unicode",
+        name="Unicode",
+        value=0x10,
+        usages=[],
+        usage_page_type=UsagePageType.GENERATED,
+        name_prefix="codepoint",
+    )
     usage_pages.append(unicode_page)
 
     return sorted(usage_pages, key=lambda up: up.value)
