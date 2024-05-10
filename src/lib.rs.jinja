@@ -298,9 +298,7 @@ impl fmt::Display for {{usage_page.name}} {
 }
 
 {% endif %}{# if usage_page.usage_page_type == Generated ... #}
-{% endfor %}
 
-{% for usage_page in usage_pages %}
 impl AsUsage for {{usage_page.name}} {
     /// Returns the 32 bit Usage value of this Usage
     fn usage_value(&self) -> u32 {
