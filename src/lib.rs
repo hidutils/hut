@@ -19,31 +19,33 @@
 //!   or from a 32-bit value the Usage is in the lower 16 bits of that value and !   the upper 16 bits are ignored or set to zero.
 //! - "Usage" refers to the 32-bit value comprising a Usage Page and a Usage.
 //!
+//! # Converting between types
+//!
 //! All defined [Usage]s and [UsagePage] implement [AsUsagePage] and (if applicable) [AsUsage] as
 //! well as the [`From<u16>`](From), [`From<u32>`](From) and [`TryFrom<u16>`](TryFrom) conversions so that:
 //! ```
 //! # use hut::*;
-//! let hid_usage_page: u16 = 0x01; // Generic Desktop
-//! let hid_usage_id: u16 = 0x02; // Mouse
-//! let hid_usage: u32 = (hid_usage_page as u32) << 16 | hid_usage_id as u32;
+//! let usage_page_value: u16 = 0x01; // Generic Desktop
+//! let usage_id_value: u16 = 0x02; // Mouse
+//! let usage_value: u32 = (usage_page_value as u32) << 16 | usage_id_value as u32;
 //!
 //! // Convert to and fro the Usage either via [u32] or the [AsUsage] trait
 //! let u = GenericDesktop::Mouse;
-//! assert!(matches!(Usage::try_from(hid_usage).unwrap(), Usage::GenericDesktop {usage: u}));
-//! assert_eq!(u32::from(&u), hid_usage);
-//! assert_eq!(u.usage_value(), hid_usage);
+//! assert!(matches!(Usage::try_from(usage_value).unwrap(), u));
+//! assert_eq!(u32::from(&u), usage_value);
+//! assert_eq!(u.usage_value(), usage_value);
 //!
 //! // Convert to and fro the UsageID either via u16 or the AsUsage trait
-//! assert_eq!(hid_usage_id, u16::from(&u));
-//! assert_eq!(hid_usage_id, u.usage_id_value());
+//! assert_eq!(usage_id_value, u16::from(&u));
+//! assert_eq!(usage_id_value, u.usage_id_value());
 //!
 //! // Extract the Usage Page from  Usage enum value
 //! assert!(matches!(UsagePage::from(&u), UsagePage::GenericDesktop));
 //! let up = UsagePage::from(&u);
 //!
 //! // Get the Usage Page numeric value is via the [AsUsagePage]
-//! assert_eq!(hid_usage_page, u16::from(&up));
-//! assert_eq!(hid_usage_page, up.usage_page_value());
+//! assert_eq!(usage_page_value, u16::from(&up));
+//! assert_eq!(usage_page_value, up.usage_page_value());
 //! ```
 //!
 //! # Generated Usage Pages 
@@ -76,10 +78,6 @@
 //! For technical reasons, spaces, (` `), dashes (`-`), and slashes (`/`) are
 //! stripped out of Usage Page and Usage names. The string representation via
 //! the `Display` trait will have the unmodified value.
-//!
-//! Usage Pages and Usages starting with a number are translated into their
-//! English word, for example [GamingControls::ThreeDGameController]. Numbers
-//! inside a word are left as-is.
 
 #![allow(clippy::identity_op, clippy::eq_op, clippy::match_single_binding)]
 
