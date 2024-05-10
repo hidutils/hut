@@ -10,16 +10,18 @@
 from pathlib import Path
 from dataclasses import dataclass
 import argparse
-import jinja2
-import jinja2.environment
+import enum
 import os
 import re
 import sys
 import functools
+import json
+import jinja2
+import jinja2.environment
 
 
 def sanitize(s):
-    s = re.sub(r"[-‐\t: |/.\n,()]", "", s)
+    s = re.sub(r"[-‐\t: \\|/.\n,()]", "", s)
     s = re.sub(r"[+]", "Plus", s)
     s = re.sub(r"[-]", "Minus", s)
     numbers = {
@@ -95,11 +97,37 @@ def sanitize_keyboard(s):
     return s
 
 
+class UsageType(enum.StrEnum):
+    LINEAR_CONTROL = "LC"
+    ON_OFF_CONTROL = "OOC"
+    MOMENTARY_CONTROL = "MC"
+    ONE_SHOT_CONTROL = "OSC"
+    RETRIGGER_CONTROL = "RTC"
+    SELECTOR = "Sel"
+    STATIC_VALUE = "SV"
+    STATIC_FLAG = "SF"
+    DYNAMIC_VALUE = "DV"
+    DYNAMIC_FLAG = "DF"
+    NAMED_ARRAY = "NAry"
+    APPLICATION_COLLECTION = "CA"
+    LOGICAL_COLLECTION = "CL"
+    PHYSICAL_COLLECTION = "CP"
+    USAGE_SWITCH = "US"
+    USAGE_MODIFIER = "UM"
+    BUFFERED_BYTES = "BufferedBytes"
+
+
+class UsagePageType(enum.StrEnum):
+    DEFINED = "Defined"
+    GENERATED = "Generated"
+
+
 @dataclass
-class Usage:
+class UsageId:
     printable: str  # The string as it was in the data file
     name: str  # Name of the usage sanitized to be a valid identifier
     value: int
+    usage_types: list[UsageType]
 
 
 @dataclass
@@ -107,80 +135,59 @@ class UsagePage:
     printable: str
     name: str
     value: int
-    usages: list[Usage]
+    usages: list[UsageId]
+    usage_page_type: UsagePageType
+    name_prefix: str | None
 
 
-class SkipFile(Exception):
-    pass
-
-
-def parse_hut_file(file):
-    """
-    Parse a single HUT file. The file format is a set of lines in three
-    formats: ::
-
-        (01)<tab>Usage Page name
-        A0<tab>Name
-        F0-FF<tab>Reserved for somerange
-
-    All numbers in hex, only one Usage Page per file
-
-    Usages are parsed into a UsagePage containing the Usage
-    """
-    header = next(file).strip()
-    r = re.match(r"^\((?P<value>[A-Fa-f0-9]+)\)\s(?P<name>.*)", header)
-    assert r is not None
-    assert r["name"]
-
-    printable = r["name"]
-    value = int(r["value"], 16)
+def parse_usage_id(u) -> UsageId:
+    # Some of the strings have \_ in them for whatever reason...
+    printable = u["Name"].replace("\\", "")
     name = sanitize(printable)
-    usage_page = UsagePage(printable=printable, name=name, value=value, usages=[])
+    value = int(u["Id"])
+    types = [UsageType(k) for k in u["Kinds"]]
+    usage = UsageId(printable=printable, name=name, value=value, usage_types=types)
+    return usage
 
-    # Vendor-defined page is hand-coded in hut.rs, it's too special
-    if name == "VendorDefinedPage1":
-        raise SkipFile
 
-    for line in filter(
-        lambda s: s and not s.startswith("#"), map(lambda l: l.strip(), file)
-    ):
-        # Reserved ranges, e.g  '0B-1F	Reserved'
-        r = re.match(r"^([A-Fa-f0-9]+)-((0x)?[A-Fa-f0-9]+)\s(?P<name>.*)", line)
-        if r:
-            if "reserved" not in r["name"].lower():
-                print(line)
-            continue
-
-        # Single usage, e.g. 36	Slider
-        r = re.match(r"^(?P<usage>[A-Fa-f0-9]+)\s?(?P<name>.*)", line)
-        assert r is not None
-        if "reserved" in r["name"].lower():
-            continue
-
-        printable = r["name"]
-        usage = int(r["usage"], 16)
-        if usage_page.value == 0x7:  # Keyboard
-            name = sanitize_keyboard(printable)
-        else:
-            name = sanitize(printable)
-        # A few of the names have \ or " in them
-        printable = printable.replace("\\", "\\\\").replace('"', '\\"')
-
-        usage = Usage(printable=printable, name=name, value=usage)
-        usage_page.usages.append(usage)
-
+def parse_usage_page(up) -> UsagePage:
+    printable = up["Name"]
+    name = sanitize(printable)
+    value = int(up["Id"])
+    usages = sorted([parse_usage_id(u) for u in up["UsageIds"]], key=lambda u: u.value)
+    uptype = UsagePageType(up["Kind"])
+    name_prefix = None
+    if uptype == UsagePageType.GENERATED:
+        name_prefix = up["UsageIdGenerator"]["NamePrefix"]
+        if name_prefix.lower() == "enum":
+            name_prefix += "erate"
+    usage_page = UsagePage(
+        printable=printable,
+        name=name,
+        value=value,
+        usages=usages,
+        usage_page_type=uptype,
+        name_prefix=name_prefix
+    )
     return usage_page
 
 
-def parse_data_files(datadir):
-    usage_pages = []
-    for file in datadir.glob("*.hut"):
-        try:
-            with open(file, "r", encoding="utf-8") as f:
-                usage_pages.append(parse_hut_file(f))
-        except SkipFile:
-            pass
-    return usage_pages
+def parse_data_file(datadir):
+    js = json.load(open(datadir, "r"))
+    usage_pages = [parse_usage_page(up) for up in js["UsagePages"]]
+
+    # For some reason the Unicode usage page isn't in the JSON but 
+    # it is described on page 213 of the HUT 1.5 document. Let's insert
+    # it manually.
+    unicode_page = UsagePage(printable="Unicode",
+                                 name="Unicode",
+                                 value=0x10,
+                                 usages=[],
+                                 usage_page_type= UsagePageType.GENERATED,
+                                 name_prefix = "codepoint")
+    usage_pages.append(unicode_page)
+
+    return sorted(usage_pages, key=lambda up: up.value)
 
 
 def generate_source(
@@ -212,17 +219,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default="-")
     parser.add_argument(
-        "--datadir",
+        "--datafile",
         type=Path,
         default=Path("data"),
-        help="Path to the directory containing .hut files",
+        help="Path to the HUT json",
     )
     parser.add_argument("template", type=Path, help="The jinja template file")
     args = parser.parse_args()
-    assert args.datadir.exists()
+    assert args.datafile.exists()
     assert args.template.exists()
 
-    hut = parse_data_files(args.datadir)
+    hut = parse_data_file(args.datafile)
 
     stream = generate_source(usage_pages=hut, template=args.template)
     file = sys.stdout if args.output == "-" else open(args.output, "w")
