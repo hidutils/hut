@@ -25,16 +25,25 @@
 //!
 //! # Converting between types
 //! All defined [Usages](Usage) and [UsagePages](UsagePage) implement [AsUsagePage] and (if applicable) [AsUsage] as
-//! well as the [`From<u16>`](From), [`From<u32>`](From) and [`TryFrom<u16>`](TryFrom) conversions so that:
+//! well as the [`From<u16>`](From), [`From<u32>`](From), [`TryFrom<u16>`](TryFrom), and [`TryFrom<u32>`](TryFrom)
+//! conversions so that:
 //! ```
 //! # use hut::*;
 //! let usage_page_value: u16 = 0x01; // Generic Desktop
 //! let usage_id_value: u16 = 0x02; // Mouse
 //! let usage_value: u32 = (usage_page_value as u32) << 16 | usage_id_value as u32;
 //!
-//! // Create a known usage from a 32-bit value
+//! // Create a known Usage from a 32-bit value
 //! let u: Usage = Usage::try_from(usage_value).unwrap();
 //! assert!(matches!(u, Usage::GenericDesktop { usage: GenericDesktop::Mouse }));
+//!
+//! // Create a known Usage from the Usage Page and Usage ID values
+//! let u2 = Usage::new_from_page_and_id(usage_page_value, usage_id_value).unwrap();
+//! assert_eq!(u, u2);
+//!
+//! // Create a known Usage from an individual Usage Page enum item
+//! let u3 = Usage::from(GenericDesktop::Mouse);
+//! assert_eq!(u, u3);
 //!
 //! // Convert to and fro the Usage either via u32 or the AsUsage trait
 //! let u = GenericDesktop::Mouse;
