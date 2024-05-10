@@ -31,7 +31,7 @@
 //!
 //! // Convert to and fro the Usage either via [u32] or the [AsUsage] trait
 //! let u = GenericDesktop::Mouse;
-//! assert!(matches!(Usage::try_from(usage_value).unwrap(), u));
+//! assert!(matches!(Usage::try_from(usage_value).unwrap(), Usage::GenericDesktop { usage: GenericDesktop::Mouse }));
 //! assert_eq!(u32::from(&u), usage_value);
 //! assert_eq!(u.usage_value(), usage_value);
 //!
