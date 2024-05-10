@@ -48,10 +48,10 @@
 //! assert_eq!(usage_page_value, up.usage_page_value());
 //! ```
 //!
-//! # Generated Usage Pages 
+//! # Generated Usage Pages
 //!
 //! The HUT differ between "Defined" and "Generated" Usage Pages. The former define Usage ID values
-//! and their meanings, the latter define a Usage ID range, with the actual Usage ID simply 
+//! and their meanings, the latter define a Usage ID range, with the actual Usage ID simply
 //! referring to "nth thing in this usage page". One example for this is the Button Usage Page
 //! (0x09) where a Usage ID of 3 means "Button 3".
 //!
@@ -90,6 +90,8 @@ use thiserror::Error;
 pub enum HutError {
     #[error("Unknown Usage Page {usage_page}")]
     UnknownUsagePage { usage_page: u16 },
+    #[error("Unknown Usage ID {usage_id}")]
+    UnknownUsageId { usage_id: u16 },
     #[error("Invalid Vendor Page {vendor_page}")]
     InvalidVendorPage { vendor_page: u16 },
     #[error("Unknown Usage")]
@@ -127,7 +129,7 @@ pub enum UsagePage {
     VendorDefinedPage { vendor_page: VendorPage },
 }
 
-/// Represents a Vendor Defined Page number value of in the range 
+/// Represents a Vendor Defined Page number value of in the range
 /// 0xFF00 to 0xFFFF, inclusive. See [VendorDefinedPage].
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 pub struct VendorPage(u16);
@@ -375,6 +377,23 @@ impl From<{{usage_page.name}}> for Usage {
       }
 }
 
+impl TryFrom<u16> for {{usage_page.name}} {
+    type Error = HutError;
+
+    fn try_from(usage_id: u16) -> Result<{{usage_page.name}}> {
+        match usage_id {
+{% for usage in usage_page.usages %}
+            {{usage.value}} => Ok({{usage_page.name}}::{{usage.name}}),
+{% endfor %}
+{% if usage_page.usage_page_type == "Generated" %}
+            n => Ok({{usage_page.name}}::{{usage_page.name}} { {{usage_page.name_prefix|lower}}: n }),
+{% else %}
+            n => Err(HutError::UnknownUsageId { usage_id: n }),
+{% endif %}
+        }
+    }
+}
+
 impl BitOr<u16> for {{usage_page.name}} {
     type Output = Usage;
 
@@ -415,6 +434,15 @@ impl fmt::Display for VendorDefinedPage {
             }
         };
         write!(f, "{name}")
+    }
+}
+
+impl From<&VendorDefinedPage> for u16 {
+    fn from(v: &VendorDefinedPage) -> u16 {
+        match v {
+            VendorDefinedPage::Undefined => 0x00,
+            VendorDefinedPage::VendorUsage { usage_id } => *usage_id,
+        }
     }
 }
 
@@ -462,6 +490,14 @@ impl TryFrom<u16> for UsagePage {
     }
 }
 
+impl TryFrom<u32> for UsagePage {
+    type Error = HutError;
+
+    fn try_from(usage_page: u32) -> Result<UsagePage> {
+        UsagePage::try_from((usage_page >> 16) as u16)
+    }
+}
+
 impl fmt::Display for UsagePage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let name: String = match self {
@@ -498,7 +534,7 @@ pub enum Usage {
         usage: {{usage_page.name}},
     },
     {% endfor %}
-    VendorDefinedPage { 
+    VendorDefinedPage {
         vendor_page: VendorPage,
         usage: VendorDefinedPage,
     },
@@ -565,13 +601,9 @@ impl From<&Usage> for u32 {
     fn from(usage: &Usage) -> u32 {
         match usage {
 {% for usage_page in usage_pages %}
-{% for usage in usage_page.usages %}
-            Usage::{{usage_page.name}} { usage: {{usage_page.name}}::{{usage.name}} } => {{usage_page.value}} << 16 | {{usage.value}},
+            Usage::{{usage_page.name}} { usage } => {{usage_page.value}} << 16 | u16::from(usage) as u32,
 {% endfor  %}
-{% endfor  %}
-            Usage::VendorDefinedPage { vendor_page, usage: VendorDefinedPage::Undefined } => (u16::from(vendor_page) as u32) << 16,
-            Usage::VendorDefinedPage { vendor_page, usage: VendorDefinedPage::VendorUsage { usage_id } } => (u16::from(vendor_page) as u32) << 16 | *usage_id as u32,
-            _ => panic!("Unhandled usage {usage:?}"),
+            Usage::VendorDefinedPage { vendor_page, usage } => (u16::from(vendor_page) as u32) << 16 | u16::from(usage) as u32,
         }
     }
 }
@@ -582,9 +614,7 @@ impl TryFrom<u32> for Usage {
     fn try_from(up: u32) -> Result<Usage> {
         match (up >> 16, up & 0xFFFF) {
 {% for usage_page in usage_pages %}
-{% for usage in usage_page.usages %}
-            ({{usage_page.value}},  {{usage.value}}) => Ok(Usage::{{usage_page.name}} { usage: {{usage_page.name}}::{{usage.name}} }),
-{% endfor  %}
+            ({{usage_page.value}},  n) => Ok(Usage::{{usage_page.name}} { usage: {{usage_page.name}}::try_from(n as u16)? }),
 {% endfor  %}
             (p @ 0xff00..=0xffff, n) => Ok(Usage::VendorDefinedPage {
                 vendor_page: VendorPage(p as u16),
