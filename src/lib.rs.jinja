@@ -1,27 +1,31 @@
 // THIS FILE IS GENERATED, DO NOT EDIT
+{# Ignore the warning above, you're looking at the source file #}
 
 //! A wrapper around the [HID Usage Tables (HUT)](https://usb.org/document-library/hid-usage-tables-15).
-//! Note that this module is created through code generation.
 //!
-//! In this document and unless stated otherwise, a reference to "section a.b.c" refers to the
+//! In this document and unless stated otherwise, a reference to "HID Section a.b.c" refers to the
 //! [HID Device Class Definition for HID 1.11](https://www.usb.org/document-library/device-class-definition-hid-111).
+//!
+//! In this document and unless stated otherwise, a reference to "HUT Section a.b.c" refers to the
+//! [HID Usage Tables (HUT) version 1.5](https://usb.org/document-library/hid-usage-tables-15).
+//!
+//! This module is created through code generation from the HID Usage Tables.
 //!
 //! # Terminology
 //!
-//! See Section 5.5: a HID Usage is a 32 bit value comprising of a 16-bit Usage
-//! Page and a 16-bit Usage ID.
+//! See HID Section 5.5: a HID Usage is a 32 bit value comprising of a 16-bit Usage
+//! Page and a 16-bit Usage ID. In this module:
 //!
-//! In this module:
 //! - "Usage Page" refers to the 16-bit value. Where the Usage Page is converted
 //!   to or from a 32-bit value the Usage Page is in the upper 16 bits of that value and
 //!   the lower 16 bits are ignored or set to zero.
 //! - "Usage ID" refers to the 16-bit value. Where the Usage ID is converted to
-//!   or from a 32-bit value the Usage is in the lower 16 bits of that value and !   the upper 16 bits are ignored or set to zero.
+//!   or from a 32-bit value the Usage is in the lower 16 bits of that value and
+//!   the upper 16 bits are ignored or set to zero.
 //! - "Usage" refers to the 32-bit value comprising a Usage Page and a Usage.
 //!
 //! # Converting between types
-//!
-//! All defined [Usage]s and [UsagePage] implement [AsUsagePage] and (if applicable) [AsUsage] as
+//! All defined [Usages](Usage) and [UsagePages](UsagePage) implement [AsUsagePage] and (if applicable) [AsUsage] as
 //! well as the [`From<u16>`](From), [`From<u32>`](From) and [`TryFrom<u16>`](TryFrom) conversions so that:
 //! ```
 //! # use hut::*;
@@ -29,40 +33,44 @@
 //! let usage_id_value: u16 = 0x02; // Mouse
 //! let usage_value: u32 = (usage_page_value as u32) << 16 | usage_id_value as u32;
 //!
-//! // Convert to and fro the Usage either via [u32] or the [AsUsage] trait
+//! // Create a known usage from a 32-bit value
+//! let u: Usage = Usage::try_from(usage_value).unwrap();
+//! assert!(matches!(u, Usage::GenericDesktop { usage: GenericDesktop::Mouse }));
+//!
+//! // Convert to and fro the Usage either via u32 or the AsUsage trait
 //! let u = GenericDesktop::Mouse;
-//! assert!(matches!(Usage::try_from(usage_value).unwrap(),
-//!                  Usage::GenericDesktop { usage: GenericDesktop::Mouse }));
 //! assert_eq!(u32::from(&u), usage_value);
 //! assert_eq!(u.usage_value(), usage_value);
 //!
-//! // Convert to and fro the UsageID either via u16 or the AsUsage trait
+//! // Extract the 16-bit Usage ID either via u16 or the AsUsage trait
 //! assert_eq!(usage_id_value, u16::from(&u));
 //! assert_eq!(usage_id_value, u.usage_id_value());
 //!
 //! // Extract the Usage Page from  Usage enum value
-//! assert!(matches!(UsagePage::from(&u), UsagePage::GenericDesktop));
-//! let up = UsagePage::from(&u);
+//! let up: UsagePage = UsagePage::from(&u);
+//! assert!(matches!(up, UsagePage::GenericDesktop));
 //!
-//! // Get the Usage Page numeric value is via the [AsUsagePage]
+//! // Get the Usage Page numeric value is via the AsUsagePage
 //! assert_eq!(usage_page_value, u16::from(&up));
 //! assert_eq!(usage_page_value, up.usage_page_value());
 //! ```
 //!
-//! For generated usage pages:
+//! The above works for Defined Usage Pages, Generated Usage Pages (see below)
+//! need to be destructured via their individual elements:
 //! ```
 //! # use hut::*;
 //! let usage_page_value: u16 = 0x09; // Button
 //! let usage_id_value: u16 = 8; // Button number 8
 //! let usage_value: u32 = (usage_page_value as u32) << 16 | usage_id_value as u32;
 //!
-//! let u = Button::Button { button: 8 };
-//! let c = Usage::try_from(usage_value).unwrap();
+//! let u = Usage::try_from(usage_value).unwrap();
 //! assert!(matches!(Usage::try_from(usage_value).unwrap(),
 //!                  Usage::Button {
 //!                     usage: Button::Button { button: 8 }
 //!                  }));
 //! ```
+//! Once a Usage is created, the [AsUsagePage] and [AsUsage] traits and conversion to and from
+//! [u16] and [u32] work the same as for a Defined Usage Page.
 //!
 //! # Generated Usage Pages
 //!
@@ -71,13 +79,19 @@
 //! referring to "nth thing in this usage page". One example for this is the Button Usage Page
 //! (0x09) where a Usage ID of 3 means "Button 3".
 //!
+//! ```
+//! # use hut::*;
+//! let b = Button::Button { button: 3 };
+//! let o = Ordinal::Ordinal { instance: 23 };
+//! ```
+//!
 //! Unlike Defined Usage Pages Generated Usage Pages these need to be destructured in `match`
 //! statements.
 //!
 //! The following usage pages are Generated:
 {% for usage_page in usage_pages %}
 {% if usage_page.usage_page_type == "Generated" %}
-//!   - {{usage_page.name}} ({{usage_page.value}}) - see [{{usage_page.name}}]
+//!   - Usage Page 0x{{ '%X' % usage_page.value }} - [{{usage_page.name}}]
 {% endif %}
 {% endfor %}
 //!
@@ -86,7 +100,7 @@
 //!
 //! # Vendor Defined Usage Pages (0xFF00 to 0xFFFF)
 //!
-//! [Vendor Defined Usage Pages](VendorDefinedPage) and [Usages](VendorDefinedPage::VendorUsage) are not autogenerated and thus
+//! [Vendor Defined Usage Pages](VendorDefinedPage) and [VendorUsages](VendorDefinedPage::VendorUsage) are not autogenerated and thus
 //! follow a different approach: the Usage inside the Usage Page is a simple
 //! numeric usage that needs to be destructured in `match` statements.
 //!
@@ -118,20 +132,30 @@ type Result<T> = std::result::Result<T, HutError>;
 
 /// A trait to return the Usage and Usage ID as numeric value
 pub trait AsUsage {
+    /// Returns the 32-bit Usage numeric value of this Usage
     fn usage_value(&self) -> u32;
+
+    /// Returns the 16-bit Usage Id numeric value of this Usage
     fn usage_id_value(&self) -> u16;
 }
 
 /// A trait to return the Usage Page as numeric value
 pub trait AsUsagePage {
-    /// Returns the 16 bit Usage Page value
+    /// Returns the 16-bit Usage Page value
     fn usage_page_value(&self) -> u16;
 }
 
-/// A HID UsagePage, see section 5.5. This represents the upper 16 bits in the
-/// 32-bit
-///
-/// Note: this enum is generated from the HUT documents.
+/// A HID UsagePage, see HID Section 5.5. This represents the upper 16 bits in the
+/// 32-bit Usage. Where a [UsagePage] is converted to or from 32 bit, the
+/// [UsagePage] value are the upper 16 bits only and the lower 16 bits are
+/// ignored or set to zero.
+/// ```
+/// # use hut::*;
+/// let usage = Usage::from(GenericDesktop::Mouse);
+/// let up: UsagePage = UsagePage::from(&usage);
+/// assert!(matches!(up, UsagePage::GenericDesktop));
+/// ```
+/// Note: this enum is generated from the HUT specification.
 #[allow(non_camel_case_types)]
 #[derive(Debug)]
 #[non_exhaustive]
@@ -146,7 +170,20 @@ pub enum UsagePage {
 }
 
 /// Represents a Vendor Defined Page number value of in the range
-/// 0xFF00 to 0xFFFF, inclusive. See [VendorDefinedPage].
+/// `0xFF00..=0xFFFF`. See [VendorDefinedPage].
+///
+/// ```
+/// # use hut::*;
+/// // The value has to be 0xff00..=0xffff
+/// let vp: VendorPage = VendorPage::try_from(0xff00 as u16).unwrap();
+/// let vp: VendorPage = VendorPage::try_from(0xff001234 as u32).unwrap();
+///
+/// let usage = Usage::try_from(0xff001234).unwrap();
+/// let up = UsagePage::from(&usage);
+/// assert!(matches!(up, UsagePage::VendorDefinedPage {
+///                          vendor_page: _,
+///                      }));
+/// ```
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 pub struct VendorPage(u16);
 
@@ -238,7 +275,7 @@ impl UsagePage {
 }
 
 impl AsUsagePage for UsagePage {
-    /// Returns the 16 bit Usage Page value of this Usage Pagg
+    /// Returns the 16 bit Usage Page value of this Usage Page
     fn usage_page_value(&self) -> u16 {
         u16::from(self)
     }
