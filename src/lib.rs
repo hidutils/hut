@@ -48,6 +48,21 @@
 //! assert_eq!(usage_page_value, up.usage_page_value());
 //! ```
 //!
+//! For generated usage pages:
+//! ```
+//! # use hut::*;
+//! let usage_page_value: u16 = 0x09; // Button
+//! let usage_id_value: u16 = 8; // Button number 8
+//! let usage_value: u32 = (usage_page_value as u32) << 16 | usage_id_value as u32;
+//!
+//! let u = Button::Button { button: 8 };
+//! let c = Usage::try_from(usage_value).unwrap();
+//! assert!(matches!(Usage::try_from(usage_value).unwrap(),
+//!                  Usage::Button {
+//!                     usage: Button::Button { button: 8 }
+//!                  }));
+//! ```
+//!
 //! # Generated Usage Pages
 //!
 //! The HUT differ between "Defined" and "Generated" Usage Pages. The former define Usage ID values
