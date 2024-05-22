@@ -376,6 +376,48 @@ impl UsagePage {
         let u: u32 = usage as u32;
         Usage::try_from(up | u)
     }
+
+    pub fn name(&self) -> String {
+        match self {
+            UsagePage::GenericDesktop => "Generic Desktop".into(),
+            UsagePage::SimulationControls => "Simulation Controls".into(),
+            UsagePage::VRControls => "VR Controls".into(),
+            UsagePage::SportControls => "Sport Controls".into(),
+            UsagePage::GameControls => "Game Controls".into(),
+            UsagePage::GenericDeviceControls => "Generic Device Controls".into(),
+            UsagePage::KeyboardKeypad => "Keyboard/Keypad".into(),
+            UsagePage::LED => "LED".into(),
+            UsagePage::Button => "Button".into(),
+            UsagePage::Ordinal => "Ordinal".into(),
+            UsagePage::TelephonyDevice => "Telephony Device".into(),
+            UsagePage::Consumer => "Consumer".into(),
+            UsagePage::Digitizers => "Digitizers".into(),
+            UsagePage::Haptics => "Haptics".into(),
+            UsagePage::PhysicalInputDevice => "Physical Input Device".into(),
+            UsagePage::Unicode => "Unicode".into(),
+            UsagePage::SoC => "SoC".into(),
+            UsagePage::EyeandHeadTrackers => "Eye and Head Trackers".into(),
+            UsagePage::AuxiliaryDisplay => "Auxiliary Display".into(),
+            UsagePage::Sensors => "Sensors".into(),
+            UsagePage::MedicalInstrument => "Medical Instrument".into(),
+            UsagePage::BrailleDisplay => "Braille Display".into(),
+            UsagePage::LightingAndIllumination => "Lighting And Illumination".into(),
+            UsagePage::Monitor => "Monitor".into(),
+            UsagePage::MonitorEnumerated => "Monitor Enumerated".into(),
+            UsagePage::VESAVirtualControls => "VESA Virtual Controls".into(),
+            UsagePage::Power => "Power".into(),
+            UsagePage::BatterySystem => "Battery System".into(),
+            UsagePage::BarcodeScanner => "Barcode Scanner".into(),
+            UsagePage::Scales => "Scales".into(),
+            UsagePage::MagneticStripeReader => "Magnetic Stripe Reader".into(),
+            UsagePage::CameraControl => "Camera Control".into(),
+            UsagePage::Arcade => "Arcade".into(),
+            UsagePage::FIDOAlliance => "FIDO Alliance".into(),
+            UsagePage::VendorDefinedPage { vendor_page, .. } => {
+                format!("Vendor Defined Page {:04X}", u16::from(vendor_page))
+            }
+        }
+    }
 }
 
 impl AsUsagePage for UsagePage {
@@ -635,9 +677,9 @@ pub enum GenericDesktop {
     CallMuteLED,
 }
 
-impl fmt::Display for GenericDesktop {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl GenericDesktop {
+    pub fn name(&self) -> String {
+        match self {
             GenericDesktop::Pointer => "Pointer",
             GenericDesktop::Mouse => "Mouse",
             GenericDesktop::Joystick => "Joystick",
@@ -762,8 +804,14 @@ impl fmt::Display for GenericDesktop {
             GenericDesktop::CallActiveLED => "Call Active LED",
             GenericDesktop::CallMuteToggle => "Call Mute Toggle",
             GenericDesktop::CallMuteLED => "Call Mute LED",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for GenericDesktop {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -1213,9 +1261,9 @@ pub enum SimulationControls {
     RearBrake,
 }
 
-impl fmt::Display for SimulationControls {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl SimulationControls {
+    pub fn name(&self) -> String {
+        match self {
             SimulationControls::FlightSimulationDevice => "Flight Simulation Device",
             SimulationControls::AutomobileSimulationDevice => "Automobile Simulation Device",
             SimulationControls::TankSimulationDevice => "Tank Simulation Device",
@@ -1267,8 +1315,14 @@ impl fmt::Display for SimulationControls {
             SimulationControls::HandleBars => "Handle Bars",
             SimulationControls::FrontBrake => "Front Brake",
             SimulationControls::RearBrake => "Rear Brake",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for SimulationControls {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -1514,9 +1568,9 @@ pub enum VRControls {
     DisplayEnable,
 }
 
-impl fmt::Display for VRControls {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl VRControls {
+    pub fn name(&self) -> String {
+        match self {
             VRControls::Belt => "Belt",
             VRControls::BodySuit => "Body Suit",
             VRControls::Flexor => "Flexor",
@@ -1529,8 +1583,14 @@ impl fmt::Display for VRControls {
             VRControls::AnimatronicDevice => "Animatronic Device",
             VRControls::StereoEnable => "Stereo Enable",
             VRControls::DisplayEnable => "Display Enable",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for VRControls {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -1742,9 +1802,9 @@ pub enum SportControls {
     NineWood,
 }
 
-impl fmt::Display for SportControls {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl SportControls {
+    pub fn name(&self) -> String {
+        match self {
             SportControls::BaseballBat => "Baseball Bat",
             SportControls::GolfClub => "Golf Club",
             SportControls::RowingMachine => "Rowing Machine",
@@ -1779,8 +1839,14 @@ impl fmt::Display for SportControls {
             SportControls::FiveWood => "5 Wood",
             SportControls::SevenWood => "7 Wood",
             SportControls::NineWood => "9 Wood",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for SportControls {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -2026,9 +2092,9 @@ pub enum GameControls {
     FormfittingGamepad,
 }
 
-impl fmt::Display for GameControls {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl GameControls {
+    pub fn name(&self) -> String {
+        match self {
             GameControls::ThreeDGameController => "3D Game Controller",
             GameControls::PinballDevice => "Pinball Device",
             GameControls::GunDevice => "Gun Device",
@@ -2058,8 +2124,14 @@ impl fmt::Display for GameControls {
             GameControls::GamepadFireJump => "Gamepad Fire/Jump",
             GameControls::GamepadTrigger => "Gamepad Trigger",
             GameControls::FormfittingGamepad => "Form-fitting Gamepad",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for GameControls {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -2285,9 +2357,9 @@ pub enum GenericDeviceControls {
     PointerPoseOffset,
 }
 
-impl fmt::Display for GenericDeviceControls {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl GenericDeviceControls {
+    pub fn name(&self) -> String {
+        match self {
             GenericDeviceControls::BackgroundNonuserControls => "Background/Nonuser Controls",
             GenericDeviceControls::BatteryStrength => "Battery Strength",
             GenericDeviceControls::WirelessChannel => "Wireless Channel",
@@ -2314,8 +2386,14 @@ impl fmt::Display for GenericDeviceControls {
             GenericDeviceControls::BothHands => "Both Hands",
             GenericDeviceControls::GripPoseOffset => "Grip Pose Offset",
             GenericDeviceControls::PointerPoseOffset => "Pointer Pose Offset",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for GenericDeviceControls {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -2919,9 +2997,9 @@ pub enum KeyboardKeypad {
     KeyboardRightGUI,
 }
 
-impl fmt::Display for KeyboardKeypad {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl KeyboardKeypad {
+    pub fn name(&self) -> String {
+        match self {
             KeyboardKeypad::ErrorRollOver => "ErrorRollOver",
             KeyboardKeypad::POSTFail => "POSTFail",
             KeyboardKeypad::ErrorUndefined => "ErrorUndefined",
@@ -3142,8 +3220,14 @@ impl fmt::Display for KeyboardKeypad {
             KeyboardKeypad::KeyboardRightShift => "Keyboard RightShift",
             KeyboardKeypad::KeyboardRightAlt => "Keyboard RightAlt",
             KeyboardKeypad::KeyboardRightGUI => "Keyboard Right GUI",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for KeyboardKeypad {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -3891,9 +3975,9 @@ pub enum LED {
     Player8,
 }
 
-impl fmt::Display for LED {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl LED {
+    pub fn name(&self) -> String {
+        match self {
             LED::NumLock => "Num Lock",
             LED::CapsLock => "Caps Lock",
             LED::ScrollLock => "Scroll Lock",
@@ -3990,8 +4074,14 @@ impl fmt::Display for LED {
             LED::Player6 => "Player 6",
             LED::Player7 => "Player 7",
             LED::Player8 => "Player 8",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for LED {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -4735,9 +4825,9 @@ pub enum TelephonyDevice {
     DualModePhone,
 }
 
-impl fmt::Display for TelephonyDevice {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl TelephonyDevice {
+    pub fn name(&self) -> String {
+        match self {
             TelephonyDevice::Phone => "Phone",
             TelephonyDevice::AnsweringMachine => "Answering Machine",
             TelephonyDevice::MessageControls => "Message Controls",
@@ -4837,8 +4927,14 @@ impl fmt::Display for TelephonyDevice {
             TelephonyDevice::AddressBookID => "Address Book ID",
             TelephonyDevice::CallDuration => "Call Duration",
             TelephonyDevice::DualModePhone => "Dual Mode Phone",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for TelephonyDevice {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -6056,9 +6152,9 @@ pub enum Consumer {
     ContactMisc,
 }
 
-impl fmt::Display for Consumer {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl Consumer {
+    pub fn name(&self) -> String {
+        match self {
             Consumer::ConsumerControl => "Consumer Control",
             Consumer::NumericKeyPad => "Numeric Key Pad",
             Consumer::ProgrammableButtons => "Programmable Buttons",
@@ -6515,8 +6611,14 @@ impl fmt::Display for Consumer {
             Consumer::ContactSpeedDialNumber => "Contact Speed Dial Number",
             Consumer::ContactStatusFlag => "Contact Status Flag",
             Consumer::ContactMisc => "Contact Misc.",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for Consumer {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -7752,9 +7854,9 @@ pub enum Digitizers {
     ButtonPressThreshold,
 }
 
-impl fmt::Display for Digitizers {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl Digitizers {
+    pub fn name(&self) -> String {
+        match self {
             Digitizers::Digitizer => "Digitizer",
             Digitizers::Pen => "Pen",
             Digitizers::LightPen => "Light Pen",
@@ -7873,8 +7975,14 @@ impl fmt::Display for Digitizers {
             Digitizers::TransducerSwitches => "Transducer Switches",
             Digitizers::TransducerIndexSelector => "Transducer Index Selector",
             Digitizers::ButtonPressThreshold => "Button Press Threshold",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for Digitizers {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -8268,9 +8376,9 @@ pub enum Haptics {
     WaveformSparkleContinuous,
 }
 
-impl fmt::Display for Haptics {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl Haptics {
+    pub fn name(&self) -> String {
+        match self {
             Haptics::SimpleHapticController => "Simple Haptic Controller",
             Haptics::WaveformList => "Waveform List",
             Haptics::DurationList => "Duration List",
@@ -8300,8 +8408,14 @@ impl fmt::Display for Haptics {
             Haptics::WaveformBrushContinuous => "Waveform Brush Continuous",
             Haptics::WaveformEraserContinuous => "Waveform Eraser Continuous",
             Haptics::WaveformSparkleContinuous => "Waveform Sparkle Continuous",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for Haptics {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -8689,9 +8803,9 @@ pub enum PhysicalInputDevice {
     RAMPoolAvailable,
 }
 
-impl fmt::Display for PhysicalInputDevice {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl PhysicalInputDevice {
+    pub fn name(&self) -> String {
+        match self {
             PhysicalInputDevice::PhysicalInputDevice => "Physical Input Device",
             PhysicalInputDevice::Normal => "Normal",
             PhysicalInputDevice::SetEffectReport => "Set Effect Report",
@@ -8805,8 +8919,14 @@ impl fmt::Display for PhysicalInputDevice {
                 "Create New Effect Parameter Block Report"
             }
             PhysicalInputDevice::RAMPoolAvailable => "RAM Pool Available",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for PhysicalInputDevice {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -9273,9 +9393,9 @@ pub enum SoC {
     FileTransferTillEnd,
 }
 
-impl fmt::Display for SoC {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl SoC {
+    pub fn name(&self) -> String {
+        match self {
             SoC::SocControl => "SocControl",
             SoC::FirmwareTransfer => "FirmwareTransfer",
             SoC::FirmwareFileId => "FirmwareFileId",
@@ -9286,8 +9406,14 @@ impl fmt::Display for SoC {
             SoC::FilePayloadContainsLastBytes => "FilePayloadContainsLastBytes",
             SoC::FileTransferStop => "FileTransferStop",
             SoC::FileTransferTillEnd => "FileTransferTillEnd",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for SoC {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -9495,9 +9621,9 @@ pub enum EyeandHeadTrackers {
     DeviceModeRequest,
 }
 
-impl fmt::Display for EyeandHeadTrackers {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl EyeandHeadTrackers {
+    pub fn name(&self) -> String {
+        match self {
             EyeandHeadTrackers::EyeTracker => "Eye Tracker",
             EyeandHeadTrackers::HeadTracker => "Head Tracker",
             EyeandHeadTrackers::TrackingData => "Tracking Data",
@@ -9532,8 +9658,14 @@ impl fmt::Display for EyeandHeadTrackers {
             EyeandHeadTrackers::SamplingFrequency => "Sampling Frequency",
             EyeandHeadTrackers::ConfigurationStatus => "Configuration Status",
             EyeandHeadTrackers::DeviceModeRequest => "Device Mode Request",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for EyeandHeadTrackers {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -9871,9 +10003,9 @@ pub enum AuxiliaryDisplay {
     RequestReport,
 }
 
-impl fmt::Display for AuxiliaryDisplay {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl AuxiliaryDisplay {
+    pub fn name(&self) -> String {
+        match self {
             AuxiliaryDisplay::AlphanumericDisplay => "Alphanumeric Display",
             AuxiliaryDisplay::AuxiliaryDisplay => "Auxiliary Display",
             AuxiliaryDisplay::DisplayAttributesReport => "Display Attributes Report",
@@ -9949,8 +10081,14 @@ impl fmt::Display for AuxiliaryDisplay {
             AuxiliaryDisplay::UnicodeEquivalent => "Unicode Equivalent",
             AuxiliaryDisplay::CharacterPageMapping => "Character Page Mapping",
             AuxiliaryDisplay::RequestReport => "Request Report",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for AuxiliaryDisplay {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -11566,9 +11704,9 @@ pub enum Sensors {
     ModifierVendorReserved,
 }
 
-impl fmt::Display for Sensors {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl Sensors {
+    pub fn name(&self) -> String {
+        match self {
             Sensors::Sensor => "Sensor",
             Sensors::Biometric => "Biometric",
             Sensors::BiometricHumanPresence => "Biometric: Human Presence",
@@ -12352,8 +12490,14 @@ impl fmt::Display for Sensors {
                 "Modifier: Change Sensitivity Percent Relative"
             }
             Sensors::ModifierVendorReserved => "Modifier: Vendor Reserved",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for Sensors {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -13877,9 +14021,9 @@ pub enum MedicalInstrument {
     SoftControlAdjust,
 }
 
-impl fmt::Display for MedicalInstrument {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl MedicalInstrument {
+    pub fn name(&self) -> String {
+        match self {
             MedicalInstrument::MedicalUltrasound => "Medical Ultrasound",
             MedicalInstrument::VCRAcquisition => "VCR/Acquisition",
             MedicalInstrument::FreezeThaw => "Freeze/Thaw",
@@ -13909,8 +14053,14 @@ impl fmt::Display for MedicalInstrument {
             MedicalInstrument::TwoDModeAdjust => "2-D Mode Adjust",
             MedicalInstrument::SoftControlSelect => "Soft Control Select",
             MedicalInstrument::SoftControlAdjust => "Soft Control Adjust",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for MedicalInstrument {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -14174,9 +14324,9 @@ pub enum BrailleDisplay {
     BrailleRockerPress,
 }
 
-impl fmt::Display for BrailleDisplay {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl BrailleDisplay {
+    pub fn name(&self) -> String {
+        match self {
             BrailleDisplay::BrailleDisplay => "Braille Display",
             BrailleDisplay::BrailleRow => "Braille Row",
             BrailleDisplay::EightDotBrailleCell => "8 Dot Braille Cell",
@@ -14220,8 +14370,14 @@ impl fmt::Display for BrailleDisplay {
             BrailleDisplay::BrailleRockerUp => "Braille Rocker Up",
             BrailleDisplay::BrailleRockerDown => "Braille Rocker Down",
             BrailleDisplay::BrailleRockerPress => "Braille Rocker Press",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for BrailleDisplay {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -14493,9 +14649,9 @@ pub enum LightingAndIllumination {
     AutonomousMode,
 }
 
-impl fmt::Display for LightingAndIllumination {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl LightingAndIllumination {
+    pub fn name(&self) -> String {
+        match self {
             LightingAndIllumination::LampArray => "LampArray",
             LightingAndIllumination::LampArrayAttributesReport => "LampArrayAttributesReport",
             LightingAndIllumination::LampCount => "LampCount",
@@ -14537,8 +14693,14 @@ impl fmt::Display for LightingAndIllumination {
             LightingAndIllumination::LampIdEnd => "LampIdEnd",
             LightingAndIllumination::LampArrayControlReport => "LampArrayControlReport",
             LightingAndIllumination::AutonomousMode => "AutonomousMode",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for LightingAndIllumination {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -14732,15 +14894,21 @@ pub enum Monitor {
     VESAVersion,
 }
 
-impl fmt::Display for Monitor {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl Monitor {
+    pub fn name(&self) -> String {
+        match self {
             Monitor::MonitorControl => "Monitor Control",
             Monitor::EDIDInformation => "EDID Information",
             Monitor::VDIFInformation => "VDIF Information",
             Monitor::VESAVersion => "VESA Version",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for Monitor {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -15075,9 +15243,9 @@ pub enum VESAVirtualControls {
     StereoMode,
 }
 
-impl fmt::Display for VESAVirtualControls {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl VESAVirtualControls {
+    pub fn name(&self) -> String {
+        match self {
             VESAVirtualControls::Degauss => "Degauss",
             VESAVirtualControls::Brightness => "Brightness",
             VESAVirtualControls::Contrast => "Contrast",
@@ -15133,8 +15301,14 @@ impl fmt::Display for VESAVirtualControls {
             VESAVirtualControls::Settings => "Settings",
             VESAVirtualControls::OnScreenDisplay => "On Screen Display",
             VESAVirtualControls::StereoMode => "Stereo Mode",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for VESAVirtualControls {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -15498,9 +15672,9 @@ pub enum Power {
     iSerialNumber,
 }
 
-impl fmt::Display for Power {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl Power {
+    pub fn name(&self) -> String {
+        match self {
             Power::iName => "iName",
             Power::PresentStatus => "Present Status",
             Power::ChangedStatus => "Changed Status",
@@ -15578,8 +15752,14 @@ impl fmt::Display for Power {
             Power::iManufacturer => "iManufacturer",
             Power::iProduct => "iProduct",
             Power::iSerialNumber => "iSerialNumber",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for Power {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -16035,9 +16215,9 @@ pub enum BatterySystem {
     Level3,
 }
 
-impl fmt::Display for BatterySystem {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl BatterySystem {
+    pub fn name(&self) -> String {
+        match self {
             BatterySystem::SmartBatteryBatteryMode => "Smart Battery Battery Mode",
             BatterySystem::SmartBatteryBatteryStatus => "Smart Battery Battery Status",
             BatterySystem::SmartBatteryAlarmWarning => "Smart Battery Alarm Warning",
@@ -16129,8 +16309,14 @@ impl fmt::Display for BatterySystem {
             BatterySystem::ChargerSpec => "Charger Spec",
             BatterySystem::Level2 => "Level 2",
             BatterySystem::Level3 => "Level 3",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for BatterySystem {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -16820,9 +17006,9 @@ pub enum BarcodeScanner {
     VeriCode,
 }
 
-impl fmt::Display for BarcodeScanner {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl BarcodeScanner {
+    pub fn name(&self) -> String {
+        match self {
             BarcodeScanner::BarcodeBadgeReader => "Barcode Badge Reader",
             BarcodeScanner::BarcodeScanner => "Barcode Scanner",
             BarcodeScanner::DumbBarCodeScanner => "Dumb Bar Code Scanner",
@@ -17031,8 +17217,14 @@ impl fmt::Display for BarcodeScanner {
             BarcodeScanner::UltraCode => "UltraCode",
             BarcodeScanner::USD5SlugCode => "USD-5 (Slug Code)",
             BarcodeScanner::VeriCode => "VeriCode",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for BarcodeScanner {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -17632,9 +17824,9 @@ pub enum Scales {
     EnforcedZeroReturn,
 }
 
-impl fmt::Display for Scales {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl Scales {
+    pub fn name(&self) -> String {
+        match self {
             Scales::Scales => "Scales",
             Scales::ScaleDevice => "Scale Device",
             Scales::ScaleClass => "Scale Class",
@@ -17681,8 +17873,14 @@ impl fmt::Display for Scales {
             Scales::ScaleStatusRequiresRezeroing => "Scale Status Requires Rezeroing",
             Scales::ZeroScale => "Zero Scale",
             Scales::EnforcedZeroReturn => "Enforced Zero Return",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for Scales {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -17914,9 +18112,9 @@ pub enum MagneticStripeReader {
     TrackJISData,
 }
 
-impl fmt::Display for MagneticStripeReader {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl MagneticStripeReader {
+    pub fn name(&self) -> String {
+        match self {
             MagneticStripeReader::MSRDeviceReadOnly => "MSR Device Read-Only",
             MagneticStripeReader::Track1Length => "Track 1 Length",
             MagneticStripeReader::Track2Length => "Track 2 Length",
@@ -17927,8 +18125,14 @@ impl fmt::Display for MagneticStripeReader {
             MagneticStripeReader::Track2Data => "Track 2 Data",
             MagneticStripeReader::Track3Data => "Track 3 Data",
             MagneticStripeReader::TrackJISData => "Track JIS Data",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for MagneticStripeReader {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -18072,13 +18276,19 @@ pub enum CameraControl {
     CameraShutter,
 }
 
-impl fmt::Display for CameraControl {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl CameraControl {
+    pub fn name(&self) -> String {
+        match self {
             CameraControl::CameraAutofocus => "Camera Auto-focus",
             CameraControl::CameraShutter => "Camera Shutter",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for CameraControl {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -18256,9 +18466,9 @@ pub enum Arcade {
     PinPadCommand,
 }
 
-impl fmt::Display for Arcade {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl Arcade {
+    pub fn name(&self) -> String {
+        match self {
             Arcade::GeneralPurposeIOCard => "General Purpose IO Card",
             Arcade::CoinDoor => "Coin Door",
             Arcade::WatchdogTimer => "Watchdog Timer",
@@ -18286,8 +18496,14 @@ impl fmt::Display for Arcade {
             Arcade::PinPadStatus => "Pin Pad Status",
             Arcade::PinPadOutput => "Pin Pad Output",
             Arcade::PinPadCommand => "Pin Pad Command",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for Arcade {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -18467,14 +18683,20 @@ pub enum FIDOAlliance {
     OutputReportData,
 }
 
-impl fmt::Display for FIDOAlliance {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl FIDOAlliance {
+    pub fn name(&self) -> String {
+        match self {
             FIDOAlliance::U2FAuthenticatorDevice => "U2F Authenticator Device",
             FIDOAlliance::InputReportData => "Input Report Data",
             FIDOAlliance::OutputReportData => "Output Report Data",
-        };
-        write!(f, "{name}")
+        }
+        .into()
+    }
+}
+
+impl fmt::Display for FIDOAlliance {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -18762,46 +18984,7 @@ impl TryFrom<u32> for UsagePage {
 
 impl fmt::Display for UsagePage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name: String = match self {
-            UsagePage::GenericDesktop => "Generic Desktop".into(),
-            UsagePage::SimulationControls => "Simulation Controls".into(),
-            UsagePage::VRControls => "VR Controls".into(),
-            UsagePage::SportControls => "Sport Controls".into(),
-            UsagePage::GameControls => "Game Controls".into(),
-            UsagePage::GenericDeviceControls => "Generic Device Controls".into(),
-            UsagePage::KeyboardKeypad => "Keyboard/Keypad".into(),
-            UsagePage::LED => "LED".into(),
-            UsagePage::Button => "Button".into(),
-            UsagePage::Ordinal => "Ordinal".into(),
-            UsagePage::TelephonyDevice => "Telephony Device".into(),
-            UsagePage::Consumer => "Consumer".into(),
-            UsagePage::Digitizers => "Digitizers".into(),
-            UsagePage::Haptics => "Haptics".into(),
-            UsagePage::PhysicalInputDevice => "Physical Input Device".into(),
-            UsagePage::Unicode => "Unicode".into(),
-            UsagePage::SoC => "SoC".into(),
-            UsagePage::EyeandHeadTrackers => "Eye and Head Trackers".into(),
-            UsagePage::AuxiliaryDisplay => "Auxiliary Display".into(),
-            UsagePage::Sensors => "Sensors".into(),
-            UsagePage::MedicalInstrument => "Medical Instrument".into(),
-            UsagePage::BrailleDisplay => "Braille Display".into(),
-            UsagePage::LightingAndIllumination => "Lighting And Illumination".into(),
-            UsagePage::Monitor => "Monitor".into(),
-            UsagePage::MonitorEnumerated => "Monitor Enumerated".into(),
-            UsagePage::VESAVirtualControls => "VESA Virtual Controls".into(),
-            UsagePage::Power => "Power".into(),
-            UsagePage::BatterySystem => "Battery System".into(),
-            UsagePage::BarcodeScanner => "Barcode Scanner".into(),
-            UsagePage::Scales => "Scales".into(),
-            UsagePage::MagneticStripeReader => "Magnetic Stripe Reader".into(),
-            UsagePage::CameraControl => "Camera Control".into(),
-            UsagePage::Arcade => "Arcade".into(),
-            UsagePage::FIDOAlliance => "FIDO Alliance".into(),
-            UsagePage::VendorDefinedPage { vendor_page, .. } => {
-                format!("Vendor Defined Page {:04X}", u16::from(vendor_page))
-            }
-        };
-        write!(f, "{name}")
+        write!(f, "{}", self.name())
     }
 }
 
@@ -19239,5 +19422,16 @@ mod tests {
 
         // UsagePage to u16 via AsUsagePage trait
         assert_eq!(hid_usage_page, up.usage_page_value());
+    }
+
+    #[test]
+    fn names() {
+        assert_eq!(UsagePage::GenericDesktop.name().as_str(), "Generic Desktop");
+        assert_eq!(
+            UsagePage::PhysicalInputDevice.name().as_str(),
+            "Physical Input Device"
+        );
+        assert_eq!(GenericDesktop::CallMuteLED.name().as_str(), "Call Mute LED");
+        assert_eq!(VRControls::HeadTracker.name().as_str(), "Head Tracker");
     }
 }

@@ -281,6 +281,15 @@ impl UsagePage {
         let u: u32 = usage as u32;
         Usage::try_from(up | u)
     }
+
+    pub fn name(&self) -> String {
+        match self {
+{% for usage_page in usage_pages %}
+            UsagePage::{{usage_page.name}} => "{{usage_page.printable}}".into(),
+{% endfor %}
+            UsagePage::VendorDefinedPage { vendor_page, .. } => format!("Vendor Defined Page {:04X}", u16::from(vendor_page)),
+        }
+    }
 }
 
 impl AsUsagePage for UsagePage {
@@ -320,16 +329,21 @@ pub enum {{usage_page.name}} {
 {% endfor %}
 }
 
-impl fmt::Display for {{usage_page.name}} {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl {{usage_page.name}} {
+    pub fn name(&self) -> String {
+        match self {
 {% for usage in usage_page.usages %}
             {{usage_page.name}}::{{usage.name}} => "{{usage.printable}}",
 {% else %}
             _ => "",
 {% endfor %}
-        };
-        write!(f, "{name}")
+        }.into()
+    }
+}
+
+impl fmt::Display for {{usage_page.name}} {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -560,13 +574,7 @@ impl TryFrom<u32> for UsagePage {
 
 impl fmt::Display for UsagePage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name: String = match self {
-{% for usage_page in usage_pages %}
-            UsagePage::{{usage_page.name}} => "{{usage_page.printable}}".into(),
-{% endfor %}
-            UsagePage::VendorDefinedPage { vendor_page, .. } => format!("Vendor Defined Page {:04X}", u16::from(vendor_page)),
-        };
-        write!(f, "{name}")
+        write!(f, "{}", self.name())
     }
 }
 
@@ -772,5 +780,13 @@ mod tests {
 
         // UsagePage to u16 via AsUsagePage trait
         assert_eq!(hid_usage_page, up.usage_page_value());
+    }
+
+    #[test]
+    fn names() {
+        assert_eq!(UsagePage::GenericDesktop.name().as_str(), "Generic Desktop");
+        assert_eq!(UsagePage::PhysicalInputDevice.name().as_str(), "Physical Input Device");
+        assert_eq!(GenericDesktop::CallMuteLED.name().as_str(), "Call Mute LED");
+        assert_eq!(VRControls::HeadTracker.name().as_str(), "Head Tracker");
     }
 }
