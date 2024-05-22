@@ -18916,7 +18916,7 @@ impl From<&UsagePage> for u16 {
             UsagePage::CameraControl { .. } => 144,
             UsagePage::Arcade { .. } => 145,
             UsagePage::FIDOAlliance { .. } => 61904,
-            UsagePage::VendorDefinedPage { .. } => 0xff00,
+            UsagePage::VendorDefinedPage { vendor_page } => u16::from(vendor_page),
         }
     }
 }

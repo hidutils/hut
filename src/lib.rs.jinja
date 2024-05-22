@@ -539,7 +539,7 @@ impl From<&UsagePage> for u16 {
 {% for usage_page in usage_pages %}
             UsagePage::{{usage_page.name}} { .. } => {{usage_page.value}},
 {% endfor %}
-            UsagePage::VendorDefinedPage { .. } => 0xff00,
+            UsagePage::VendorDefinedPage { vendor_page } => u16::from(vendor_page),
         }
     }
 }
