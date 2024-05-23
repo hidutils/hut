@@ -515,10 +515,10 @@ impl UsagePage {
             UsagePage::Arcade => "Arcade".into(),
             UsagePage::FIDOAlliance => "FIDO Alliance".into(),
             UsagePage::ReservedUsagePage { reserved_page, .. } => {
-                format!("Reserved Usage Page {:04X}", u16::from(reserved_page))
+                format!("Reserved Usage Page 0x{:04X}", u16::from(reserved_page))
             }
             UsagePage::VendorDefinedPage { vendor_page, .. } => {
-                format!("Vendor Defined Page {:04X}", u16::from(vendor_page))
+                format!("Vendor Defined Page 0x{:04X}", u16::from(vendor_page))
             }
         }
     }
