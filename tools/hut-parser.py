@@ -172,9 +172,13 @@ def parse_usage_page(up) -> UsagePage:
     return usage_page
 
 
-def parse_data_file(datadir):
-    js = json.load(open(datadir, "r"))
-    usage_pages = [parse_usage_page(up) for up in js["UsagePages"]]
+def parse_data_files(datadir: Path):
+    usage_pages = []
+
+    for datafile in datadir.glob("*.json"):
+        js = json.load(open(datafile, "r"))
+        ups = [parse_usage_page(up) for up in js["UsagePages"]]
+        usage_pages.extend(ups)
 
     # For some reason the Unicode usage page isn't in the JSON but
     # it is described on page 213 of the HUT 1.5 document. Let's insert
@@ -221,17 +225,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default="-")
     parser.add_argument(
-        "--datafile",
+        "--datadir",
         type=Path,
         default=Path("data"),
-        help="Path to the HUT json",
+        help="Path to the directory containing the HUT json files",
     )
     parser.add_argument("template", type=Path, help="The jinja template file")
     args = parser.parse_args()
-    assert args.datafile.exists()
+    assert args.datadir.exists()
     assert args.template.exists()
 
-    hut = parse_data_file(args.datafile)
+    hut = parse_data_files(args.datadir)
 
     stream = generate_source(usage_pages=hut, template=args.template)
     file = sys.stdout if args.output == "-" else open(args.output, "w")
