@@ -181,6 +181,12 @@ pub trait AsUsagePage {
     fn usage_page_value(&self) -> u16;
 }
 
+/// A trait to display the Item as C compatible string
+pub trait CName {
+    /// Returns a C compatible string
+    fn c_name(&self, size: usize) -> String;
+}
+
 /// A HID UsagePage, see HID Section 5.5. This represents the upper 16 bits in the
 /// 32-bit Usage. Where a [UsagePage] is converted to or from 32 bit, the
 /// [UsagePage] value are the upper 16 bits only and the lower 16 bits are
@@ -402,6 +408,22 @@ impl UsagePage {
     }
 }
 
+impl CName for UsagePage {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+{% for usage_page in usage_pages %}
+            UsagePage::{{usage_page.name}} => "UsagePage_{{usage_page.name}}".into(),
+{% endfor %}
+            UsagePage::ReservedUsagePage { reserved_page, .. } => {
+                format!("UsagePage_i{size} (0x{:04X})", u16::from(reserved_page))
+            }
+            UsagePage::VendorDefinedPage { vendor_page, .. } => {
+                format!("UsagePage_Vendor (0x{:04X})", u16::from(vendor_page))
+            }
+        }
+    }
+}
+
 impl AsUsagePage for UsagePage {
     /// Returns the 16 bit Usage Page value of this Usage Page
     fn usage_page_value(&self) -> u16 {
@@ -458,6 +480,26 @@ impl {{usage_page.name}} {
     }
 }
 
+impl CName for {{usage_page.name}} {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+{% for usage in usage_page.usages %}
+    {% set name = usage_page.acronym + "_" + usage.name %}
+    {% if (usage_page.name + usage.name + "Usage_" + name)|length < 80 %}
+            {{usage_page.name}}::{{usage.name}} => "Usage_{{name}}",
+    {% else %}
+            {{usage_page.name}}::{{usage.name}} => {
+                "Usage_{{name}}"
+            }
+    {% endif %}
+{% else %}
+            _ => "",
+{% endfor %}
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for {{usage_page.name}} {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -485,6 +527,17 @@ impl fmt::Display for {{usage_page.name}} {
             {{usage_page.name}}::{{usage_page.name}} { {{usage_page.name_prefix|lower}} } => format!("{{usage_page.name_prefix}} { {{-usage_page.name_prefix|lower-}} }"),
         };
         write!(f, "{name}")
+    }
+}
+
+impl CName for {{usage_page.name}} {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+            {{usage_page.name}}::{{usage_page.name}} { {{usage_page.name_prefix|lower}} } => {
+                format!("Usage_i{size} ({ {{-usage_page.name_prefix|lower-}} })")
+            }
+        }
+        .into()
     }
 }
 
@@ -626,6 +679,22 @@ impl fmt::Display for ReservedUsagePage {
     }
 }
 
+impl CName for ReservedUsagePage {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+            ReservedUsagePage::ReservedUsage { usage_id } => {
+                if *usage_id <= 0xff {
+                    format!("Usage_i{size} (0x{usage_id:02x})")
+                } else {
+                    format!("Usage_i{size} (0x{usage_id:04x})")
+                }
+            }
+            _ => "0".to_string(),
+        }
+        .into()
+    }
+}
+
 impl From<&ReservedUsagePage> for u16 {
     fn from(v: &ReservedUsagePage) -> u16 {
         match v {
@@ -656,6 +725,22 @@ impl fmt::Display for VendorDefinedPage {
             }
         };
         write!(f, "{name}")
+    }
+}
+
+impl CName for VendorDefinedPage {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+            VendorDefinedPage::VendorUsage { usage_id } => {
+                if *usage_id <= 0xff {
+                    format!("Usage_i{size} (0x{usage_id:02x})")
+                } else {
+                    format!("Usage_i{size} (0x{usage_id:04x})")
+                }
+            }
+            _ => "0".to_string(),
+        }
+        .into()
     }
 }
 
@@ -811,6 +896,20 @@ impl fmt::Display for Usage {
             Usage::VendorDefinedPage { usage, .. } => format!("{usage}"),
         };
         write!(f, "{name}")
+    }
+}
+
+impl CName for Usage {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+{% for usage_page in usage_pages %}
+            Usage::{{usage_page.name}} { usage } => format!("{}", usage.c_name(size)),
+{%  else %}
+            _ => "".into(),
+{% endfor %}
+            Usage::ReservedUsagePage { usage, .. } => format!("{}", usage.c_name(size)),
+            Usage::VendorDefinedPage { usage, .. } => format!("{}", usage.c_name(size)),
+        }
     }
 }
 
