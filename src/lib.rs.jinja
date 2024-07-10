@@ -392,8 +392,12 @@ impl UsagePage {
 {% for usage_page in usage_pages %}
             UsagePage::{{usage_page.name}} => "{{usage_page.printable}}".into(),
 {% endfor %}
-            UsagePage::ReservedUsagePage { reserved_page, .. } => format!("Reserved Usage Page {:04X}", u16::from(reserved_page)),
-            UsagePage::VendorDefinedPage { vendor_page, .. } => format!("Vendor Defined Page {:04X}", u16::from(vendor_page)),
+            UsagePage::ReservedUsagePage { reserved_page, .. } => {
+                format!("Reserved Usage Page {:04X}", u16::from(reserved_page))
+            }
+            UsagePage::VendorDefinedPage { vendor_page, .. } => {
+                format!("Vendor Defined Page {:04X}", u16::from(vendor_page))
+            }
         }
     }
 }
@@ -439,11 +443,18 @@ impl {{usage_page.name}} {
     pub fn name(&self) -> String {
         match self {
 {% for usage in usage_page.usages %}
+    {% if (usage_page.name + usage.name + usage.printable)|length < 80 %}
             {{usage_page.name}}::{{usage.name}} => "{{usage.printable}}",
+    {% else %}
+            {{usage_page.name}}::{{usage.name}} => {
+                "{{usage.printable}}"
+            }
+    {% endif %}
 {% else %}
             _ => "",
 {% endfor %}
-        }.into()
+        }
+        .into()
     }
 }
 
@@ -465,9 +476,7 @@ impl fmt::Display for {{usage_page.name}} {
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum {{usage_page.name}} {
-    {{usage_page.name}} {
-        {{usage_page.name_prefix|lower}}: u16,
-    }
+    {{usage_page.name}} { {{usage_page.name_prefix|lower}}: u16 },
 }
 
 impl fmt::Display for {{usage_page.name}} {
@@ -479,7 +488,7 @@ impl fmt::Display for {{usage_page.name}} {
     }
 }
 
-{% endif %}{# if usage_page.usage_page_type == Generated ... #}
+{% endif %}{# if usage_page.usage_page_type == Generated ... -#}
 
 impl AsUsage for {{usage_page.name}} {
     /// Returns the 32 bit Usage value of this Usage
@@ -548,13 +557,13 @@ impl From<{{usage_page.name}}> for UsagePage {
 impl From<&{{usage_page.name}}> for Usage {
     fn from(u: &{{usage_page.name}}) -> Usage {
         Usage::try_from(u32::from(u)).unwrap()
-      }
+    }
 }
 
 impl From<{{usage_page.name}}> for Usage {
     fn from(u: {{usage_page.name}}) -> Usage {
         Usage::from(&u)
-      }
+    }
 }
 
 impl TryFrom<u16> for {{usage_page.name}} {
@@ -590,7 +599,7 @@ impl BitOr<u16> for {{usage_page.name}} {
     }
 }
 
-{% endfor %}
+{% endfor -%}
 
 /// *Reserved Usage Pages*
 ///
@@ -665,8 +674,12 @@ impl From<&Usage> for UsagePage {
 {% for usage_page in usage_pages %}
             Usage::{{usage_page.name}} { .. } => UsagePage::{{usage_page.name}},
 {% endfor %}
-            Usage::ReservedUsagePage { reserved_page, .. } => UsagePage::ReservedUsagePage { reserved_page: *reserved_page },
-            Usage::VendorDefinedPage { vendor_page, .. } => UsagePage::VendorDefinedPage { vendor_page: *vendor_page },
+            Usage::ReservedUsagePage { reserved_page, .. } => UsagePage::ReservedUsagePage {
+                reserved_page: *reserved_page,
+            },
+            Usage::VendorDefinedPage { vendor_page, .. } => UsagePage::VendorDefinedPage {
+                vendor_page: *vendor_page,
+            },
         }
     }
 }
@@ -699,7 +712,9 @@ impl TryFrom<u16> for UsagePage {
 {% for usage_page in usage_pages %}
             {{usage_page.value}} => Ok(UsagePage::{{usage_page.name}}),
 {% endfor %}
-            page @ 0xff00..=0xffff => Ok(UsagePage::VendorDefinedPage { vendor_page: VendorPage(page) }),
+            page @ 0xff00..=0xffff => Ok(UsagePage::VendorDefinedPage {
+                vendor_page: VendorPage(page),
+            }),
             n => match ReservedPage::try_from(n) {
                 Ok(r) => Ok(UsagePage::ReservedUsagePage { reserved_page: r }),
                 Err(_) => Err(HutError::UnknownUsagePage { usage_page: n }),
@@ -742,9 +757,7 @@ impl fmt::Display for UsagePage {
 pub enum Usage {
     {% for usage_page in usage_pages %}
     /// "{{usage_page.printable}}"
-    {{usage_page.name}} {
-        usage: {{usage_page.name}},
-    },
+    {{usage_page.name}} { usage: {{usage_page.name}} },
     {% endfor %}
     ReservedUsagePage {
         reserved_page: ReservedPage,
@@ -820,8 +833,13 @@ impl From<&Usage> for u32 {
 {% for usage_page in usage_pages %}
             Usage::{{usage_page.name}} { usage } => {{usage_page.value}} << 16 | u16::from(usage) as u32,
 {% endfor  %}
-            Usage::ReservedUsagePage { reserved_page, usage } => (u16::from(reserved_page) as u32) << 16 | u16::from(usage) as u32,
-            Usage::VendorDefinedPage { vendor_page, usage } => (u16::from(vendor_page) as u32) << 16 | u16::from(usage) as u32,
+            Usage::ReservedUsagePage {
+                reserved_page,
+                usage,
+            } => (u16::from(reserved_page) as u32) << 16 | u16::from(usage) as u32,
+            Usage::VendorDefinedPage { vendor_page, usage } => {
+                (u16::from(vendor_page) as u32) << 16 | u16::from(usage) as u32
+            }
         }
     }
 }
@@ -832,19 +850,21 @@ impl TryFrom<u32> for Usage {
     fn try_from(up: u32) -> Result<Usage> {
         match (up >> 16, up & 0xFFFF) {
 {% for usage_page in usage_pages %}
-            ({{usage_page.value}},  n) => Ok(Usage::{{usage_page.name}} { usage: {{usage_page.name}}::try_from(n as u16)? }),
+            ({{usage_page.value}}, n) => Ok(Usage::{{usage_page.name}} {
+                usage: {{usage_page.name}}::try_from(n as u16)?,
+            }),
 {% endfor  %}
             (p @ 0xff00..=0xffff, n) => Ok(Usage::VendorDefinedPage {
                 vendor_page: VendorPage(p as u16),
-                usage: VendorDefinedPage::VendorUsage { usage_id: n as u16 }
+                usage: VendorDefinedPage::VendorUsage { usage_id: n as u16 },
             }),
             (p, n) => match ReservedPage::try_from(p as u16) {
                 Ok(r) => Ok(Usage::ReservedUsagePage {
                     reserved_page: r,
-                    usage: ReservedUsagePage::ReservedUsage { usage_id: n as u16 }
+                    usage: ReservedUsagePage::ReservedUsage { usage_id: n as u16 },
                 }),
                 _ => Err(HutError::UnknownUsage),
-            }
+            },
         }
     }
 }
@@ -861,7 +881,10 @@ mod tests {
 
         let u = GenericDesktop::Mouse;
         // 32 bit usage to enum
-        assert!(matches!(Usage::try_from(hid_usage).unwrap(), Usage::GenericDesktop {usage: _}));
+        assert!(matches!(
+            Usage::try_from(hid_usage).unwrap(),
+            Usage::GenericDesktop { usage: _ }
+        ));
 
         // Usage to u32
         assert_eq!(u32::from(&u), hid_usage);
@@ -889,7 +912,10 @@ mod tests {
         let hid_usage: u32 = (hid_usage_page as u32) << 16 | hid_usage_id as u32;
 
         let u = Button::Button { button: 5 };
-        assert!(matches!(Usage::try_from(hid_usage).unwrap(), Usage::Button { usage: _ }));
+        assert!(matches!(
+            Usage::try_from(hid_usage).unwrap(),
+            Usage::Button { usage: _ }
+        ));
 
         // Usage to u32
         assert_eq!(u32::from(&u), hid_usage);
@@ -917,7 +943,10 @@ mod tests {
         let hid_usage: u32 = (hid_usage_page as u32) << 16 | hid_usage_id as u32;
 
         let u = Ordinal::Ordinal { instance: 8 };
-        assert!(matches!(Usage::try_from(hid_usage).unwrap(), Usage::Ordinal { usage: _ }));
+        assert!(matches!(
+            Usage::try_from(hid_usage).unwrap(),
+            Usage::Ordinal { usage: _ }
+        ));
 
         // Usage to u32
         assert_eq!(u32::from(&u), hid_usage);
@@ -941,8 +970,12 @@ mod tests {
     #[test]
     fn names() {
         assert_eq!(UsagePage::GenericDesktop.name().as_str(), "Generic Desktop");
-        assert_eq!(UsagePage::PhysicalInputDevice.name().as_str(), "Physical Input Device");
+        assert_eq!(
+            UsagePage::PhysicalInputDevice.name().as_str(),
+            "Physical Input Device"
+        );
         assert_eq!(GenericDesktop::CallMuteLED.name().as_str(), "Call Mute LED");
         assert_eq!(VRControls::HeadTracker.name().as_str(), "Head Tracker");
     }
 }
+{# new line at end of file, even if not shown #}
