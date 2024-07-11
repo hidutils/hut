@@ -134,6 +134,7 @@ class UsageId:
 class UsagePage:
     printable: str
     name: str
+    acronym: str
     value: int
     usages: list[UsageId]
     usage_page_type: UsagePageType
@@ -153,6 +154,9 @@ def parse_usage_id(u) -> UsageId:
 def parse_usage_page(up) -> UsagePage:
     printable = up["Name"]
     name = sanitize(printable)
+    acronym = "".join([x for x in name if x.isupper()])
+    if len(acronym) == 1:
+        acronym = name[:3]
     value = int(up["Id"])
     usages = sorted([parse_usage_id(u) for u in up["UsageIds"]], key=lambda u: u.value)
     uptype = UsagePageType(up["Kind"])
@@ -164,6 +168,7 @@ def parse_usage_page(up) -> UsagePage:
     usage_page = UsagePage(
         printable=printable,
         name=name,
+        acronym=acronym,
         value=value,
         usages=usages,
         usage_page_type=uptype,
@@ -186,6 +191,7 @@ def parse_data_files(datadir: Path):
     unicode_page = UsagePage(
         printable="Unicode",
         name="Unicode",
+        acronym="UC",
         value=0x10,
         usages=[],
         usage_page_type=UsagePageType.GENERATED,

@@ -179,6 +179,12 @@ pub trait AsUsagePage {
     fn usage_page_value(&self) -> u16;
 }
 
+/// A trait to display the Item as C compatible string
+pub trait CName {
+    /// Returns a C compatible string
+    fn c_name(&self, size: usize) -> String;
+}
+
 /// A HID UsagePage, see HID Section 5.5. This represents the upper 16 bits in the
 /// 32-bit Usage. Where a [UsagePage] is converted to or from 32 bit, the
 /// [UsagePage] value are the upper 16 bits only and the lower 16 bits are
@@ -527,6 +533,54 @@ impl UsagePage {
             }
             UsagePage::VendorDefinedPage { vendor_page, .. } => {
                 format!("Vendor Defined Page {:04X}", u16::from(vendor_page))
+            }
+        }
+    }
+}
+
+impl CName for UsagePage {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+            UsagePage::GenericDesktop => "UsagePage_GenericDesktop".into(),
+            UsagePage::SimulationControls => "UsagePage_SimulationControls".into(),
+            UsagePage::VRControls => "UsagePage_VRControls".into(),
+            UsagePage::SportControls => "UsagePage_SportControls".into(),
+            UsagePage::GameControls => "UsagePage_GameControls".into(),
+            UsagePage::GenericDeviceControls => "UsagePage_GenericDeviceControls".into(),
+            UsagePage::KeyboardKeypad => "UsagePage_KeyboardKeypad".into(),
+            UsagePage::LED => "UsagePage_LED".into(),
+            UsagePage::Button => "UsagePage_Button".into(),
+            UsagePage::Ordinal => "UsagePage_Ordinal".into(),
+            UsagePage::TelephonyDevice => "UsagePage_TelephonyDevice".into(),
+            UsagePage::Consumer => "UsagePage_Consumer".into(),
+            UsagePage::Digitizers => "UsagePage_Digitizers".into(),
+            UsagePage::Haptics => "UsagePage_Haptics".into(),
+            UsagePage::PhysicalInputDevice => "UsagePage_PhysicalInputDevice".into(),
+            UsagePage::Unicode => "UsagePage_Unicode".into(),
+            UsagePage::SoC => "UsagePage_SoC".into(),
+            UsagePage::EyeandHeadTrackers => "UsagePage_EyeandHeadTrackers".into(),
+            UsagePage::AuxiliaryDisplay => "UsagePage_AuxiliaryDisplay".into(),
+            UsagePage::Sensors => "UsagePage_Sensors".into(),
+            UsagePage::MedicalInstrument => "UsagePage_MedicalInstrument".into(),
+            UsagePage::BrailleDisplay => "UsagePage_BrailleDisplay".into(),
+            UsagePage::LightingAndIllumination => "UsagePage_LightingAndIllumination".into(),
+            UsagePage::Monitor => "UsagePage_Monitor".into(),
+            UsagePage::MonitorEnumerated => "UsagePage_MonitorEnumerated".into(),
+            UsagePage::VESAVirtualControls => "UsagePage_VESAVirtualControls".into(),
+            UsagePage::Power => "UsagePage_Power".into(),
+            UsagePage::BatterySystem => "UsagePage_BatterySystem".into(),
+            UsagePage::BarcodeScanner => "UsagePage_BarcodeScanner".into(),
+            UsagePage::Scales => "UsagePage_Scales".into(),
+            UsagePage::MagneticStripeReader => "UsagePage_MagneticStripeReader".into(),
+            UsagePage::CameraControl => "UsagePage_CameraControl".into(),
+            UsagePage::Arcade => "UsagePage_Arcade".into(),
+            UsagePage::FIDOAlliance => "UsagePage_FIDOAlliance".into(),
+            UsagePage::Wacom => "UsagePage_Wacom".into(),
+            UsagePage::ReservedUsagePage { reserved_page, .. } => {
+                format!("UsagePage_i{size} (0x{:04X})", u16::from(reserved_page))
+            }
+            UsagePage::VendorDefinedPage { vendor_page, .. } => {
+                format!("UsagePage_Vendor (0x{:04X})", u16::from(vendor_page))
             }
         }
     }
@@ -916,6 +970,144 @@ impl GenericDesktop {
             GenericDesktop::CallActiveLED => "Call Active LED",
             GenericDesktop::CallMuteToggle => "Call Mute Toggle",
             GenericDesktop::CallMuteLED => "Call Mute LED",
+        }
+        .into()
+    }
+}
+
+impl CName for GenericDesktop {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            GenericDesktop::Pointer => "Usage_GD_Pointer",
+            GenericDesktop::Mouse => "Usage_GD_Mouse",
+            GenericDesktop::Joystick => "Usage_GD_Joystick",
+            GenericDesktop::Gamepad => "Usage_GD_Gamepad",
+            GenericDesktop::Keyboard => "Usage_GD_Keyboard",
+            GenericDesktop::Keypad => "Usage_GD_Keypad",
+            GenericDesktop::MultiaxisController => "Usage_GD_MultiaxisController",
+            GenericDesktop::TabletPCSystemControls => "Usage_GD_TabletPCSystemControls",
+            GenericDesktop::WaterCoolingDevice => "Usage_GD_WaterCoolingDevice",
+            GenericDesktop::ComputerChassisDevice => "Usage_GD_ComputerChassisDevice",
+            GenericDesktop::WirelessRadioControls => "Usage_GD_WirelessRadioControls",
+            GenericDesktop::PortableDeviceControl => "Usage_GD_PortableDeviceControl",
+            GenericDesktop::SystemMultiAxisController => "Usage_GD_SystemMultiAxisController",
+            GenericDesktop::SpatialController => "Usage_GD_SpatialController",
+            GenericDesktop::AssistiveControl => "Usage_GD_AssistiveControl",
+            GenericDesktop::DeviceDock => "Usage_GD_DeviceDock",
+            GenericDesktop::DockableDevice => "Usage_GD_DockableDevice",
+            GenericDesktop::CallStateManagementControl => "Usage_GD_CallStateManagementControl",
+            GenericDesktop::X => "Usage_GD_X",
+            GenericDesktop::Y => "Usage_GD_Y",
+            GenericDesktop::Z => "Usage_GD_Z",
+            GenericDesktop::Rx => "Usage_GD_Rx",
+            GenericDesktop::Ry => "Usage_GD_Ry",
+            GenericDesktop::Rz => "Usage_GD_Rz",
+            GenericDesktop::Slider => "Usage_GD_Slider",
+            GenericDesktop::Dial => "Usage_GD_Dial",
+            GenericDesktop::Wheel => "Usage_GD_Wheel",
+            GenericDesktop::HatSwitch => "Usage_GD_HatSwitch",
+            GenericDesktop::CountedBuffer => "Usage_GD_CountedBuffer",
+            GenericDesktop::ByteCount => "Usage_GD_ByteCount",
+            GenericDesktop::MotionWakeup => "Usage_GD_MotionWakeup",
+            GenericDesktop::Start => "Usage_GD_Start",
+            GenericDesktop::Select => "Usage_GD_Select",
+            GenericDesktop::Vx => "Usage_GD_Vx",
+            GenericDesktop::Vy => "Usage_GD_Vy",
+            GenericDesktop::Vz => "Usage_GD_Vz",
+            GenericDesktop::Vbrx => "Usage_GD_Vbrx",
+            GenericDesktop::Vbry => "Usage_GD_Vbry",
+            GenericDesktop::Vbrz => "Usage_GD_Vbrz",
+            GenericDesktop::Vno => "Usage_GD_Vno",
+            GenericDesktop::FeatureNotification => "Usage_GD_FeatureNotification",
+            GenericDesktop::ResolutionMultiplier => "Usage_GD_ResolutionMultiplier",
+            GenericDesktop::Qx => "Usage_GD_Qx",
+            GenericDesktop::Qy => "Usage_GD_Qy",
+            GenericDesktop::Qz => "Usage_GD_Qz",
+            GenericDesktop::Qw => "Usage_GD_Qw",
+            GenericDesktop::SystemControl => "Usage_GD_SystemControl",
+            GenericDesktop::SystemPowerDown => "Usage_GD_SystemPowerDown",
+            GenericDesktop::SystemSleep => "Usage_GD_SystemSleep",
+            GenericDesktop::SystemWakeUp => "Usage_GD_SystemWakeUp",
+            GenericDesktop::SystemContextMenu => "Usage_GD_SystemContextMenu",
+            GenericDesktop::SystemMainMenu => "Usage_GD_SystemMainMenu",
+            GenericDesktop::SystemAppMenu => "Usage_GD_SystemAppMenu",
+            GenericDesktop::SystemMenuHelp => "Usage_GD_SystemMenuHelp",
+            GenericDesktop::SystemMenuExit => "Usage_GD_SystemMenuExit",
+            GenericDesktop::SystemMenuSelect => "Usage_GD_SystemMenuSelect",
+            GenericDesktop::SystemMenuRight => "Usage_GD_SystemMenuRight",
+            GenericDesktop::SystemMenuLeft => "Usage_GD_SystemMenuLeft",
+            GenericDesktop::SystemMenuUp => "Usage_GD_SystemMenuUp",
+            GenericDesktop::SystemMenuDown => "Usage_GD_SystemMenuDown",
+            GenericDesktop::SystemColdRestart => "Usage_GD_SystemColdRestart",
+            GenericDesktop::SystemWarmRestart => "Usage_GD_SystemWarmRestart",
+            GenericDesktop::DpadUp => "Usage_GD_DpadUp",
+            GenericDesktop::DpadDown => "Usage_GD_DpadDown",
+            GenericDesktop::DpadRight => "Usage_GD_DpadRight",
+            GenericDesktop::DpadLeft => "Usage_GD_DpadLeft",
+            GenericDesktop::IndexTrigger => "Usage_GD_IndexTrigger",
+            GenericDesktop::PalmTrigger => "Usage_GD_PalmTrigger",
+            GenericDesktop::Thumbstick => "Usage_GD_Thumbstick",
+            GenericDesktop::SystemFunctionShift => "Usage_GD_SystemFunctionShift",
+            GenericDesktop::SystemFunctionShiftLock => "Usage_GD_SystemFunctionShiftLock",
+            GenericDesktop::SystemFunctionShiftLockIndicator => {
+                "Usage_GD_SystemFunctionShiftLockIndicator"
+            }
+            GenericDesktop::SystemDismissNotification => "Usage_GD_SystemDismissNotification",
+            GenericDesktop::SystemDoNotDisturb => "Usage_GD_SystemDoNotDisturb",
+            GenericDesktop::SystemDock => "Usage_GD_SystemDock",
+            GenericDesktop::SystemUndock => "Usage_GD_SystemUndock",
+            GenericDesktop::SystemSetup => "Usage_GD_SystemSetup",
+            GenericDesktop::SystemBreak => "Usage_GD_SystemBreak",
+            GenericDesktop::SystemDebuggerBreak => "Usage_GD_SystemDebuggerBreak",
+            GenericDesktop::ApplicationBreak => "Usage_GD_ApplicationBreak",
+            GenericDesktop::ApplicationDebuggerBreak => "Usage_GD_ApplicationDebuggerBreak",
+            GenericDesktop::SystemSpeakerMute => "Usage_GD_SystemSpeakerMute",
+            GenericDesktop::SystemHibernate => "Usage_GD_SystemHibernate",
+            GenericDesktop::SystemMicrophoneMute => "Usage_GD_SystemMicrophoneMute",
+            GenericDesktop::SystemDisplayInvert => "Usage_GD_SystemDisplayInvert",
+            GenericDesktop::SystemDisplayInternal => "Usage_GD_SystemDisplayInternal",
+            GenericDesktop::SystemDisplayExternal => "Usage_GD_SystemDisplayExternal",
+            GenericDesktop::SystemDisplayBoth => "Usage_GD_SystemDisplayBoth",
+            GenericDesktop::SystemDisplayDual => "Usage_GD_SystemDisplayDual",
+            GenericDesktop::SystemDisplayToggleIntExtMode => {
+                "Usage_GD_SystemDisplayToggleIntExtMode"
+            }
+            GenericDesktop::SystemDisplaySwapPrimarySecondary => {
+                "Usage_GD_SystemDisplaySwapPrimarySecondary"
+            }
+            GenericDesktop::SystemDisplayToggleLCDAutoscale => {
+                "Usage_GD_SystemDisplayToggleLCDAutoscale"
+            }
+            GenericDesktop::SensorZone => "Usage_GD_SensorZone",
+            GenericDesktop::RPM => "Usage_GD_RPM",
+            GenericDesktop::CoolantLevel => "Usage_GD_CoolantLevel",
+            GenericDesktop::CoolantCriticalLevel => "Usage_GD_CoolantCriticalLevel",
+            GenericDesktop::CoolantPump => "Usage_GD_CoolantPump",
+            GenericDesktop::ChassisEnclosure => "Usage_GD_ChassisEnclosure",
+            GenericDesktop::WirelessRadioButton => "Usage_GD_WirelessRadioButton",
+            GenericDesktop::WirelessRadioLED => "Usage_GD_WirelessRadioLED",
+            GenericDesktop::WirelessRadioSliderSwitch => "Usage_GD_WirelessRadioSliderSwitch",
+            GenericDesktop::SystemDisplayRotationLockButton => {
+                "Usage_GD_SystemDisplayRotationLockButton"
+            }
+            GenericDesktop::SystemDisplayRotationLockSliderSwitch => {
+                "Usage_GD_SystemDisplayRotationLockSliderSwitch"
+            }
+            GenericDesktop::ControlEnable => "Usage_GD_ControlEnable",
+            GenericDesktop::DockableDeviceUniqueID => "Usage_GD_DockableDeviceUniqueID",
+            GenericDesktop::DockableDeviceVendorID => "Usage_GD_DockableDeviceVendorID",
+            GenericDesktop::DockableDevicePrimaryUsagePage => {
+                "Usage_GD_DockableDevicePrimaryUsagePage"
+            }
+            GenericDesktop::DockableDevicePrimaryUsageID => "Usage_GD_DockableDevicePrimaryUsageID",
+            GenericDesktop::DockableDeviceDockingState => "Usage_GD_DockableDeviceDockingState",
+            GenericDesktop::DockableDeviceDisplayOcclusion => {
+                "Usage_GD_DockableDeviceDisplayOcclusion"
+            }
+            GenericDesktop::DockableDeviceObjectType => "Usage_GD_DockableDeviceObjectType",
+            GenericDesktop::CallActiveLED => "Usage_GD_CallActiveLED",
+            GenericDesktop::CallMuteToggle => "Usage_GD_CallMuteToggle",
+            GenericDesktop::CallMuteLED => "Usage_GD_CallMuteLED",
         }
         .into()
     }
@@ -1432,6 +1624,67 @@ impl SimulationControls {
     }
 }
 
+impl CName for SimulationControls {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            SimulationControls::FlightSimulationDevice => "Usage_SC_FlightSimulationDevice",
+            SimulationControls::AutomobileSimulationDevice => "Usage_SC_AutomobileSimulationDevice",
+            SimulationControls::TankSimulationDevice => "Usage_SC_TankSimulationDevice",
+            SimulationControls::SpaceshipSimulationDevice => "Usage_SC_SpaceshipSimulationDevice",
+            SimulationControls::SubmarineSimulationDevice => "Usage_SC_SubmarineSimulationDevice",
+            SimulationControls::SailingSimulationDevice => "Usage_SC_SailingSimulationDevice",
+            SimulationControls::MotorcycleSimulationDevice => "Usage_SC_MotorcycleSimulationDevice",
+            SimulationControls::SportsSimulationDevice => "Usage_SC_SportsSimulationDevice",
+            SimulationControls::AirplaneSimulationDevice => "Usage_SC_AirplaneSimulationDevice",
+            SimulationControls::HelicopterSimulationDevice => "Usage_SC_HelicopterSimulationDevice",
+            SimulationControls::MagicCarpetSimulationDevice => {
+                "Usage_SC_MagicCarpetSimulationDevice"
+            }
+            SimulationControls::BicycleSimulationDevice => "Usage_SC_BicycleSimulationDevice",
+            SimulationControls::FlightControlStick => "Usage_SC_FlightControlStick",
+            SimulationControls::FlightStick => "Usage_SC_FlightStick",
+            SimulationControls::CyclicControl => "Usage_SC_CyclicControl",
+            SimulationControls::CyclicTrim => "Usage_SC_CyclicTrim",
+            SimulationControls::FlightYoke => "Usage_SC_FlightYoke",
+            SimulationControls::TrackControl => "Usage_SC_TrackControl",
+            SimulationControls::Aileron => "Usage_SC_Aileron",
+            SimulationControls::AileronTrim => "Usage_SC_AileronTrim",
+            SimulationControls::AntiTorqueControl => "Usage_SC_AntiTorqueControl",
+            SimulationControls::AutopilotEnable => "Usage_SC_AutopilotEnable",
+            SimulationControls::ChaffRelease => "Usage_SC_ChaffRelease",
+            SimulationControls::CollectiveControl => "Usage_SC_CollectiveControl",
+            SimulationControls::DiveBrake => "Usage_SC_DiveBrake",
+            SimulationControls::ElectronicCountermeasures => "Usage_SC_ElectronicCountermeasures",
+            SimulationControls::Elevator => "Usage_SC_Elevator",
+            SimulationControls::ElevatorTrim => "Usage_SC_ElevatorTrim",
+            SimulationControls::Rudder => "Usage_SC_Rudder",
+            SimulationControls::Throttle => "Usage_SC_Throttle",
+            SimulationControls::FlightCommunications => "Usage_SC_FlightCommunications",
+            SimulationControls::FlareRelease => "Usage_SC_FlareRelease",
+            SimulationControls::LandingGear => "Usage_SC_LandingGear",
+            SimulationControls::ToeBrake => "Usage_SC_ToeBrake",
+            SimulationControls::Trigger => "Usage_SC_Trigger",
+            SimulationControls::WeaponsArm => "Usage_SC_WeaponsArm",
+            SimulationControls::WeaponsSelect => "Usage_SC_WeaponsSelect",
+            SimulationControls::WingFlaps => "Usage_SC_WingFlaps",
+            SimulationControls::Accelerator => "Usage_SC_Accelerator",
+            SimulationControls::Brake => "Usage_SC_Brake",
+            SimulationControls::Clutch => "Usage_SC_Clutch",
+            SimulationControls::Shifter => "Usage_SC_Shifter",
+            SimulationControls::Steering => "Usage_SC_Steering",
+            SimulationControls::TurretDirection => "Usage_SC_TurretDirection",
+            SimulationControls::BarrelElevation => "Usage_SC_BarrelElevation",
+            SimulationControls::DivePlane => "Usage_SC_DivePlane",
+            SimulationControls::Ballast => "Usage_SC_Ballast",
+            SimulationControls::BicycleCrank => "Usage_SC_BicycleCrank",
+            SimulationControls::HandleBars => "Usage_SC_HandleBars",
+            SimulationControls::FrontBrake => "Usage_SC_FrontBrake",
+            SimulationControls::RearBrake => "Usage_SC_RearBrake",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for SimulationControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -1700,6 +1953,26 @@ impl VRControls {
     }
 }
 
+impl CName for VRControls {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            VRControls::Belt => "Usage_VRC_Belt",
+            VRControls::BodySuit => "Usage_VRC_BodySuit",
+            VRControls::Flexor => "Usage_VRC_Flexor",
+            VRControls::Glove => "Usage_VRC_Glove",
+            VRControls::HeadTracker => "Usage_VRC_HeadTracker",
+            VRControls::HeadMountedDisplay => "Usage_VRC_HeadMountedDisplay",
+            VRControls::HandTracker => "Usage_VRC_HandTracker",
+            VRControls::Oculometer => "Usage_VRC_Oculometer",
+            VRControls::Vest => "Usage_VRC_Vest",
+            VRControls::AnimatronicDevice => "Usage_VRC_AnimatronicDevice",
+            VRControls::StereoEnable => "Usage_VRC_StereoEnable",
+            VRControls::DisplayEnable => "Usage_VRC_DisplayEnable",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for VRControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -1951,6 +2224,48 @@ impl SportControls {
             SportControls::FiveWood => "5 Wood",
             SportControls::SevenWood => "7 Wood",
             SportControls::NineWood => "9 Wood",
+        }
+        .into()
+    }
+}
+
+impl CName for SportControls {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            SportControls::BaseballBat => "Usage_SC_BaseballBat",
+            SportControls::GolfClub => "Usage_SC_GolfClub",
+            SportControls::RowingMachine => "Usage_SC_RowingMachine",
+            SportControls::Treadmill => "Usage_SC_Treadmill",
+            SportControls::Oar => "Usage_SC_Oar",
+            SportControls::Slope => "Usage_SC_Slope",
+            SportControls::Rate => "Usage_SC_Rate",
+            SportControls::StickSpeed => "Usage_SC_StickSpeed",
+            SportControls::StickFaceAngle => "Usage_SC_StickFaceAngle",
+            SportControls::StickHeelToe => "Usage_SC_StickHeelToe",
+            SportControls::StickFollowThrough => "Usage_SC_StickFollowThrough",
+            SportControls::StickTempo => "Usage_SC_StickTempo",
+            SportControls::StickType => "Usage_SC_StickType",
+            SportControls::StickHeight => "Usage_SC_StickHeight",
+            SportControls::Putter => "Usage_SC_Putter",
+            SportControls::OneIron => "Usage_SC_OneIron",
+            SportControls::TwoIron => "Usage_SC_TwoIron",
+            SportControls::ThreeIron => "Usage_SC_ThreeIron",
+            SportControls::FourIron => "Usage_SC_FourIron",
+            SportControls::FiveIron => "Usage_SC_FiveIron",
+            SportControls::SixIron => "Usage_SC_SixIron",
+            SportControls::SevenIron => "Usage_SC_SevenIron",
+            SportControls::EightIron => "Usage_SC_EightIron",
+            SportControls::NineIron => "Usage_SC_NineIron",
+            SportControls::One0Iron => "Usage_SC_One0Iron",
+            SportControls::One1Iron => "Usage_SC_One1Iron",
+            SportControls::SandWedge => "Usage_SC_SandWedge",
+            SportControls::LoftWedge => "Usage_SC_LoftWedge",
+            SportControls::PowerWedge => "Usage_SC_PowerWedge",
+            SportControls::OneWood => "Usage_SC_OneWood",
+            SportControls::ThreeWood => "Usage_SC_ThreeWood",
+            SportControls::FiveWood => "Usage_SC_FiveWood",
+            SportControls::SevenWood => "Usage_SC_SevenWood",
+            SportControls::NineWood => "Usage_SC_NineWood",
         }
         .into()
     }
@@ -2241,6 +2556,43 @@ impl GameControls {
     }
 }
 
+impl CName for GameControls {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            GameControls::ThreeDGameController => "Usage_GC_ThreeDGameController",
+            GameControls::PinballDevice => "Usage_GC_PinballDevice",
+            GameControls::GunDevice => "Usage_GC_GunDevice",
+            GameControls::PointofView => "Usage_GC_PointofView",
+            GameControls::TurnRightLeft => "Usage_GC_TurnRightLeft",
+            GameControls::PitchForwardBackward => "Usage_GC_PitchForwardBackward",
+            GameControls::RollRightLeft => "Usage_GC_RollRightLeft",
+            GameControls::MoveRightLeft => "Usage_GC_MoveRightLeft",
+            GameControls::MoveForwardBackward => "Usage_GC_MoveForwardBackward",
+            GameControls::MoveUpDown => "Usage_GC_MoveUpDown",
+            GameControls::LeanRightLeft => "Usage_GC_LeanRightLeft",
+            GameControls::LeanForwardBackward => "Usage_GC_LeanForwardBackward",
+            GameControls::HeightofPOV => "Usage_GC_HeightofPOV",
+            GameControls::Flipper => "Usage_GC_Flipper",
+            GameControls::SecondaryFlipper => "Usage_GC_SecondaryFlipper",
+            GameControls::Bump => "Usage_GC_Bump",
+            GameControls::NewGame => "Usage_GC_NewGame",
+            GameControls::ShootBall => "Usage_GC_ShootBall",
+            GameControls::Player => "Usage_GC_Player",
+            GameControls::GunBolt => "Usage_GC_GunBolt",
+            GameControls::GunClip => "Usage_GC_GunClip",
+            GameControls::GunSelector => "Usage_GC_GunSelector",
+            GameControls::GunSingleShot => "Usage_GC_GunSingleShot",
+            GameControls::GunBurst => "Usage_GC_GunBurst",
+            GameControls::GunAutomatic => "Usage_GC_GunAutomatic",
+            GameControls::GunSafety => "Usage_GC_GunSafety",
+            GameControls::GamepadFireJump => "Usage_GC_GamepadFireJump",
+            GameControls::GamepadTrigger => "Usage_GC_GamepadTrigger",
+            GameControls::FormfittingGamepad => "Usage_GC_FormfittingGamepad",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for GameControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -2498,6 +2850,44 @@ impl GenericDeviceControls {
             GenericDeviceControls::BothHands => "Both Hands",
             GenericDeviceControls::GripPoseOffset => "Grip Pose Offset",
             GenericDeviceControls::PointerPoseOffset => "Pointer Pose Offset",
+        }
+        .into()
+    }
+}
+
+impl CName for GenericDeviceControls {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            GenericDeviceControls::BackgroundNonuserControls => {
+                "Usage_GDC_BackgroundNonuserControls"
+            }
+            GenericDeviceControls::BatteryStrength => "Usage_GDC_BatteryStrength",
+            GenericDeviceControls::WirelessChannel => "Usage_GDC_WirelessChannel",
+            GenericDeviceControls::WirelessID => "Usage_GDC_WirelessID",
+            GenericDeviceControls::DiscoverWirelessControl => "Usage_GDC_DiscoverWirelessControl",
+            GenericDeviceControls::SecurityCodeCharacterEntered => {
+                "Usage_GDC_SecurityCodeCharacterEntered"
+            }
+            GenericDeviceControls::SecurityCodeCharacterErased => {
+                "Usage_GDC_SecurityCodeCharacterErased"
+            }
+            GenericDeviceControls::SecurityCodeCleared => "Usage_GDC_SecurityCodeCleared",
+            GenericDeviceControls::SequenceID => "Usage_GDC_SequenceID",
+            GenericDeviceControls::SequenceIDReset => "Usage_GDC_SequenceIDReset",
+            GenericDeviceControls::RFSignalStrength => "Usage_GDC_RFSignalStrength",
+            GenericDeviceControls::SoftwareVersion => "Usage_GDC_SoftwareVersion",
+            GenericDeviceControls::ProtocolVersion => "Usage_GDC_ProtocolVersion",
+            GenericDeviceControls::HardwareVersion => "Usage_GDC_HardwareVersion",
+            GenericDeviceControls::Major => "Usage_GDC_Major",
+            GenericDeviceControls::Minor => "Usage_GDC_Minor",
+            GenericDeviceControls::Revision => "Usage_GDC_Revision",
+            GenericDeviceControls::Handedness => "Usage_GDC_Handedness",
+            GenericDeviceControls::EitherHand => "Usage_GDC_EitherHand",
+            GenericDeviceControls::LeftHand => "Usage_GDC_LeftHand",
+            GenericDeviceControls::RightHand => "Usage_GDC_RightHand",
+            GenericDeviceControls::BothHands => "Usage_GDC_BothHands",
+            GenericDeviceControls::GripPoseOffset => "Usage_GDC_GripPoseOffset",
+            GenericDeviceControls::PointerPoseOffset => "Usage_GDC_PointerPoseOffset",
         }
         .into()
     }
@@ -3332,6 +3722,236 @@ impl KeyboardKeypad {
             KeyboardKeypad::KeyboardRightShift => "Keyboard RightShift",
             KeyboardKeypad::KeyboardRightAlt => "Keyboard RightAlt",
             KeyboardKeypad::KeyboardRightGUI => "Keyboard Right GUI",
+        }
+        .into()
+    }
+}
+
+impl CName for KeyboardKeypad {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            KeyboardKeypad::ErrorRollOver => "Usage_KK_ErrorRollOver",
+            KeyboardKeypad::POSTFail => "Usage_KK_POSTFail",
+            KeyboardKeypad::ErrorUndefined => "Usage_KK_ErrorUndefined",
+            KeyboardKeypad::KeyboardA => "Usage_KK_KeyboardA",
+            KeyboardKeypad::KeyboardB => "Usage_KK_KeyboardB",
+            KeyboardKeypad::KeyboardC => "Usage_KK_KeyboardC",
+            KeyboardKeypad::KeyboardD => "Usage_KK_KeyboardD",
+            KeyboardKeypad::KeyboardE => "Usage_KK_KeyboardE",
+            KeyboardKeypad::KeyboardF => "Usage_KK_KeyboardF",
+            KeyboardKeypad::KeyboardG => "Usage_KK_KeyboardG",
+            KeyboardKeypad::KeyboardH => "Usage_KK_KeyboardH",
+            KeyboardKeypad::KeyboardI => "Usage_KK_KeyboardI",
+            KeyboardKeypad::KeyboardJ => "Usage_KK_KeyboardJ",
+            KeyboardKeypad::KeyboardK => "Usage_KK_KeyboardK",
+            KeyboardKeypad::KeyboardL => "Usage_KK_KeyboardL",
+            KeyboardKeypad::KeyboardM => "Usage_KK_KeyboardM",
+            KeyboardKeypad::KeyboardN => "Usage_KK_KeyboardN",
+            KeyboardKeypad::KeyboardO => "Usage_KK_KeyboardO",
+            KeyboardKeypad::KeyboardP => "Usage_KK_KeyboardP",
+            KeyboardKeypad::KeyboardQ => "Usage_KK_KeyboardQ",
+            KeyboardKeypad::KeyboardR => "Usage_KK_KeyboardR",
+            KeyboardKeypad::KeyboardS => "Usage_KK_KeyboardS",
+            KeyboardKeypad::KeyboardT => "Usage_KK_KeyboardT",
+            KeyboardKeypad::KeyboardU => "Usage_KK_KeyboardU",
+            KeyboardKeypad::KeyboardV => "Usage_KK_KeyboardV",
+            KeyboardKeypad::KeyboardW => "Usage_KK_KeyboardW",
+            KeyboardKeypad::KeyboardX => "Usage_KK_KeyboardX",
+            KeyboardKeypad::KeyboardY => "Usage_KK_KeyboardY",
+            KeyboardKeypad::KeyboardZ => "Usage_KK_KeyboardZ",
+            KeyboardKeypad::Keyboard1andBang => "Usage_KK_Keyboard1andBang",
+            KeyboardKeypad::Keyboard2andAt => "Usage_KK_Keyboard2andAt",
+            KeyboardKeypad::Keyboard3andHash => "Usage_KK_Keyboard3andHash",
+            KeyboardKeypad::Keyboard4andDollar => "Usage_KK_Keyboard4andDollar",
+            KeyboardKeypad::Keyboard5andPercent => "Usage_KK_Keyboard5andPercent",
+            KeyboardKeypad::Keyboard6andCaret => "Usage_KK_Keyboard6andCaret",
+            KeyboardKeypad::Keyboard7andAmpersand => "Usage_KK_Keyboard7andAmpersand",
+            KeyboardKeypad::Keyboard8andStar => "Usage_KK_Keyboard8andStar",
+            KeyboardKeypad::Keyboard9andLeftBracket => "Usage_KK_Keyboard9andLeftBracket",
+            KeyboardKeypad::Keyboard0andRightBracket => "Usage_KK_Keyboard0andRightBracket",
+            KeyboardKeypad::KeyboardReturnEnter => "Usage_KK_KeyboardReturnEnter",
+            KeyboardKeypad::KeyboardEscape => "Usage_KK_KeyboardEscape",
+            KeyboardKeypad::KeyboardDelete => "Usage_KK_KeyboardDelete",
+            KeyboardKeypad::KeyboardTab => "Usage_KK_KeyboardTab",
+            KeyboardKeypad::KeyboardSpacebar => "Usage_KK_KeyboardSpacebar",
+            KeyboardKeypad::KeyboardDashandUnderscore => "Usage_KK_KeyboardDashandUnderscore",
+            KeyboardKeypad::KeyboardEqualsandPlus => "Usage_KK_KeyboardEqualsandPlus",
+            KeyboardKeypad::KeyboardLeftBrace => "Usage_KK_KeyboardLeftBrace",
+            KeyboardKeypad::KeyboardRightBrace => "Usage_KK_KeyboardRightBrace",
+            KeyboardKeypad::KeyboardBackslashandPipe => "Usage_KK_KeyboardBackslashandPipe",
+            KeyboardKeypad::KeyboardNonUSHashandTilde => "Usage_KK_KeyboardNonUSHashandTilde",
+            KeyboardKeypad::KeyboardSemiColonandColon => "Usage_KK_KeyboardSemiColonandColon",
+            KeyboardKeypad::KeyboardLeftAposandDouble => "Usage_KK_KeyboardLeftAposandDouble",
+            KeyboardKeypad::KeyboardGraveAccentandTilde => "Usage_KK_KeyboardGraveAccentandTilde",
+            KeyboardKeypad::KeyboardCommaandLessThan => "Usage_KK_KeyboardCommaandLessThan",
+            KeyboardKeypad::KeyboardPeriodandGreaterThan => "Usage_KK_KeyboardPeriodandGreaterThan",
+            KeyboardKeypad::KeyboardForwardSlashandQuestionMark => {
+                "Usage_KK_KeyboardForwardSlashandQuestionMark"
+            }
+            KeyboardKeypad::KeyboardCapsLock => "Usage_KK_KeyboardCapsLock",
+            KeyboardKeypad::KeyboardF1 => "Usage_KK_KeyboardF1",
+            KeyboardKeypad::KeyboardF2 => "Usage_KK_KeyboardF2",
+            KeyboardKeypad::KeyboardF3 => "Usage_KK_KeyboardF3",
+            KeyboardKeypad::KeyboardF4 => "Usage_KK_KeyboardF4",
+            KeyboardKeypad::KeyboardF5 => "Usage_KK_KeyboardF5",
+            KeyboardKeypad::KeyboardF6 => "Usage_KK_KeyboardF6",
+            KeyboardKeypad::KeyboardF7 => "Usage_KK_KeyboardF7",
+            KeyboardKeypad::KeyboardF8 => "Usage_KK_KeyboardF8",
+            KeyboardKeypad::KeyboardF9 => "Usage_KK_KeyboardF9",
+            KeyboardKeypad::KeyboardF10 => "Usage_KK_KeyboardF10",
+            KeyboardKeypad::KeyboardF11 => "Usage_KK_KeyboardF11",
+            KeyboardKeypad::KeyboardF12 => "Usage_KK_KeyboardF12",
+            KeyboardKeypad::KeyboardPrintScreen => "Usage_KK_KeyboardPrintScreen",
+            KeyboardKeypad::KeyboardScrollLock => "Usage_KK_KeyboardScrollLock",
+            KeyboardKeypad::KeyboardPause => "Usage_KK_KeyboardPause",
+            KeyboardKeypad::KeyboardInsert => "Usage_KK_KeyboardInsert",
+            KeyboardKeypad::KeyboardHome => "Usage_KK_KeyboardHome",
+            KeyboardKeypad::KeyboardPageUp => "Usage_KK_KeyboardPageUp",
+            KeyboardKeypad::KeyboardDeleteForward => "Usage_KK_KeyboardDeleteForward",
+            KeyboardKeypad::KeyboardEnd => "Usage_KK_KeyboardEnd",
+            KeyboardKeypad::KeyboardPageDown => "Usage_KK_KeyboardPageDown",
+            KeyboardKeypad::KeyboardRightArrow => "Usage_KK_KeyboardRightArrow",
+            KeyboardKeypad::KeyboardLeftArrow => "Usage_KK_KeyboardLeftArrow",
+            KeyboardKeypad::KeyboardDownArrow => "Usage_KK_KeyboardDownArrow",
+            KeyboardKeypad::KeyboardUpArrow => "Usage_KK_KeyboardUpArrow",
+            KeyboardKeypad::KeypadNumLockandClear => "Usage_KK_KeypadNumLockandClear",
+            KeyboardKeypad::KeypadForwardSlash => "Usage_KK_KeypadForwardSlash",
+            KeyboardKeypad::KeypadStar => "Usage_KK_KeypadStar",
+            KeyboardKeypad::KeypadDash => "Usage_KK_KeypadDash",
+            KeyboardKeypad::KeypadPlus => "Usage_KK_KeypadPlus",
+            KeyboardKeypad::KeypadENTER => "Usage_KK_KeypadENTER",
+            KeyboardKeypad::Keypad1andEnd => "Usage_KK_Keypad1andEnd",
+            KeyboardKeypad::Keypad2andDownArrow => "Usage_KK_Keypad2andDownArrow",
+            KeyboardKeypad::Keypad3andPageDn => "Usage_KK_Keypad3andPageDn",
+            KeyboardKeypad::Keypad4andLeftArrow => "Usage_KK_Keypad4andLeftArrow",
+            KeyboardKeypad::Keypad5 => "Usage_KK_Keypad5",
+            KeyboardKeypad::Keypad6andRightArrow => "Usage_KK_Keypad6andRightArrow",
+            KeyboardKeypad::Keypad7andHome => "Usage_KK_Keypad7andHome",
+            KeyboardKeypad::Keypad8andUpArrow => "Usage_KK_Keypad8andUpArrow",
+            KeyboardKeypad::Keypad9andPageUp => "Usage_KK_Keypad9andPageUp",
+            KeyboardKeypad::Keypad0andInsert => "Usage_KK_Keypad0andInsert",
+            KeyboardKeypad::KeypadPeriodandDelete => "Usage_KK_KeypadPeriodandDelete",
+            KeyboardKeypad::KeyboardNonUSBackslashandPipe => {
+                "Usage_KK_KeyboardNonUSBackslashandPipe"
+            }
+            KeyboardKeypad::KeyboardApplication => "Usage_KK_KeyboardApplication",
+            KeyboardKeypad::KeyboardPower => "Usage_KK_KeyboardPower",
+            KeyboardKeypad::KeypadEquals => "Usage_KK_KeypadEquals",
+            KeyboardKeypad::KeyboardF13 => "Usage_KK_KeyboardF13",
+            KeyboardKeypad::KeyboardF14 => "Usage_KK_KeyboardF14",
+            KeyboardKeypad::KeyboardF15 => "Usage_KK_KeyboardF15",
+            KeyboardKeypad::KeyboardF16 => "Usage_KK_KeyboardF16",
+            KeyboardKeypad::KeyboardF17 => "Usage_KK_KeyboardF17",
+            KeyboardKeypad::KeyboardF18 => "Usage_KK_KeyboardF18",
+            KeyboardKeypad::KeyboardF19 => "Usage_KK_KeyboardF19",
+            KeyboardKeypad::KeyboardF20 => "Usage_KK_KeyboardF20",
+            KeyboardKeypad::KeyboardF21 => "Usage_KK_KeyboardF21",
+            KeyboardKeypad::KeyboardF22 => "Usage_KK_KeyboardF22",
+            KeyboardKeypad::KeyboardF23 => "Usage_KK_KeyboardF23",
+            KeyboardKeypad::KeyboardF24 => "Usage_KK_KeyboardF24",
+            KeyboardKeypad::KeyboardExecute => "Usage_KK_KeyboardExecute",
+            KeyboardKeypad::KeyboardHelp => "Usage_KK_KeyboardHelp",
+            KeyboardKeypad::KeyboardMenu => "Usage_KK_KeyboardMenu",
+            KeyboardKeypad::KeyboardSelect => "Usage_KK_KeyboardSelect",
+            KeyboardKeypad::KeyboardStop => "Usage_KK_KeyboardStop",
+            KeyboardKeypad::KeyboardAgain => "Usage_KK_KeyboardAgain",
+            KeyboardKeypad::KeyboardUndo => "Usage_KK_KeyboardUndo",
+            KeyboardKeypad::KeyboardCut => "Usage_KK_KeyboardCut",
+            KeyboardKeypad::KeyboardCopy => "Usage_KK_KeyboardCopy",
+            KeyboardKeypad::KeyboardPaste => "Usage_KK_KeyboardPaste",
+            KeyboardKeypad::KeyboardFind => "Usage_KK_KeyboardFind",
+            KeyboardKeypad::KeyboardMute => "Usage_KK_KeyboardMute",
+            KeyboardKeypad::KeyboardVolumeUp => "Usage_KK_KeyboardVolumeUp",
+            KeyboardKeypad::KeyboardVolumeDown => "Usage_KK_KeyboardVolumeDown",
+            KeyboardKeypad::KeyboardLockingCapsLock => "Usage_KK_KeyboardLockingCapsLock",
+            KeyboardKeypad::KeyboardLockingNumLock => "Usage_KK_KeyboardLockingNumLock",
+            KeyboardKeypad::KeyboardLockingScrollLock => "Usage_KK_KeyboardLockingScrollLock",
+            KeyboardKeypad::KeypadComma => "Usage_KK_KeypadComma",
+            KeyboardKeypad::KeypadEqualSign => "Usage_KK_KeypadEqualSign",
+            KeyboardKeypad::KeyboardInternational1 => "Usage_KK_KeyboardInternational1",
+            KeyboardKeypad::KeyboardInternational2 => "Usage_KK_KeyboardInternational2",
+            KeyboardKeypad::KeyboardInternational3 => "Usage_KK_KeyboardInternational3",
+            KeyboardKeypad::KeyboardInternational4 => "Usage_KK_KeyboardInternational4",
+            KeyboardKeypad::KeyboardInternational5 => "Usage_KK_KeyboardInternational5",
+            KeyboardKeypad::KeyboardInternational6 => "Usage_KK_KeyboardInternational6",
+            KeyboardKeypad::KeyboardInternational7 => "Usage_KK_KeyboardInternational7",
+            KeyboardKeypad::KeyboardInternational8 => "Usage_KK_KeyboardInternational8",
+            KeyboardKeypad::KeyboardInternational9 => "Usage_KK_KeyboardInternational9",
+            KeyboardKeypad::KeyboardLANG1 => "Usage_KK_KeyboardLANG1",
+            KeyboardKeypad::KeyboardLANG2 => "Usage_KK_KeyboardLANG2",
+            KeyboardKeypad::KeyboardLANG3 => "Usage_KK_KeyboardLANG3",
+            KeyboardKeypad::KeyboardLANG4 => "Usage_KK_KeyboardLANG4",
+            KeyboardKeypad::KeyboardLANG5 => "Usage_KK_KeyboardLANG5",
+            KeyboardKeypad::KeyboardLANG6 => "Usage_KK_KeyboardLANG6",
+            KeyboardKeypad::KeyboardLANG7 => "Usage_KK_KeyboardLANG7",
+            KeyboardKeypad::KeyboardLANG8 => "Usage_KK_KeyboardLANG8",
+            KeyboardKeypad::KeyboardLANG9 => "Usage_KK_KeyboardLANG9",
+            KeyboardKeypad::KeyboardAlternateErase => "Usage_KK_KeyboardAlternateErase",
+            KeyboardKeypad::KeyboardSysReqAttention => "Usage_KK_KeyboardSysReqAttention",
+            KeyboardKeypad::KeyboardCancel => "Usage_KK_KeyboardCancel",
+            KeyboardKeypad::KeyboardClear => "Usage_KK_KeyboardClear",
+            KeyboardKeypad::KeyboardPrior => "Usage_KK_KeyboardPrior",
+            KeyboardKeypad::KeyboardReturn => "Usage_KK_KeyboardReturn",
+            KeyboardKeypad::KeyboardSeparator => "Usage_KK_KeyboardSeparator",
+            KeyboardKeypad::KeyboardOut => "Usage_KK_KeyboardOut",
+            KeyboardKeypad::KeyboardOper => "Usage_KK_KeyboardOper",
+            KeyboardKeypad::KeyboardClearAgain => "Usage_KK_KeyboardClearAgain",
+            KeyboardKeypad::KeyboardCrSelProps => "Usage_KK_KeyboardCrSelProps",
+            KeyboardKeypad::KeyboardExSel => "Usage_KK_KeyboardExSel",
+            KeyboardKeypad::KeypadDouble0 => "Usage_KK_KeypadDouble0",
+            KeyboardKeypad::KeypadTriple0 => "Usage_KK_KeypadTriple0",
+            KeyboardKeypad::ThousandsSeparator => "Usage_KK_ThousandsSeparator",
+            KeyboardKeypad::DecimalSeparator => "Usage_KK_DecimalSeparator",
+            KeyboardKeypad::CurrencyUnit => "Usage_KK_CurrencyUnit",
+            KeyboardKeypad::CurrencySubunit => "Usage_KK_CurrencySubunit",
+            KeyboardKeypad::KeypadLeftBracket => "Usage_KK_KeypadLeftBracket",
+            KeyboardKeypad::KeypadRightBracket => "Usage_KK_KeypadRightBracket",
+            KeyboardKeypad::KeypadLeftBrace => "Usage_KK_KeypadLeftBrace",
+            KeyboardKeypad::KeypadRightBrace => "Usage_KK_KeypadRightBrace",
+            KeyboardKeypad::KeypadTab => "Usage_KK_KeypadTab",
+            KeyboardKeypad::KeypadBackspace => "Usage_KK_KeypadBackspace",
+            KeyboardKeypad::KeypadA => "Usage_KK_KeypadA",
+            KeyboardKeypad::KeypadB => "Usage_KK_KeypadB",
+            KeyboardKeypad::KeypadC => "Usage_KK_KeypadC",
+            KeyboardKeypad::KeypadD => "Usage_KK_KeypadD",
+            KeyboardKeypad::KeypadE => "Usage_KK_KeypadE",
+            KeyboardKeypad::KeypadF => "Usage_KK_KeypadF",
+            KeyboardKeypad::KeypadXOR => "Usage_KK_KeypadXOR",
+            KeyboardKeypad::KeypadCaret => "Usage_KK_KeypadCaret",
+            KeyboardKeypad::KeypadPercentage => "Usage_KK_KeypadPercentage",
+            KeyboardKeypad::KeypadLess => "Usage_KK_KeypadLess",
+            KeyboardKeypad::KeypadGreater => "Usage_KK_KeypadGreater",
+            KeyboardKeypad::KeypadAmpersand => "Usage_KK_KeypadAmpersand",
+            KeyboardKeypad::KeypadDoubleAmpersand => "Usage_KK_KeypadDoubleAmpersand",
+            KeyboardKeypad::KeypadBar => "Usage_KK_KeypadBar",
+            KeyboardKeypad::KeypadDoubleBar => "Usage_KK_KeypadDoubleBar",
+            KeyboardKeypad::KeypadColon => "Usage_KK_KeypadColon",
+            KeyboardKeypad::KeypadHash => "Usage_KK_KeypadHash",
+            KeyboardKeypad::KeypadSpace => "Usage_KK_KeypadSpace",
+            KeyboardKeypad::KeypadAt => "Usage_KK_KeypadAt",
+            KeyboardKeypad::KeypadBang => "Usage_KK_KeypadBang",
+            KeyboardKeypad::KeypadMemoryStore => "Usage_KK_KeypadMemoryStore",
+            KeyboardKeypad::KeypadMemoryRecall => "Usage_KK_KeypadMemoryRecall",
+            KeyboardKeypad::KeypadMemoryClear => "Usage_KK_KeypadMemoryClear",
+            KeyboardKeypad::KeypadMemoryAdd => "Usage_KK_KeypadMemoryAdd",
+            KeyboardKeypad::KeypadMemorySubtract => "Usage_KK_KeypadMemorySubtract",
+            KeyboardKeypad::KeypadMemoryMultiply => "Usage_KK_KeypadMemoryMultiply",
+            KeyboardKeypad::KeypadMemoryDivide => "Usage_KK_KeypadMemoryDivide",
+            KeyboardKeypad::KeypadPlusMinus => "Usage_KK_KeypadPlusMinus",
+            KeyboardKeypad::KeypadClear => "Usage_KK_KeypadClear",
+            KeyboardKeypad::KeypadClearEntry => "Usage_KK_KeypadClearEntry",
+            KeyboardKeypad::KeypadBinary => "Usage_KK_KeypadBinary",
+            KeyboardKeypad::KeypadOctal => "Usage_KK_KeypadOctal",
+            KeyboardKeypad::KeypadDecimal => "Usage_KK_KeypadDecimal",
+            KeyboardKeypad::KeypadHexadecimal => "Usage_KK_KeypadHexadecimal",
+            KeyboardKeypad::KeyboardLeftControl => "Usage_KK_KeyboardLeftControl",
+            KeyboardKeypad::KeyboardLeftShift => "Usage_KK_KeyboardLeftShift",
+            KeyboardKeypad::KeyboardLeftAlt => "Usage_KK_KeyboardLeftAlt",
+            KeyboardKeypad::KeyboardLeftGUI => "Usage_KK_KeyboardLeftGUI",
+            KeyboardKeypad::KeyboardRightControl => "Usage_KK_KeyboardRightControl",
+            KeyboardKeypad::KeyboardRightShift => "Usage_KK_KeyboardRightShift",
+            KeyboardKeypad::KeyboardRightAlt => "Usage_KK_KeyboardRightAlt",
+            KeyboardKeypad::KeyboardRightGUI => "Usage_KK_KeyboardRightGUI",
         }
         .into()
     }
@@ -4191,6 +4811,110 @@ impl LED {
     }
 }
 
+impl CName for LED {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            LED::NumLock => "Usage_LED_NumLock",
+            LED::CapsLock => "Usage_LED_CapsLock",
+            LED::ScrollLock => "Usage_LED_ScrollLock",
+            LED::Compose => "Usage_LED_Compose",
+            LED::Kana => "Usage_LED_Kana",
+            LED::Power => "Usage_LED_Power",
+            LED::Shift => "Usage_LED_Shift",
+            LED::DoNotDisturb => "Usage_LED_DoNotDisturb",
+            LED::Mute => "Usage_LED_Mute",
+            LED::ToneEnable => "Usage_LED_ToneEnable",
+            LED::HighCutFilter => "Usage_LED_HighCutFilter",
+            LED::LowCutFilter => "Usage_LED_LowCutFilter",
+            LED::EqualizerEnable => "Usage_LED_EqualizerEnable",
+            LED::SoundFieldOn => "Usage_LED_SoundFieldOn",
+            LED::SurroundOn => "Usage_LED_SurroundOn",
+            LED::Repeat => "Usage_LED_Repeat",
+            LED::Stereo => "Usage_LED_Stereo",
+            LED::SamplingRateDetect => "Usage_LED_SamplingRateDetect",
+            LED::Spinning => "Usage_LED_Spinning",
+            LED::CAV => "Usage_LED_CAV",
+            LED::CLV => "Usage_LED_CLV",
+            LED::RecordingFormatDetect => "Usage_LED_RecordingFormatDetect",
+            LED::OffHook => "Usage_LED_OffHook",
+            LED::Ring => "Usage_LED_Ring",
+            LED::MessageWaiting => "Usage_LED_MessageWaiting",
+            LED::DataMode => "Usage_LED_DataMode",
+            LED::BatteryOperation => "Usage_LED_BatteryOperation",
+            LED::BatteryOK => "Usage_LED_BatteryOK",
+            LED::BatteryLow => "Usage_LED_BatteryLow",
+            LED::Speaker => "Usage_LED_Speaker",
+            LED::Headset => "Usage_LED_Headset",
+            LED::Hold => "Usage_LED_Hold",
+            LED::Microphone => "Usage_LED_Microphone",
+            LED::Coverage => "Usage_LED_Coverage",
+            LED::NightMode => "Usage_LED_NightMode",
+            LED::SendCalls => "Usage_LED_SendCalls",
+            LED::CallPickup => "Usage_LED_CallPickup",
+            LED::Conference => "Usage_LED_Conference",
+            LED::Standby => "Usage_LED_Standby",
+            LED::CameraOn => "Usage_LED_CameraOn",
+            LED::CameraOff => "Usage_LED_CameraOff",
+            LED::OnLine => "Usage_LED_OnLine",
+            LED::OffLine => "Usage_LED_OffLine",
+            LED::Busy => "Usage_LED_Busy",
+            LED::Ready => "Usage_LED_Ready",
+            LED::PaperOut => "Usage_LED_PaperOut",
+            LED::PaperJam => "Usage_LED_PaperJam",
+            LED::Remote => "Usage_LED_Remote",
+            LED::Forward => "Usage_LED_Forward",
+            LED::Reverse => "Usage_LED_Reverse",
+            LED::Stop => "Usage_LED_Stop",
+            LED::Rewind => "Usage_LED_Rewind",
+            LED::FastForward => "Usage_LED_FastForward",
+            LED::Play => "Usage_LED_Play",
+            LED::Pause => "Usage_LED_Pause",
+            LED::Record => "Usage_LED_Record",
+            LED::Error => "Usage_LED_Error",
+            LED::UsageSelectedIndicator => "Usage_LED_UsageSelectedIndicator",
+            LED::UsageInUseIndicator => "Usage_LED_UsageInUseIndicator",
+            LED::UsageMultiModeIndicator => "Usage_LED_UsageMultiModeIndicator",
+            LED::IndicatorOn => "Usage_LED_IndicatorOn",
+            LED::IndicatorFlash => "Usage_LED_IndicatorFlash",
+            LED::IndicatorSlowBlink => "Usage_LED_IndicatorSlowBlink",
+            LED::IndicatorFastBlink => "Usage_LED_IndicatorFastBlink",
+            LED::IndicatorOff => "Usage_LED_IndicatorOff",
+            LED::FlashOnTime => "Usage_LED_FlashOnTime",
+            LED::SlowBlinkOnTime => "Usage_LED_SlowBlinkOnTime",
+            LED::SlowBlinkOffTime => "Usage_LED_SlowBlinkOffTime",
+            LED::FastBlinkOnTime => "Usage_LED_FastBlinkOnTime",
+            LED::FastBlinkOffTime => "Usage_LED_FastBlinkOffTime",
+            LED::UsageIndicatorColor => "Usage_LED_UsageIndicatorColor",
+            LED::IndicatorRed => "Usage_LED_IndicatorRed",
+            LED::IndicatorGreen => "Usage_LED_IndicatorGreen",
+            LED::IndicatorAmber => "Usage_LED_IndicatorAmber",
+            LED::GenericIndicator => "Usage_LED_GenericIndicator",
+            LED::SystemSuspend => "Usage_LED_SystemSuspend",
+            LED::ExternalPowerConnected => "Usage_LED_ExternalPowerConnected",
+            LED::IndicatorBlue => "Usage_LED_IndicatorBlue",
+            LED::IndicatorOrange => "Usage_LED_IndicatorOrange",
+            LED::GoodStatus => "Usage_LED_GoodStatus",
+            LED::WarningStatus => "Usage_LED_WarningStatus",
+            LED::RGBLED => "Usage_LED_RGBLED",
+            LED::RedLEDChannel => "Usage_LED_RedLEDChannel",
+            LED::BlueLEDChannel => "Usage_LED_BlueLEDChannel",
+            LED::GreenLEDChannel => "Usage_LED_GreenLEDChannel",
+            LED::LEDIntensity => "Usage_LED_LEDIntensity",
+            LED::SystemMicrophoneMute => "Usage_LED_SystemMicrophoneMute",
+            LED::PlayerIndicator => "Usage_LED_PlayerIndicator",
+            LED::Player1 => "Usage_LED_Player1",
+            LED::Player2 => "Usage_LED_Player2",
+            LED::Player3 => "Usage_LED_Player3",
+            LED::Player4 => "Usage_LED_Player4",
+            LED::Player5 => "Usage_LED_Player5",
+            LED::Player6 => "Usage_LED_Player6",
+            LED::Player7 => "Usage_LED_Player7",
+            LED::Player8 => "Usage_LED_Player8",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for LED {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -4505,6 +5229,17 @@ impl fmt::Display for Button {
     }
 }
 
+impl CName for Button {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+            Button::Button { button } => {
+                format!("Usage_i{size} ({button})")
+            }
+        }
+        .into()
+    }
+}
+
 impl AsUsage for Button {
     /// Returns the 32 bit Usage value of this Usage
     fn usage_value(&self) -> u32 {
@@ -4619,6 +5354,17 @@ impl fmt::Display for Ordinal {
             Ordinal::Ordinal { instance } => format!("Instance {instance}"),
         };
         write!(f, "{name}")
+    }
+}
+
+impl CName for Ordinal {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+            Ordinal::Ordinal { instance } => {
+                format!("Usage_i{size} ({instance})")
+            }
+        }
+        .into()
     }
 }
 
@@ -5039,6 +5785,113 @@ impl TelephonyDevice {
             TelephonyDevice::AddressBookID => "Address Book ID",
             TelephonyDevice::CallDuration => "Call Duration",
             TelephonyDevice::DualModePhone => "Dual Mode Phone",
+        }
+        .into()
+    }
+}
+
+impl CName for TelephonyDevice {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            TelephonyDevice::Phone => "Usage_TD_Phone",
+            TelephonyDevice::AnsweringMachine => "Usage_TD_AnsweringMachine",
+            TelephonyDevice::MessageControls => "Usage_TD_MessageControls",
+            TelephonyDevice::Handset => "Usage_TD_Handset",
+            TelephonyDevice::Headset => "Usage_TD_Headset",
+            TelephonyDevice::TelephonyKeyPad => "Usage_TD_TelephonyKeyPad",
+            TelephonyDevice::ProgrammableButton => "Usage_TD_ProgrammableButton",
+            TelephonyDevice::HookSwitch => "Usage_TD_HookSwitch",
+            TelephonyDevice::Flash => "Usage_TD_Flash",
+            TelephonyDevice::Feature => "Usage_TD_Feature",
+            TelephonyDevice::Hold => "Usage_TD_Hold",
+            TelephonyDevice::Redial => "Usage_TD_Redial",
+            TelephonyDevice::Transfer => "Usage_TD_Transfer",
+            TelephonyDevice::Drop => "Usage_TD_Drop",
+            TelephonyDevice::Park => "Usage_TD_Park",
+            TelephonyDevice::ForwardCalls => "Usage_TD_ForwardCalls",
+            TelephonyDevice::AlternateFunction => "Usage_TD_AlternateFunction",
+            TelephonyDevice::Line => "Usage_TD_Line",
+            TelephonyDevice::SpeakerPhone => "Usage_TD_SpeakerPhone",
+            TelephonyDevice::Conference => "Usage_TD_Conference",
+            TelephonyDevice::RingEnable => "Usage_TD_RingEnable",
+            TelephonyDevice::RingSelect => "Usage_TD_RingSelect",
+            TelephonyDevice::PhoneMute => "Usage_TD_PhoneMute",
+            TelephonyDevice::CallerID => "Usage_TD_CallerID",
+            TelephonyDevice::Send => "Usage_TD_Send",
+            TelephonyDevice::SpeedDial => "Usage_TD_SpeedDial",
+            TelephonyDevice::StoreNumber => "Usage_TD_StoreNumber",
+            TelephonyDevice::RecallNumber => "Usage_TD_RecallNumber",
+            TelephonyDevice::PhoneDirectory => "Usage_TD_PhoneDirectory",
+            TelephonyDevice::VoiceMail => "Usage_TD_VoiceMail",
+            TelephonyDevice::ScreenCalls => "Usage_TD_ScreenCalls",
+            TelephonyDevice::DoNotDisturb => "Usage_TD_DoNotDisturb",
+            TelephonyDevice::Message => "Usage_TD_Message",
+            TelephonyDevice::AnswerOnOff => "Usage_TD_AnswerOnOff",
+            TelephonyDevice::InsideDialTone => "Usage_TD_InsideDialTone",
+            TelephonyDevice::OutsideDialTone => "Usage_TD_OutsideDialTone",
+            TelephonyDevice::InsideRingTone => "Usage_TD_InsideRingTone",
+            TelephonyDevice::OutsideRingTone => "Usage_TD_OutsideRingTone",
+            TelephonyDevice::PriorityRingTone => "Usage_TD_PriorityRingTone",
+            TelephonyDevice::InsideRingback => "Usage_TD_InsideRingback",
+            TelephonyDevice::PriorityRingback => "Usage_TD_PriorityRingback",
+            TelephonyDevice::LineBusyTone => "Usage_TD_LineBusyTone",
+            TelephonyDevice::ReorderTone => "Usage_TD_ReorderTone",
+            TelephonyDevice::CallWaitingTone => "Usage_TD_CallWaitingTone",
+            TelephonyDevice::ConfirmationTone1 => "Usage_TD_ConfirmationTone1",
+            TelephonyDevice::ConfirmationTone2 => "Usage_TD_ConfirmationTone2",
+            TelephonyDevice::TonesOff => "Usage_TD_TonesOff",
+            TelephonyDevice::OutsideRingback => "Usage_TD_OutsideRingback",
+            TelephonyDevice::Ringer => "Usage_TD_Ringer",
+            TelephonyDevice::PhoneKey0 => "Usage_TD_PhoneKey0",
+            TelephonyDevice::PhoneKey1 => "Usage_TD_PhoneKey1",
+            TelephonyDevice::PhoneKey2 => "Usage_TD_PhoneKey2",
+            TelephonyDevice::PhoneKey3 => "Usage_TD_PhoneKey3",
+            TelephonyDevice::PhoneKey4 => "Usage_TD_PhoneKey4",
+            TelephonyDevice::PhoneKey5 => "Usage_TD_PhoneKey5",
+            TelephonyDevice::PhoneKey6 => "Usage_TD_PhoneKey6",
+            TelephonyDevice::PhoneKey7 => "Usage_TD_PhoneKey7",
+            TelephonyDevice::PhoneKey8 => "Usage_TD_PhoneKey8",
+            TelephonyDevice::PhoneKey9 => "Usage_TD_PhoneKey9",
+            TelephonyDevice::PhoneKeyStar => "Usage_TD_PhoneKeyStar",
+            TelephonyDevice::PhoneKeyPound => "Usage_TD_PhoneKeyPound",
+            TelephonyDevice::PhoneKeyA => "Usage_TD_PhoneKeyA",
+            TelephonyDevice::PhoneKeyB => "Usage_TD_PhoneKeyB",
+            TelephonyDevice::PhoneKeyC => "Usage_TD_PhoneKeyC",
+            TelephonyDevice::PhoneKeyD => "Usage_TD_PhoneKeyD",
+            TelephonyDevice::PhoneCallHistoryKey => "Usage_TD_PhoneCallHistoryKey",
+            TelephonyDevice::PhoneCallerIDKey => "Usage_TD_PhoneCallerIDKey",
+            TelephonyDevice::PhoneSettingsKey => "Usage_TD_PhoneSettingsKey",
+            TelephonyDevice::HostControl => "Usage_TD_HostControl",
+            TelephonyDevice::HostAvailable => "Usage_TD_HostAvailable",
+            TelephonyDevice::HostCallActive => "Usage_TD_HostCallActive",
+            TelephonyDevice::ActivateHandsetAudio => "Usage_TD_ActivateHandsetAudio",
+            TelephonyDevice::RingType => "Usage_TD_RingType",
+            TelephonyDevice::RedialablePhoneNumber => "Usage_TD_RedialablePhoneNumber",
+            TelephonyDevice::StopRingTone => "Usage_TD_StopRingTone",
+            TelephonyDevice::PSTNRingTone => "Usage_TD_PSTNRingTone",
+            TelephonyDevice::HostRingTone => "Usage_TD_HostRingTone",
+            TelephonyDevice::AlertSoundError => "Usage_TD_AlertSoundError",
+            TelephonyDevice::AlertSoundConfirm => "Usage_TD_AlertSoundConfirm",
+            TelephonyDevice::AlertSoundNotification => "Usage_TD_AlertSoundNotification",
+            TelephonyDevice::SilentRing => "Usage_TD_SilentRing",
+            TelephonyDevice::EmailMessageWaiting => "Usage_TD_EmailMessageWaiting",
+            TelephonyDevice::VoicemailMessageWaiting => "Usage_TD_VoicemailMessageWaiting",
+            TelephonyDevice::HostHold => "Usage_TD_HostHold",
+            TelephonyDevice::IncomingCallHistoryCount => "Usage_TD_IncomingCallHistoryCount",
+            TelephonyDevice::OutgoingCallHistoryCount => "Usage_TD_OutgoingCallHistoryCount",
+            TelephonyDevice::IncomingCallHistory => "Usage_TD_IncomingCallHistory",
+            TelephonyDevice::OutgoingCallHistory => "Usage_TD_OutgoingCallHistory",
+            TelephonyDevice::PhoneLocale => "Usage_TD_PhoneLocale",
+            TelephonyDevice::PhoneTimeSecond => "Usage_TD_PhoneTimeSecond",
+            TelephonyDevice::PhoneTimeMinute => "Usage_TD_PhoneTimeMinute",
+            TelephonyDevice::PhoneTimeHour => "Usage_TD_PhoneTimeHour",
+            TelephonyDevice::PhoneDateDay => "Usage_TD_PhoneDateDay",
+            TelephonyDevice::PhoneDateMonth => "Usage_TD_PhoneDateMonth",
+            TelephonyDevice::PhoneDateYear => "Usage_TD_PhoneDateYear",
+            TelephonyDevice::HandsetNickname => "Usage_TD_HandsetNickname",
+            TelephonyDevice::AddressBookID => "Usage_TD_AddressBookID",
+            TelephonyDevice::CallDuration => "Usage_TD_CallDuration",
+            TelephonyDevice::DualModePhone => "Usage_TD_DualModePhone",
         }
         .into()
     }
@@ -6728,6 +7581,484 @@ impl Consumer {
     }
 }
 
+impl CName for Consumer {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            Consumer::ConsumerControl => "Usage_Con_ConsumerControl",
+            Consumer::NumericKeyPad => "Usage_Con_NumericKeyPad",
+            Consumer::ProgrammableButtons => "Usage_Con_ProgrammableButtons",
+            Consumer::Microphone => "Usage_Con_Microphone",
+            Consumer::Headphone => "Usage_Con_Headphone",
+            Consumer::GraphicEqualizer => "Usage_Con_GraphicEqualizer",
+            Consumer::Plus10 => "Usage_Con_Plus10",
+            Consumer::Plus100 => "Usage_Con_Plus100",
+            Consumer::AMPM => "Usage_Con_AMPM",
+            Consumer::Power => "Usage_Con_Power",
+            Consumer::Reset => "Usage_Con_Reset",
+            Consumer::Sleep => "Usage_Con_Sleep",
+            Consumer::SleepAfter => "Usage_Con_SleepAfter",
+            Consumer::SleepMode => "Usage_Con_SleepMode",
+            Consumer::Illumination => "Usage_Con_Illumination",
+            Consumer::FunctionButtons => "Usage_Con_FunctionButtons",
+            Consumer::Menu => "Usage_Con_Menu",
+            Consumer::MenuPick => "Usage_Con_MenuPick",
+            Consumer::MenuUp => "Usage_Con_MenuUp",
+            Consumer::MenuDown => "Usage_Con_MenuDown",
+            Consumer::MenuLeft => "Usage_Con_MenuLeft",
+            Consumer::MenuRight => "Usage_Con_MenuRight",
+            Consumer::MenuEscape => "Usage_Con_MenuEscape",
+            Consumer::MenuValueIncrease => "Usage_Con_MenuValueIncrease",
+            Consumer::MenuValueDecrease => "Usage_Con_MenuValueDecrease",
+            Consumer::DataOnScreen => "Usage_Con_DataOnScreen",
+            Consumer::ClosedCaption => "Usage_Con_ClosedCaption",
+            Consumer::ClosedCaptionSelect => "Usage_Con_ClosedCaptionSelect",
+            Consumer::VCRTV => "Usage_Con_VCRTV",
+            Consumer::BroadcastMode => "Usage_Con_BroadcastMode",
+            Consumer::Snapshot => "Usage_Con_Snapshot",
+            Consumer::Still => "Usage_Con_Still",
+            Consumer::PictureinPictureToggle => "Usage_Con_PictureinPictureToggle",
+            Consumer::PictureinPictureSwap => "Usage_Con_PictureinPictureSwap",
+            Consumer::RedMenuButton => "Usage_Con_RedMenuButton",
+            Consumer::GreenMenuButton => "Usage_Con_GreenMenuButton",
+            Consumer::BlueMenuButton => "Usage_Con_BlueMenuButton",
+            Consumer::YellowMenuButton => "Usage_Con_YellowMenuButton",
+            Consumer::Aspect => "Usage_Con_Aspect",
+            Consumer::ThreeDModeSelect => "Usage_Con_ThreeDModeSelect",
+            Consumer::DisplayBrightnessIncrement => "Usage_Con_DisplayBrightnessIncrement",
+            Consumer::DisplayBrightnessDecrement => "Usage_Con_DisplayBrightnessDecrement",
+            Consumer::DisplayBrightness => "Usage_Con_DisplayBrightness",
+            Consumer::DisplayBacklightToggle => "Usage_Con_DisplayBacklightToggle",
+            Consumer::DisplaySetBrightnesstoMinimum => "Usage_Con_DisplaySetBrightnesstoMinimum",
+            Consumer::DisplaySetBrightnesstoMaximum => "Usage_Con_DisplaySetBrightnesstoMaximum",
+            Consumer::DisplaySetAutoBrightness => "Usage_Con_DisplaySetAutoBrightness",
+            Consumer::CameraAccessEnabled => "Usage_Con_CameraAccessEnabled",
+            Consumer::CameraAccessDisabled => "Usage_Con_CameraAccessDisabled",
+            Consumer::CameraAccessToggle => "Usage_Con_CameraAccessToggle",
+            Consumer::KeyboardBrightnessIncrement => "Usage_Con_KeyboardBrightnessIncrement",
+            Consumer::KeyboardBrightnessDecrement => "Usage_Con_KeyboardBrightnessDecrement",
+            Consumer::KeyboardBacklightSetLevel => "Usage_Con_KeyboardBacklightSetLevel",
+            Consumer::KeyboardBacklightOOC => "Usage_Con_KeyboardBacklightOOC",
+            Consumer::KeyboardBacklightSetMinimum => "Usage_Con_KeyboardBacklightSetMinimum",
+            Consumer::KeyboardBacklightSetMaximum => "Usage_Con_KeyboardBacklightSetMaximum",
+            Consumer::KeyboardBacklightAuto => "Usage_Con_KeyboardBacklightAuto",
+            Consumer::Selection => "Usage_Con_Selection",
+            Consumer::AssignSelection => "Usage_Con_AssignSelection",
+            Consumer::ModeStep => "Usage_Con_ModeStep",
+            Consumer::RecallLast => "Usage_Con_RecallLast",
+            Consumer::EnterChannel => "Usage_Con_EnterChannel",
+            Consumer::OrderMovie => "Usage_Con_OrderMovie",
+            Consumer::Channel => "Usage_Con_Channel",
+            Consumer::MediaSelection => "Usage_Con_MediaSelection",
+            Consumer::MediaSelectComputer => "Usage_Con_MediaSelectComputer",
+            Consumer::MediaSelectTV => "Usage_Con_MediaSelectTV",
+            Consumer::MediaSelectWWW => "Usage_Con_MediaSelectWWW",
+            Consumer::MediaSelectDVD => "Usage_Con_MediaSelectDVD",
+            Consumer::MediaSelectTelephone => "Usage_Con_MediaSelectTelephone",
+            Consumer::MediaSelectProgramGuide => "Usage_Con_MediaSelectProgramGuide",
+            Consumer::MediaSelectVideoPhone => "Usage_Con_MediaSelectVideoPhone",
+            Consumer::MediaSelectGames => "Usage_Con_MediaSelectGames",
+            Consumer::MediaSelectMessages => "Usage_Con_MediaSelectMessages",
+            Consumer::MediaSelectCD => "Usage_Con_MediaSelectCD",
+            Consumer::MediaSelectVCR => "Usage_Con_MediaSelectVCR",
+            Consumer::MediaSelectTuner => "Usage_Con_MediaSelectTuner",
+            Consumer::Quit => "Usage_Con_Quit",
+            Consumer::Help => "Usage_Con_Help",
+            Consumer::MediaSelectTape => "Usage_Con_MediaSelectTape",
+            Consumer::MediaSelectCable => "Usage_Con_MediaSelectCable",
+            Consumer::MediaSelectSatellite => "Usage_Con_MediaSelectSatellite",
+            Consumer::MediaSelectSecurity => "Usage_Con_MediaSelectSecurity",
+            Consumer::MediaSelectHome => "Usage_Con_MediaSelectHome",
+            Consumer::MediaSelectCall => "Usage_Con_MediaSelectCall",
+            Consumer::ChannelIncrement => "Usage_Con_ChannelIncrement",
+            Consumer::ChannelDecrement => "Usage_Con_ChannelDecrement",
+            Consumer::MediaSelectSAP => "Usage_Con_MediaSelectSAP",
+            Consumer::VCRPlus => "Usage_Con_VCRPlus",
+            Consumer::Once => "Usage_Con_Once",
+            Consumer::Daily => "Usage_Con_Daily",
+            Consumer::Weekly => "Usage_Con_Weekly",
+            Consumer::Monthly => "Usage_Con_Monthly",
+            Consumer::Play => "Usage_Con_Play",
+            Consumer::Pause => "Usage_Con_Pause",
+            Consumer::Record => "Usage_Con_Record",
+            Consumer::FastForward => "Usage_Con_FastForward",
+            Consumer::Rewind => "Usage_Con_Rewind",
+            Consumer::ScanNextTrack => "Usage_Con_ScanNextTrack",
+            Consumer::ScanPreviousTrack => "Usage_Con_ScanPreviousTrack",
+            Consumer::Stop => "Usage_Con_Stop",
+            Consumer::Eject => "Usage_Con_Eject",
+            Consumer::RandomPlay => "Usage_Con_RandomPlay",
+            Consumer::SelectDisc => "Usage_Con_SelectDisc",
+            Consumer::EnterDisc => "Usage_Con_EnterDisc",
+            Consumer::Repeat => "Usage_Con_Repeat",
+            Consumer::Tracking => "Usage_Con_Tracking",
+            Consumer::TrackNormal => "Usage_Con_TrackNormal",
+            Consumer::SlowTracking => "Usage_Con_SlowTracking",
+            Consumer::FrameForward => "Usage_Con_FrameForward",
+            Consumer::FrameBack => "Usage_Con_FrameBack",
+            Consumer::Mark => "Usage_Con_Mark",
+            Consumer::ClearMark => "Usage_Con_ClearMark",
+            Consumer::RepeatFromMark => "Usage_Con_RepeatFromMark",
+            Consumer::ReturnToMark => "Usage_Con_ReturnToMark",
+            Consumer::SearchMarkForward => "Usage_Con_SearchMarkForward",
+            Consumer::SearchMarkBackwards => "Usage_Con_SearchMarkBackwards",
+            Consumer::CounterReset => "Usage_Con_CounterReset",
+            Consumer::ShowCounter => "Usage_Con_ShowCounter",
+            Consumer::TrackingIncrement => "Usage_Con_TrackingIncrement",
+            Consumer::TrackingDecrement => "Usage_Con_TrackingDecrement",
+            Consumer::StopEject => "Usage_Con_StopEject",
+            Consumer::PlayPause => "Usage_Con_PlayPause",
+            Consumer::PlaySkip => "Usage_Con_PlaySkip",
+            Consumer::VoiceCommand => "Usage_Con_VoiceCommand",
+            Consumer::InvokeCaptureInterface => "Usage_Con_InvokeCaptureInterface",
+            Consumer::StartorStopGameRecording => "Usage_Con_StartorStopGameRecording",
+            Consumer::HistoricalGameCapture => "Usage_Con_HistoricalGameCapture",
+            Consumer::CaptureGameScreenshot => "Usage_Con_CaptureGameScreenshot",
+            Consumer::ShoworHideRecordingIndicator => "Usage_Con_ShoworHideRecordingIndicator",
+            Consumer::StartorStopMicrophoneCapture => "Usage_Con_StartorStopMicrophoneCapture",
+            Consumer::StartorStopCameraCapture => "Usage_Con_StartorStopCameraCapture",
+            Consumer::StartorStopGameBroadcast => "Usage_Con_StartorStopGameBroadcast",
+            Consumer::StartorStopVoiceDictationSession => {
+                "Usage_Con_StartorStopVoiceDictationSession"
+            }
+            Consumer::InvokeDismissEmojiPicker => "Usage_Con_InvokeDismissEmojiPicker",
+            Consumer::Volume => "Usage_Con_Volume",
+            Consumer::Balance => "Usage_Con_Balance",
+            Consumer::Mute => "Usage_Con_Mute",
+            Consumer::Bass => "Usage_Con_Bass",
+            Consumer::Treble => "Usage_Con_Treble",
+            Consumer::BassBoost => "Usage_Con_BassBoost",
+            Consumer::SurroundMode => "Usage_Con_SurroundMode",
+            Consumer::Loudness => "Usage_Con_Loudness",
+            Consumer::MPX => "Usage_Con_MPX",
+            Consumer::VolumeIncrement => "Usage_Con_VolumeIncrement",
+            Consumer::VolumeDecrement => "Usage_Con_VolumeDecrement",
+            Consumer::SpeedSelect => "Usage_Con_SpeedSelect",
+            Consumer::PlaybackSpeed => "Usage_Con_PlaybackSpeed",
+            Consumer::StandardPlay => "Usage_Con_StandardPlay",
+            Consumer::LongPlay => "Usage_Con_LongPlay",
+            Consumer::ExtendedPlay => "Usage_Con_ExtendedPlay",
+            Consumer::Slow => "Usage_Con_Slow",
+            Consumer::FanEnable => "Usage_Con_FanEnable",
+            Consumer::FanSpeed => "Usage_Con_FanSpeed",
+            Consumer::LightEnable => "Usage_Con_LightEnable",
+            Consumer::LightIlluminationLevel => "Usage_Con_LightIlluminationLevel",
+            Consumer::ClimateControlEnable => "Usage_Con_ClimateControlEnable",
+            Consumer::RoomTemperature => "Usage_Con_RoomTemperature",
+            Consumer::SecurityEnable => "Usage_Con_SecurityEnable",
+            Consumer::FireAlarm => "Usage_Con_FireAlarm",
+            Consumer::PoliceAlarm => "Usage_Con_PoliceAlarm",
+            Consumer::Proximity => "Usage_Con_Proximity",
+            Consumer::Motion => "Usage_Con_Motion",
+            Consumer::DuressAlarm => "Usage_Con_DuressAlarm",
+            Consumer::HoldupAlarm => "Usage_Con_HoldupAlarm",
+            Consumer::MedicalAlarm => "Usage_Con_MedicalAlarm",
+            Consumer::BalanceRight => "Usage_Con_BalanceRight",
+            Consumer::BalanceLeft => "Usage_Con_BalanceLeft",
+            Consumer::BassIncrement => "Usage_Con_BassIncrement",
+            Consumer::BassDecrement => "Usage_Con_BassDecrement",
+            Consumer::TrebleIncrement => "Usage_Con_TrebleIncrement",
+            Consumer::TrebleDecrement => "Usage_Con_TrebleDecrement",
+            Consumer::SpeakerSystem => "Usage_Con_SpeakerSystem",
+            Consumer::ChannelLeft => "Usage_Con_ChannelLeft",
+            Consumer::ChannelRight => "Usage_Con_ChannelRight",
+            Consumer::ChannelCenter => "Usage_Con_ChannelCenter",
+            Consumer::ChannelFront => "Usage_Con_ChannelFront",
+            Consumer::ChannelCenterFront => "Usage_Con_ChannelCenterFront",
+            Consumer::ChannelSide => "Usage_Con_ChannelSide",
+            Consumer::ChannelSurround => "Usage_Con_ChannelSurround",
+            Consumer::ChannelLowFrequencyEnhancement => "Usage_Con_ChannelLowFrequencyEnhancement",
+            Consumer::ChannelTop => "Usage_Con_ChannelTop",
+            Consumer::ChannelUnknown => "Usage_Con_ChannelUnknown",
+            Consumer::Subchannel => "Usage_Con_Subchannel",
+            Consumer::SubchannelIncrement => "Usage_Con_SubchannelIncrement",
+            Consumer::SubchannelDecrement => "Usage_Con_SubchannelDecrement",
+            Consumer::AlternateAudioIncrement => "Usage_Con_AlternateAudioIncrement",
+            Consumer::AlternateAudioDecrement => "Usage_Con_AlternateAudioDecrement",
+            Consumer::ApplicationLaunchButtons => "Usage_Con_ApplicationLaunchButtons",
+            Consumer::ALLaunchButtonConfigurationTool => {
+                "Usage_Con_ALLaunchButtonConfigurationTool"
+            }
+            Consumer::ALProgrammableButtonConfiguration => {
+                "Usage_Con_ALProgrammableButtonConfiguration"
+            }
+            Consumer::ALConsumerControlConfiguration => "Usage_Con_ALConsumerControlConfiguration",
+            Consumer::ALWordProcessor => "Usage_Con_ALWordProcessor",
+            Consumer::ALTextEditor => "Usage_Con_ALTextEditor",
+            Consumer::ALSpreadsheet => "Usage_Con_ALSpreadsheet",
+            Consumer::ALGraphicsEditor => "Usage_Con_ALGraphicsEditor",
+            Consumer::ALPresentationApp => "Usage_Con_ALPresentationApp",
+            Consumer::ALDatabaseApp => "Usage_Con_ALDatabaseApp",
+            Consumer::ALEmailReader => "Usage_Con_ALEmailReader",
+            Consumer::ALNewsreader => "Usage_Con_ALNewsreader",
+            Consumer::ALVoicemail => "Usage_Con_ALVoicemail",
+            Consumer::ALContactsAddressBook => "Usage_Con_ALContactsAddressBook",
+            Consumer::ALCalendarSchedule => "Usage_Con_ALCalendarSchedule",
+            Consumer::ALTaskProjectManager => "Usage_Con_ALTaskProjectManager",
+            Consumer::ALLogJournalTimecard => "Usage_Con_ALLogJournalTimecard",
+            Consumer::ALCheckbookFinance => "Usage_Con_ALCheckbookFinance",
+            Consumer::ALCalculator => "Usage_Con_ALCalculator",
+            Consumer::ALAVCapturePlayback => "Usage_Con_ALAVCapturePlayback",
+            Consumer::ALLocalMachineBrowser => "Usage_Con_ALLocalMachineBrowser",
+            Consumer::ALLANWANBrowser => "Usage_Con_ALLANWANBrowser",
+            Consumer::ALInternetBrowser => "Usage_Con_ALInternetBrowser",
+            Consumer::ALRemoteNetworkingISPConnect => "Usage_Con_ALRemoteNetworkingISPConnect",
+            Consumer::ALNetworkConference => "Usage_Con_ALNetworkConference",
+            Consumer::ALNetworkChat => "Usage_Con_ALNetworkChat",
+            Consumer::ALTelephonyDialer => "Usage_Con_ALTelephonyDialer",
+            Consumer::ALLogon => "Usage_Con_ALLogon",
+            Consumer::ALLogoff => "Usage_Con_ALLogoff",
+            Consumer::ALLogonLogoff => "Usage_Con_ALLogonLogoff",
+            Consumer::ALTerminalLockScreensaver => "Usage_Con_ALTerminalLockScreensaver",
+            Consumer::ALControlPanel => "Usage_Con_ALControlPanel",
+            Consumer::ALCommandLineProcessorRun => "Usage_Con_ALCommandLineProcessorRun",
+            Consumer::ALProcessTaskManager => "Usage_Con_ALProcessTaskManager",
+            Consumer::ALSelectTaskApplication => "Usage_Con_ALSelectTaskApplication",
+            Consumer::ALNextTaskApplication => "Usage_Con_ALNextTaskApplication",
+            Consumer::ALPreviousTaskApplication => "Usage_Con_ALPreviousTaskApplication",
+            Consumer::ALPreemptiveHaltTaskApplication => {
+                "Usage_Con_ALPreemptiveHaltTaskApplication"
+            }
+            Consumer::ALIntegratedHelpCenter => "Usage_Con_ALIntegratedHelpCenter",
+            Consumer::ALDocuments => "Usage_Con_ALDocuments",
+            Consumer::ALThesaurus => "Usage_Con_ALThesaurus",
+            Consumer::ALDictionary => "Usage_Con_ALDictionary",
+            Consumer::ALDesktop => "Usage_Con_ALDesktop",
+            Consumer::ALSpellCheck => "Usage_Con_ALSpellCheck",
+            Consumer::ALGrammarCheck => "Usage_Con_ALGrammarCheck",
+            Consumer::ALWirelessStatus => "Usage_Con_ALWirelessStatus",
+            Consumer::ALKeyboardLayout => "Usage_Con_ALKeyboardLayout",
+            Consumer::ALVirusProtection => "Usage_Con_ALVirusProtection",
+            Consumer::ALEncryption => "Usage_Con_ALEncryption",
+            Consumer::ALScreenSaver => "Usage_Con_ALScreenSaver",
+            Consumer::ALAlarms => "Usage_Con_ALAlarms",
+            Consumer::ALClock => "Usage_Con_ALClock",
+            Consumer::ALFileBrowser => "Usage_Con_ALFileBrowser",
+            Consumer::ALPowerStatus => "Usage_Con_ALPowerStatus",
+            Consumer::ALImageBrowser => "Usage_Con_ALImageBrowser",
+            Consumer::ALAudioBrowser => "Usage_Con_ALAudioBrowser",
+            Consumer::ALMovieBrowser => "Usage_Con_ALMovieBrowser",
+            Consumer::ALDigitalRightsManager => "Usage_Con_ALDigitalRightsManager",
+            Consumer::ALDigitalWallet => "Usage_Con_ALDigitalWallet",
+            Consumer::ALInstantMessaging => "Usage_Con_ALInstantMessaging",
+            Consumer::ALOEMFeaturesTipsTutorialBrowser => {
+                "Usage_Con_ALOEMFeaturesTipsTutorialBrowser"
+            }
+            Consumer::ALOEMHelp => "Usage_Con_ALOEMHelp",
+            Consumer::ALOnlineCommunity => "Usage_Con_ALOnlineCommunity",
+            Consumer::ALEntertainmentContentBrowser => "Usage_Con_ALEntertainmentContentBrowser",
+            Consumer::ALOnlineShoppingBrowser => "Usage_Con_ALOnlineShoppingBrowser",
+            Consumer::ALSmartCardInformationHelp => "Usage_Con_ALSmartCardInformationHelp",
+            Consumer::ALMarketMonitorFinanceBrowser => "Usage_Con_ALMarketMonitorFinanceBrowser",
+            Consumer::ALCustomizedCorporateNewsBrowser => {
+                "Usage_Con_ALCustomizedCorporateNewsBrowser"
+            }
+            Consumer::ALOnlineActivityBrowser => "Usage_Con_ALOnlineActivityBrowser",
+            Consumer::ALResearchSearchBrowser => "Usage_Con_ALResearchSearchBrowser",
+            Consumer::ALAudioPlayer => "Usage_Con_ALAudioPlayer",
+            Consumer::ALMessageStatus => "Usage_Con_ALMessageStatus",
+            Consumer::ALContactSync => "Usage_Con_ALContactSync",
+            Consumer::ALNavigation => "Usage_Con_ALNavigation",
+            Consumer::ALContextawareDesktopAssistant => "Usage_Con_ALContextawareDesktopAssistant",
+            Consumer::GenericGUIApplicationControls => "Usage_Con_GenericGUIApplicationControls",
+            Consumer::ACNew => "Usage_Con_ACNew",
+            Consumer::ACOpen => "Usage_Con_ACOpen",
+            Consumer::ACClose => "Usage_Con_ACClose",
+            Consumer::ACExit => "Usage_Con_ACExit",
+            Consumer::ACMaximize => "Usage_Con_ACMaximize",
+            Consumer::ACMinimize => "Usage_Con_ACMinimize",
+            Consumer::ACSave => "Usage_Con_ACSave",
+            Consumer::ACPrint => "Usage_Con_ACPrint",
+            Consumer::ACProperties => "Usage_Con_ACProperties",
+            Consumer::ACUndo => "Usage_Con_ACUndo",
+            Consumer::ACCopy => "Usage_Con_ACCopy",
+            Consumer::ACCut => "Usage_Con_ACCut",
+            Consumer::ACPaste => "Usage_Con_ACPaste",
+            Consumer::ACSelectAll => "Usage_Con_ACSelectAll",
+            Consumer::ACFind => "Usage_Con_ACFind",
+            Consumer::ACFindandReplace => "Usage_Con_ACFindandReplace",
+            Consumer::ACSearch => "Usage_Con_ACSearch",
+            Consumer::ACGoTo => "Usage_Con_ACGoTo",
+            Consumer::ACHome => "Usage_Con_ACHome",
+            Consumer::ACBack => "Usage_Con_ACBack",
+            Consumer::ACForward => "Usage_Con_ACForward",
+            Consumer::ACStop => "Usage_Con_ACStop",
+            Consumer::ACRefresh => "Usage_Con_ACRefresh",
+            Consumer::ACPreviousLink => "Usage_Con_ACPreviousLink",
+            Consumer::ACNextLink => "Usage_Con_ACNextLink",
+            Consumer::ACBookmarks => "Usage_Con_ACBookmarks",
+            Consumer::ACHistory => "Usage_Con_ACHistory",
+            Consumer::ACSubscriptions => "Usage_Con_ACSubscriptions",
+            Consumer::ACZoomIn => "Usage_Con_ACZoomIn",
+            Consumer::ACZoomOut => "Usage_Con_ACZoomOut",
+            Consumer::ACZoom => "Usage_Con_ACZoom",
+            Consumer::ACFullScreenView => "Usage_Con_ACFullScreenView",
+            Consumer::ACNormalView => "Usage_Con_ACNormalView",
+            Consumer::ACViewToggle => "Usage_Con_ACViewToggle",
+            Consumer::ACScrollUp => "Usage_Con_ACScrollUp",
+            Consumer::ACScrollDown => "Usage_Con_ACScrollDown",
+            Consumer::ACScroll => "Usage_Con_ACScroll",
+            Consumer::ACPanLeft => "Usage_Con_ACPanLeft",
+            Consumer::ACPanRight => "Usage_Con_ACPanRight",
+            Consumer::ACPan => "Usage_Con_ACPan",
+            Consumer::ACNewWindow => "Usage_Con_ACNewWindow",
+            Consumer::ACTileHorizontally => "Usage_Con_ACTileHorizontally",
+            Consumer::ACTileVertically => "Usage_Con_ACTileVertically",
+            Consumer::ACFormat => "Usage_Con_ACFormat",
+            Consumer::ACEdit => "Usage_Con_ACEdit",
+            Consumer::ACBold => "Usage_Con_ACBold",
+            Consumer::ACItalics => "Usage_Con_ACItalics",
+            Consumer::ACUnderline => "Usage_Con_ACUnderline",
+            Consumer::ACStrikethrough => "Usage_Con_ACStrikethrough",
+            Consumer::ACSubscript => "Usage_Con_ACSubscript",
+            Consumer::ACSuperscript => "Usage_Con_ACSuperscript",
+            Consumer::ACAllCaps => "Usage_Con_ACAllCaps",
+            Consumer::ACRotate => "Usage_Con_ACRotate",
+            Consumer::ACResize => "Usage_Con_ACResize",
+            Consumer::ACFlipHorizontal => "Usage_Con_ACFlipHorizontal",
+            Consumer::ACFlipVertical => "Usage_Con_ACFlipVertical",
+            Consumer::ACMirrorHorizontal => "Usage_Con_ACMirrorHorizontal",
+            Consumer::ACMirrorVertical => "Usage_Con_ACMirrorVertical",
+            Consumer::ACFontSelect => "Usage_Con_ACFontSelect",
+            Consumer::ACFontColor => "Usage_Con_ACFontColor",
+            Consumer::ACFontSize => "Usage_Con_ACFontSize",
+            Consumer::ACJustifyLeft => "Usage_Con_ACJustifyLeft",
+            Consumer::ACJustifyCenterH => "Usage_Con_ACJustifyCenterH",
+            Consumer::ACJustifyRight => "Usage_Con_ACJustifyRight",
+            Consumer::ACJustifyBlockH => "Usage_Con_ACJustifyBlockH",
+            Consumer::ACJustifyTop => "Usage_Con_ACJustifyTop",
+            Consumer::ACJustifyCenterV => "Usage_Con_ACJustifyCenterV",
+            Consumer::ACJustifyBottom => "Usage_Con_ACJustifyBottom",
+            Consumer::ACJustifyBlockV => "Usage_Con_ACJustifyBlockV",
+            Consumer::ACIndentDecrease => "Usage_Con_ACIndentDecrease",
+            Consumer::ACIndentIncrease => "Usage_Con_ACIndentIncrease",
+            Consumer::ACNumberedList => "Usage_Con_ACNumberedList",
+            Consumer::ACRestartNumbering => "Usage_Con_ACRestartNumbering",
+            Consumer::ACBulletedList => "Usage_Con_ACBulletedList",
+            Consumer::ACPromote => "Usage_Con_ACPromote",
+            Consumer::ACDemote => "Usage_Con_ACDemote",
+            Consumer::ACYes => "Usage_Con_ACYes",
+            Consumer::ACNo => "Usage_Con_ACNo",
+            Consumer::ACCancel => "Usage_Con_ACCancel",
+            Consumer::ACCatalog => "Usage_Con_ACCatalog",
+            Consumer::ACBuyCheckout => "Usage_Con_ACBuyCheckout",
+            Consumer::ACAddtoCart => "Usage_Con_ACAddtoCart",
+            Consumer::ACExpand => "Usage_Con_ACExpand",
+            Consumer::ACExpandAll => "Usage_Con_ACExpandAll",
+            Consumer::ACCollapse => "Usage_Con_ACCollapse",
+            Consumer::ACCollapseAll => "Usage_Con_ACCollapseAll",
+            Consumer::ACPrintPreview => "Usage_Con_ACPrintPreview",
+            Consumer::ACPasteSpecial => "Usage_Con_ACPasteSpecial",
+            Consumer::ACInsertMode => "Usage_Con_ACInsertMode",
+            Consumer::ACDelete => "Usage_Con_ACDelete",
+            Consumer::ACLock => "Usage_Con_ACLock",
+            Consumer::ACUnlock => "Usage_Con_ACUnlock",
+            Consumer::ACProtect => "Usage_Con_ACProtect",
+            Consumer::ACUnprotect => "Usage_Con_ACUnprotect",
+            Consumer::ACAttachComment => "Usage_Con_ACAttachComment",
+            Consumer::ACDeleteComment => "Usage_Con_ACDeleteComment",
+            Consumer::ACViewComment => "Usage_Con_ACViewComment",
+            Consumer::ACSelectWord => "Usage_Con_ACSelectWord",
+            Consumer::ACSelectSentence => "Usage_Con_ACSelectSentence",
+            Consumer::ACSelectParagraph => "Usage_Con_ACSelectParagraph",
+            Consumer::ACSelectColumn => "Usage_Con_ACSelectColumn",
+            Consumer::ACSelectRow => "Usage_Con_ACSelectRow",
+            Consumer::ACSelectTable => "Usage_Con_ACSelectTable",
+            Consumer::ACSelectObject => "Usage_Con_ACSelectObject",
+            Consumer::ACRedoRepeat => "Usage_Con_ACRedoRepeat",
+            Consumer::ACSort => "Usage_Con_ACSort",
+            Consumer::ACSortAscending => "Usage_Con_ACSortAscending",
+            Consumer::ACSortDescending => "Usage_Con_ACSortDescending",
+            Consumer::ACFilter => "Usage_Con_ACFilter",
+            Consumer::ACSetClock => "Usage_Con_ACSetClock",
+            Consumer::ACViewClock => "Usage_Con_ACViewClock",
+            Consumer::ACSelectTimeZone => "Usage_Con_ACSelectTimeZone",
+            Consumer::ACEditTimeZones => "Usage_Con_ACEditTimeZones",
+            Consumer::ACSetAlarm => "Usage_Con_ACSetAlarm",
+            Consumer::ACClearAlarm => "Usage_Con_ACClearAlarm",
+            Consumer::ACSnoozeAlarm => "Usage_Con_ACSnoozeAlarm",
+            Consumer::ACResetAlarm => "Usage_Con_ACResetAlarm",
+            Consumer::ACSynchronize => "Usage_Con_ACSynchronize",
+            Consumer::ACSendReceive => "Usage_Con_ACSendReceive",
+            Consumer::ACSendTo => "Usage_Con_ACSendTo",
+            Consumer::ACReply => "Usage_Con_ACReply",
+            Consumer::ACReplyAll => "Usage_Con_ACReplyAll",
+            Consumer::ACForwardMsg => "Usage_Con_ACForwardMsg",
+            Consumer::ACSend => "Usage_Con_ACSend",
+            Consumer::ACAttachFile => "Usage_Con_ACAttachFile",
+            Consumer::ACUpload => "Usage_Con_ACUpload",
+            Consumer::ACDownloadSaveTargetAs => "Usage_Con_ACDownloadSaveTargetAs",
+            Consumer::ACSetBorders => "Usage_Con_ACSetBorders",
+            Consumer::ACInsertRow => "Usage_Con_ACInsertRow",
+            Consumer::ACInsertColumn => "Usage_Con_ACInsertColumn",
+            Consumer::ACInsertFile => "Usage_Con_ACInsertFile",
+            Consumer::ACInsertPicture => "Usage_Con_ACInsertPicture",
+            Consumer::ACInsertObject => "Usage_Con_ACInsertObject",
+            Consumer::ACInsertSymbol => "Usage_Con_ACInsertSymbol",
+            Consumer::ACSaveandClose => "Usage_Con_ACSaveandClose",
+            Consumer::ACRename => "Usage_Con_ACRename",
+            Consumer::ACMerge => "Usage_Con_ACMerge",
+            Consumer::ACSplit => "Usage_Con_ACSplit",
+            Consumer::ACDisributeHorizontally => "Usage_Con_ACDisributeHorizontally",
+            Consumer::ACDistributeVertically => "Usage_Con_ACDistributeVertically",
+            Consumer::ACNextKeyboardLayoutSelect => "Usage_Con_ACNextKeyboardLayoutSelect",
+            Consumer::ACNavigationGuidance => "Usage_Con_ACNavigationGuidance",
+            Consumer::ACDesktopShowAllWindows => "Usage_Con_ACDesktopShowAllWindows",
+            Consumer::ACSoftKeyLeft => "Usage_Con_ACSoftKeyLeft",
+            Consumer::ACSoftKeyRight => "Usage_Con_ACSoftKeyRight",
+            Consumer::ACDesktopShowAllApplications => "Usage_Con_ACDesktopShowAllApplications",
+            Consumer::ACIdleKeepAlive => "Usage_Con_ACIdleKeepAlive",
+            Consumer::ExtendedKeyboardAttributesCollection => {
+                "Usage_Con_ExtendedKeyboardAttributesCollection"
+            }
+            Consumer::KeyboardFormFactor => "Usage_Con_KeyboardFormFactor",
+            Consumer::KeyboardKeyType => "Usage_Con_KeyboardKeyType",
+            Consumer::KeyboardPhysicalLayout => "Usage_Con_KeyboardPhysicalLayout",
+            Consumer::VendorSpecificKeyboardPhysicalLayout => {
+                "Usage_Con_VendorSpecificKeyboardPhysicalLayout"
+            }
+            Consumer::KeyboardIETFLanguageTagIndex => "Usage_Con_KeyboardIETFLanguageTagIndex",
+            Consumer::ImplementedKeyboardInputAssistControls => {
+                "Usage_Con_ImplementedKeyboardInputAssistControls"
+            }
+            Consumer::KeyboardInputAssistPrevious => "Usage_Con_KeyboardInputAssistPrevious",
+            Consumer::KeyboardInputAssistNext => "Usage_Con_KeyboardInputAssistNext",
+            Consumer::KeyboardInputAssistPreviousGroup => {
+                "Usage_Con_KeyboardInputAssistPreviousGroup"
+            }
+            Consumer::KeyboardInputAssistNextGroup => "Usage_Con_KeyboardInputAssistNextGroup",
+            Consumer::KeyboardInputAssistAccept => "Usage_Con_KeyboardInputAssistAccept",
+            Consumer::KeyboardInputAssistCancel => "Usage_Con_KeyboardInputAssistCancel",
+            Consumer::PrivacyScreenToggle => "Usage_Con_PrivacyScreenToggle",
+            Consumer::PrivacyScreenLevelDecrement => "Usage_Con_PrivacyScreenLevelDecrement",
+            Consumer::PrivacyScreenLevelIncrement => "Usage_Con_PrivacyScreenLevelIncrement",
+            Consumer::PrivacyScreenLevelMinimum => "Usage_Con_PrivacyScreenLevelMinimum",
+            Consumer::PrivacyScreenLevelMaximum => "Usage_Con_PrivacyScreenLevelMaximum",
+            Consumer::ContactEdited => "Usage_Con_ContactEdited",
+            Consumer::ContactAdded => "Usage_Con_ContactAdded",
+            Consumer::ContactRecordActive => "Usage_Con_ContactRecordActive",
+            Consumer::ContactIndex => "Usage_Con_ContactIndex",
+            Consumer::ContactNickname => "Usage_Con_ContactNickname",
+            Consumer::ContactFirstName => "Usage_Con_ContactFirstName",
+            Consumer::ContactLastName => "Usage_Con_ContactLastName",
+            Consumer::ContactFullName => "Usage_Con_ContactFullName",
+            Consumer::ContactPhoneNumberPersonal => "Usage_Con_ContactPhoneNumberPersonal",
+            Consumer::ContactPhoneNumberBusiness => "Usage_Con_ContactPhoneNumberBusiness",
+            Consumer::ContactPhoneNumberMobile => "Usage_Con_ContactPhoneNumberMobile",
+            Consumer::ContactPhoneNumberPager => "Usage_Con_ContactPhoneNumberPager",
+            Consumer::ContactPhoneNumberFax => "Usage_Con_ContactPhoneNumberFax",
+            Consumer::ContactPhoneNumberOther => "Usage_Con_ContactPhoneNumberOther",
+            Consumer::ContactEmailPersonal => "Usage_Con_ContactEmailPersonal",
+            Consumer::ContactEmailBusiness => "Usage_Con_ContactEmailBusiness",
+            Consumer::ContactEmailOther => "Usage_Con_ContactEmailOther",
+            Consumer::ContactEmailMain => "Usage_Con_ContactEmailMain",
+            Consumer::ContactSpeedDialNumber => "Usage_Con_ContactSpeedDialNumber",
+            Consumer::ContactStatusFlag => "Usage_Con_ContactStatusFlag",
+            Consumer::ContactMisc => "Usage_Con_ContactMisc",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for Consumer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -8092,6 +9423,136 @@ impl Digitizers {
     }
 }
 
+impl CName for Digitizers {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            Digitizers::Digitizer => "Usage_Dig_Digitizer",
+            Digitizers::Pen => "Usage_Dig_Pen",
+            Digitizers::LightPen => "Usage_Dig_LightPen",
+            Digitizers::TouchScreen => "Usage_Dig_TouchScreen",
+            Digitizers::TouchPad => "Usage_Dig_TouchPad",
+            Digitizers::Whiteboard => "Usage_Dig_Whiteboard",
+            Digitizers::CoordinateMeasuringMachine => "Usage_Dig_CoordinateMeasuringMachine",
+            Digitizers::ThreeDDigitizer => "Usage_Dig_ThreeDDigitizer",
+            Digitizers::StereoPlotter => "Usage_Dig_StereoPlotter",
+            Digitizers::ArticulatedArm => "Usage_Dig_ArticulatedArm",
+            Digitizers::Armature => "Usage_Dig_Armature",
+            Digitizers::MultiplePointDigitizer => "Usage_Dig_MultiplePointDigitizer",
+            Digitizers::FreeSpaceWand => "Usage_Dig_FreeSpaceWand",
+            Digitizers::DeviceConfiguration => "Usage_Dig_DeviceConfiguration",
+            Digitizers::CapacitiveHeatMapDigitizer => "Usage_Dig_CapacitiveHeatMapDigitizer",
+            Digitizers::Stylus => "Usage_Dig_Stylus",
+            Digitizers::Puck => "Usage_Dig_Puck",
+            Digitizers::Finger => "Usage_Dig_Finger",
+            Digitizers::Devicesettings => "Usage_Dig_Devicesettings",
+            Digitizers::CharacterGesture => "Usage_Dig_CharacterGesture",
+            Digitizers::TipPressure => "Usage_Dig_TipPressure",
+            Digitizers::BarrelPressure => "Usage_Dig_BarrelPressure",
+            Digitizers::InRange => "Usage_Dig_InRange",
+            Digitizers::Touch => "Usage_Dig_Touch",
+            Digitizers::Untouch => "Usage_Dig_Untouch",
+            Digitizers::Tap => "Usage_Dig_Tap",
+            Digitizers::Quality => "Usage_Dig_Quality",
+            Digitizers::DataValid => "Usage_Dig_DataValid",
+            Digitizers::TransducerIndex => "Usage_Dig_TransducerIndex",
+            Digitizers::TabletFunctionKeys => "Usage_Dig_TabletFunctionKeys",
+            Digitizers::ProgramChangeKeys => "Usage_Dig_ProgramChangeKeys",
+            Digitizers::BatteryStrength => "Usage_Dig_BatteryStrength",
+            Digitizers::Invert => "Usage_Dig_Invert",
+            Digitizers::XTilt => "Usage_Dig_XTilt",
+            Digitizers::YTilt => "Usage_Dig_YTilt",
+            Digitizers::Azimuth => "Usage_Dig_Azimuth",
+            Digitizers::Altitude => "Usage_Dig_Altitude",
+            Digitizers::Twist => "Usage_Dig_Twist",
+            Digitizers::TipSwitch => "Usage_Dig_TipSwitch",
+            Digitizers::SecondaryTipSwitch => "Usage_Dig_SecondaryTipSwitch",
+            Digitizers::BarrelSwitch => "Usage_Dig_BarrelSwitch",
+            Digitizers::Eraser => "Usage_Dig_Eraser",
+            Digitizers::TabletPick => "Usage_Dig_TabletPick",
+            Digitizers::TouchValid => "Usage_Dig_TouchValid",
+            Digitizers::Width => "Usage_Dig_Width",
+            Digitizers::Height => "Usage_Dig_Height",
+            Digitizers::ContactIdentifier => "Usage_Dig_ContactIdentifier",
+            Digitizers::DeviceMode => "Usage_Dig_DeviceMode",
+            Digitizers::DeviceIdentifier => "Usage_Dig_DeviceIdentifier",
+            Digitizers::ContactCount => "Usage_Dig_ContactCount",
+            Digitizers::ContactCountMaximum => "Usage_Dig_ContactCountMaximum",
+            Digitizers::ScanTime => "Usage_Dig_ScanTime",
+            Digitizers::SurfaceSwitch => "Usage_Dig_SurfaceSwitch",
+            Digitizers::ButtonSwitch => "Usage_Dig_ButtonSwitch",
+            Digitizers::PadType => "Usage_Dig_PadType",
+            Digitizers::SecondaryBarrelSwitch => "Usage_Dig_SecondaryBarrelSwitch",
+            Digitizers::TransducerSerialNumber => "Usage_Dig_TransducerSerialNumber",
+            Digitizers::PreferredColor => "Usage_Dig_PreferredColor",
+            Digitizers::PreferredColorisLocked => "Usage_Dig_PreferredColorisLocked",
+            Digitizers::PreferredLineWidth => "Usage_Dig_PreferredLineWidth",
+            Digitizers::PreferredLineWidthisLocked => "Usage_Dig_PreferredLineWidthisLocked",
+            Digitizers::LatencyMode => "Usage_Dig_LatencyMode",
+            Digitizers::GestureCharacterQuality => "Usage_Dig_GestureCharacterQuality",
+            Digitizers::CharacterGestureDataLength => "Usage_Dig_CharacterGestureDataLength",
+            Digitizers::CharacterGestureData => "Usage_Dig_CharacterGestureData",
+            Digitizers::GestureCharacterEncoding => "Usage_Dig_GestureCharacterEncoding",
+            Digitizers::UTF8CharacterGestureEncoding => "Usage_Dig_UTF8CharacterGestureEncoding",
+            Digitizers::UTF16LittleEndianCharacterGestureEncoding => {
+                "Usage_Dig_UTF16LittleEndianCharacterGestureEncoding"
+            }
+            Digitizers::UTF16BigEndianCharacterGestureEncoding => {
+                "Usage_Dig_UTF16BigEndianCharacterGestureEncoding"
+            }
+            Digitizers::UTF32LittleEndianCharacterGestureEncoding => {
+                "Usage_Dig_UTF32LittleEndianCharacterGestureEncoding"
+            }
+            Digitizers::UTF32BigEndianCharacterGestureEncoding => {
+                "Usage_Dig_UTF32BigEndianCharacterGestureEncoding"
+            }
+            Digitizers::CapacitiveHeatMapProtocolVendorID => {
+                "Usage_Dig_CapacitiveHeatMapProtocolVendorID"
+            }
+            Digitizers::CapacitiveHeatMapProtocolVersion => {
+                "Usage_Dig_CapacitiveHeatMapProtocolVersion"
+            }
+            Digitizers::CapacitiveHeatMapFrameData => "Usage_Dig_CapacitiveHeatMapFrameData",
+            Digitizers::GestureCharacterEnable => "Usage_Dig_GestureCharacterEnable",
+            Digitizers::TransducerSerialNumberPart2 => "Usage_Dig_TransducerSerialNumberPart2",
+            Digitizers::NoPreferredColor => "Usage_Dig_NoPreferredColor",
+            Digitizers::PreferredLineStyle => "Usage_Dig_PreferredLineStyle",
+            Digitizers::PreferredLineStyleisLocked => "Usage_Dig_PreferredLineStyleisLocked",
+            Digitizers::Ink => "Usage_Dig_Ink",
+            Digitizers::Pencil => "Usage_Dig_Pencil",
+            Digitizers::Highlighter => "Usage_Dig_Highlighter",
+            Digitizers::ChiselMarker => "Usage_Dig_ChiselMarker",
+            Digitizers::Brush => "Usage_Dig_Brush",
+            Digitizers::NoPreference => "Usage_Dig_NoPreference",
+            Digitizers::DigitizerDiagnostic => "Usage_Dig_DigitizerDiagnostic",
+            Digitizers::DigitizerError => "Usage_Dig_DigitizerError",
+            Digitizers::ErrNormalStatus => "Usage_Dig_ErrNormalStatus",
+            Digitizers::ErrTransducersExceeded => "Usage_Dig_ErrTransducersExceeded",
+            Digitizers::ErrFullTransFeaturesUnavailable => {
+                "Usage_Dig_ErrFullTransFeaturesUnavailable"
+            }
+            Digitizers::ErrChargeLow => "Usage_Dig_ErrChargeLow",
+            Digitizers::TransducerSoftwareInfo => "Usage_Dig_TransducerSoftwareInfo",
+            Digitizers::TransducerVendorId => "Usage_Dig_TransducerVendorId",
+            Digitizers::TransducerProductId => "Usage_Dig_TransducerProductId",
+            Digitizers::DeviceSupportedProtocols => "Usage_Dig_DeviceSupportedProtocols",
+            Digitizers::TransducerSupportedProtocols => "Usage_Dig_TransducerSupportedProtocols",
+            Digitizers::NoProtocol => "Usage_Dig_NoProtocol",
+            Digitizers::WacomAESProtocol => "Usage_Dig_WacomAESProtocol",
+            Digitizers::USIProtocol => "Usage_Dig_USIProtocol",
+            Digitizers::MicrosoftPenProtocol => "Usage_Dig_MicrosoftPenProtocol",
+            Digitizers::SupportedReportRates => "Usage_Dig_SupportedReportRates",
+            Digitizers::ReportRate => "Usage_Dig_ReportRate",
+            Digitizers::TransducerConnected => "Usage_Dig_TransducerConnected",
+            Digitizers::SwitchDisabled => "Usage_Dig_SwitchDisabled",
+            Digitizers::SwitchUnimplemented => "Usage_Dig_SwitchUnimplemented",
+            Digitizers::TransducerSwitches => "Usage_Dig_TransducerSwitches",
+            Digitizers::TransducerIndexSelector => "Usage_Dig_TransducerIndexSelector",
+            Digitizers::ButtonPressThreshold => "Usage_Dig_ButtonPressThreshold",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for Digitizers {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -8520,6 +9981,43 @@ impl Haptics {
             Haptics::WaveformBrushContinuous => "Waveform Brush Continuous",
             Haptics::WaveformEraserContinuous => "Waveform Eraser Continuous",
             Haptics::WaveformSparkleContinuous => "Waveform Sparkle Continuous",
+        }
+        .into()
+    }
+}
+
+impl CName for Haptics {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            Haptics::SimpleHapticController => "Usage_Hap_SimpleHapticController",
+            Haptics::WaveformList => "Usage_Hap_WaveformList",
+            Haptics::DurationList => "Usage_Hap_DurationList",
+            Haptics::AutoTrigger => "Usage_Hap_AutoTrigger",
+            Haptics::ManualTrigger => "Usage_Hap_ManualTrigger",
+            Haptics::AutoTriggerAssociatedControl => "Usage_Hap_AutoTriggerAssociatedControl",
+            Haptics::Intensity => "Usage_Hap_Intensity",
+            Haptics::RepeatCount => "Usage_Hap_RepeatCount",
+            Haptics::RetriggerPeriod => "Usage_Hap_RetriggerPeriod",
+            Haptics::WaveformVendorPage => "Usage_Hap_WaveformVendorPage",
+            Haptics::WaveformVendorID => "Usage_Hap_WaveformVendorID",
+            Haptics::WaveformCutoffTime => "Usage_Hap_WaveformCutoffTime",
+            Haptics::WaveformNone => "Usage_Hap_WaveformNone",
+            Haptics::WaveformStop => "Usage_Hap_WaveformStop",
+            Haptics::WaveformClick => "Usage_Hap_WaveformClick",
+            Haptics::WaveformBuzzContinuous => "Usage_Hap_WaveformBuzzContinuous",
+            Haptics::WaveformRumbleContinuous => "Usage_Hap_WaveformRumbleContinuous",
+            Haptics::WaveformPress => "Usage_Hap_WaveformPress",
+            Haptics::WaveformRelease => "Usage_Hap_WaveformRelease",
+            Haptics::WaveformHover => "Usage_Hap_WaveformHover",
+            Haptics::WaveformSuccess => "Usage_Hap_WaveformSuccess",
+            Haptics::WaveformError => "Usage_Hap_WaveformError",
+            Haptics::WaveformInkContinuous => "Usage_Hap_WaveformInkContinuous",
+            Haptics::WaveformPencilContinuous => "Usage_Hap_WaveformPencilContinuous",
+            Haptics::WaveformMarkerContinuous => "Usage_Hap_WaveformMarkerContinuous",
+            Haptics::WaveformChiselMarkerContinuous => "Usage_Hap_WaveformChiselMarkerContinuous",
+            Haptics::WaveformBrushContinuous => "Usage_Hap_WaveformBrushContinuous",
+            Haptics::WaveformEraserContinuous => "Usage_Hap_WaveformEraserContinuous",
+            Haptics::WaveformSparkleContinuous => "Usage_Hap_WaveformSparkleContinuous",
         }
         .into()
     }
@@ -9036,6 +10534,129 @@ impl PhysicalInputDevice {
     }
 }
 
+impl CName for PhysicalInputDevice {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            PhysicalInputDevice::PhysicalInputDevice => "Usage_PID_PhysicalInputDevice",
+            PhysicalInputDevice::Normal => "Usage_PID_Normal",
+            PhysicalInputDevice::SetEffectReport => "Usage_PID_SetEffectReport",
+            PhysicalInputDevice::EffectParameterBlockIndex => "Usage_PID_EffectParameterBlockIndex",
+            PhysicalInputDevice::ParameterBlockOffset => "Usage_PID_ParameterBlockOffset",
+            PhysicalInputDevice::ROMFlag => "Usage_PID_ROMFlag",
+            PhysicalInputDevice::EffectType => "Usage_PID_EffectType",
+            PhysicalInputDevice::ETConstantForce => "Usage_PID_ETConstantForce",
+            PhysicalInputDevice::ETRamp => "Usage_PID_ETRamp",
+            PhysicalInputDevice::ETCustomForce => "Usage_PID_ETCustomForce",
+            PhysicalInputDevice::ETSquare => "Usage_PID_ETSquare",
+            PhysicalInputDevice::ETSine => "Usage_PID_ETSine",
+            PhysicalInputDevice::ETTriangle => "Usage_PID_ETTriangle",
+            PhysicalInputDevice::ETSawtoothUp => "Usage_PID_ETSawtoothUp",
+            PhysicalInputDevice::ETSawtoothDown => "Usage_PID_ETSawtoothDown",
+            PhysicalInputDevice::ETSpring => "Usage_PID_ETSpring",
+            PhysicalInputDevice::ETDamper => "Usage_PID_ETDamper",
+            PhysicalInputDevice::ETInertia => "Usage_PID_ETInertia",
+            PhysicalInputDevice::ETFriction => "Usage_PID_ETFriction",
+            PhysicalInputDevice::Duration => "Usage_PID_Duration",
+            PhysicalInputDevice::SamplePeriod => "Usage_PID_SamplePeriod",
+            PhysicalInputDevice::Gain => "Usage_PID_Gain",
+            PhysicalInputDevice::TriggerButton => "Usage_PID_TriggerButton",
+            PhysicalInputDevice::TriggerRepeatInterval => "Usage_PID_TriggerRepeatInterval",
+            PhysicalInputDevice::AxesEnable => "Usage_PID_AxesEnable",
+            PhysicalInputDevice::DirectionEnable => "Usage_PID_DirectionEnable",
+            PhysicalInputDevice::Direction => "Usage_PID_Direction",
+            PhysicalInputDevice::TypeSpecificBlockOffset => "Usage_PID_TypeSpecificBlockOffset",
+            PhysicalInputDevice::BlockType => "Usage_PID_BlockType",
+            PhysicalInputDevice::SetEnvelopeReport => "Usage_PID_SetEnvelopeReport",
+            PhysicalInputDevice::AttackLevel => "Usage_PID_AttackLevel",
+            PhysicalInputDevice::AttackTime => "Usage_PID_AttackTime",
+            PhysicalInputDevice::FadeLevel => "Usage_PID_FadeLevel",
+            PhysicalInputDevice::FadeTime => "Usage_PID_FadeTime",
+            PhysicalInputDevice::SetConditionReport => "Usage_PID_SetConditionReport",
+            PhysicalInputDevice::CenterPointOffset => "Usage_PID_CenterPointOffset",
+            PhysicalInputDevice::PositiveCoefficient => "Usage_PID_PositiveCoefficient",
+            PhysicalInputDevice::NegativeCoefficient => "Usage_PID_NegativeCoefficient",
+            PhysicalInputDevice::PositiveSaturation => "Usage_PID_PositiveSaturation",
+            PhysicalInputDevice::NegativeSaturation => "Usage_PID_NegativeSaturation",
+            PhysicalInputDevice::DeadBand => "Usage_PID_DeadBand",
+            PhysicalInputDevice::DownloadForceSample => "Usage_PID_DownloadForceSample",
+            PhysicalInputDevice::IsochCustomForceEnable => "Usage_PID_IsochCustomForceEnable",
+            PhysicalInputDevice::CustomForceDataReport => "Usage_PID_CustomForceDataReport",
+            PhysicalInputDevice::CustomForceData => "Usage_PID_CustomForceData",
+            PhysicalInputDevice::CustomForceVendorDefinedData => {
+                "Usage_PID_CustomForceVendorDefinedData"
+            }
+            PhysicalInputDevice::SetCustomForceReport => "Usage_PID_SetCustomForceReport",
+            PhysicalInputDevice::CustomForceDataOffset => "Usage_PID_CustomForceDataOffset",
+            PhysicalInputDevice::SampleCount => "Usage_PID_SampleCount",
+            PhysicalInputDevice::SetPeriodicReport => "Usage_PID_SetPeriodicReport",
+            PhysicalInputDevice::Offset => "Usage_PID_Offset",
+            PhysicalInputDevice::Magnitude => "Usage_PID_Magnitude",
+            PhysicalInputDevice::Phase => "Usage_PID_Phase",
+            PhysicalInputDevice::Period => "Usage_PID_Period",
+            PhysicalInputDevice::SetConstantForceReport => "Usage_PID_SetConstantForceReport",
+            PhysicalInputDevice::SetRampForceReport => "Usage_PID_SetRampForceReport",
+            PhysicalInputDevice::RampStart => "Usage_PID_RampStart",
+            PhysicalInputDevice::RampEnd => "Usage_PID_RampEnd",
+            PhysicalInputDevice::EffectOperationReport => "Usage_PID_EffectOperationReport",
+            PhysicalInputDevice::EffectOperation => "Usage_PID_EffectOperation",
+            PhysicalInputDevice::OpEffectStart => "Usage_PID_OpEffectStart",
+            PhysicalInputDevice::OpEffectStartSolo => "Usage_PID_OpEffectStartSolo",
+            PhysicalInputDevice::OpEffectStop => "Usage_PID_OpEffectStop",
+            PhysicalInputDevice::LoopCount => "Usage_PID_LoopCount",
+            PhysicalInputDevice::DeviceGainReport => "Usage_PID_DeviceGainReport",
+            PhysicalInputDevice::DeviceGain => "Usage_PID_DeviceGain",
+            PhysicalInputDevice::ParameterBlockPoolsReport => "Usage_PID_ParameterBlockPoolsReport",
+            PhysicalInputDevice::RAMPoolSize => "Usage_PID_RAMPoolSize",
+            PhysicalInputDevice::ROMPoolSize => "Usage_PID_ROMPoolSize",
+            PhysicalInputDevice::ROMEffectBlockCount => "Usage_PID_ROMEffectBlockCount",
+            PhysicalInputDevice::SimultaneousEffectsMax => "Usage_PID_SimultaneousEffectsMax",
+            PhysicalInputDevice::PoolAlignment => "Usage_PID_PoolAlignment",
+            PhysicalInputDevice::ParameterBlockMoveReport => "Usage_PID_ParameterBlockMoveReport",
+            PhysicalInputDevice::MoveSource => "Usage_PID_MoveSource",
+            PhysicalInputDevice::MoveDestination => "Usage_PID_MoveDestination",
+            PhysicalInputDevice::MoveLength => "Usage_PID_MoveLength",
+            PhysicalInputDevice::EffectParameterBlockLoadReport => {
+                "Usage_PID_EffectParameterBlockLoadReport"
+            }
+            PhysicalInputDevice::EffectParameterBlockLoadStatus => {
+                "Usage_PID_EffectParameterBlockLoadStatus"
+            }
+            PhysicalInputDevice::BlockLoadSuccess => "Usage_PID_BlockLoadSuccess",
+            PhysicalInputDevice::BlockLoadFull => "Usage_PID_BlockLoadFull",
+            PhysicalInputDevice::BlockLoadError => "Usage_PID_BlockLoadError",
+            PhysicalInputDevice::BlockHandle => "Usage_PID_BlockHandle",
+            PhysicalInputDevice::EffectParameterBlockFreeReport => {
+                "Usage_PID_EffectParameterBlockFreeReport"
+            }
+            PhysicalInputDevice::TypeSpecificBlockHandle => "Usage_PID_TypeSpecificBlockHandle",
+            PhysicalInputDevice::PIDStateReport => "Usage_PID_PIDStateReport",
+            PhysicalInputDevice::EffectPlaying => "Usage_PID_EffectPlaying",
+            PhysicalInputDevice::PIDDeviceControlReport => "Usage_PID_PIDDeviceControlReport",
+            PhysicalInputDevice::PIDDeviceControl => "Usage_PID_PIDDeviceControl",
+            PhysicalInputDevice::DCEnableActuators => "Usage_PID_DCEnableActuators",
+            PhysicalInputDevice::DCDisableActuators => "Usage_PID_DCDisableActuators",
+            PhysicalInputDevice::DCStopAllEffects => "Usage_PID_DCStopAllEffects",
+            PhysicalInputDevice::DCReset => "Usage_PID_DCReset",
+            PhysicalInputDevice::DCPause => "Usage_PID_DCPause",
+            PhysicalInputDevice::DCContinue => "Usage_PID_DCContinue",
+            PhysicalInputDevice::DevicePaused => "Usage_PID_DevicePaused",
+            PhysicalInputDevice::ActuatorsEnabled => "Usage_PID_ActuatorsEnabled",
+            PhysicalInputDevice::SafetySwitch => "Usage_PID_SafetySwitch",
+            PhysicalInputDevice::ActuatorOverrideSwitch => "Usage_PID_ActuatorOverrideSwitch",
+            PhysicalInputDevice::ActuatorPower => "Usage_PID_ActuatorPower",
+            PhysicalInputDevice::StartDelay => "Usage_PID_StartDelay",
+            PhysicalInputDevice::ParameterBlockSize => "Usage_PID_ParameterBlockSize",
+            PhysicalInputDevice::DeviceManagedPool => "Usage_PID_DeviceManagedPool",
+            PhysicalInputDevice::SharedParameterBlocks => "Usage_PID_SharedParameterBlocks",
+            PhysicalInputDevice::CreateNewEffectParameterBlockReport => {
+                "Usage_PID_CreateNewEffectParameterBlockReport"
+            }
+            PhysicalInputDevice::RAMPoolAvailable => "Usage_PID_RAMPoolAvailable",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for PhysicalInputDevice {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -9368,6 +10989,17 @@ impl fmt::Display for Unicode {
     }
 }
 
+impl CName for Unicode {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+            Unicode::Unicode { codepoint } => {
+                format!("Usage_i{size} ({codepoint})")
+            }
+        }
+        .into()
+    }
+}
+
 impl AsUsage for Unicode {
     /// Returns the 32 bit Usage value of this Usage
     fn usage_value(&self) -> u32 {
@@ -9518,6 +11150,24 @@ impl SoC {
             SoC::FilePayloadContainsLastBytes => "FilePayloadContainsLastBytes",
             SoC::FileTransferStop => "FileTransferStop",
             SoC::FileTransferTillEnd => "FileTransferTillEnd",
+        }
+        .into()
+    }
+}
+
+impl CName for SoC {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            SoC::SocControl => "Usage_SC_SocControl",
+            SoC::FirmwareTransfer => "Usage_SC_FirmwareTransfer",
+            SoC::FirmwareFileId => "Usage_SC_FirmwareFileId",
+            SoC::FileOffsetInBytes => "Usage_SC_FileOffsetInBytes",
+            SoC::FileTransferSizeMaxInBytes => "Usage_SC_FileTransferSizeMaxInBytes",
+            SoC::FilePayload => "Usage_SC_FilePayload",
+            SoC::FilePayloadSizeInBytes => "Usage_SC_FilePayloadSizeInBytes",
+            SoC::FilePayloadContainsLastBytes => "Usage_SC_FilePayloadContainsLastBytes",
+            SoC::FileTransferStop => "Usage_SC_FileTransferStop",
+            SoC::FileTransferTillEnd => "Usage_SC_FileTransferTillEnd",
         }
         .into()
     }
@@ -9770,6 +11420,48 @@ impl EyeandHeadTrackers {
             EyeandHeadTrackers::SamplingFrequency => "Sampling Frequency",
             EyeandHeadTrackers::ConfigurationStatus => "Configuration Status",
             EyeandHeadTrackers::DeviceModeRequest => "Device Mode Request",
+        }
+        .into()
+    }
+}
+
+impl CName for EyeandHeadTrackers {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            EyeandHeadTrackers::EyeTracker => "Usage_EHT_EyeTracker",
+            EyeandHeadTrackers::HeadTracker => "Usage_EHT_HeadTracker",
+            EyeandHeadTrackers::TrackingData => "Usage_EHT_TrackingData",
+            EyeandHeadTrackers::Capabilities => "Usage_EHT_Capabilities",
+            EyeandHeadTrackers::Configuration => "Usage_EHT_Configuration",
+            EyeandHeadTrackers::Status => "Usage_EHT_Status",
+            EyeandHeadTrackers::Control => "Usage_EHT_Control",
+            EyeandHeadTrackers::SensorTimestamp => "Usage_EHT_SensorTimestamp",
+            EyeandHeadTrackers::PositionX => "Usage_EHT_PositionX",
+            EyeandHeadTrackers::PositionY => "Usage_EHT_PositionY",
+            EyeandHeadTrackers::PositionZ => "Usage_EHT_PositionZ",
+            EyeandHeadTrackers::GazePoint => "Usage_EHT_GazePoint",
+            EyeandHeadTrackers::LeftEyePosition => "Usage_EHT_LeftEyePosition",
+            EyeandHeadTrackers::RightEyePosition => "Usage_EHT_RightEyePosition",
+            EyeandHeadTrackers::HeadPosition => "Usage_EHT_HeadPosition",
+            EyeandHeadTrackers::HeadDirectionPoint => "Usage_EHT_HeadDirectionPoint",
+            EyeandHeadTrackers::RotationaboutXaxis => "Usage_EHT_RotationaboutXaxis",
+            EyeandHeadTrackers::RotationaboutYaxis => "Usage_EHT_RotationaboutYaxis",
+            EyeandHeadTrackers::RotationaboutZaxis => "Usage_EHT_RotationaboutZaxis",
+            EyeandHeadTrackers::TrackerQuality => "Usage_EHT_TrackerQuality",
+            EyeandHeadTrackers::MinimumTrackingDistance => "Usage_EHT_MinimumTrackingDistance",
+            EyeandHeadTrackers::OptimumTrackingDistance => "Usage_EHT_OptimumTrackingDistance",
+            EyeandHeadTrackers::MaximumTrackingDistance => "Usage_EHT_MaximumTrackingDistance",
+            EyeandHeadTrackers::MaximumScreenPlaneWidth => "Usage_EHT_MaximumScreenPlaneWidth",
+            EyeandHeadTrackers::MaximumScreenPlaneHeight => "Usage_EHT_MaximumScreenPlaneHeight",
+            EyeandHeadTrackers::DisplayManufacturerID => "Usage_EHT_DisplayManufacturerID",
+            EyeandHeadTrackers::DisplayProductID => "Usage_EHT_DisplayProductID",
+            EyeandHeadTrackers::DisplaySerialNumber => "Usage_EHT_DisplaySerialNumber",
+            EyeandHeadTrackers::DisplayManufacturerDate => "Usage_EHT_DisplayManufacturerDate",
+            EyeandHeadTrackers::CalibratedScreenWidth => "Usage_EHT_CalibratedScreenWidth",
+            EyeandHeadTrackers::CalibratedScreenHeight => "Usage_EHT_CalibratedScreenHeight",
+            EyeandHeadTrackers::SamplingFrequency => "Usage_EHT_SamplingFrequency",
+            EyeandHeadTrackers::ConfigurationStatus => "Usage_EHT_ConfigurationStatus",
+            EyeandHeadTrackers::DeviceModeRequest => "Usage_EHT_DeviceModeRequest",
         }
         .into()
     }
@@ -10193,6 +11885,89 @@ impl AuxiliaryDisplay {
             AuxiliaryDisplay::UnicodeEquivalent => "Unicode Equivalent",
             AuxiliaryDisplay::CharacterPageMapping => "Character Page Mapping",
             AuxiliaryDisplay::RequestReport => "Request Report",
+        }
+        .into()
+    }
+}
+
+impl CName for AuxiliaryDisplay {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            AuxiliaryDisplay::AlphanumericDisplay => "Usage_AD_AlphanumericDisplay",
+            AuxiliaryDisplay::AuxiliaryDisplay => "Usage_AD_AuxiliaryDisplay",
+            AuxiliaryDisplay::DisplayAttributesReport => "Usage_AD_DisplayAttributesReport",
+            AuxiliaryDisplay::ASCIICharacterSet => "Usage_AD_ASCIICharacterSet",
+            AuxiliaryDisplay::DataReadBack => "Usage_AD_DataReadBack",
+            AuxiliaryDisplay::FontReadBack => "Usage_AD_FontReadBack",
+            AuxiliaryDisplay::DisplayControlReport => "Usage_AD_DisplayControlReport",
+            AuxiliaryDisplay::ClearDisplay => "Usage_AD_ClearDisplay",
+            AuxiliaryDisplay::DisplayEnable => "Usage_AD_DisplayEnable",
+            AuxiliaryDisplay::ScreenSaverDelay => "Usage_AD_ScreenSaverDelay",
+            AuxiliaryDisplay::ScreenSaverEnable => "Usage_AD_ScreenSaverEnable",
+            AuxiliaryDisplay::VerticalScroll => "Usage_AD_VerticalScroll",
+            AuxiliaryDisplay::HorizontalScroll => "Usage_AD_HorizontalScroll",
+            AuxiliaryDisplay::CharacterReport => "Usage_AD_CharacterReport",
+            AuxiliaryDisplay::DisplayData => "Usage_AD_DisplayData",
+            AuxiliaryDisplay::DisplayStatus => "Usage_AD_DisplayStatus",
+            AuxiliaryDisplay::StatNotReady => "Usage_AD_StatNotReady",
+            AuxiliaryDisplay::StatReady => "Usage_AD_StatReady",
+            AuxiliaryDisplay::ErrNotaloadablecharacter => "Usage_AD_ErrNotaloadablecharacter",
+            AuxiliaryDisplay::ErrFontdatacannotberead => "Usage_AD_ErrFontdatacannotberead",
+            AuxiliaryDisplay::CursorPositionReport => "Usage_AD_CursorPositionReport",
+            AuxiliaryDisplay::Row => "Usage_AD_Row",
+            AuxiliaryDisplay::Column => "Usage_AD_Column",
+            AuxiliaryDisplay::Rows => "Usage_AD_Rows",
+            AuxiliaryDisplay::Columns => "Usage_AD_Columns",
+            AuxiliaryDisplay::CursorPixelPositioning => "Usage_AD_CursorPixelPositioning",
+            AuxiliaryDisplay::CursorMode => "Usage_AD_CursorMode",
+            AuxiliaryDisplay::CursorEnable => "Usage_AD_CursorEnable",
+            AuxiliaryDisplay::CursorBlink => "Usage_AD_CursorBlink",
+            AuxiliaryDisplay::FontReport => "Usage_AD_FontReport",
+            AuxiliaryDisplay::FontData => "Usage_AD_FontData",
+            AuxiliaryDisplay::CharacterWidth => "Usage_AD_CharacterWidth",
+            AuxiliaryDisplay::CharacterHeight => "Usage_AD_CharacterHeight",
+            AuxiliaryDisplay::CharacterSpacingHorizontal => "Usage_AD_CharacterSpacingHorizontal",
+            AuxiliaryDisplay::CharacterSpacingVertical => "Usage_AD_CharacterSpacingVertical",
+            AuxiliaryDisplay::UnicodeCharacterSet => "Usage_AD_UnicodeCharacterSet",
+            AuxiliaryDisplay::Font7Segment => "Usage_AD_Font7Segment",
+            AuxiliaryDisplay::SevenSegmentDirectMap => "Usage_AD_SevenSegmentDirectMap",
+            AuxiliaryDisplay::Font14Segment => "Usage_AD_Font14Segment",
+            AuxiliaryDisplay::One4SegmentDirectMap => "Usage_AD_One4SegmentDirectMap",
+            AuxiliaryDisplay::DisplayBrightness => "Usage_AD_DisplayBrightness",
+            AuxiliaryDisplay::DisplayContrast => "Usage_AD_DisplayContrast",
+            AuxiliaryDisplay::CharacterAttribute => "Usage_AD_CharacterAttribute",
+            AuxiliaryDisplay::AttributeReadback => "Usage_AD_AttributeReadback",
+            AuxiliaryDisplay::AttributeData => "Usage_AD_AttributeData",
+            AuxiliaryDisplay::CharAttrEnhance => "Usage_AD_CharAttrEnhance",
+            AuxiliaryDisplay::CharAttrUnderline => "Usage_AD_CharAttrUnderline",
+            AuxiliaryDisplay::CharAttrBlink => "Usage_AD_CharAttrBlink",
+            AuxiliaryDisplay::BitmapSizeX => "Usage_AD_BitmapSizeX",
+            AuxiliaryDisplay::BitmapSizeY => "Usage_AD_BitmapSizeY",
+            AuxiliaryDisplay::MaxBlitSize => "Usage_AD_MaxBlitSize",
+            AuxiliaryDisplay::BitDepthFormat => "Usage_AD_BitDepthFormat",
+            AuxiliaryDisplay::DisplayOrientation => "Usage_AD_DisplayOrientation",
+            AuxiliaryDisplay::PaletteReport => "Usage_AD_PaletteReport",
+            AuxiliaryDisplay::PaletteDataSize => "Usage_AD_PaletteDataSize",
+            AuxiliaryDisplay::PaletteDataOffset => "Usage_AD_PaletteDataOffset",
+            AuxiliaryDisplay::PaletteData => "Usage_AD_PaletteData",
+            AuxiliaryDisplay::BlitReport => "Usage_AD_BlitReport",
+            AuxiliaryDisplay::BlitRectangleX1 => "Usage_AD_BlitRectangleX1",
+            AuxiliaryDisplay::BlitRectangleY1 => "Usage_AD_BlitRectangleY1",
+            AuxiliaryDisplay::BlitRectangleX2 => "Usage_AD_BlitRectangleX2",
+            AuxiliaryDisplay::BlitRectangleY2 => "Usage_AD_BlitRectangleY2",
+            AuxiliaryDisplay::BlitData => "Usage_AD_BlitData",
+            AuxiliaryDisplay::SoftButton => "Usage_AD_SoftButton",
+            AuxiliaryDisplay::SoftButtonID => "Usage_AD_SoftButtonID",
+            AuxiliaryDisplay::SoftButtonSide => "Usage_AD_SoftButtonSide",
+            AuxiliaryDisplay::SoftButtonOffset1 => "Usage_AD_SoftButtonOffset1",
+            AuxiliaryDisplay::SoftButtonOffset2 => "Usage_AD_SoftButtonOffset2",
+            AuxiliaryDisplay::SoftButtonReport => "Usage_AD_SoftButtonReport",
+            AuxiliaryDisplay::SoftKeys => "Usage_AD_SoftKeys",
+            AuxiliaryDisplay::DisplayDataExtensions => "Usage_AD_DisplayDataExtensions",
+            AuxiliaryDisplay::CharacterMapping => "Usage_AD_CharacterMapping",
+            AuxiliaryDisplay::UnicodeEquivalent => "Usage_AD_UnicodeEquivalent",
+            AuxiliaryDisplay::CharacterPageMapping => "Usage_AD_CharacterPageMapping",
+            AuxiliaryDisplay::RequestReport => "Usage_AD_RequestReport",
         }
         .into()
     }
@@ -12607,6 +14382,827 @@ impl Sensors {
     }
 }
 
+impl CName for Sensors {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            Sensors::Sensor => "Usage_Sen_Sensor",
+            Sensors::Biometric => "Usage_Sen_Biometric",
+            Sensors::BiometricHumanPresence => "Usage_Sen_BiometricHumanPresence",
+            Sensors::BiometricHumanProximity => "Usage_Sen_BiometricHumanProximity",
+            Sensors::BiometricHumanTouch => "Usage_Sen_BiometricHumanTouch",
+            Sensors::BiometricBloodPressure => "Usage_Sen_BiometricBloodPressure",
+            Sensors::BiometricBodyTemperature => "Usage_Sen_BiometricBodyTemperature",
+            Sensors::BiometricHeartRate => "Usage_Sen_BiometricHeartRate",
+            Sensors::BiometricHeartRateVariability => "Usage_Sen_BiometricHeartRateVariability",
+            Sensors::BiometricPeripheralOxygenSaturation => {
+                "Usage_Sen_BiometricPeripheralOxygenSaturation"
+            }
+            Sensors::BiometricRespiratoryRate => "Usage_Sen_BiometricRespiratoryRate",
+            Sensors::Electrical => "Usage_Sen_Electrical",
+            Sensors::ElectricalCapacitance => "Usage_Sen_ElectricalCapacitance",
+            Sensors::ElectricalCurrent => "Usage_Sen_ElectricalCurrent",
+            Sensors::ElectricalPower => "Usage_Sen_ElectricalPower",
+            Sensors::ElectricalInductance => "Usage_Sen_ElectricalInductance",
+            Sensors::ElectricalResistance => "Usage_Sen_ElectricalResistance",
+            Sensors::ElectricalVoltage => "Usage_Sen_ElectricalVoltage",
+            Sensors::ElectricalPotentiometer => "Usage_Sen_ElectricalPotentiometer",
+            Sensors::ElectricalFrequency => "Usage_Sen_ElectricalFrequency",
+            Sensors::ElectricalPeriod => "Usage_Sen_ElectricalPeriod",
+            Sensors::Environmental => "Usage_Sen_Environmental",
+            Sensors::EnvironmentalAtmosphericPressure => {
+                "Usage_Sen_EnvironmentalAtmosphericPressure"
+            }
+            Sensors::EnvironmentalHumidity => "Usage_Sen_EnvironmentalHumidity",
+            Sensors::EnvironmentalTemperature => "Usage_Sen_EnvironmentalTemperature",
+            Sensors::EnvironmentalWindDirection => "Usage_Sen_EnvironmentalWindDirection",
+            Sensors::EnvironmentalWindSpeed => "Usage_Sen_EnvironmentalWindSpeed",
+            Sensors::EnvironmentalAirQuality => "Usage_Sen_EnvironmentalAirQuality",
+            Sensors::EnvironmentalHeatIndex => "Usage_Sen_EnvironmentalHeatIndex",
+            Sensors::EnvironmentalSurfaceTemperature => "Usage_Sen_EnvironmentalSurfaceTemperature",
+            Sensors::EnvironmentalVolatileOrganicCompounds => {
+                "Usage_Sen_EnvironmentalVolatileOrganicCompounds"
+            }
+            Sensors::EnvironmentalObjectPresence => "Usage_Sen_EnvironmentalObjectPresence",
+            Sensors::EnvironmentalObjectProximity => "Usage_Sen_EnvironmentalObjectProximity",
+            Sensors::Light => "Usage_Sen_Light",
+            Sensors::LightAmbientLight => "Usage_Sen_LightAmbientLight",
+            Sensors::LightConsumerInfrared => "Usage_Sen_LightConsumerInfrared",
+            Sensors::LightInfraredLight => "Usage_Sen_LightInfraredLight",
+            Sensors::LightVisibleLight => "Usage_Sen_LightVisibleLight",
+            Sensors::LightUltravioletLight => "Usage_Sen_LightUltravioletLight",
+            Sensors::Location => "Usage_Sen_Location",
+            Sensors::LocationBroadcast => "Usage_Sen_LocationBroadcast",
+            Sensors::LocationDeadReckoning => "Usage_Sen_LocationDeadReckoning",
+            Sensors::LocationGPSGlobalPositioningSystem => {
+                "Usage_Sen_LocationGPSGlobalPositioningSystem"
+            }
+            Sensors::LocationLookup => "Usage_Sen_LocationLookup",
+            Sensors::LocationOther => "Usage_Sen_LocationOther",
+            Sensors::LocationStatic => "Usage_Sen_LocationStatic",
+            Sensors::LocationTriangulation => "Usage_Sen_LocationTriangulation",
+            Sensors::Mechanical => "Usage_Sen_Mechanical",
+            Sensors::MechanicalBooleanSwitch => "Usage_Sen_MechanicalBooleanSwitch",
+            Sensors::MechanicalBooleanSwitchArray => "Usage_Sen_MechanicalBooleanSwitchArray",
+            Sensors::MechanicalMultivalueSwitch => "Usage_Sen_MechanicalMultivalueSwitch",
+            Sensors::MechanicalForce => "Usage_Sen_MechanicalForce",
+            Sensors::MechanicalPressure => "Usage_Sen_MechanicalPressure",
+            Sensors::MechanicalStrain => "Usage_Sen_MechanicalStrain",
+            Sensors::MechanicalWeight => "Usage_Sen_MechanicalWeight",
+            Sensors::MechanicalHapticVibrator => "Usage_Sen_MechanicalHapticVibrator",
+            Sensors::MechanicalHallEffectSwitch => "Usage_Sen_MechanicalHallEffectSwitch",
+            Sensors::Motion => "Usage_Sen_Motion",
+            Sensors::MotionAccelerometer1D => "Usage_Sen_MotionAccelerometer1D",
+            Sensors::MotionAccelerometer2D => "Usage_Sen_MotionAccelerometer2D",
+            Sensors::MotionAccelerometer3D => "Usage_Sen_MotionAccelerometer3D",
+            Sensors::MotionGyrometer1D => "Usage_Sen_MotionGyrometer1D",
+            Sensors::MotionGyrometer2D => "Usage_Sen_MotionGyrometer2D",
+            Sensors::MotionGyrometer3D => "Usage_Sen_MotionGyrometer3D",
+            Sensors::MotionMotionDetector => "Usage_Sen_MotionMotionDetector",
+            Sensors::MotionSpeedometer => "Usage_Sen_MotionSpeedometer",
+            Sensors::MotionAccelerometer => "Usage_Sen_MotionAccelerometer",
+            Sensors::MotionGyrometer => "Usage_Sen_MotionGyrometer",
+            Sensors::MotionGravityVector => "Usage_Sen_MotionGravityVector",
+            Sensors::MotionLinearAccelerometer => "Usage_Sen_MotionLinearAccelerometer",
+            Sensors::Orientation => "Usage_Sen_Orientation",
+            Sensors::OrientationCompass1D => "Usage_Sen_OrientationCompass1D",
+            Sensors::OrientationCompass2D => "Usage_Sen_OrientationCompass2D",
+            Sensors::OrientationCompass3D => "Usage_Sen_OrientationCompass3D",
+            Sensors::OrientationInclinometer1D => "Usage_Sen_OrientationInclinometer1D",
+            Sensors::OrientationInclinometer2D => "Usage_Sen_OrientationInclinometer2D",
+            Sensors::OrientationInclinometer3D => "Usage_Sen_OrientationInclinometer3D",
+            Sensors::OrientationDistance1D => "Usage_Sen_OrientationDistance1D",
+            Sensors::OrientationDistance2D => "Usage_Sen_OrientationDistance2D",
+            Sensors::OrientationDistance3D => "Usage_Sen_OrientationDistance3D",
+            Sensors::OrientationDeviceOrientation => "Usage_Sen_OrientationDeviceOrientation",
+            Sensors::OrientationCompass => "Usage_Sen_OrientationCompass",
+            Sensors::OrientationInclinometer => "Usage_Sen_OrientationInclinometer",
+            Sensors::OrientationDistance => "Usage_Sen_OrientationDistance",
+            Sensors::OrientationRelativeOrientation => "Usage_Sen_OrientationRelativeOrientation",
+            Sensors::OrientationSimpleOrientation => "Usage_Sen_OrientationSimpleOrientation",
+            Sensors::Scanner => "Usage_Sen_Scanner",
+            Sensors::ScannerBarcode => "Usage_Sen_ScannerBarcode",
+            Sensors::ScannerRFID => "Usage_Sen_ScannerRFID",
+            Sensors::ScannerNFC => "Usage_Sen_ScannerNFC",
+            Sensors::Time => "Usage_Sen_Time",
+            Sensors::TimeAlarmTimer => "Usage_Sen_TimeAlarmTimer",
+            Sensors::TimeRealTimeClock => "Usage_Sen_TimeRealTimeClock",
+            Sensors::PersonalActivity => "Usage_Sen_PersonalActivity",
+            Sensors::PersonalActivityActivityDetection => {
+                "Usage_Sen_PersonalActivityActivityDetection"
+            }
+            Sensors::PersonalActivityDevicePosition => "Usage_Sen_PersonalActivityDevicePosition",
+            Sensors::PersonalActivityFloorTracker => "Usage_Sen_PersonalActivityFloorTracker",
+            Sensors::PersonalActivityPedometer => "Usage_Sen_PersonalActivityPedometer",
+            Sensors::PersonalActivityStepDetection => "Usage_Sen_PersonalActivityStepDetection",
+            Sensors::OrientationExtended => "Usage_Sen_OrientationExtended",
+            Sensors::OrientationExtendedGeomagneticOrientation => {
+                "Usage_Sen_OrientationExtendedGeomagneticOrientation"
+            }
+            Sensors::OrientationExtendedMagnetometer => "Usage_Sen_OrientationExtendedMagnetometer",
+            Sensors::Gesture => "Usage_Sen_Gesture",
+            Sensors::GestureChassisFlipGesture => "Usage_Sen_GestureChassisFlipGesture",
+            Sensors::GestureHingeFoldGesture => "Usage_Sen_GestureHingeFoldGesture",
+            Sensors::Other => "Usage_Sen_Other",
+            Sensors::OtherCustom => "Usage_Sen_OtherCustom",
+            Sensors::OtherGeneric => "Usage_Sen_OtherGeneric",
+            Sensors::OtherGenericEnumerator => "Usage_Sen_OtherGenericEnumerator",
+            Sensors::OtherHingeAngle => "Usage_Sen_OtherHingeAngle",
+            Sensors::VendorReserved1 => "Usage_Sen_VendorReserved1",
+            Sensors::VendorReserved2 => "Usage_Sen_VendorReserved2",
+            Sensors::VendorReserved3 => "Usage_Sen_VendorReserved3",
+            Sensors::VendorReserved4 => "Usage_Sen_VendorReserved4",
+            Sensors::VendorReserved5 => "Usage_Sen_VendorReserved5",
+            Sensors::VendorReserved6 => "Usage_Sen_VendorReserved6",
+            Sensors::VendorReserved7 => "Usage_Sen_VendorReserved7",
+            Sensors::VendorReserved8 => "Usage_Sen_VendorReserved8",
+            Sensors::VendorReserved9 => "Usage_Sen_VendorReserved9",
+            Sensors::VendorReserved10 => "Usage_Sen_VendorReserved10",
+            Sensors::VendorReserved11 => "Usage_Sen_VendorReserved11",
+            Sensors::VendorReserved12 => "Usage_Sen_VendorReserved12",
+            Sensors::VendorReserved13 => "Usage_Sen_VendorReserved13",
+            Sensors::VendorReserved14 => "Usage_Sen_VendorReserved14",
+            Sensors::VendorReserved15 => "Usage_Sen_VendorReserved15",
+            Sensors::VendorReserved16 => "Usage_Sen_VendorReserved16",
+            Sensors::Event => "Usage_Sen_Event",
+            Sensors::EventSensorState => "Usage_Sen_EventSensorState",
+            Sensors::EventSensorEvent => "Usage_Sen_EventSensorEvent",
+            Sensors::Property => "Usage_Sen_Property",
+            Sensors::PropertyFriendlyName => "Usage_Sen_PropertyFriendlyName",
+            Sensors::PropertyPersistentUniqueID => "Usage_Sen_PropertyPersistentUniqueID",
+            Sensors::PropertySensorStatus => "Usage_Sen_PropertySensorStatus",
+            Sensors::PropertyMinimumReportInterval => "Usage_Sen_PropertyMinimumReportInterval",
+            Sensors::PropertySensorManufacturer => "Usage_Sen_PropertySensorManufacturer",
+            Sensors::PropertySensorModel => "Usage_Sen_PropertySensorModel",
+            Sensors::PropertySensorSerialNumber => "Usage_Sen_PropertySensorSerialNumber",
+            Sensors::PropertySensorDescription => "Usage_Sen_PropertySensorDescription",
+            Sensors::PropertySensorConnectionType => "Usage_Sen_PropertySensorConnectionType",
+            Sensors::PropertySensorDevicePath => "Usage_Sen_PropertySensorDevicePath",
+            Sensors::PropertyHardwareRevision => "Usage_Sen_PropertyHardwareRevision",
+            Sensors::PropertyFirmwareVersion => "Usage_Sen_PropertyFirmwareVersion",
+            Sensors::PropertyReleaseDate => "Usage_Sen_PropertyReleaseDate",
+            Sensors::PropertyReportInterval => "Usage_Sen_PropertyReportInterval",
+            Sensors::PropertyChangeSensitivityAbsolute => {
+                "Usage_Sen_PropertyChangeSensitivityAbsolute"
+            }
+            Sensors::PropertyChangeSensitivityPercentofRange => {
+                "Usage_Sen_PropertyChangeSensitivityPercentofRange"
+            }
+            Sensors::PropertyChangeSensitivityPercentRelative => {
+                "Usage_Sen_PropertyChangeSensitivityPercentRelative"
+            }
+            Sensors::PropertyAccuracy => "Usage_Sen_PropertyAccuracy",
+            Sensors::PropertyResolution => "Usage_Sen_PropertyResolution",
+            Sensors::PropertyMaximum => "Usage_Sen_PropertyMaximum",
+            Sensors::PropertyMinimum => "Usage_Sen_PropertyMinimum",
+            Sensors::PropertyReportingState => "Usage_Sen_PropertyReportingState",
+            Sensors::PropertySamplingRate => "Usage_Sen_PropertySamplingRate",
+            Sensors::PropertyResponseCurve => "Usage_Sen_PropertyResponseCurve",
+            Sensors::PropertyPowerState => "Usage_Sen_PropertyPowerState",
+            Sensors::PropertyMaximumFIFOEvents => "Usage_Sen_PropertyMaximumFIFOEvents",
+            Sensors::PropertyReportLatency => "Usage_Sen_PropertyReportLatency",
+            Sensors::PropertyFlushFIFOEvents => "Usage_Sen_PropertyFlushFIFOEvents",
+            Sensors::PropertyMaximumPowerConsumption => "Usage_Sen_PropertyMaximumPowerConsumption",
+            Sensors::PropertyIsPrimary => "Usage_Sen_PropertyIsPrimary",
+            Sensors::PropertyHumanPresenceDetectionType => {
+                "Usage_Sen_PropertyHumanPresenceDetectionType"
+            }
+            Sensors::DataFieldLocation => "Usage_Sen_DataFieldLocation",
+            Sensors::DataFieldAltitudeAntennaSeaLevel => {
+                "Usage_Sen_DataFieldAltitudeAntennaSeaLevel"
+            }
+            Sensors::DataFieldDifferentialReferenceStationID => {
+                "Usage_Sen_DataFieldDifferentialReferenceStationID"
+            }
+            Sensors::DataFieldAltitudeEllipsoidError => "Usage_Sen_DataFieldAltitudeEllipsoidError",
+            Sensors::DataFieldAltitudeEllipsoid => "Usage_Sen_DataFieldAltitudeEllipsoid",
+            Sensors::DataFieldAltitudeSeaLevelError => "Usage_Sen_DataFieldAltitudeSeaLevelError",
+            Sensors::DataFieldAltitudeSeaLevel => "Usage_Sen_DataFieldAltitudeSeaLevel",
+            Sensors::DataFieldDifferentialGPSDataAge => "Usage_Sen_DataFieldDifferentialGPSDataAge",
+            Sensors::DataFieldErrorRadius => "Usage_Sen_DataFieldErrorRadius",
+            Sensors::DataFieldFixQuality => "Usage_Sen_DataFieldFixQuality",
+            Sensors::DataFieldFixType => "Usage_Sen_DataFieldFixType",
+            Sensors::DataFieldGeoidalSeparation => "Usage_Sen_DataFieldGeoidalSeparation",
+            Sensors::DataFieldGPSOperationMode => "Usage_Sen_DataFieldGPSOperationMode",
+            Sensors::DataFieldGPSSelectionMode => "Usage_Sen_DataFieldGPSSelectionMode",
+            Sensors::DataFieldGPSStatus => "Usage_Sen_DataFieldGPSStatus",
+            Sensors::DataFieldPositionDilutionofPrecision => {
+                "Usage_Sen_DataFieldPositionDilutionofPrecision"
+            }
+            Sensors::DataFieldHorizontalDilutionofPrecision => {
+                "Usage_Sen_DataFieldHorizontalDilutionofPrecision"
+            }
+            Sensors::DataFieldVerticalDilutionofPrecision => {
+                "Usage_Sen_DataFieldVerticalDilutionofPrecision"
+            }
+            Sensors::DataFieldLatitude => "Usage_Sen_DataFieldLatitude",
+            Sensors::DataFieldLongitude => "Usage_Sen_DataFieldLongitude",
+            Sensors::DataFieldTrueHeading => "Usage_Sen_DataFieldTrueHeading",
+            Sensors::DataFieldMagneticHeading => "Usage_Sen_DataFieldMagneticHeading",
+            Sensors::DataFieldMagneticVariation => "Usage_Sen_DataFieldMagneticVariation",
+            Sensors::DataFieldSpeed => "Usage_Sen_DataFieldSpeed",
+            Sensors::DataFieldSatellitesinView => "Usage_Sen_DataFieldSatellitesinView",
+            Sensors::DataFieldSatellitesinViewAzimuth => {
+                "Usage_Sen_DataFieldSatellitesinViewAzimuth"
+            }
+            Sensors::DataFieldSatellitesinViewElevation => {
+                "Usage_Sen_DataFieldSatellitesinViewElevation"
+            }
+            Sensors::DataFieldSatellitesinViewIDs => "Usage_Sen_DataFieldSatellitesinViewIDs",
+            Sensors::DataFieldSatellitesinViewPRNs => "Usage_Sen_DataFieldSatellitesinViewPRNs",
+            Sensors::DataFieldSatellitesinViewSNRatios => {
+                "Usage_Sen_DataFieldSatellitesinViewSNRatios"
+            }
+            Sensors::DataFieldSatellitesUsedCount => "Usage_Sen_DataFieldSatellitesUsedCount",
+            Sensors::DataFieldSatellitesUsedPRNs => "Usage_Sen_DataFieldSatellitesUsedPRNs",
+            Sensors::DataFieldNMEASentence => "Usage_Sen_DataFieldNMEASentence",
+            Sensors::DataFieldAddressLine1 => "Usage_Sen_DataFieldAddressLine1",
+            Sensors::DataFieldAddressLine2 => "Usage_Sen_DataFieldAddressLine2",
+            Sensors::DataFieldCity => "Usage_Sen_DataFieldCity",
+            Sensors::DataFieldStateorProvince => "Usage_Sen_DataFieldStateorProvince",
+            Sensors::DataFieldCountryorRegion => "Usage_Sen_DataFieldCountryorRegion",
+            Sensors::DataFieldPostalCode => "Usage_Sen_DataFieldPostalCode",
+            Sensors::PropertyLocation => "Usage_Sen_PropertyLocation",
+            Sensors::PropertyLocationDesiredAccuracy => "Usage_Sen_PropertyLocationDesiredAccuracy",
+            Sensors::DataFieldEnvironmental => "Usage_Sen_DataFieldEnvironmental",
+            Sensors::DataFieldAtmosphericPressure => "Usage_Sen_DataFieldAtmosphericPressure",
+            Sensors::DataFieldRelativeHumidity => "Usage_Sen_DataFieldRelativeHumidity",
+            Sensors::DataFieldTemperature => "Usage_Sen_DataFieldTemperature",
+            Sensors::DataFieldWindDirection => "Usage_Sen_DataFieldWindDirection",
+            Sensors::DataFieldWindSpeed => "Usage_Sen_DataFieldWindSpeed",
+            Sensors::DataFieldAirQualityIndex => "Usage_Sen_DataFieldAirQualityIndex",
+            Sensors::DataFieldEquivalentCO2 => "Usage_Sen_DataFieldEquivalentCO2",
+            Sensors::DataFieldVolatileOrganicCompoundConcentration => {
+                "Usage_Sen_DataFieldVolatileOrganicCompoundConcentration"
+            }
+            Sensors::DataFieldObjectPresence => "Usage_Sen_DataFieldObjectPresence",
+            Sensors::DataFieldObjectProximityRange => "Usage_Sen_DataFieldObjectProximityRange",
+            Sensors::DataFieldObjectProximityOutofRange => {
+                "Usage_Sen_DataFieldObjectProximityOutofRange"
+            }
+            Sensors::PropertyEnvironmental => "Usage_Sen_PropertyEnvironmental",
+            Sensors::PropertyReferencePressure => "Usage_Sen_PropertyReferencePressure",
+            Sensors::DataFieldMotion => "Usage_Sen_DataFieldMotion",
+            Sensors::DataFieldMotionState => "Usage_Sen_DataFieldMotionState",
+            Sensors::DataFieldAcceleration => "Usage_Sen_DataFieldAcceleration",
+            Sensors::DataFieldAccelerationAxisX => "Usage_Sen_DataFieldAccelerationAxisX",
+            Sensors::DataFieldAccelerationAxisY => "Usage_Sen_DataFieldAccelerationAxisY",
+            Sensors::DataFieldAccelerationAxisZ => "Usage_Sen_DataFieldAccelerationAxisZ",
+            Sensors::DataFieldAngularVelocity => "Usage_Sen_DataFieldAngularVelocity",
+            Sensors::DataFieldAngularVelocityaboutXAxis => {
+                "Usage_Sen_DataFieldAngularVelocityaboutXAxis"
+            }
+            Sensors::DataFieldAngularVelocityaboutYAxis => {
+                "Usage_Sen_DataFieldAngularVelocityaboutYAxis"
+            }
+            Sensors::DataFieldAngularVelocityaboutZAxis => {
+                "Usage_Sen_DataFieldAngularVelocityaboutZAxis"
+            }
+            Sensors::DataFieldAngularPosition => "Usage_Sen_DataFieldAngularPosition",
+            Sensors::DataFieldAngularPositionaboutXAxis => {
+                "Usage_Sen_DataFieldAngularPositionaboutXAxis"
+            }
+            Sensors::DataFieldAngularPositionaboutYAxis => {
+                "Usage_Sen_DataFieldAngularPositionaboutYAxis"
+            }
+            Sensors::DataFieldAngularPositionaboutZAxis => {
+                "Usage_Sen_DataFieldAngularPositionaboutZAxis"
+            }
+            Sensors::DataFieldMotionSpeed => "Usage_Sen_DataFieldMotionSpeed",
+            Sensors::DataFieldMotionIntensity => "Usage_Sen_DataFieldMotionIntensity",
+            Sensors::DataFieldOrientation => "Usage_Sen_DataFieldOrientation",
+            Sensors::DataFieldHeading => "Usage_Sen_DataFieldHeading",
+            Sensors::DataFieldHeadingXAxis => "Usage_Sen_DataFieldHeadingXAxis",
+            Sensors::DataFieldHeadingYAxis => "Usage_Sen_DataFieldHeadingYAxis",
+            Sensors::DataFieldHeadingZAxis => "Usage_Sen_DataFieldHeadingZAxis",
+            Sensors::DataFieldHeadingCompensatedMagneticNorth => {
+                "Usage_Sen_DataFieldHeadingCompensatedMagneticNorth"
+            }
+            Sensors::DataFieldHeadingCompensatedTrueNorth => {
+                "Usage_Sen_DataFieldHeadingCompensatedTrueNorth"
+            }
+            Sensors::DataFieldHeadingMagneticNorth => "Usage_Sen_DataFieldHeadingMagneticNorth",
+            Sensors::DataFieldHeadingTrueNorth => "Usage_Sen_DataFieldHeadingTrueNorth",
+            Sensors::DataFieldDistance => "Usage_Sen_DataFieldDistance",
+            Sensors::DataFieldDistanceXAxis => "Usage_Sen_DataFieldDistanceXAxis",
+            Sensors::DataFieldDistanceYAxis => "Usage_Sen_DataFieldDistanceYAxis",
+            Sensors::DataFieldDistanceZAxis => "Usage_Sen_DataFieldDistanceZAxis",
+            Sensors::DataFieldDistanceOutofRange => "Usage_Sen_DataFieldDistanceOutofRange",
+            Sensors::DataFieldTilt => "Usage_Sen_DataFieldTilt",
+            Sensors::DataFieldTiltXAxis => "Usage_Sen_DataFieldTiltXAxis",
+            Sensors::DataFieldTiltYAxis => "Usage_Sen_DataFieldTiltYAxis",
+            Sensors::DataFieldTiltZAxis => "Usage_Sen_DataFieldTiltZAxis",
+            Sensors::DataFieldRotationMatrix => "Usage_Sen_DataFieldRotationMatrix",
+            Sensors::DataFieldQuaternion => "Usage_Sen_DataFieldQuaternion",
+            Sensors::DataFieldMagneticFlux => "Usage_Sen_DataFieldMagneticFlux",
+            Sensors::DataFieldMagneticFluxXAxis => "Usage_Sen_DataFieldMagneticFluxXAxis",
+            Sensors::DataFieldMagneticFluxYAxis => "Usage_Sen_DataFieldMagneticFluxYAxis",
+            Sensors::DataFieldMagneticFluxZAxis => "Usage_Sen_DataFieldMagneticFluxZAxis",
+            Sensors::DataFieldMagnetometerAccuracy => "Usage_Sen_DataFieldMagnetometerAccuracy",
+            Sensors::DataFieldSimpleOrientationDirection => {
+                "Usage_Sen_DataFieldSimpleOrientationDirection"
+            }
+            Sensors::DataFieldMechanical => "Usage_Sen_DataFieldMechanical",
+            Sensors::DataFieldBooleanSwitchState => "Usage_Sen_DataFieldBooleanSwitchState",
+            Sensors::DataFieldBooleanSwitchArrayStates => {
+                "Usage_Sen_DataFieldBooleanSwitchArrayStates"
+            }
+            Sensors::DataFieldMultivalueSwitchValue => "Usage_Sen_DataFieldMultivalueSwitchValue",
+            Sensors::DataFieldForce => "Usage_Sen_DataFieldForce",
+            Sensors::DataFieldAbsolutePressure => "Usage_Sen_DataFieldAbsolutePressure",
+            Sensors::DataFieldGaugePressure => "Usage_Sen_DataFieldGaugePressure",
+            Sensors::DataFieldStrain => "Usage_Sen_DataFieldStrain",
+            Sensors::DataFieldWeight => "Usage_Sen_DataFieldWeight",
+            Sensors::PropertyMechanical => "Usage_Sen_PropertyMechanical",
+            Sensors::PropertyVibrationState => "Usage_Sen_PropertyVibrationState",
+            Sensors::PropertyForwardVibrationSpeed => "Usage_Sen_PropertyForwardVibrationSpeed",
+            Sensors::PropertyBackwardVibrationSpeed => "Usage_Sen_PropertyBackwardVibrationSpeed",
+            Sensors::DataFieldBiometric => "Usage_Sen_DataFieldBiometric",
+            Sensors::DataFieldHumanPresence => "Usage_Sen_DataFieldHumanPresence",
+            Sensors::DataFieldHumanProximityRange => "Usage_Sen_DataFieldHumanProximityRange",
+            Sensors::DataFieldHumanProximityOutofRange => {
+                "Usage_Sen_DataFieldHumanProximityOutofRange"
+            }
+            Sensors::DataFieldHumanTouchState => "Usage_Sen_DataFieldHumanTouchState",
+            Sensors::DataFieldBloodPressure => "Usage_Sen_DataFieldBloodPressure",
+            Sensors::DataFieldBloodPressureDiastolic => "Usage_Sen_DataFieldBloodPressureDiastolic",
+            Sensors::DataFieldBloodPressureSystolic => "Usage_Sen_DataFieldBloodPressureSystolic",
+            Sensors::DataFieldHeartRate => "Usage_Sen_DataFieldHeartRate",
+            Sensors::DataFieldRestingHeartRate => "Usage_Sen_DataFieldRestingHeartRate",
+            Sensors::DataFieldHeartbeatInterval => "Usage_Sen_DataFieldHeartbeatInterval",
+            Sensors::DataFieldRespiratoryRate => "Usage_Sen_DataFieldRespiratoryRate",
+            Sensors::DataFieldSpO2 => "Usage_Sen_DataFieldSpO2",
+            Sensors::DataFieldHumanAttentionDetected => "Usage_Sen_DataFieldHumanAttentionDetected",
+            Sensors::DataFieldHumanHeadAzimuth => "Usage_Sen_DataFieldHumanHeadAzimuth",
+            Sensors::DataFieldHumanHeadAltitude => "Usage_Sen_DataFieldHumanHeadAltitude",
+            Sensors::DataFieldHumanHeadRoll => "Usage_Sen_DataFieldHumanHeadRoll",
+            Sensors::DataFieldHumanHeadPitch => "Usage_Sen_DataFieldHumanHeadPitch",
+            Sensors::DataFieldHumanHeadYaw => "Usage_Sen_DataFieldHumanHeadYaw",
+            Sensors::DataFieldHumanCorrelationId => "Usage_Sen_DataFieldHumanCorrelationId",
+            Sensors::DataFieldLight => "Usage_Sen_DataFieldLight",
+            Sensors::DataFieldIlluminance => "Usage_Sen_DataFieldIlluminance",
+            Sensors::DataFieldColorTemperature => "Usage_Sen_DataFieldColorTemperature",
+            Sensors::DataFieldChromaticity => "Usage_Sen_DataFieldChromaticity",
+            Sensors::DataFieldChromaticityX => "Usage_Sen_DataFieldChromaticityX",
+            Sensors::DataFieldChromaticityY => "Usage_Sen_DataFieldChromaticityY",
+            Sensors::DataFieldConsumerIRSentenceReceive => {
+                "Usage_Sen_DataFieldConsumerIRSentenceReceive"
+            }
+            Sensors::DataFieldInfraredLight => "Usage_Sen_DataFieldInfraredLight",
+            Sensors::DataFieldRedLight => "Usage_Sen_DataFieldRedLight",
+            Sensors::DataFieldGreenLight => "Usage_Sen_DataFieldGreenLight",
+            Sensors::DataFieldBlueLight => "Usage_Sen_DataFieldBlueLight",
+            Sensors::DataFieldUltravioletALight => "Usage_Sen_DataFieldUltravioletALight",
+            Sensors::DataFieldUltravioletBLight => "Usage_Sen_DataFieldUltravioletBLight",
+            Sensors::DataFieldUltravioletIndex => "Usage_Sen_DataFieldUltravioletIndex",
+            Sensors::DataFieldNearInfraredLight => "Usage_Sen_DataFieldNearInfraredLight",
+            Sensors::PropertyLight => "Usage_Sen_PropertyLight",
+            Sensors::PropertyConsumerIRSentenceSend => "Usage_Sen_PropertyConsumerIRSentenceSend",
+            Sensors::PropertyAutoBrightnessPreferred => "Usage_Sen_PropertyAutoBrightnessPreferred",
+            Sensors::PropertyAutoColorPreferred => "Usage_Sen_PropertyAutoColorPreferred",
+            Sensors::DataFieldScanner => "Usage_Sen_DataFieldScanner",
+            Sensors::DataFieldRFIDTag40Bit => "Usage_Sen_DataFieldRFIDTag40Bit",
+            Sensors::DataFieldNFCSentenceReceive => "Usage_Sen_DataFieldNFCSentenceReceive",
+            Sensors::PropertyScanner => "Usage_Sen_PropertyScanner",
+            Sensors::PropertyNFCSentenceSend => "Usage_Sen_PropertyNFCSentenceSend",
+            Sensors::DataFieldElectrical => "Usage_Sen_DataFieldElectrical",
+            Sensors::DataFieldCapacitance => "Usage_Sen_DataFieldCapacitance",
+            Sensors::DataFieldCurrent => "Usage_Sen_DataFieldCurrent",
+            Sensors::DataFieldElectricalPower => "Usage_Sen_DataFieldElectricalPower",
+            Sensors::DataFieldInductance => "Usage_Sen_DataFieldInductance",
+            Sensors::DataFieldResistance => "Usage_Sen_DataFieldResistance",
+            Sensors::DataFieldVoltage => "Usage_Sen_DataFieldVoltage",
+            Sensors::DataFieldFrequency => "Usage_Sen_DataFieldFrequency",
+            Sensors::DataFieldPeriod => "Usage_Sen_DataFieldPeriod",
+            Sensors::DataFieldPercentofRange => "Usage_Sen_DataFieldPercentofRange",
+            Sensors::DataFieldTime => "Usage_Sen_DataFieldTime",
+            Sensors::DataFieldYear => "Usage_Sen_DataFieldYear",
+            Sensors::DataFieldMonth => "Usage_Sen_DataFieldMonth",
+            Sensors::DataFieldDay => "Usage_Sen_DataFieldDay",
+            Sensors::DataFieldDayofWeek => "Usage_Sen_DataFieldDayofWeek",
+            Sensors::DataFieldHour => "Usage_Sen_DataFieldHour",
+            Sensors::DataFieldMinute => "Usage_Sen_DataFieldMinute",
+            Sensors::DataFieldSecond => "Usage_Sen_DataFieldSecond",
+            Sensors::DataFieldMillisecond => "Usage_Sen_DataFieldMillisecond",
+            Sensors::DataFieldTimestamp => "Usage_Sen_DataFieldTimestamp",
+            Sensors::DataFieldJulianDayofYear => "Usage_Sen_DataFieldJulianDayofYear",
+            Sensors::DataFieldTimeSinceSystemBoot => "Usage_Sen_DataFieldTimeSinceSystemBoot",
+            Sensors::PropertyTime => "Usage_Sen_PropertyTime",
+            Sensors::PropertyTimeZoneOffsetfromUTC => "Usage_Sen_PropertyTimeZoneOffsetfromUTC",
+            Sensors::PropertyTimeZoneName => "Usage_Sen_PropertyTimeZoneName",
+            Sensors::PropertyDaylightSavingsTimeObserved => {
+                "Usage_Sen_PropertyDaylightSavingsTimeObserved"
+            }
+            Sensors::PropertyTimeTrimAdjustment => "Usage_Sen_PropertyTimeTrimAdjustment",
+            Sensors::PropertyArmAlarm => "Usage_Sen_PropertyArmAlarm",
+            Sensors::DataFieldCustom => "Usage_Sen_DataFieldCustom",
+            Sensors::DataFieldCustomUsage => "Usage_Sen_DataFieldCustomUsage",
+            Sensors::DataFieldCustomBooleanArray => "Usage_Sen_DataFieldCustomBooleanArray",
+            Sensors::DataFieldCustomValue => "Usage_Sen_DataFieldCustomValue",
+            Sensors::DataFieldCustomValue1 => "Usage_Sen_DataFieldCustomValue1",
+            Sensors::DataFieldCustomValue2 => "Usage_Sen_DataFieldCustomValue2",
+            Sensors::DataFieldCustomValue3 => "Usage_Sen_DataFieldCustomValue3",
+            Sensors::DataFieldCustomValue4 => "Usage_Sen_DataFieldCustomValue4",
+            Sensors::DataFieldCustomValue5 => "Usage_Sen_DataFieldCustomValue5",
+            Sensors::DataFieldCustomValue6 => "Usage_Sen_DataFieldCustomValue6",
+            Sensors::DataFieldCustomValue7 => "Usage_Sen_DataFieldCustomValue7",
+            Sensors::DataFieldCustomValue8 => "Usage_Sen_DataFieldCustomValue8",
+            Sensors::DataFieldCustomValue9 => "Usage_Sen_DataFieldCustomValue9",
+            Sensors::DataFieldCustomValue10 => "Usage_Sen_DataFieldCustomValue10",
+            Sensors::DataFieldCustomValue11 => "Usage_Sen_DataFieldCustomValue11",
+            Sensors::DataFieldCustomValue12 => "Usage_Sen_DataFieldCustomValue12",
+            Sensors::DataFieldCustomValue13 => "Usage_Sen_DataFieldCustomValue13",
+            Sensors::DataFieldCustomValue14 => "Usage_Sen_DataFieldCustomValue14",
+            Sensors::DataFieldCustomValue15 => "Usage_Sen_DataFieldCustomValue15",
+            Sensors::DataFieldCustomValue16 => "Usage_Sen_DataFieldCustomValue16",
+            Sensors::DataFieldCustomValue17 => "Usage_Sen_DataFieldCustomValue17",
+            Sensors::DataFieldCustomValue18 => "Usage_Sen_DataFieldCustomValue18",
+            Sensors::DataFieldCustomValue19 => "Usage_Sen_DataFieldCustomValue19",
+            Sensors::DataFieldCustomValue20 => "Usage_Sen_DataFieldCustomValue20",
+            Sensors::DataFieldCustomValue21 => "Usage_Sen_DataFieldCustomValue21",
+            Sensors::DataFieldCustomValue22 => "Usage_Sen_DataFieldCustomValue22",
+            Sensors::DataFieldCustomValue23 => "Usage_Sen_DataFieldCustomValue23",
+            Sensors::DataFieldCustomValue24 => "Usage_Sen_DataFieldCustomValue24",
+            Sensors::DataFieldCustomValue25 => "Usage_Sen_DataFieldCustomValue25",
+            Sensors::DataFieldCustomValue26 => "Usage_Sen_DataFieldCustomValue26",
+            Sensors::DataFieldCustomValue27 => "Usage_Sen_DataFieldCustomValue27",
+            Sensors::DataFieldCustomValue28 => "Usage_Sen_DataFieldCustomValue28",
+            Sensors::DataFieldGeneric => "Usage_Sen_DataFieldGeneric",
+            Sensors::DataFieldGenericGUIDorPROPERTYKEY => {
+                "Usage_Sen_DataFieldGenericGUIDorPROPERTYKEY"
+            }
+            Sensors::DataFieldGenericCategoryGUID => "Usage_Sen_DataFieldGenericCategoryGUID",
+            Sensors::DataFieldGenericTypeGUID => "Usage_Sen_DataFieldGenericTypeGUID",
+            Sensors::DataFieldGenericEventPROPERTYKEY => {
+                "Usage_Sen_DataFieldGenericEventPROPERTYKEY"
+            }
+            Sensors::DataFieldGenericPropertyPROPERTYKEY => {
+                "Usage_Sen_DataFieldGenericPropertyPROPERTYKEY"
+            }
+            Sensors::DataFieldGenericDataFieldPROPERTYKEY => {
+                "Usage_Sen_DataFieldGenericDataFieldPROPERTYKEY"
+            }
+            Sensors::DataFieldGenericEvent => "Usage_Sen_DataFieldGenericEvent",
+            Sensors::DataFieldGenericProperty => "Usage_Sen_DataFieldGenericProperty",
+            Sensors::DataFieldGenericDataField => "Usage_Sen_DataFieldGenericDataField",
+            Sensors::DataFieldEnumeratorTableRowIndex => {
+                "Usage_Sen_DataFieldEnumeratorTableRowIndex"
+            }
+            Sensors::DataFieldEnumeratorTableRowCount => {
+                "Usage_Sen_DataFieldEnumeratorTableRowCount"
+            }
+            Sensors::DataFieldGenericGUIDorPROPERTYKEYkind => {
+                "Usage_Sen_DataFieldGenericGUIDorPROPERTYKEYkind"
+            }
+            Sensors::DataFieldGenericGUID => "Usage_Sen_DataFieldGenericGUID",
+            Sensors::DataFieldGenericPROPERTYKEY => "Usage_Sen_DataFieldGenericPROPERTYKEY",
+            Sensors::DataFieldGenericTopLevelCollectionID => {
+                "Usage_Sen_DataFieldGenericTopLevelCollectionID"
+            }
+            Sensors::DataFieldGenericReportID => "Usage_Sen_DataFieldGenericReportID",
+            Sensors::DataFieldGenericReportItemPositionIndex => {
+                "Usage_Sen_DataFieldGenericReportItemPositionIndex"
+            }
+            Sensors::DataFieldGenericFirmwareVARTYPE => "Usage_Sen_DataFieldGenericFirmwareVARTYPE",
+            Sensors::DataFieldGenericUnitofMeasure => "Usage_Sen_DataFieldGenericUnitofMeasure",
+            Sensors::DataFieldGenericUnitExponent => "Usage_Sen_DataFieldGenericUnitExponent",
+            Sensors::DataFieldGenericReportSize => "Usage_Sen_DataFieldGenericReportSize",
+            Sensors::DataFieldGenericReportCount => "Usage_Sen_DataFieldGenericReportCount",
+            Sensors::PropertyGeneric => "Usage_Sen_PropertyGeneric",
+            Sensors::PropertyEnumeratorTableRowIndex => "Usage_Sen_PropertyEnumeratorTableRowIndex",
+            Sensors::PropertyEnumeratorTableRowCount => "Usage_Sen_PropertyEnumeratorTableRowCount",
+            Sensors::DataFieldPersonalActivity => "Usage_Sen_DataFieldPersonalActivity",
+            Sensors::DataFieldActivityType => "Usage_Sen_DataFieldActivityType",
+            Sensors::DataFieldActivityState => "Usage_Sen_DataFieldActivityState",
+            Sensors::DataFieldDevicePosition => "Usage_Sen_DataFieldDevicePosition",
+            Sensors::DataFieldStepCount => "Usage_Sen_DataFieldStepCount",
+            Sensors::DataFieldStepCountReset => "Usage_Sen_DataFieldStepCountReset",
+            Sensors::DataFieldStepDuration => "Usage_Sen_DataFieldStepDuration",
+            Sensors::DataFieldStepType => "Usage_Sen_DataFieldStepType",
+            Sensors::PropertyMinimumActivityDetectionInterval => {
+                "Usage_Sen_PropertyMinimumActivityDetectionInterval"
+            }
+            Sensors::PropertySupportedActivityTypes => "Usage_Sen_PropertySupportedActivityTypes",
+            Sensors::PropertySubscribedActivityTypes => "Usage_Sen_PropertySubscribedActivityTypes",
+            Sensors::PropertySupportedStepTypes => "Usage_Sen_PropertySupportedStepTypes",
+            Sensors::PropertySubscribedStepTypes => "Usage_Sen_PropertySubscribedStepTypes",
+            Sensors::PropertyFloorHeight => "Usage_Sen_PropertyFloorHeight",
+            Sensors::DataFieldCustomTypeID => "Usage_Sen_DataFieldCustomTypeID",
+            Sensors::PropertyCustom => "Usage_Sen_PropertyCustom",
+            Sensors::PropertyCustomValue1 => "Usage_Sen_PropertyCustomValue1",
+            Sensors::PropertyCustomValue2 => "Usage_Sen_PropertyCustomValue2",
+            Sensors::PropertyCustomValue3 => "Usage_Sen_PropertyCustomValue3",
+            Sensors::PropertyCustomValue4 => "Usage_Sen_PropertyCustomValue4",
+            Sensors::PropertyCustomValue5 => "Usage_Sen_PropertyCustomValue5",
+            Sensors::PropertyCustomValue6 => "Usage_Sen_PropertyCustomValue6",
+            Sensors::PropertyCustomValue7 => "Usage_Sen_PropertyCustomValue7",
+            Sensors::PropertyCustomValue8 => "Usage_Sen_PropertyCustomValue8",
+            Sensors::PropertyCustomValue9 => "Usage_Sen_PropertyCustomValue9",
+            Sensors::PropertyCustomValue10 => "Usage_Sen_PropertyCustomValue10",
+            Sensors::PropertyCustomValue11 => "Usage_Sen_PropertyCustomValue11",
+            Sensors::PropertyCustomValue12 => "Usage_Sen_PropertyCustomValue12",
+            Sensors::PropertyCustomValue13 => "Usage_Sen_PropertyCustomValue13",
+            Sensors::PropertyCustomValue14 => "Usage_Sen_PropertyCustomValue14",
+            Sensors::PropertyCustomValue15 => "Usage_Sen_PropertyCustomValue15",
+            Sensors::PropertyCustomValue16 => "Usage_Sen_PropertyCustomValue16",
+            Sensors::DataFieldHinge => "Usage_Sen_DataFieldHinge",
+            Sensors::DataFieldHingeAngle => "Usage_Sen_DataFieldHingeAngle",
+            Sensors::DataFieldGestureSensor => "Usage_Sen_DataFieldGestureSensor",
+            Sensors::DataFieldGestureState => "Usage_Sen_DataFieldGestureState",
+            Sensors::DataFieldHingeFoldInitialAngle => "Usage_Sen_DataFieldHingeFoldInitialAngle",
+            Sensors::DataFieldHingeFoldFinalAngle => "Usage_Sen_DataFieldHingeFoldFinalAngle",
+            Sensors::DataFieldHingeFoldContributingPanel => {
+                "Usage_Sen_DataFieldHingeFoldContributingPanel"
+            }
+            Sensors::DataFieldHingeFoldType => "Usage_Sen_DataFieldHingeFoldType",
+            Sensors::SensorStateUndefined => "Usage_Sen_SensorStateUndefined",
+            Sensors::SensorStateReady => "Usage_Sen_SensorStateReady",
+            Sensors::SensorStateNotAvailable => "Usage_Sen_SensorStateNotAvailable",
+            Sensors::SensorStateNoData => "Usage_Sen_SensorStateNoData",
+            Sensors::SensorStateInitializing => "Usage_Sen_SensorStateInitializing",
+            Sensors::SensorStateAccessDenied => "Usage_Sen_SensorStateAccessDenied",
+            Sensors::SensorStateError => "Usage_Sen_SensorStateError",
+            Sensors::SensorEventUnknown => "Usage_Sen_SensorEventUnknown",
+            Sensors::SensorEventStateChanged => "Usage_Sen_SensorEventStateChanged",
+            Sensors::SensorEventPropertyChanged => "Usage_Sen_SensorEventPropertyChanged",
+            Sensors::SensorEventDataUpdated => "Usage_Sen_SensorEventDataUpdated",
+            Sensors::SensorEventPollResponse => "Usage_Sen_SensorEventPollResponse",
+            Sensors::SensorEventChangeSensitivity => "Usage_Sen_SensorEventChangeSensitivity",
+            Sensors::SensorEventRangeMaximumReached => "Usage_Sen_SensorEventRangeMaximumReached",
+            Sensors::SensorEventRangeMinimumReached => "Usage_Sen_SensorEventRangeMinimumReached",
+            Sensors::SensorEventHighThresholdCrossUpward => {
+                "Usage_Sen_SensorEventHighThresholdCrossUpward"
+            }
+            Sensors::SensorEventHighThresholdCrossDownward => {
+                "Usage_Sen_SensorEventHighThresholdCrossDownward"
+            }
+            Sensors::SensorEventLowThresholdCrossUpward => {
+                "Usage_Sen_SensorEventLowThresholdCrossUpward"
+            }
+            Sensors::SensorEventLowThresholdCrossDownward => {
+                "Usage_Sen_SensorEventLowThresholdCrossDownward"
+            }
+            Sensors::SensorEventZeroThresholdCrossUpward => {
+                "Usage_Sen_SensorEventZeroThresholdCrossUpward"
+            }
+            Sensors::SensorEventZeroThresholdCrossDownward => {
+                "Usage_Sen_SensorEventZeroThresholdCrossDownward"
+            }
+            Sensors::SensorEventPeriodExceeded => "Usage_Sen_SensorEventPeriodExceeded",
+            Sensors::SensorEventFrequencyExceeded => "Usage_Sen_SensorEventFrequencyExceeded",
+            Sensors::SensorEventComplexTrigger => "Usage_Sen_SensorEventComplexTrigger",
+            Sensors::ConnectionTypePCIntegrated => "Usage_Sen_ConnectionTypePCIntegrated",
+            Sensors::ConnectionTypePCAttached => "Usage_Sen_ConnectionTypePCAttached",
+            Sensors::ConnectionTypePCExternal => "Usage_Sen_ConnectionTypePCExternal",
+            Sensors::ReportingStateReportNoEvents => "Usage_Sen_ReportingStateReportNoEvents",
+            Sensors::ReportingStateReportAllEvents => "Usage_Sen_ReportingStateReportAllEvents",
+            Sensors::ReportingStateReportThresholdEvents => {
+                "Usage_Sen_ReportingStateReportThresholdEvents"
+            }
+            Sensors::ReportingStateWakeOnNoEvents => "Usage_Sen_ReportingStateWakeOnNoEvents",
+            Sensors::ReportingStateWakeOnAllEvents => "Usage_Sen_ReportingStateWakeOnAllEvents",
+            Sensors::ReportingStateWakeOnThresholdEvents => {
+                "Usage_Sen_ReportingStateWakeOnThresholdEvents"
+            }
+            Sensors::ReportingStateAnytime => "Usage_Sen_ReportingStateAnytime",
+            Sensors::PowerStateUndefined => "Usage_Sen_PowerStateUndefined",
+            Sensors::PowerStateD0FullPower => "Usage_Sen_PowerStateD0FullPower",
+            Sensors::PowerStateD1LowPower => "Usage_Sen_PowerStateD1LowPower",
+            Sensors::PowerStateD2StandbyPowerwithWakeup => {
+                "Usage_Sen_PowerStateD2StandbyPowerwithWakeup"
+            }
+            Sensors::PowerStateD3SleepwithWakeup => "Usage_Sen_PowerStateD3SleepwithWakeup",
+            Sensors::PowerStateD4PowerOff => "Usage_Sen_PowerStateD4PowerOff",
+            Sensors::AccuracyDefault => "Usage_Sen_AccuracyDefault",
+            Sensors::AccuracyHigh => "Usage_Sen_AccuracyHigh",
+            Sensors::AccuracyMedium => "Usage_Sen_AccuracyMedium",
+            Sensors::AccuracyLow => "Usage_Sen_AccuracyLow",
+            Sensors::FixQualityNoFix => "Usage_Sen_FixQualityNoFix",
+            Sensors::FixQualityGPS => "Usage_Sen_FixQualityGPS",
+            Sensors::FixQualityDGPS => "Usage_Sen_FixQualityDGPS",
+            Sensors::FixTypeNoFix => "Usage_Sen_FixTypeNoFix",
+            Sensors::FixTypeGPSSPSModeFixValid => "Usage_Sen_FixTypeGPSSPSModeFixValid",
+            Sensors::FixTypeDGPSSPSModeFixValid => "Usage_Sen_FixTypeDGPSSPSModeFixValid",
+            Sensors::FixTypeGPSPPSModeFixValid => "Usage_Sen_FixTypeGPSPPSModeFixValid",
+            Sensors::FixTypeRealTimeKinematic => "Usage_Sen_FixTypeRealTimeKinematic",
+            Sensors::FixTypeFloatRTK => "Usage_Sen_FixTypeFloatRTK",
+            Sensors::FixTypeEstimateddeadreckoned => "Usage_Sen_FixTypeEstimateddeadreckoned",
+            Sensors::FixTypeManualInputMode => "Usage_Sen_FixTypeManualInputMode",
+            Sensors::FixTypeSimulatorMode => "Usage_Sen_FixTypeSimulatorMode",
+            Sensors::GPSOperationModeManual => "Usage_Sen_GPSOperationModeManual",
+            Sensors::GPSOperationModeAutomatic => "Usage_Sen_GPSOperationModeAutomatic",
+            Sensors::GPSSelectionModeAutonomous => "Usage_Sen_GPSSelectionModeAutonomous",
+            Sensors::GPSSelectionModeDGPS => "Usage_Sen_GPSSelectionModeDGPS",
+            Sensors::GPSSelectionModeEstimateddeadreckoned => {
+                "Usage_Sen_GPSSelectionModeEstimateddeadreckoned"
+            }
+            Sensors::GPSSelectionModeManualInput => "Usage_Sen_GPSSelectionModeManualInput",
+            Sensors::GPSSelectionModeSimulator => "Usage_Sen_GPSSelectionModeSimulator",
+            Sensors::GPSSelectionModeDataNotValid => "Usage_Sen_GPSSelectionModeDataNotValid",
+            Sensors::GPSStatusDataValid => "Usage_Sen_GPSStatusDataValid",
+            Sensors::GPSStatusDataNotValid => "Usage_Sen_GPSStatusDataNotValid",
+            Sensors::DayofWeekSunday => "Usage_Sen_DayofWeekSunday",
+            Sensors::DayofWeekMonday => "Usage_Sen_DayofWeekMonday",
+            Sensors::DayofWeekTuesday => "Usage_Sen_DayofWeekTuesday",
+            Sensors::DayofWeekWednesday => "Usage_Sen_DayofWeekWednesday",
+            Sensors::DayofWeekThursday => "Usage_Sen_DayofWeekThursday",
+            Sensors::DayofWeekFriday => "Usage_Sen_DayofWeekFriday",
+            Sensors::DayofWeekSaturday => "Usage_Sen_DayofWeekSaturday",
+            Sensors::KindCategory => "Usage_Sen_KindCategory",
+            Sensors::KindType => "Usage_Sen_KindType",
+            Sensors::KindEvent => "Usage_Sen_KindEvent",
+            Sensors::KindProperty => "Usage_Sen_KindProperty",
+            Sensors::KindDataField => "Usage_Sen_KindDataField",
+            Sensors::MagnetometerAccuracyLow => "Usage_Sen_MagnetometerAccuracyLow",
+            Sensors::MagnetometerAccuracyMedium => "Usage_Sen_MagnetometerAccuracyMedium",
+            Sensors::MagnetometerAccuracyHigh => "Usage_Sen_MagnetometerAccuracyHigh",
+            Sensors::SimpleOrientationDirectionNotRotated => {
+                "Usage_Sen_SimpleOrientationDirectionNotRotated"
+            }
+            Sensors::SimpleOrientationDirectionRotated90DegreesCCW => {
+                "Usage_Sen_SimpleOrientationDirectionRotated90DegreesCCW"
+            }
+            Sensors::SimpleOrientationDirectionRotated180DegreesCCW => {
+                "Usage_Sen_SimpleOrientationDirectionRotated180DegreesCCW"
+            }
+            Sensors::SimpleOrientationDirectionRotated270DegreesCCW => {
+                "Usage_Sen_SimpleOrientationDirectionRotated270DegreesCCW"
+            }
+            Sensors::SimpleOrientationDirectionFaceUp => {
+                "Usage_Sen_SimpleOrientationDirectionFaceUp"
+            }
+            Sensors::SimpleOrientationDirectionFaceDown => {
+                "Usage_Sen_SimpleOrientationDirectionFaceDown"
+            }
+            Sensors::VT_NULL => "Usage_Sen_VT_NULL",
+            Sensors::VT_BOOL => "Usage_Sen_VT_BOOL",
+            Sensors::VT_UI1 => "Usage_Sen_VT_UI1",
+            Sensors::VT_I1 => "Usage_Sen_VT_I1",
+            Sensors::VT_UI2 => "Usage_Sen_VT_UI2",
+            Sensors::VT_I2 => "Usage_Sen_VT_I2",
+            Sensors::VT_UI4 => "Usage_Sen_VT_UI4",
+            Sensors::VT_I4 => "Usage_Sen_VT_I4",
+            Sensors::VT_UI8 => "Usage_Sen_VT_UI8",
+            Sensors::VT_I8 => "Usage_Sen_VT_I8",
+            Sensors::VT_R4 => "Usage_Sen_VT_R4",
+            Sensors::VT_R8 => "Usage_Sen_VT_R8",
+            Sensors::VT_WSTR => "Usage_Sen_VT_WSTR",
+            Sensors::VT_STR => "Usage_Sen_VT_STR",
+            Sensors::VT_CLSID => "Usage_Sen_VT_CLSID",
+            Sensors::VT_VECTORVT_UI1 => "Usage_Sen_VT_VECTORVT_UI1",
+            Sensors::VT_F16E0 => "Usage_Sen_VT_F16E0",
+            Sensors::VT_F16E1 => "Usage_Sen_VT_F16E1",
+            Sensors::VT_F16E2 => "Usage_Sen_VT_F16E2",
+            Sensors::VT_F16E3 => "Usage_Sen_VT_F16E3",
+            Sensors::VT_F16E4 => "Usage_Sen_VT_F16E4",
+            Sensors::VT_F16E5 => "Usage_Sen_VT_F16E5",
+            Sensors::VT_F16E6 => "Usage_Sen_VT_F16E6",
+            Sensors::VT_F16E7 => "Usage_Sen_VT_F16E7",
+            Sensors::VT_F16E8 => "Usage_Sen_VT_F16E8",
+            Sensors::VT_F16E9 => "Usage_Sen_VT_F16E9",
+            Sensors::VT_F16EA => "Usage_Sen_VT_F16EA",
+            Sensors::VT_F16EB => "Usage_Sen_VT_F16EB",
+            Sensors::VT_F16EC => "Usage_Sen_VT_F16EC",
+            Sensors::VT_F16ED => "Usage_Sen_VT_F16ED",
+            Sensors::VT_F16EE => "Usage_Sen_VT_F16EE",
+            Sensors::VT_F16EF => "Usage_Sen_VT_F16EF",
+            Sensors::VT_F32E0 => "Usage_Sen_VT_F32E0",
+            Sensors::VT_F32E1 => "Usage_Sen_VT_F32E1",
+            Sensors::VT_F32E2 => "Usage_Sen_VT_F32E2",
+            Sensors::VT_F32E3 => "Usage_Sen_VT_F32E3",
+            Sensors::VT_F32E4 => "Usage_Sen_VT_F32E4",
+            Sensors::VT_F32E5 => "Usage_Sen_VT_F32E5",
+            Sensors::VT_F32E6 => "Usage_Sen_VT_F32E6",
+            Sensors::VT_F32E7 => "Usage_Sen_VT_F32E7",
+            Sensors::VT_F32E8 => "Usage_Sen_VT_F32E8",
+            Sensors::VT_F32E9 => "Usage_Sen_VT_F32E9",
+            Sensors::VT_F32EA => "Usage_Sen_VT_F32EA",
+            Sensors::VT_F32EB => "Usage_Sen_VT_F32EB",
+            Sensors::VT_F32EC => "Usage_Sen_VT_F32EC",
+            Sensors::VT_F32ED => "Usage_Sen_VT_F32ED",
+            Sensors::VT_F32EE => "Usage_Sen_VT_F32EE",
+            Sensors::VT_F32EF => "Usage_Sen_VT_F32EF",
+            Sensors::ActivityTypeUnknown => "Usage_Sen_ActivityTypeUnknown",
+            Sensors::ActivityTypeStationary => "Usage_Sen_ActivityTypeStationary",
+            Sensors::ActivityTypeFidgeting => "Usage_Sen_ActivityTypeFidgeting",
+            Sensors::ActivityTypeWalking => "Usage_Sen_ActivityTypeWalking",
+            Sensors::ActivityTypeRunning => "Usage_Sen_ActivityTypeRunning",
+            Sensors::ActivityTypeInVehicle => "Usage_Sen_ActivityTypeInVehicle",
+            Sensors::ActivityTypeBiking => "Usage_Sen_ActivityTypeBiking",
+            Sensors::ActivityTypeIdle => "Usage_Sen_ActivityTypeIdle",
+            Sensors::UnitNotSpecified => "Usage_Sen_UnitNotSpecified",
+            Sensors::UnitLux => "Usage_Sen_UnitLux",
+            Sensors::UnitDegreesKelvin => "Usage_Sen_UnitDegreesKelvin",
+            Sensors::UnitDegreesCelsius => "Usage_Sen_UnitDegreesCelsius",
+            Sensors::UnitPascal => "Usage_Sen_UnitPascal",
+            Sensors::UnitNewton => "Usage_Sen_UnitNewton",
+            Sensors::UnitMetersSecond => "Usage_Sen_UnitMetersSecond",
+            Sensors::UnitKilogram => "Usage_Sen_UnitKilogram",
+            Sensors::UnitMeter => "Usage_Sen_UnitMeter",
+            Sensors::UnitMetersSecondSecond => "Usage_Sen_UnitMetersSecondSecond",
+            Sensors::UnitFarad => "Usage_Sen_UnitFarad",
+            Sensors::UnitAmpere => "Usage_Sen_UnitAmpere",
+            Sensors::UnitWatt => "Usage_Sen_UnitWatt",
+            Sensors::UnitHenry => "Usage_Sen_UnitHenry",
+            Sensors::UnitOhm => "Usage_Sen_UnitOhm",
+            Sensors::UnitVolt => "Usage_Sen_UnitVolt",
+            Sensors::UnitHertz => "Usage_Sen_UnitHertz",
+            Sensors::UnitBar => "Usage_Sen_UnitBar",
+            Sensors::UnitDegreesAnticlockwise => "Usage_Sen_UnitDegreesAnticlockwise",
+            Sensors::UnitDegreesClockwise => "Usage_Sen_UnitDegreesClockwise",
+            Sensors::UnitDegrees => "Usage_Sen_UnitDegrees",
+            Sensors::UnitDegreesSecond => "Usage_Sen_UnitDegreesSecond",
+            Sensors::UnitDegreesSecondSecond => "Usage_Sen_UnitDegreesSecondSecond",
+            Sensors::UnitKnot => "Usage_Sen_UnitKnot",
+            Sensors::UnitPercent => "Usage_Sen_UnitPercent",
+            Sensors::UnitSecond => "Usage_Sen_UnitSecond",
+            Sensors::UnitMillisecond => "Usage_Sen_UnitMillisecond",
+            Sensors::UnitG => "Usage_Sen_UnitG",
+            Sensors::UnitBytes => "Usage_Sen_UnitBytes",
+            Sensors::UnitMilligauss => "Usage_Sen_UnitMilligauss",
+            Sensors::UnitBits => "Usage_Sen_UnitBits",
+            Sensors::ActivityStateNoStateChange => "Usage_Sen_ActivityStateNoStateChange",
+            Sensors::ActivityStateStartActivity => "Usage_Sen_ActivityStateStartActivity",
+            Sensors::ActivityStateEndActivity => "Usage_Sen_ActivityStateEndActivity",
+            Sensors::Exponent0 => "Usage_Sen_Exponent0",
+            Sensors::Exponent1 => "Usage_Sen_Exponent1",
+            Sensors::Exponent2 => "Usage_Sen_Exponent2",
+            Sensors::Exponent3 => "Usage_Sen_Exponent3",
+            Sensors::Exponent4 => "Usage_Sen_Exponent4",
+            Sensors::Exponent5 => "Usage_Sen_Exponent5",
+            Sensors::Exponent6 => "Usage_Sen_Exponent6",
+            Sensors::Exponent7 => "Usage_Sen_Exponent7",
+            Sensors::Exponent8 => "Usage_Sen_Exponent8",
+            Sensors::Exponent9 => "Usage_Sen_Exponent9",
+            Sensors::ExponentA => "Usage_Sen_ExponentA",
+            Sensors::ExponentB => "Usage_Sen_ExponentB",
+            Sensors::ExponentC => "Usage_Sen_ExponentC",
+            Sensors::ExponentD => "Usage_Sen_ExponentD",
+            Sensors::ExponentE => "Usage_Sen_ExponentE",
+            Sensors::ExponentF => "Usage_Sen_ExponentF",
+            Sensors::DevicePositionUnknown => "Usage_Sen_DevicePositionUnknown",
+            Sensors::DevicePositionUnchanged => "Usage_Sen_DevicePositionUnchanged",
+            Sensors::DevicePositionOnDesk => "Usage_Sen_DevicePositionOnDesk",
+            Sensors::DevicePositionInHand => "Usage_Sen_DevicePositionInHand",
+            Sensors::DevicePositionMovinginBag => "Usage_Sen_DevicePositionMovinginBag",
+            Sensors::DevicePositionStationaryinBag => "Usage_Sen_DevicePositionStationaryinBag",
+            Sensors::StepTypeUnknown => "Usage_Sen_StepTypeUnknown",
+            Sensors::StepTypeWalking => "Usage_Sen_StepTypeWalking",
+            Sensors::StepTypeRunning => "Usage_Sen_StepTypeRunning",
+            Sensors::GestureStateUnknown => "Usage_Sen_GestureStateUnknown",
+            Sensors::GestureStateStarted => "Usage_Sen_GestureStateStarted",
+            Sensors::GestureStateCompleted => "Usage_Sen_GestureStateCompleted",
+            Sensors::GestureStateCancelled => "Usage_Sen_GestureStateCancelled",
+            Sensors::HingeFoldContributingPanelUnknown => {
+                "Usage_Sen_HingeFoldContributingPanelUnknown"
+            }
+            Sensors::HingeFoldContributingPanelPanel1 => {
+                "Usage_Sen_HingeFoldContributingPanelPanel1"
+            }
+            Sensors::HingeFoldContributingPanelPanel2 => {
+                "Usage_Sen_HingeFoldContributingPanelPanel2"
+            }
+            Sensors::HingeFoldContributingPanelBoth => "Usage_Sen_HingeFoldContributingPanelBoth",
+            Sensors::HingeFoldTypeUnknown => "Usage_Sen_HingeFoldTypeUnknown",
+            Sensors::HingeFoldTypeIncreasing => "Usage_Sen_HingeFoldTypeIncreasing",
+            Sensors::HingeFoldTypeDecreasing => "Usage_Sen_HingeFoldTypeDecreasing",
+            Sensors::HumanPresenceDetectionTypeVendorDefinedNonBiometric => {
+                "Usage_Sen_HumanPresenceDetectionTypeVendorDefinedNonBiometric"
+            }
+            Sensors::HumanPresenceDetectionTypeVendorDefinedBiometric => {
+                "Usage_Sen_HumanPresenceDetectionTypeVendorDefinedBiometric"
+            }
+            Sensors::HumanPresenceDetectionTypeFacialBiometric => {
+                "Usage_Sen_HumanPresenceDetectionTypeFacialBiometric"
+            }
+            Sensors::HumanPresenceDetectionTypeAudioBiometric => {
+                "Usage_Sen_HumanPresenceDetectionTypeAudioBiometric"
+            }
+            Sensors::ModifierChangeSensitivityAbsolute => {
+                "Usage_Sen_ModifierChangeSensitivityAbsolute"
+            }
+            Sensors::ModifierMaximum => "Usage_Sen_ModifierMaximum",
+            Sensors::ModifierMinimum => "Usage_Sen_ModifierMinimum",
+            Sensors::ModifierAccuracy => "Usage_Sen_ModifierAccuracy",
+            Sensors::ModifierResolution => "Usage_Sen_ModifierResolution",
+            Sensors::ModifierThresholdHigh => "Usage_Sen_ModifierThresholdHigh",
+            Sensors::ModifierThresholdLow => "Usage_Sen_ModifierThresholdLow",
+            Sensors::ModifierCalibrationOffset => "Usage_Sen_ModifierCalibrationOffset",
+            Sensors::ModifierCalibrationMultiplier => "Usage_Sen_ModifierCalibrationMultiplier",
+            Sensors::ModifierReportInterval => "Usage_Sen_ModifierReportInterval",
+            Sensors::ModifierFrequencyMax => "Usage_Sen_ModifierFrequencyMax",
+            Sensors::ModifierPeriodMax => "Usage_Sen_ModifierPeriodMax",
+            Sensors::ModifierChangeSensitivityPercentofRange => {
+                "Usage_Sen_ModifierChangeSensitivityPercentofRange"
+            }
+            Sensors::ModifierChangeSensitivityPercentRelative => {
+                "Usage_Sen_ModifierChangeSensitivityPercentRelative"
+            }
+            Sensors::ModifierVendorReserved => "Usage_Sen_ModifierVendorReserved",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for Sensors {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -14170,6 +16766,43 @@ impl MedicalInstrument {
     }
 }
 
+impl CName for MedicalInstrument {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            MedicalInstrument::MedicalUltrasound => "Usage_MI_MedicalUltrasound",
+            MedicalInstrument::VCRAcquisition => "Usage_MI_VCRAcquisition",
+            MedicalInstrument::FreezeThaw => "Usage_MI_FreezeThaw",
+            MedicalInstrument::ClipStore => "Usage_MI_ClipStore",
+            MedicalInstrument::Update => "Usage_MI_Update",
+            MedicalInstrument::Next => "Usage_MI_Next",
+            MedicalInstrument::Save => "Usage_MI_Save",
+            MedicalInstrument::Print => "Usage_MI_Print",
+            MedicalInstrument::MicrophoneEnable => "Usage_MI_MicrophoneEnable",
+            MedicalInstrument::Cine => "Usage_MI_Cine",
+            MedicalInstrument::TransmitPower => "Usage_MI_TransmitPower",
+            MedicalInstrument::Volume => "Usage_MI_Volume",
+            MedicalInstrument::Focus => "Usage_MI_Focus",
+            MedicalInstrument::Depth => "Usage_MI_Depth",
+            MedicalInstrument::SoftStepPrimary => "Usage_MI_SoftStepPrimary",
+            MedicalInstrument::SoftStepSecondary => "Usage_MI_SoftStepSecondary",
+            MedicalInstrument::DepthGainCompensation => "Usage_MI_DepthGainCompensation",
+            MedicalInstrument::ZoomSelect => "Usage_MI_ZoomSelect",
+            MedicalInstrument::ZoomAdjust => "Usage_MI_ZoomAdjust",
+            MedicalInstrument::SpectralDopplerModeSelect => "Usage_MI_SpectralDopplerModeSelect",
+            MedicalInstrument::SpectralDopplerAdjust => "Usage_MI_SpectralDopplerAdjust",
+            MedicalInstrument::ColorDopplerModeSelect => "Usage_MI_ColorDopplerModeSelect",
+            MedicalInstrument::ColorDopplerAdjust => "Usage_MI_ColorDopplerAdjust",
+            MedicalInstrument::MotionModeSelect => "Usage_MI_MotionModeSelect",
+            MedicalInstrument::MotionModeAdjust => "Usage_MI_MotionModeAdjust",
+            MedicalInstrument::TwoDModeSelect => "Usage_MI_TwoDModeSelect",
+            MedicalInstrument::TwoDModeAdjust => "Usage_MI_TwoDModeAdjust",
+            MedicalInstrument::SoftControlSelect => "Usage_MI_SoftControlSelect",
+            MedicalInstrument::SoftControlAdjust => "Usage_MI_SoftControlAdjust",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for MedicalInstrument {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -14482,6 +17115,57 @@ impl BrailleDisplay {
             BrailleDisplay::BrailleRockerUp => "Braille Rocker Up",
             BrailleDisplay::BrailleRockerDown => "Braille Rocker Down",
             BrailleDisplay::BrailleRockerPress => "Braille Rocker Press",
+        }
+        .into()
+    }
+}
+
+impl CName for BrailleDisplay {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            BrailleDisplay::BrailleDisplay => "Usage_BD_BrailleDisplay",
+            BrailleDisplay::BrailleRow => "Usage_BD_BrailleRow",
+            BrailleDisplay::EightDotBrailleCell => "Usage_BD_EightDotBrailleCell",
+            BrailleDisplay::SixDotBrailleCell => "Usage_BD_SixDotBrailleCell",
+            BrailleDisplay::NumberofBrailleCells => "Usage_BD_NumberofBrailleCells",
+            BrailleDisplay::ScreenReaderControl => "Usage_BD_ScreenReaderControl",
+            BrailleDisplay::ScreenReaderIdentifier => "Usage_BD_ScreenReaderIdentifier",
+            BrailleDisplay::RouterSet1 => "Usage_BD_RouterSet1",
+            BrailleDisplay::RouterSet2 => "Usage_BD_RouterSet2",
+            BrailleDisplay::RouterSet3 => "Usage_BD_RouterSet3",
+            BrailleDisplay::RouterKey => "Usage_BD_RouterKey",
+            BrailleDisplay::RowRouterKey => "Usage_BD_RowRouterKey",
+            BrailleDisplay::BrailleButtons => "Usage_BD_BrailleButtons",
+            BrailleDisplay::BrailleKeyboardDot1 => "Usage_BD_BrailleKeyboardDot1",
+            BrailleDisplay::BrailleKeyboardDot2 => "Usage_BD_BrailleKeyboardDot2",
+            BrailleDisplay::BrailleKeyboardDot3 => "Usage_BD_BrailleKeyboardDot3",
+            BrailleDisplay::BrailleKeyboardDot4 => "Usage_BD_BrailleKeyboardDot4",
+            BrailleDisplay::BrailleKeyboardDot5 => "Usage_BD_BrailleKeyboardDot5",
+            BrailleDisplay::BrailleKeyboardDot6 => "Usage_BD_BrailleKeyboardDot6",
+            BrailleDisplay::BrailleKeyboardDot7 => "Usage_BD_BrailleKeyboardDot7",
+            BrailleDisplay::BrailleKeyboardDot8 => "Usage_BD_BrailleKeyboardDot8",
+            BrailleDisplay::BrailleKeyboardSpace => "Usage_BD_BrailleKeyboardSpace",
+            BrailleDisplay::BrailleKeyboardLeftSpace => "Usage_BD_BrailleKeyboardLeftSpace",
+            BrailleDisplay::BrailleKeyboardRightSpace => "Usage_BD_BrailleKeyboardRightSpace",
+            BrailleDisplay::BrailleFaceControls => "Usage_BD_BrailleFaceControls",
+            BrailleDisplay::BrailleLeftControls => "Usage_BD_BrailleLeftControls",
+            BrailleDisplay::BrailleRightControls => "Usage_BD_BrailleRightControls",
+            BrailleDisplay::BrailleTopControls => "Usage_BD_BrailleTopControls",
+            BrailleDisplay::BrailleJoystickCenter => "Usage_BD_BrailleJoystickCenter",
+            BrailleDisplay::BrailleJoystickUp => "Usage_BD_BrailleJoystickUp",
+            BrailleDisplay::BrailleJoystickDown => "Usage_BD_BrailleJoystickDown",
+            BrailleDisplay::BrailleJoystickLeft => "Usage_BD_BrailleJoystickLeft",
+            BrailleDisplay::BrailleJoystickRight => "Usage_BD_BrailleJoystickRight",
+            BrailleDisplay::BrailleDPadCenter => "Usage_BD_BrailleDPadCenter",
+            BrailleDisplay::BrailleDPadUp => "Usage_BD_BrailleDPadUp",
+            BrailleDisplay::BrailleDPadDown => "Usage_BD_BrailleDPadDown",
+            BrailleDisplay::BrailleDPadLeft => "Usage_BD_BrailleDPadLeft",
+            BrailleDisplay::BrailleDPadRight => "Usage_BD_BrailleDPadRight",
+            BrailleDisplay::BraillePanLeft => "Usage_BD_BraillePanLeft",
+            BrailleDisplay::BraillePanRight => "Usage_BD_BraillePanRight",
+            BrailleDisplay::BrailleRockerUp => "Usage_BD_BrailleRockerUp",
+            BrailleDisplay::BrailleRockerDown => "Usage_BD_BrailleRockerDown",
+            BrailleDisplay::BrailleRockerPress => "Usage_BD_BrailleRockerPress",
         }
         .into()
     }
@@ -14810,6 +17494,63 @@ impl LightingAndIllumination {
     }
 }
 
+impl CName for LightingAndIllumination {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            LightingAndIllumination::LampArray => "Usage_LAI_LampArray",
+            LightingAndIllumination::LampArrayAttributesReport => {
+                "Usage_LAI_LampArrayAttributesReport"
+            }
+            LightingAndIllumination::LampCount => "Usage_LAI_LampCount",
+            LightingAndIllumination::BoundingBoxWidthInMicrometers => {
+                "Usage_LAI_BoundingBoxWidthInMicrometers"
+            }
+            LightingAndIllumination::BoundingBoxHeightInMicrometers => {
+                "Usage_LAI_BoundingBoxHeightInMicrometers"
+            }
+            LightingAndIllumination::BoundingBoxDepthInMicrometers => {
+                "Usage_LAI_BoundingBoxDepthInMicrometers"
+            }
+            LightingAndIllumination::LampArrayKind => "Usage_LAI_LampArrayKind",
+            LightingAndIllumination::MinUpdateIntervalInMicroseconds => {
+                "Usage_LAI_MinUpdateIntervalInMicroseconds"
+            }
+            LightingAndIllumination::LampAttributesRequestReport => {
+                "Usage_LAI_LampAttributesRequestReport"
+            }
+            LightingAndIllumination::LampId => "Usage_LAI_LampId",
+            LightingAndIllumination::LampAttributesResponseReport => {
+                "Usage_LAI_LampAttributesResponseReport"
+            }
+            LightingAndIllumination::PositionXInMicrometers => "Usage_LAI_PositionXInMicrometers",
+            LightingAndIllumination::PositionYInMicrometers => "Usage_LAI_PositionYInMicrometers",
+            LightingAndIllumination::PositionZInMicrometers => "Usage_LAI_PositionZInMicrometers",
+            LightingAndIllumination::LampPurposes => "Usage_LAI_LampPurposes",
+            LightingAndIllumination::UpdateLatencyInMicroseconds => {
+                "Usage_LAI_UpdateLatencyInMicroseconds"
+            }
+            LightingAndIllumination::RedLevelCount => "Usage_LAI_RedLevelCount",
+            LightingAndIllumination::GreenLevelCount => "Usage_LAI_GreenLevelCount",
+            LightingAndIllumination::BlueLevelCount => "Usage_LAI_BlueLevelCount",
+            LightingAndIllumination::IntensityLevelCount => "Usage_LAI_IntensityLevelCount",
+            LightingAndIllumination::IsProgrammable => "Usage_LAI_IsProgrammable",
+            LightingAndIllumination::InputBinding => "Usage_LAI_InputBinding",
+            LightingAndIllumination::LampMultiUpdateReport => "Usage_LAI_LampMultiUpdateReport",
+            LightingAndIllumination::RedUpdateChannel => "Usage_LAI_RedUpdateChannel",
+            LightingAndIllumination::GreenUpdateChannel => "Usage_LAI_GreenUpdateChannel",
+            LightingAndIllumination::BlueUpdateChannel => "Usage_LAI_BlueUpdateChannel",
+            LightingAndIllumination::IntensityUpdateChannel => "Usage_LAI_IntensityUpdateChannel",
+            LightingAndIllumination::LampUpdateFlags => "Usage_LAI_LampUpdateFlags",
+            LightingAndIllumination::LampRangeUpdateReport => "Usage_LAI_LampRangeUpdateReport",
+            LightingAndIllumination::LampIdStart => "Usage_LAI_LampIdStart",
+            LightingAndIllumination::LampIdEnd => "Usage_LAI_LampIdEnd",
+            LightingAndIllumination::LampArrayControlReport => "Usage_LAI_LampArrayControlReport",
+            LightingAndIllumination::AutonomousMode => "Usage_LAI_AutonomousMode",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for LightingAndIllumination {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -15018,6 +17759,18 @@ impl Monitor {
     }
 }
 
+impl CName for Monitor {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            Monitor::MonitorControl => "Usage_Mon_MonitorControl",
+            Monitor::EDIDInformation => "Usage_Mon_EDIDInformation",
+            Monitor::VDIFInformation => "Usage_Mon_VDIFInformation",
+            Monitor::VESAVersion => "Usage_Mon_VESAVersion",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for Monitor {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -15145,6 +17898,17 @@ impl fmt::Display for MonitorEnumerated {
             MonitorEnumerated::MonitorEnumerated { enumerate } => format!("Enumerate {enumerate}"),
         };
         write!(f, "{name}")
+    }
+}
+
+impl CName for MonitorEnumerated {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+            MonitorEnumerated::MonitorEnumerated { enumerate } => {
+                format!("Usage_i{size} ({enumerate})")
+            }
+        }
+        .into()
     }
 }
 
@@ -15413,6 +18177,85 @@ impl VESAVirtualControls {
             VESAVirtualControls::Settings => "Settings",
             VESAVirtualControls::OnScreenDisplay => "On Screen Display",
             VESAVirtualControls::StereoMode => "Stereo Mode",
+        }
+        .into()
+    }
+}
+
+impl CName for VESAVirtualControls {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            VESAVirtualControls::Degauss => "Usage_VESAVC_Degauss",
+            VESAVirtualControls::Brightness => "Usage_VESAVC_Brightness",
+            VESAVirtualControls::Contrast => "Usage_VESAVC_Contrast",
+            VESAVirtualControls::RedVideoGain => "Usage_VESAVC_RedVideoGain",
+            VESAVirtualControls::GreenVideoGain => "Usage_VESAVC_GreenVideoGain",
+            VESAVirtualControls::BlueVideoGain => "Usage_VESAVC_BlueVideoGain",
+            VESAVirtualControls::Focus => "Usage_VESAVC_Focus",
+            VESAVirtualControls::HorizontalPosition => "Usage_VESAVC_HorizontalPosition",
+            VESAVirtualControls::HorizontalSize => "Usage_VESAVC_HorizontalSize",
+            VESAVirtualControls::HorizontalPincushion => "Usage_VESAVC_HorizontalPincushion",
+            VESAVirtualControls::HorizontalPincushionBalance => {
+                "Usage_VESAVC_HorizontalPincushionBalance"
+            }
+            VESAVirtualControls::HorizontalMisconvergence => {
+                "Usage_VESAVC_HorizontalMisconvergence"
+            }
+            VESAVirtualControls::HorizontalLinearity => "Usage_VESAVC_HorizontalLinearity",
+            VESAVirtualControls::HorizontalLinearityBalance => {
+                "Usage_VESAVC_HorizontalLinearityBalance"
+            }
+            VESAVirtualControls::VerticalPosition => "Usage_VESAVC_VerticalPosition",
+            VESAVirtualControls::VerticalSize => "Usage_VESAVC_VerticalSize",
+            VESAVirtualControls::VerticalPincushion => "Usage_VESAVC_VerticalPincushion",
+            VESAVirtualControls::VerticalPincushionBalance => {
+                "Usage_VESAVC_VerticalPincushionBalance"
+            }
+            VESAVirtualControls::VerticalMisconvergence => "Usage_VESAVC_VerticalMisconvergence",
+            VESAVirtualControls::VerticalLinearity => "Usage_VESAVC_VerticalLinearity",
+            VESAVirtualControls::VerticalLinearityBalance => {
+                "Usage_VESAVC_VerticalLinearityBalance"
+            }
+            VESAVirtualControls::ParallelogramDistortionKeyBalance => {
+                "Usage_VESAVC_ParallelogramDistortionKeyBalance"
+            }
+            VESAVirtualControls::TrapezoidalDistortionKey => {
+                "Usage_VESAVC_TrapezoidalDistortionKey"
+            }
+            VESAVirtualControls::TiltRotation => "Usage_VESAVC_TiltRotation",
+            VESAVirtualControls::TopCornerDistortionControl => {
+                "Usage_VESAVC_TopCornerDistortionControl"
+            }
+            VESAVirtualControls::TopCornerDistortionBalance => {
+                "Usage_VESAVC_TopCornerDistortionBalance"
+            }
+            VESAVirtualControls::BottomCornerDistortionControl => {
+                "Usage_VESAVC_BottomCornerDistortionControl"
+            }
+            VESAVirtualControls::BottomCornerDistortionBalance => {
+                "Usage_VESAVC_BottomCornerDistortionBalance"
+            }
+            VESAVirtualControls::HorizontalMoiré => "Usage_VESAVC_HorizontalMoiré",
+            VESAVirtualControls::VerticalMoiré => "Usage_VESAVC_VerticalMoiré",
+            VESAVirtualControls::InputLevelSelect => "Usage_VESAVC_InputLevelSelect",
+            VESAVirtualControls::InputSourceSelect => "Usage_VESAVC_InputSourceSelect",
+            VESAVirtualControls::RedVideoBlackLevel => "Usage_VESAVC_RedVideoBlackLevel",
+            VESAVirtualControls::GreenVideoBlackLevel => "Usage_VESAVC_GreenVideoBlackLevel",
+            VESAVirtualControls::BlueVideoBlackLevel => "Usage_VESAVC_BlueVideoBlackLevel",
+            VESAVirtualControls::AutoSizeCenter => "Usage_VESAVC_AutoSizeCenter",
+            VESAVirtualControls::PolarityHorizontalSynchronization => {
+                "Usage_VESAVC_PolarityHorizontalSynchronization"
+            }
+            VESAVirtualControls::PolarityVerticalSynchronization => {
+                "Usage_VESAVC_PolarityVerticalSynchronization"
+            }
+            VESAVirtualControls::SynchronizationType => "Usage_VESAVC_SynchronizationType",
+            VESAVirtualControls::ScreenOrientation => "Usage_VESAVC_ScreenOrientation",
+            VESAVirtualControls::HorizontalFrequency => "Usage_VESAVC_HorizontalFrequency",
+            VESAVirtualControls::VerticalFrequency => "Usage_VESAVC_VerticalFrequency",
+            VESAVirtualControls::Settings => "Usage_VESAVC_Settings",
+            VESAVirtualControls::OnScreenDisplay => "Usage_VESAVC_OnScreenDisplay",
+            VESAVirtualControls::StereoMode => "Usage_VESAVC_StereoMode",
         }
         .into()
     }
@@ -15864,6 +18707,91 @@ impl Power {
             Power::iManufacturer => "iManufacturer",
             Power::iProduct => "iProduct",
             Power::iSerialNumber => "iSerialNumber",
+        }
+        .into()
+    }
+}
+
+impl CName for Power {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            Power::iName => "Usage_Pow_iName",
+            Power::PresentStatus => "Usage_Pow_PresentStatus",
+            Power::ChangedStatus => "Usage_Pow_ChangedStatus",
+            Power::UPS => "Usage_Pow_UPS",
+            Power::PowerSupply => "Usage_Pow_PowerSupply",
+            Power::BatterySystem => "Usage_Pow_BatterySystem",
+            Power::BatterySystemId => "Usage_Pow_BatterySystemId",
+            Power::Battery => "Usage_Pow_Battery",
+            Power::BatteryId => "Usage_Pow_BatteryId",
+            Power::Charger => "Usage_Pow_Charger",
+            Power::ChargerId => "Usage_Pow_ChargerId",
+            Power::PowerConverter => "Usage_Pow_PowerConverter",
+            Power::PowerConverterId => "Usage_Pow_PowerConverterId",
+            Power::OutletSystem => "Usage_Pow_OutletSystem",
+            Power::OutletSystemId => "Usage_Pow_OutletSystemId",
+            Power::Input => "Usage_Pow_Input",
+            Power::InputId => "Usage_Pow_InputId",
+            Power::Output => "Usage_Pow_Output",
+            Power::OutputId => "Usage_Pow_OutputId",
+            Power::Flow => "Usage_Pow_Flow",
+            Power::FlowId => "Usage_Pow_FlowId",
+            Power::Outlet => "Usage_Pow_Outlet",
+            Power::OutletId => "Usage_Pow_OutletId",
+            Power::Gang => "Usage_Pow_Gang",
+            Power::GangId => "Usage_Pow_GangId",
+            Power::PowerSummary => "Usage_Pow_PowerSummary",
+            Power::PowerSummaryId => "Usage_Pow_PowerSummaryId",
+            Power::Voltage => "Usage_Pow_Voltage",
+            Power::Current => "Usage_Pow_Current",
+            Power::Frequency => "Usage_Pow_Frequency",
+            Power::ApparentPower => "Usage_Pow_ApparentPower",
+            Power::ActivePower => "Usage_Pow_ActivePower",
+            Power::PercentLoad => "Usage_Pow_PercentLoad",
+            Power::Temperature => "Usage_Pow_Temperature",
+            Power::Humidity => "Usage_Pow_Humidity",
+            Power::BadCount => "Usage_Pow_BadCount",
+            Power::ConfigVoltage => "Usage_Pow_ConfigVoltage",
+            Power::ConfigCurrent => "Usage_Pow_ConfigCurrent",
+            Power::ConfigFrequency => "Usage_Pow_ConfigFrequency",
+            Power::ConfigApparentPower => "Usage_Pow_ConfigApparentPower",
+            Power::ConfigActivePower => "Usage_Pow_ConfigActivePower",
+            Power::ConfigPercentLoad => "Usage_Pow_ConfigPercentLoad",
+            Power::ConfigTemperature => "Usage_Pow_ConfigTemperature",
+            Power::ConfigHumidity => "Usage_Pow_ConfigHumidity",
+            Power::SwitchOnControl => "Usage_Pow_SwitchOnControl",
+            Power::SwitchOffControl => "Usage_Pow_SwitchOffControl",
+            Power::ToggleControl => "Usage_Pow_ToggleControl",
+            Power::LowVoltageTransfer => "Usage_Pow_LowVoltageTransfer",
+            Power::HighVoltageTransfer => "Usage_Pow_HighVoltageTransfer",
+            Power::DelayBeforeReboot => "Usage_Pow_DelayBeforeReboot",
+            Power::DelayBeforeStartup => "Usage_Pow_DelayBeforeStartup",
+            Power::DelayBeforeShutdown => "Usage_Pow_DelayBeforeShutdown",
+            Power::Test => "Usage_Pow_Test",
+            Power::ModuleReset => "Usage_Pow_ModuleReset",
+            Power::AudibleAlarmControl => "Usage_Pow_AudibleAlarmControl",
+            Power::Present => "Usage_Pow_Present",
+            Power::Good => "Usage_Pow_Good",
+            Power::InternalFailure => "Usage_Pow_InternalFailure",
+            Power::VoltagOutOfRange => "Usage_Pow_VoltagOutOfRange",
+            Power::FrequencyOutOfRange => "Usage_Pow_FrequencyOutOfRange",
+            Power::Overload => "Usage_Pow_Overload",
+            Power::OverCharged => "Usage_Pow_OverCharged",
+            Power::OverTemperature => "Usage_Pow_OverTemperature",
+            Power::ShutdownRequested => "Usage_Pow_ShutdownRequested",
+            Power::ShutdownImminent => "Usage_Pow_ShutdownImminent",
+            Power::SwitchOnOff => "Usage_Pow_SwitchOnOff",
+            Power::Switchable => "Usage_Pow_Switchable",
+            Power::Used => "Usage_Pow_Used",
+            Power::Boost => "Usage_Pow_Boost",
+            Power::Buck => "Usage_Pow_Buck",
+            Power::Initialized => "Usage_Pow_Initialized",
+            Power::Tested => "Usage_Pow_Tested",
+            Power::AwaitingPower => "Usage_Pow_AwaitingPower",
+            Power::CommunicationLost => "Usage_Pow_CommunicationLost",
+            Power::iManufacturer => "Usage_Pow_iManufacturer",
+            Power::iProduct => "Usage_Pow_iProduct",
+            Power::iSerialNumber => "Usage_Pow_iSerialNumber",
         }
         .into()
     }
@@ -16421,6 +19349,105 @@ impl BatterySystem {
             BatterySystem::ChargerSpec => "Charger Spec",
             BatterySystem::Level2 => "Level 2",
             BatterySystem::Level3 => "Level 3",
+        }
+        .into()
+    }
+}
+
+impl CName for BatterySystem {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            BatterySystem::SmartBatteryBatteryMode => "Usage_BS_SmartBatteryBatteryMode",
+            BatterySystem::SmartBatteryBatteryStatus => "Usage_BS_SmartBatteryBatteryStatus",
+            BatterySystem::SmartBatteryAlarmWarning => "Usage_BS_SmartBatteryAlarmWarning",
+            BatterySystem::SmartBatteryChargerMode => "Usage_BS_SmartBatteryChargerMode",
+            BatterySystem::SmartBatteryChargerStatus => "Usage_BS_SmartBatteryChargerStatus",
+            BatterySystem::SmartBatteryChargerSpecInfo => "Usage_BS_SmartBatteryChargerSpecInfo",
+            BatterySystem::SmartBatterySelectorState => "Usage_BS_SmartBatterySelectorState",
+            BatterySystem::SmartBatterySelectorPresets => "Usage_BS_SmartBatterySelectorPresets",
+            BatterySystem::SmartBatterySelectorInfo => "Usage_BS_SmartBatterySelectorInfo",
+            BatterySystem::OptionalMfgFunction1 => "Usage_BS_OptionalMfgFunction1",
+            BatterySystem::OptionalMfgFunction2 => "Usage_BS_OptionalMfgFunction2",
+            BatterySystem::OptionalMfgFunction3 => "Usage_BS_OptionalMfgFunction3",
+            BatterySystem::OptionalMfgFunction4 => "Usage_BS_OptionalMfgFunction4",
+            BatterySystem::OptionalMfgFunction5 => "Usage_BS_OptionalMfgFunction5",
+            BatterySystem::ConnectionToSMBus => "Usage_BS_ConnectionToSMBus",
+            BatterySystem::OutputConnection => "Usage_BS_OutputConnection",
+            BatterySystem::ChargerConnection => "Usage_BS_ChargerConnection",
+            BatterySystem::BatteryInsertion => "Usage_BS_BatteryInsertion",
+            BatterySystem::UseNext => "Usage_BS_UseNext",
+            BatterySystem::OKToUse => "Usage_BS_OKToUse",
+            BatterySystem::BatterySupported => "Usage_BS_BatterySupported",
+            BatterySystem::SelectorRevision => "Usage_BS_SelectorRevision",
+            BatterySystem::ChargingIndicator => "Usage_BS_ChargingIndicator",
+            BatterySystem::ManufacturerAccess => "Usage_BS_ManufacturerAccess",
+            BatterySystem::RemainingCapacityLimit => "Usage_BS_RemainingCapacityLimit",
+            BatterySystem::RemainingTimeLimit => "Usage_BS_RemainingTimeLimit",
+            BatterySystem::AtRate => "Usage_BS_AtRate",
+            BatterySystem::CapacityMode => "Usage_BS_CapacityMode",
+            BatterySystem::BroadcastToCharger => "Usage_BS_BroadcastToCharger",
+            BatterySystem::PrimaryBattery => "Usage_BS_PrimaryBattery",
+            BatterySystem::ChargeController => "Usage_BS_ChargeController",
+            BatterySystem::TerminateCharge => "Usage_BS_TerminateCharge",
+            BatterySystem::TerminateDischarge => "Usage_BS_TerminateDischarge",
+            BatterySystem::BelowRemainingCapacityLimit => "Usage_BS_BelowRemainingCapacityLimit",
+            BatterySystem::RemainingTimeLimitExpired => "Usage_BS_RemainingTimeLimitExpired",
+            BatterySystem::Charging => "Usage_BS_Charging",
+            BatterySystem::Discharging => "Usage_BS_Discharging",
+            BatterySystem::FullyCharged => "Usage_BS_FullyCharged",
+            BatterySystem::FullyDischarged => "Usage_BS_FullyDischarged",
+            BatterySystem::ConditioningFlag => "Usage_BS_ConditioningFlag",
+            BatterySystem::AtRateOK => "Usage_BS_AtRateOK",
+            BatterySystem::SmartBatteryErrorCode => "Usage_BS_SmartBatteryErrorCode",
+            BatterySystem::NeedReplacement => "Usage_BS_NeedReplacement",
+            BatterySystem::AtRateTimeToFull => "Usage_BS_AtRateTimeToFull",
+            BatterySystem::AtRateTimeToEmpty => "Usage_BS_AtRateTimeToEmpty",
+            BatterySystem::AverageCurrent => "Usage_BS_AverageCurrent",
+            BatterySystem::MaxError => "Usage_BS_MaxError",
+            BatterySystem::RelativeStateOfCharge => "Usage_BS_RelativeStateOfCharge",
+            BatterySystem::AbsoluteStateOfCharge => "Usage_BS_AbsoluteStateOfCharge",
+            BatterySystem::RemainingCapacity => "Usage_BS_RemainingCapacity",
+            BatterySystem::FullChargeCapacity => "Usage_BS_FullChargeCapacity",
+            BatterySystem::RunTimeToEmpty => "Usage_BS_RunTimeToEmpty",
+            BatterySystem::AverageTimeToEmpty => "Usage_BS_AverageTimeToEmpty",
+            BatterySystem::AverageTimeToFull => "Usage_BS_AverageTimeToFull",
+            BatterySystem::CycleCount => "Usage_BS_CycleCount",
+            BatterySystem::BatteryPackModelLevel => "Usage_BS_BatteryPackModelLevel",
+            BatterySystem::InternalChargeController => "Usage_BS_InternalChargeController",
+            BatterySystem::PrimaryBatterySupport => "Usage_BS_PrimaryBatterySupport",
+            BatterySystem::DesignCapacity => "Usage_BS_DesignCapacity",
+            BatterySystem::SpecificationInfo => "Usage_BS_SpecificationInfo",
+            BatterySystem::ManufactureDate => "Usage_BS_ManufactureDate",
+            BatterySystem::SerialNumber => "Usage_BS_SerialNumber",
+            BatterySystem::iManufacturerName => "Usage_BS_iManufacturerName",
+            BatterySystem::iDeviceName => "Usage_BS_iDeviceName",
+            BatterySystem::iDeviceChemistry => "Usage_BS_iDeviceChemistry",
+            BatterySystem::ManufacturerData => "Usage_BS_ManufacturerData",
+            BatterySystem::Rechargable => "Usage_BS_Rechargable",
+            BatterySystem::WarningCapacityLimit => "Usage_BS_WarningCapacityLimit",
+            BatterySystem::CapacityGranularity1 => "Usage_BS_CapacityGranularity1",
+            BatterySystem::CapacityGranularity2 => "Usage_BS_CapacityGranularity2",
+            BatterySystem::iOEMInformation => "Usage_BS_iOEMInformation",
+            BatterySystem::InhibitCharge => "Usage_BS_InhibitCharge",
+            BatterySystem::EnablePolling => "Usage_BS_EnablePolling",
+            BatterySystem::ResetToZero => "Usage_BS_ResetToZero",
+            BatterySystem::ACPresent => "Usage_BS_ACPresent",
+            BatterySystem::BatteryPresent => "Usage_BS_BatteryPresent",
+            BatterySystem::PowerFail => "Usage_BS_PowerFail",
+            BatterySystem::AlarmInhibited => "Usage_BS_AlarmInhibited",
+            BatterySystem::ThermistorUnderRange => "Usage_BS_ThermistorUnderRange",
+            BatterySystem::ThermistorHot => "Usage_BS_ThermistorHot",
+            BatterySystem::ThermistorCold => "Usage_BS_ThermistorCold",
+            BatterySystem::ThermistorOverRange => "Usage_BS_ThermistorOverRange",
+            BatterySystem::VoltageOutOfRange => "Usage_BS_VoltageOutOfRange",
+            BatterySystem::CurrentOutOfRange => "Usage_BS_CurrentOutOfRange",
+            BatterySystem::CurrentNotRegulated => "Usage_BS_CurrentNotRegulated",
+            BatterySystem::VoltageNotRegulated => "Usage_BS_VoltageNotRegulated",
+            BatterySystem::MasterMode => "Usage_BS_MasterMode",
+            BatterySystem::ChargerSelectorSupport => "Usage_BS_ChargerSelectorSupport",
+            BatterySystem::ChargerSpec => "Usage_BS_ChargerSpec",
+            BatterySystem::Level2 => "Usage_BS_Level2",
+            BatterySystem::Level3 => "Usage_BS_Level3",
         }
         .into()
     }
@@ -17334,6 +20361,242 @@ impl BarcodeScanner {
     }
 }
 
+impl CName for BarcodeScanner {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            BarcodeScanner::BarcodeBadgeReader => "Usage_BS_BarcodeBadgeReader",
+            BarcodeScanner::BarcodeScanner => "Usage_BS_BarcodeScanner",
+            BarcodeScanner::DumbBarCodeScanner => "Usage_BS_DumbBarCodeScanner",
+            BarcodeScanner::CordlessScannerBase => "Usage_BS_CordlessScannerBase",
+            BarcodeScanner::BarCodeScannerCradle => "Usage_BS_BarCodeScannerCradle",
+            BarcodeScanner::AttributeReport => "Usage_BS_AttributeReport",
+            BarcodeScanner::SettingsReport => "Usage_BS_SettingsReport",
+            BarcodeScanner::ScannedDataReport => "Usage_BS_ScannedDataReport",
+            BarcodeScanner::RawScannedDataReport => "Usage_BS_RawScannedDataReport",
+            BarcodeScanner::TriggerReport => "Usage_BS_TriggerReport",
+            BarcodeScanner::StatusReport => "Usage_BS_StatusReport",
+            BarcodeScanner::UPCEANControlReport => "Usage_BS_UPCEANControlReport",
+            BarcodeScanner::EAN23LabelControlReport => "Usage_BS_EAN23LabelControlReport",
+            BarcodeScanner::Code39ControlReport => "Usage_BS_Code39ControlReport",
+            BarcodeScanner::Interleaved2of5ControlReport => "Usage_BS_Interleaved2of5ControlReport",
+            BarcodeScanner::Standard2of5ControlReport => "Usage_BS_Standard2of5ControlReport",
+            BarcodeScanner::MSIPlesseyControlReport => "Usage_BS_MSIPlesseyControlReport",
+            BarcodeScanner::CodabarControlReport => "Usage_BS_CodabarControlReport",
+            BarcodeScanner::Code128ControlReport => "Usage_BS_Code128ControlReport",
+            BarcodeScanner::Misc1DControlReport => "Usage_BS_Misc1DControlReport",
+            BarcodeScanner::TwoDControlReport => "Usage_BS_TwoDControlReport",
+            BarcodeScanner::AimingPointerMode => "Usage_BS_AimingPointerMode",
+            BarcodeScanner::BarCodePresentSensor => "Usage_BS_BarCodePresentSensor",
+            BarcodeScanner::Class1ALaser => "Usage_BS_Class1ALaser",
+            BarcodeScanner::Class2Laser => "Usage_BS_Class2Laser",
+            BarcodeScanner::HeaterPresent => "Usage_BS_HeaterPresent",
+            BarcodeScanner::ContactScanner => "Usage_BS_ContactScanner",
+            BarcodeScanner::ElectronicArticleSurveillanceNotification => {
+                "Usage_BS_ElectronicArticleSurveillanceNotification"
+            }
+            BarcodeScanner::ConstantElectronicArticleSurveillance => {
+                "Usage_BS_ConstantElectronicArticleSurveillance"
+            }
+            BarcodeScanner::ErrorIndication => "Usage_BS_ErrorIndication",
+            BarcodeScanner::FixedBeeper => "Usage_BS_FixedBeeper",
+            BarcodeScanner::GoodDecodeIndication => "Usage_BS_GoodDecodeIndication",
+            BarcodeScanner::HandsFreeScanning => "Usage_BS_HandsFreeScanning",
+            BarcodeScanner::IntrinsicallySafe => "Usage_BS_IntrinsicallySafe",
+            BarcodeScanner::KlasseEinsLaser => "Usage_BS_KlasseEinsLaser",
+            BarcodeScanner::LongRangeScanner => "Usage_BS_LongRangeScanner",
+            BarcodeScanner::MirrorSpeedControl => "Usage_BS_MirrorSpeedControl",
+            BarcodeScanner::NotOnFileIndication => "Usage_BS_NotOnFileIndication",
+            BarcodeScanner::ProgrammableBeeper => "Usage_BS_ProgrammableBeeper",
+            BarcodeScanner::Triggerless => "Usage_BS_Triggerless",
+            BarcodeScanner::Wand => "Usage_BS_Wand",
+            BarcodeScanner::WaterResistant => "Usage_BS_WaterResistant",
+            BarcodeScanner::MultiRangeScanner => "Usage_BS_MultiRangeScanner",
+            BarcodeScanner::ProximitySensor => "Usage_BS_ProximitySensor",
+            BarcodeScanner::FragmentDecoding => "Usage_BS_FragmentDecoding",
+            BarcodeScanner::ScannerReadConfidence => "Usage_BS_ScannerReadConfidence",
+            BarcodeScanner::DataPrefix => "Usage_BS_DataPrefix",
+            BarcodeScanner::PrefixAIMI => "Usage_BS_PrefixAIMI",
+            BarcodeScanner::PrefixNone => "Usage_BS_PrefixNone",
+            BarcodeScanner::PrefixProprietary => "Usage_BS_PrefixProprietary",
+            BarcodeScanner::ActiveTime => "Usage_BS_ActiveTime",
+            BarcodeScanner::AimingLaserPattern => "Usage_BS_AimingLaserPattern",
+            BarcodeScanner::BarCodePresent => "Usage_BS_BarCodePresent",
+            BarcodeScanner::BeeperState => "Usage_BS_BeeperState",
+            BarcodeScanner::LaserOnTime => "Usage_BS_LaserOnTime",
+            BarcodeScanner::LaserState => "Usage_BS_LaserState",
+            BarcodeScanner::LockoutTime => "Usage_BS_LockoutTime",
+            BarcodeScanner::MotorState => "Usage_BS_MotorState",
+            BarcodeScanner::MotorTimeout => "Usage_BS_MotorTimeout",
+            BarcodeScanner::PowerOnResetScanner => "Usage_BS_PowerOnResetScanner",
+            BarcodeScanner::PreventReadofBarcodes => "Usage_BS_PreventReadofBarcodes",
+            BarcodeScanner::InitiateBarcodeRead => "Usage_BS_InitiateBarcodeRead",
+            BarcodeScanner::TriggerState => "Usage_BS_TriggerState",
+            BarcodeScanner::TriggerMode => "Usage_BS_TriggerMode",
+            BarcodeScanner::TriggerModeBlinkingLaserOn => "Usage_BS_TriggerModeBlinkingLaserOn",
+            BarcodeScanner::TriggerModeContinuousLaserOn => "Usage_BS_TriggerModeContinuousLaserOn",
+            BarcodeScanner::TriggerModeLaseronwhilePulled => {
+                "Usage_BS_TriggerModeLaseronwhilePulled"
+            }
+            BarcodeScanner::TriggerModeLaserstaysonafterrelease => {
+                "Usage_BS_TriggerModeLaserstaysonafterrelease"
+            }
+            BarcodeScanner::CommitParameterstoNVM => "Usage_BS_CommitParameterstoNVM",
+            BarcodeScanner::ParameterScanning => "Usage_BS_ParameterScanning",
+            BarcodeScanner::ParametersChanged => "Usage_BS_ParametersChanged",
+            BarcodeScanner::Setparameterdefaultvalues => "Usage_BS_Setparameterdefaultvalues",
+            BarcodeScanner::ScannerInCradle => "Usage_BS_ScannerInCradle",
+            BarcodeScanner::ScannerInRange => "Usage_BS_ScannerInRange",
+            BarcodeScanner::AimDuration => "Usage_BS_AimDuration",
+            BarcodeScanner::GoodReadLampDuration => "Usage_BS_GoodReadLampDuration",
+            BarcodeScanner::GoodReadLampIntensity => "Usage_BS_GoodReadLampIntensity",
+            BarcodeScanner::GoodReadLED => "Usage_BS_GoodReadLED",
+            BarcodeScanner::GoodReadToneFrequency => "Usage_BS_GoodReadToneFrequency",
+            BarcodeScanner::GoodReadToneLength => "Usage_BS_GoodReadToneLength",
+            BarcodeScanner::GoodReadToneVolume => "Usage_BS_GoodReadToneVolume",
+            BarcodeScanner::NoReadMessage => "Usage_BS_NoReadMessage",
+            BarcodeScanner::NotonFileVolume => "Usage_BS_NotonFileVolume",
+            BarcodeScanner::PowerupBeep => "Usage_BS_PowerupBeep",
+            BarcodeScanner::SoundErrorBeep => "Usage_BS_SoundErrorBeep",
+            BarcodeScanner::SoundGoodReadBeep => "Usage_BS_SoundGoodReadBeep",
+            BarcodeScanner::SoundNotOnFileBeep => "Usage_BS_SoundNotOnFileBeep",
+            BarcodeScanner::GoodReadWhentoWrite => "Usage_BS_GoodReadWhentoWrite",
+            BarcodeScanner::GRWTIAfterDecode => "Usage_BS_GRWTIAfterDecode",
+            BarcodeScanner::GRWTIBeepLampaftertransmit => "Usage_BS_GRWTIBeepLampaftertransmit",
+            BarcodeScanner::GRWTINoBeepLampuseatall => "Usage_BS_GRWTINoBeepLampuseatall",
+            BarcodeScanner::BooklandEAN => "Usage_BS_BooklandEAN",
+            BarcodeScanner::ConvertEAN8to13Type => "Usage_BS_ConvertEAN8to13Type",
+            BarcodeScanner::ConvertUPCAtoEAN13 => "Usage_BS_ConvertUPCAtoEAN13",
+            BarcodeScanner::ConvertUPCEtoA => "Usage_BS_ConvertUPCEtoA",
+            BarcodeScanner::EAN13 => "Usage_BS_EAN13",
+            BarcodeScanner::EAN8 => "Usage_BS_EAN8",
+            BarcodeScanner::EAN99128Mandatory => "Usage_BS_EAN99128Mandatory",
+            BarcodeScanner::EAN99P5128Optional => "Usage_BS_EAN99P5128Optional",
+            BarcodeScanner::EnableEANTwoLabel => "Usage_BS_EnableEANTwoLabel",
+            BarcodeScanner::UPCEAN => "Usage_BS_UPCEAN",
+            BarcodeScanner::UPCEANCouponCode => "Usage_BS_UPCEANCouponCode",
+            BarcodeScanner::UPCEANPeriodicals => "Usage_BS_UPCEANPeriodicals",
+            BarcodeScanner::UPCA => "Usage_BS_UPCA",
+            BarcodeScanner::UPCAwith128Mandatory => "Usage_BS_UPCAwith128Mandatory",
+            BarcodeScanner::UPCAwith128Optional => "Usage_BS_UPCAwith128Optional",
+            BarcodeScanner::UPCAwithP5Optional => "Usage_BS_UPCAwithP5Optional",
+            BarcodeScanner::UPCE => "Usage_BS_UPCE",
+            BarcodeScanner::UPCE1 => "Usage_BS_UPCE1",
+            BarcodeScanner::Periodical => "Usage_BS_Periodical",
+            BarcodeScanner::PeriodicalAutoDiscriminatePlus2 => {
+                "Usage_BS_PeriodicalAutoDiscriminatePlus2"
+            }
+            BarcodeScanner::PeriodicalOnlyDecodewithPlus2 => {
+                "Usage_BS_PeriodicalOnlyDecodewithPlus2"
+            }
+            BarcodeScanner::PeriodicalIgnorePlus2 => "Usage_BS_PeriodicalIgnorePlus2",
+            BarcodeScanner::PeriodicalAutoDiscriminatePlus5 => {
+                "Usage_BS_PeriodicalAutoDiscriminatePlus5"
+            }
+            BarcodeScanner::PeriodicalOnlyDecodewithPlus5 => {
+                "Usage_BS_PeriodicalOnlyDecodewithPlus5"
+            }
+            BarcodeScanner::PeriodicalIgnorePlus5 => "Usage_BS_PeriodicalIgnorePlus5",
+            BarcodeScanner::Check => "Usage_BS_Check",
+            BarcodeScanner::CheckDisablePrice => "Usage_BS_CheckDisablePrice",
+            BarcodeScanner::CheckEnable4digitPrice => "Usage_BS_CheckEnable4digitPrice",
+            BarcodeScanner::CheckEnable5digitPrice => "Usage_BS_CheckEnable5digitPrice",
+            BarcodeScanner::CheckEnableEuropean4digitPrice => {
+                "Usage_BS_CheckEnableEuropean4digitPrice"
+            }
+            BarcodeScanner::CheckEnableEuropean5digitPrice => {
+                "Usage_BS_CheckEnableEuropean5digitPrice"
+            }
+            BarcodeScanner::EANTwoLabel => "Usage_BS_EANTwoLabel",
+            BarcodeScanner::EANThreeLabel => "Usage_BS_EANThreeLabel",
+            BarcodeScanner::EAN8FlagDigit1 => "Usage_BS_EAN8FlagDigit1",
+            BarcodeScanner::EAN8FlagDigit2 => "Usage_BS_EAN8FlagDigit2",
+            BarcodeScanner::EAN8FlagDigit3 => "Usage_BS_EAN8FlagDigit3",
+            BarcodeScanner::EAN13FlagDigit1 => "Usage_BS_EAN13FlagDigit1",
+            BarcodeScanner::EAN13FlagDigit2 => "Usage_BS_EAN13FlagDigit2",
+            BarcodeScanner::EAN13FlagDigit3 => "Usage_BS_EAN13FlagDigit3",
+            BarcodeScanner::AddEAN23LabelDefinition => "Usage_BS_AddEAN23LabelDefinition",
+            BarcodeScanner::ClearallEAN23LabelDefinitions => {
+                "Usage_BS_ClearallEAN23LabelDefinitions"
+            }
+            BarcodeScanner::Codabar => "Usage_BS_Codabar",
+            BarcodeScanner::Code128 => "Usage_BS_Code128",
+            BarcodeScanner::Code39 => "Usage_BS_Code39",
+            BarcodeScanner::Code93 => "Usage_BS_Code93",
+            BarcodeScanner::FullASCIIConversion => "Usage_BS_FullASCIIConversion",
+            BarcodeScanner::Interleaved2of5 => "Usage_BS_Interleaved2of5",
+            BarcodeScanner::ItalianPharmacyCode => "Usage_BS_ItalianPharmacyCode",
+            BarcodeScanner::MSIPlessey => "Usage_BS_MSIPlessey",
+            BarcodeScanner::Standard2of5IATA => "Usage_BS_Standard2of5IATA",
+            BarcodeScanner::Standard2of5 => "Usage_BS_Standard2of5",
+            BarcodeScanner::TransmitStartStop => "Usage_BS_TransmitStartStop",
+            BarcodeScanner::TriOptic => "Usage_BS_TriOptic",
+            BarcodeScanner::UCCEAN128 => "Usage_BS_UCCEAN128",
+            BarcodeScanner::CheckDigit => "Usage_BS_CheckDigit",
+            BarcodeScanner::CheckDigitDisable => "Usage_BS_CheckDigitDisable",
+            BarcodeScanner::CheckDigitEnableInterleaved2of5OPCC => {
+                "Usage_BS_CheckDigitEnableInterleaved2of5OPCC"
+            }
+            BarcodeScanner::CheckDigitEnableInterleaved2of5USS => {
+                "Usage_BS_CheckDigitEnableInterleaved2of5USS"
+            }
+            BarcodeScanner::CheckDigitEnableStandard2of5OPCC => {
+                "Usage_BS_CheckDigitEnableStandard2of5OPCC"
+            }
+            BarcodeScanner::CheckDigitEnableStandard2of5USS => {
+                "Usage_BS_CheckDigitEnableStandard2of5USS"
+            }
+            BarcodeScanner::CheckDigitEnableOneMSIPlessey => {
+                "Usage_BS_CheckDigitEnableOneMSIPlessey"
+            }
+            BarcodeScanner::CheckDigitEnableTwoMSIPlessey => {
+                "Usage_BS_CheckDigitEnableTwoMSIPlessey"
+            }
+            BarcodeScanner::CheckDigitCodabarEnable => "Usage_BS_CheckDigitCodabarEnable",
+            BarcodeScanner::CheckDigitCode39Enable => "Usage_BS_CheckDigitCode39Enable",
+            BarcodeScanner::TransmitCheckDigit => "Usage_BS_TransmitCheckDigit",
+            BarcodeScanner::DisableCheckDigitTransmit => "Usage_BS_DisableCheckDigitTransmit",
+            BarcodeScanner::EnableCheckDigitTransmit => "Usage_BS_EnableCheckDigitTransmit",
+            BarcodeScanner::SymbologyIdentifier1 => "Usage_BS_SymbologyIdentifier1",
+            BarcodeScanner::SymbologyIdentifier2 => "Usage_BS_SymbologyIdentifier2",
+            BarcodeScanner::SymbologyIdentifier3 => "Usage_BS_SymbologyIdentifier3",
+            BarcodeScanner::DecodedData => "Usage_BS_DecodedData",
+            BarcodeScanner::DecodeDataContinued => "Usage_BS_DecodeDataContinued",
+            BarcodeScanner::BarSpaceData => "Usage_BS_BarSpaceData",
+            BarcodeScanner::ScannerDataAccuracy => "Usage_BS_ScannerDataAccuracy",
+            BarcodeScanner::RawDataPolarity => "Usage_BS_RawDataPolarity",
+            BarcodeScanner::PolarityInvertedBarCode => "Usage_BS_PolarityInvertedBarCode",
+            BarcodeScanner::PolarityNormalBarCode => "Usage_BS_PolarityNormalBarCode",
+            BarcodeScanner::MinimumLengthtoDecode => "Usage_BS_MinimumLengthtoDecode",
+            BarcodeScanner::MaximumLengthtoDecode => "Usage_BS_MaximumLengthtoDecode",
+            BarcodeScanner::DiscreteLengthtoDecode1 => "Usage_BS_DiscreteLengthtoDecode1",
+            BarcodeScanner::DiscreteLengthtoDecode2 => "Usage_BS_DiscreteLengthtoDecode2",
+            BarcodeScanner::DataLengthMethod => "Usage_BS_DataLengthMethod",
+            BarcodeScanner::DLMethodReadany => "Usage_BS_DLMethodReadany",
+            BarcodeScanner::DLMethodCheckinRange => "Usage_BS_DLMethodCheckinRange",
+            BarcodeScanner::DLMethodCheckforDiscrete => "Usage_BS_DLMethodCheckforDiscrete",
+            BarcodeScanner::AztecCode => "Usage_BS_AztecCode",
+            BarcodeScanner::BC412 => "Usage_BS_BC412",
+            BarcodeScanner::ChannelCode => "Usage_BS_ChannelCode",
+            BarcodeScanner::Code16 => "Usage_BS_Code16",
+            BarcodeScanner::Code32 => "Usage_BS_Code32",
+            BarcodeScanner::Code49 => "Usage_BS_Code49",
+            BarcodeScanner::CodeOne => "Usage_BS_CodeOne",
+            BarcodeScanner::Colorcode => "Usage_BS_Colorcode",
+            BarcodeScanner::DataMatrix => "Usage_BS_DataMatrix",
+            BarcodeScanner::MaxiCode => "Usage_BS_MaxiCode",
+            BarcodeScanner::MicroPDF => "Usage_BS_MicroPDF",
+            BarcodeScanner::PDF417 => "Usage_BS_PDF417",
+            BarcodeScanner::PosiCode => "Usage_BS_PosiCode",
+            BarcodeScanner::QRCode => "Usage_BS_QRCode",
+            BarcodeScanner::SuperCode => "Usage_BS_SuperCode",
+            BarcodeScanner::UltraCode => "Usage_BS_UltraCode",
+            BarcodeScanner::USD5SlugCode => "Usage_BS_USD5SlugCode",
+            BarcodeScanner::VeriCode => "Usage_BS_VeriCode",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for BarcodeScanner {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -17990,6 +21253,60 @@ impl Scales {
     }
 }
 
+impl CName for Scales {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            Scales::Scales => "Usage_Sca_Scales",
+            Scales::ScaleDevice => "Usage_Sca_ScaleDevice",
+            Scales::ScaleClass => "Usage_Sca_ScaleClass",
+            Scales::ScaleClassIMetric => "Usage_Sca_ScaleClassIMetric",
+            Scales::ScaleClassIIMetric => "Usage_Sca_ScaleClassIIMetric",
+            Scales::ScaleClassIIIMetric => "Usage_Sca_ScaleClassIIIMetric",
+            Scales::ScaleClassIIILMetric => "Usage_Sca_ScaleClassIIILMetric",
+            Scales::ScaleClassIVMetric => "Usage_Sca_ScaleClassIVMetric",
+            Scales::ScaleClassIIIEnglish => "Usage_Sca_ScaleClassIIIEnglish",
+            Scales::ScaleClassIIILEnglish => "Usage_Sca_ScaleClassIIILEnglish",
+            Scales::ScaleClassIVEnglish => "Usage_Sca_ScaleClassIVEnglish",
+            Scales::ScaleClassGeneric => "Usage_Sca_ScaleClassGeneric",
+            Scales::ScaleAttributeReport => "Usage_Sca_ScaleAttributeReport",
+            Scales::ScaleControlReport => "Usage_Sca_ScaleControlReport",
+            Scales::ScaleDataReport => "Usage_Sca_ScaleDataReport",
+            Scales::ScaleStatusReport => "Usage_Sca_ScaleStatusReport",
+            Scales::ScaleWeightLimitReport => "Usage_Sca_ScaleWeightLimitReport",
+            Scales::ScaleStatisticsReport => "Usage_Sca_ScaleStatisticsReport",
+            Scales::DataWeight => "Usage_Sca_DataWeight",
+            Scales::DataScaling => "Usage_Sca_DataScaling",
+            Scales::WeightUnit => "Usage_Sca_WeightUnit",
+            Scales::WeightUnitMilligram => "Usage_Sca_WeightUnitMilligram",
+            Scales::WeightUnitGram => "Usage_Sca_WeightUnitGram",
+            Scales::WeightUnitKilogram => "Usage_Sca_WeightUnitKilogram",
+            Scales::WeightUnitCarats => "Usage_Sca_WeightUnitCarats",
+            Scales::WeightUnitTaels => "Usage_Sca_WeightUnitTaels",
+            Scales::WeightUnitGrains => "Usage_Sca_WeightUnitGrains",
+            Scales::WeightUnitPennyweights => "Usage_Sca_WeightUnitPennyweights",
+            Scales::WeightUnitMetricTon => "Usage_Sca_WeightUnitMetricTon",
+            Scales::WeightUnitAvoirTon => "Usage_Sca_WeightUnitAvoirTon",
+            Scales::WeightUnitTroyOunce => "Usage_Sca_WeightUnitTroyOunce",
+            Scales::WeightUnitOunce => "Usage_Sca_WeightUnitOunce",
+            Scales::WeightUnitPound => "Usage_Sca_WeightUnitPound",
+            Scales::CalibrationCount => "Usage_Sca_CalibrationCount",
+            Scales::ReZeroCount => "Usage_Sca_ReZeroCount",
+            Scales::ScaleStatus => "Usage_Sca_ScaleStatus",
+            Scales::ScaleStatusFault => "Usage_Sca_ScaleStatusFault",
+            Scales::ScaleStatusStableatCenterofZero => "Usage_Sca_ScaleStatusStableatCenterofZero",
+            Scales::ScaleStatusInMotion => "Usage_Sca_ScaleStatusInMotion",
+            Scales::ScaleStatusWeightStable => "Usage_Sca_ScaleStatusWeightStable",
+            Scales::ScaleStatusUnderZero => "Usage_Sca_ScaleStatusUnderZero",
+            Scales::ScaleStatusOverWeightLimit => "Usage_Sca_ScaleStatusOverWeightLimit",
+            Scales::ScaleStatusRequiresCalibration => "Usage_Sca_ScaleStatusRequiresCalibration",
+            Scales::ScaleStatusRequiresRezeroing => "Usage_Sca_ScaleStatusRequiresRezeroing",
+            Scales::ZeroScale => "Usage_Sca_ZeroScale",
+            Scales::EnforcedZeroReturn => "Usage_Sca_EnforcedZeroReturn",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for Scales {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -18242,6 +21559,24 @@ impl MagneticStripeReader {
     }
 }
 
+impl CName for MagneticStripeReader {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            MagneticStripeReader::MSRDeviceReadOnly => "Usage_MSR_MSRDeviceReadOnly",
+            MagneticStripeReader::Track1Length => "Usage_MSR_Track1Length",
+            MagneticStripeReader::Track2Length => "Usage_MSR_Track2Length",
+            MagneticStripeReader::Track3Length => "Usage_MSR_Track3Length",
+            MagneticStripeReader::TrackJISLength => "Usage_MSR_TrackJISLength",
+            MagneticStripeReader::TrackData => "Usage_MSR_TrackData",
+            MagneticStripeReader::Track1Data => "Usage_MSR_Track1Data",
+            MagneticStripeReader::Track2Data => "Usage_MSR_Track2Data",
+            MagneticStripeReader::Track3Data => "Usage_MSR_Track3Data",
+            MagneticStripeReader::TrackJISData => "Usage_MSR_TrackJISData",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for MagneticStripeReader {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -18393,6 +21728,16 @@ impl CameraControl {
         match self {
             CameraControl::CameraAutofocus => "Camera Auto-focus",
             CameraControl::CameraShutter => "Camera Shutter",
+        }
+        .into()
+    }
+}
+
+impl CName for CameraControl {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            CameraControl::CameraAutofocus => "Usage_CC_CameraAutofocus",
+            CameraControl::CameraShutter => "Usage_CC_CameraShutter",
         }
         .into()
     }
@@ -18613,6 +21958,43 @@ impl Arcade {
     }
 }
 
+impl CName for Arcade {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            Arcade::GeneralPurposeIOCard => "Usage_Arc_GeneralPurposeIOCard",
+            Arcade::CoinDoor => "Usage_Arc_CoinDoor",
+            Arcade::WatchdogTimer => "Usage_Arc_WatchdogTimer",
+            Arcade::GeneralPurposeAnalogInputState => "Usage_Arc_GeneralPurposeAnalogInputState",
+            Arcade::GeneralPurposeDigitalInputState => "Usage_Arc_GeneralPurposeDigitalInputState",
+            Arcade::GeneralPurposeOpticalInputState => "Usage_Arc_GeneralPurposeOpticalInputState",
+            Arcade::GeneralPurposeDigitalOutputState => {
+                "Usage_Arc_GeneralPurposeDigitalOutputState"
+            }
+            Arcade::NumberofCoinDoors => "Usage_Arc_NumberofCoinDoors",
+            Arcade::CoinDrawerDropCount => "Usage_Arc_CoinDrawerDropCount",
+            Arcade::CoinDrawerStart => "Usage_Arc_CoinDrawerStart",
+            Arcade::CoinDrawerService => "Usage_Arc_CoinDrawerService",
+            Arcade::CoinDrawerTilt => "Usage_Arc_CoinDrawerTilt",
+            Arcade::CoinDoorTest => "Usage_Arc_CoinDoorTest",
+            Arcade::CoinDoorLockout => "Usage_Arc_CoinDoorLockout",
+            Arcade::WatchdogTimeout => "Usage_Arc_WatchdogTimeout",
+            Arcade::WatchdogAction => "Usage_Arc_WatchdogAction",
+            Arcade::WatchdogReboot => "Usage_Arc_WatchdogReboot",
+            Arcade::WatchdogRestart => "Usage_Arc_WatchdogRestart",
+            Arcade::AlarmInput => "Usage_Arc_AlarmInput",
+            Arcade::CoinDoorCounter => "Usage_Arc_CoinDoorCounter",
+            Arcade::IODirectionMapping => "Usage_Arc_IODirectionMapping",
+            Arcade::SetIODirectionMapping => "Usage_Arc_SetIODirectionMapping",
+            Arcade::ExtendedOpticalInputState => "Usage_Arc_ExtendedOpticalInputState",
+            Arcade::PinPadInputState => "Usage_Arc_PinPadInputState",
+            Arcade::PinPadStatus => "Usage_Arc_PinPadStatus",
+            Arcade::PinPadOutput => "Usage_Arc_PinPadOutput",
+            Arcade::PinPadCommand => "Usage_Arc_PinPadCommand",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for Arcade {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -18801,6 +22183,17 @@ impl FIDOAlliance {
             FIDOAlliance::U2FAuthenticatorDevice => "U2F Authenticator Device",
             FIDOAlliance::InputReportData => "Input Report Data",
             FIDOAlliance::OutputReportData => "Output Report Data",
+        }
+        .into()
+    }
+}
+
+impl CName for FIDOAlliance {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            FIDOAlliance::U2FAuthenticatorDevice => "Usage_FIDOA_U2FAuthenticatorDevice",
+            FIDOAlliance::InputReportData => "Usage_FIDOA_InputReportData",
+            FIDOAlliance::OutputReportData => "Usage_FIDOA_OutputReportData",
         }
         .into()
     }
@@ -19260,6 +22653,120 @@ impl Wacom {
     }
 }
 
+impl CName for Wacom {
+    fn c_name(&self, _size: usize) -> String {
+        match self {
+            Wacom::WacomDigitizer => "Usage_Wac_WacomDigitizer",
+            Wacom::WacomPen => "Usage_Wac_WacomPen",
+            Wacom::LightPen => "Usage_Wac_LightPen",
+            Wacom::TouchScreen => "Usage_Wac_TouchScreen",
+            Wacom::TouchPad => "Usage_Wac_TouchPad",
+            Wacom::WhiteBoard => "Usage_Wac_WhiteBoard",
+            Wacom::CoordinateMeasuringMachine => "Usage_Wac_CoordinateMeasuringMachine",
+            Wacom::ThreeDDigitizer => "Usage_Wac_ThreeDDigitizer",
+            Wacom::StereoPlotter => "Usage_Wac_StereoPlotter",
+            Wacom::ArticulatedArm => "Usage_Wac_ArticulatedArm",
+            Wacom::Armature => "Usage_Wac_Armature",
+            Wacom::MultiplePointDigitizer => "Usage_Wac_MultiplePointDigitizer",
+            Wacom::FreeSpaceWand => "Usage_Wac_FreeSpaceWand",
+            Wacom::DeviceConfiguration => "Usage_Wac_DeviceConfiguration",
+            Wacom::Stylus => "Usage_Wac_Stylus",
+            Wacom::Puck => "Usage_Wac_Puck",
+            Wacom::Finger => "Usage_Wac_Finger",
+            Wacom::DeviceSettings => "Usage_Wac_DeviceSettings",
+            Wacom::TipPressure => "Usage_Wac_TipPressure",
+            Wacom::BarrelPressure => "Usage_Wac_BarrelPressure",
+            Wacom::InRange => "Usage_Wac_InRange",
+            Wacom::Touch => "Usage_Wac_Touch",
+            Wacom::Untouch => "Usage_Wac_Untouch",
+            Wacom::Tap => "Usage_Wac_Tap",
+            Wacom::WacomSense => "Usage_Wac_WacomSense",
+            Wacom::DataValid => "Usage_Wac_DataValid",
+            Wacom::TransducerIndex => "Usage_Wac_TransducerIndex",
+            Wacom::WacomDigitizerFnKeys => "Usage_Wac_WacomDigitizerFnKeys",
+            Wacom::ProgramChangeKeys => "Usage_Wac_ProgramChangeKeys",
+            Wacom::BatteryStrength => "Usage_Wac_BatteryStrength",
+            Wacom::Invert => "Usage_Wac_Invert",
+            Wacom::XTilt => "Usage_Wac_XTilt",
+            Wacom::YTilt => "Usage_Wac_YTilt",
+            Wacom::Azimuth => "Usage_Wac_Azimuth",
+            Wacom::Altitude => "Usage_Wac_Altitude",
+            Wacom::Twist => "Usage_Wac_Twist",
+            Wacom::TipSwitch => "Usage_Wac_TipSwitch",
+            Wacom::SecondaryTipSwitch => "Usage_Wac_SecondaryTipSwitch",
+            Wacom::BarrelSwitch => "Usage_Wac_BarrelSwitch",
+            Wacom::Eraser => "Usage_Wac_Eraser",
+            Wacom::TabletPick => "Usage_Wac_TabletPick",
+            Wacom::Confidence => "Usage_Wac_Confidence",
+            Wacom::Width => "Usage_Wac_Width",
+            Wacom::Height => "Usage_Wac_Height",
+            Wacom::ContactId => "Usage_Wac_ContactId",
+            Wacom::Inputmode => "Usage_Wac_Inputmode",
+            Wacom::DeviceIndex => "Usage_Wac_DeviceIndex",
+            Wacom::ContactCount => "Usage_Wac_ContactCount",
+            Wacom::ContactMax => "Usage_Wac_ContactMax",
+            Wacom::ScanTime => "Usage_Wac_ScanTime",
+            Wacom::SurfaceSwitch => "Usage_Wac_SurfaceSwitch",
+            Wacom::ButtonSwitch => "Usage_Wac_ButtonSwitch",
+            Wacom::ButtonType => "Usage_Wac_ButtonType",
+            Wacom::SecondaryBarrelSwitch => "Usage_Wac_SecondaryBarrelSwitch",
+            Wacom::TransducerSerialNumber => "Usage_Wac_TransducerSerialNumber",
+            Wacom::WacomSerialHi => "Usage_Wac_WacomSerialHi",
+            Wacom::PreferredColorisLocked => "Usage_Wac_PreferredColorisLocked",
+            Wacom::PreferredLineWidth => "Usage_Wac_PreferredLineWidth",
+            Wacom::PreferredLineWidthisLocked => "Usage_Wac_PreferredLineWidthisLocked",
+            Wacom::PreferredLineStyle => "Usage_Wac_PreferredLineStyle",
+            Wacom::PreferredLineStyleisLocked => "Usage_Wac_PreferredLineStyleisLocked",
+            Wacom::Ink => "Usage_Wac_Ink",
+            Wacom::Pencil => "Usage_Wac_Pencil",
+            Wacom::Highlighter => "Usage_Wac_Highlighter",
+            Wacom::ChiselMarker => "Usage_Wac_ChiselMarker",
+            Wacom::Brush => "Usage_Wac_Brush",
+            Wacom::WacomToolType => "Usage_Wac_WacomToolType",
+            Wacom::DigitizerDiagnostic => "Usage_Wac_DigitizerDiagnostic",
+            Wacom::DigitizerError => "Usage_Wac_DigitizerError",
+            Wacom::ErrNormalStatus => "Usage_Wac_ErrNormalStatus",
+            Wacom::ErrTransducersExceeded => "Usage_Wac_ErrTransducersExceeded",
+            Wacom::ErrFullTransFeaturesUnavail => "Usage_Wac_ErrFullTransFeaturesUnavail",
+            Wacom::ErrChargeLow => "Usage_Wac_ErrChargeLow",
+            Wacom::X => "Usage_Wac_X",
+            Wacom::Y => "Usage_Wac_Y",
+            Wacom::WacomDistance => "Usage_Wac_WacomDistance",
+            Wacom::WacomTouchStrip => "Usage_Wac_WacomTouchStrip",
+            Wacom::WacomTouchStrip2 => "Usage_Wac_WacomTouchStrip2",
+            Wacom::WacomTouchRing => "Usage_Wac_WacomTouchRing",
+            Wacom::WacomTouchRingStatus => "Usage_Wac_WacomTouchRingStatus",
+            Wacom::WacomAccelerometerX => "Usage_Wac_WacomAccelerometerX",
+            Wacom::WacomAccelerometerY => "Usage_Wac_WacomAccelerometerY",
+            Wacom::WacomAccelerometerZ => "Usage_Wac_WacomAccelerometerZ",
+            Wacom::WacomBatteryCharging => "Usage_Wac_WacomBatteryCharging",
+            Wacom::WacomBatteryLevel => "Usage_Wac_WacomBatteryLevel",
+            Wacom::WacomTouchOnOff => "Usage_Wac_WacomTouchOnOff",
+            Wacom::WacomExpressKey00 => "Usage_Wac_WacomExpressKey00",
+            Wacom::WacomExpressKeyCap00 => "Usage_Wac_WacomExpressKeyCap00",
+            Wacom::WacomModeChange => "Usage_Wac_WacomModeChange",
+            Wacom::WacomButtonDesktopCenter => "Usage_Wac_WacomButtonDesktopCenter",
+            Wacom::WacomButtonOnScreenKeyboard => "Usage_Wac_WacomButtonOnScreenKeyboard",
+            Wacom::WacomButtonDisplaySetting => "Usage_Wac_WacomButtonDisplaySetting",
+            Wacom::WacomButtonTouchOnOff => "Usage_Wac_WacomButtonTouchOnOff",
+            Wacom::WacomButtonHome => "Usage_Wac_WacomButtonHome",
+            Wacom::WacomButtonUp => "Usage_Wac_WacomButtonUp",
+            Wacom::WacomButtonDown => "Usage_Wac_WacomButtonDown",
+            Wacom::WacomButtonLeft => "Usage_Wac_WacomButtonLeft",
+            Wacom::WacomButtonRight => "Usage_Wac_WacomButtonRight",
+            Wacom::WacomButtonCenter => "Usage_Wac_WacomButtonCenter",
+            Wacom::WacomFingerWheel => "Usage_Wac_WacomFingerWheel",
+            Wacom::WacomOffsetLeft => "Usage_Wac_WacomOffsetLeft",
+            Wacom::WacomOffsetTop => "Usage_Wac_WacomOffsetTop",
+            Wacom::WacomOffsetRight => "Usage_Wac_WacomOffsetRight",
+            Wacom::WacomOffsetBottom => "Usage_Wac_WacomOffsetBottom",
+            Wacom::WacomDataMode => "Usage_Wac_WacomDataMode",
+            Wacom::WacomDigitizerInfo => "Usage_Wac_WacomDigitizerInfo",
+        }
+        .into()
+    }
+}
+
 impl fmt::Display for Wacom {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -19597,6 +23104,22 @@ impl fmt::Display for ReservedUsagePage {
     }
 }
 
+impl CName for ReservedUsagePage {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+            ReservedUsagePage::ReservedUsage { usage_id } => {
+                if *usage_id <= 0xff {
+                    format!("Usage_i{size} (0x{usage_id:02x})")
+                } else {
+                    format!("Usage_i{size} (0x{usage_id:04x})")
+                }
+            }
+            _ => "0".to_string(),
+        }
+        .into()
+    }
+}
+
 impl From<&ReservedUsagePage> for u16 {
     fn from(v: &ReservedUsagePage) -> u16 {
         match v {
@@ -19627,6 +23150,22 @@ impl fmt::Display for VendorDefinedPage {
             }
         };
         write!(f, "{name}")
+    }
+}
+
+impl CName for VendorDefinedPage {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+            VendorDefinedPage::VendorUsage { usage_id } => {
+                if *usage_id <= 0xff {
+                    format!("Usage_i{size} (0x{usage_id:02x})")
+                } else {
+                    format!("Usage_i{size} (0x{usage_id:04x})")
+                }
+            }
+            _ => "0".to_string(),
+        }
+        .into()
     }
 }
 
@@ -19974,6 +23513,50 @@ impl fmt::Display for Usage {
             Usage::VendorDefinedPage { usage, .. } => format!("{usage}"),
         };
         write!(f, "{name}")
+    }
+}
+
+impl CName for Usage {
+    fn c_name(&self, size: usize) -> String {
+        match self {
+            Usage::GenericDesktop { usage } => format!("{}", usage.c_name(size)),
+            Usage::SimulationControls { usage } => format!("{}", usage.c_name(size)),
+            Usage::VRControls { usage } => format!("{}", usage.c_name(size)),
+            Usage::SportControls { usage } => format!("{}", usage.c_name(size)),
+            Usage::GameControls { usage } => format!("{}", usage.c_name(size)),
+            Usage::GenericDeviceControls { usage } => format!("{}", usage.c_name(size)),
+            Usage::KeyboardKeypad { usage } => format!("{}", usage.c_name(size)),
+            Usage::LED { usage } => format!("{}", usage.c_name(size)),
+            Usage::Button { usage } => format!("{}", usage.c_name(size)),
+            Usage::Ordinal { usage } => format!("{}", usage.c_name(size)),
+            Usage::TelephonyDevice { usage } => format!("{}", usage.c_name(size)),
+            Usage::Consumer { usage } => format!("{}", usage.c_name(size)),
+            Usage::Digitizers { usage } => format!("{}", usage.c_name(size)),
+            Usage::Haptics { usage } => format!("{}", usage.c_name(size)),
+            Usage::PhysicalInputDevice { usage } => format!("{}", usage.c_name(size)),
+            Usage::Unicode { usage } => format!("{}", usage.c_name(size)),
+            Usage::SoC { usage } => format!("{}", usage.c_name(size)),
+            Usage::EyeandHeadTrackers { usage } => format!("{}", usage.c_name(size)),
+            Usage::AuxiliaryDisplay { usage } => format!("{}", usage.c_name(size)),
+            Usage::Sensors { usage } => format!("{}", usage.c_name(size)),
+            Usage::MedicalInstrument { usage } => format!("{}", usage.c_name(size)),
+            Usage::BrailleDisplay { usage } => format!("{}", usage.c_name(size)),
+            Usage::LightingAndIllumination { usage } => format!("{}", usage.c_name(size)),
+            Usage::Monitor { usage } => format!("{}", usage.c_name(size)),
+            Usage::MonitorEnumerated { usage } => format!("{}", usage.c_name(size)),
+            Usage::VESAVirtualControls { usage } => format!("{}", usage.c_name(size)),
+            Usage::Power { usage } => format!("{}", usage.c_name(size)),
+            Usage::BatterySystem { usage } => format!("{}", usage.c_name(size)),
+            Usage::BarcodeScanner { usage } => format!("{}", usage.c_name(size)),
+            Usage::Scales { usage } => format!("{}", usage.c_name(size)),
+            Usage::MagneticStripeReader { usage } => format!("{}", usage.c_name(size)),
+            Usage::CameraControl { usage } => format!("{}", usage.c_name(size)),
+            Usage::Arcade { usage } => format!("{}", usage.c_name(size)),
+            Usage::FIDOAlliance { usage } => format!("{}", usage.c_name(size)),
+            Usage::Wacom { usage } => format!("{}", usage.c_name(size)),
+            Usage::ReservedUsagePage { usage, .. } => format!("{}", usage.c_name(size)),
+            Usage::VendorDefinedPage { usage, .. } => format!("{}", usage.c_name(size)),
+        }
     }
 }
 
