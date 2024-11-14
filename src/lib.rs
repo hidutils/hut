@@ -24,6 +24,7 @@
 //! - "Usage" refers to the 32-bit value comprising a Usage Page and a Usage.
 //!
 //! # Converting between types
+//!
 //! All defined [Usages](Usage) and [UsagePages](UsagePage) implement [AsUsagePage] and (if applicable) [AsUsage] as
 //! well as the [`From<u16>`](From), [`From<u32>`](From), [`TryFrom<u16>`](TryFrom), and [`TryFrom<u32>`](TryFrom)
 //! conversions so that:
@@ -54,7 +55,7 @@
 //! assert_eq!(usage_id_value, u16::from(&u));
 //! assert_eq!(usage_id_value, u.usage_id_value());
 //!
-//! // Extract the Usage Page from  Usage enum value
+//! // Extract the Usage Page from the Usage enum value
 //! let up: UsagePage = UsagePage::from(&u);
 //! assert!(matches!(up, UsagePage::GenericDesktop));
 //!
@@ -63,8 +64,9 @@
 //! assert_eq!(usage_page_value, up.usage_page_value());
 //! ```
 //!
-//! The above works for Defined Usage Pages, Generated Usage Pages (see below)
-//! need to be destructured via their individual elements:
+//! Naming Usages (e.g. [`GenericDesktop::Mouse`]) above works for Defined Usage
+//! Pages, Generated Usage Pages (see below) need to be destructured via their
+//! individual elements:
 //! ```
 //! # use hut::*;
 //! let usage_page_value: u16 = 0x09; // Button
@@ -148,16 +150,28 @@ use std::fmt;
 use std::ops::BitOr;
 use thiserror::Error;
 
+/// Error raised if conversion between HUT elements fails.
 #[derive(Error, Debug)]
 pub enum HutError {
+    /// The usage page value is not known. Usage Pages
+    /// may get added in the future and a future version
+    /// of this crate may not raise this error for the same value.
     #[error("Unknown Usage Page {usage_page}")]
     UnknownUsagePage { usage_page: u16 },
+    /// The usage ID value is not known. Usage IDs
+    /// may get added in the future and a future version
+    /// of this crate may not raise this error for the same value.
     #[error("Unknown Usage ID {usage_id}")]
     UnknownUsageId { usage_id: u16 },
+    /// The value given for a [VendorDefinedPage] is outside the allowed range.
     #[error("Invalid Vendor Page {vendor_page}")]
     InvalidVendorPage { vendor_page: u16 },
+    /// The value given for a [ReservedUsagePage] is outside the allowed range.
     #[error("Invalid Reserved Page {reserved_page}")]
     InvalidReservedPage { reserved_page: u16 },
+    /// The 32-bit usage value given cannot be resolved. Usages
+    /// may get added in the future and a future version
+    /// of this crate may not raise this error for the same value.
     #[error("Unknown Usage")]
     UnknownUsage,
 }
