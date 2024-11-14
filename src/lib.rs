@@ -82,6 +82,24 @@
 //! Once a Usage is created, the [AsUsagePage] and [AsUsage] traits and conversion to and from
 //! [u16] and [u32] work the same as for a Defined Usage Page.
 //!
+//! # Names of Usage Pages and Usage IDs
+//!
+//! All defined [Usages](Usage) and [UsagePages](UsagePage) implement `name()` to return a string
+//! representing that page or usage:
+//!
+//! ```
+//! # use hut::*;
+//! let up = UsagePage::GenericDesktop;
+//! assert_eq!(up.name(), "Generic Desktop");
+//! let up = UsagePage::SimulationControls;
+//! assert_eq!(up.name(), "Simulation Controls");
+//!
+//! let usage = GenericDesktop::Mouse;
+//! assert_eq!(usage.name(), "Mouse");
+//! let usage = SimulationControls::CyclicControl;
+//! assert_eq!(usage.name(), "Cyclic Control");
+//! ```
+//!
 //! # Generated Usage Pages
 //!
 //! The HUT differ between "Defined" and "Generated" Usage Pages. The former define Usage ID values
