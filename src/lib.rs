@@ -583,8 +583,10 @@ impl AsUsagePage for UsagePage {
 /// let u1 = Usage::GenericDesktop { usage: GenericDesktop::Mouse };
 /// let u2 = Usage::new_from_page_and_id(0x1, 0x2).unwrap();
 /// let u3 = Usage::from(GenericDesktop::Mouse);
+/// let u4: Usage = GenericDesktop::Mouse.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x1, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -1293,8 +1295,10 @@ impl BitOr<u16> for GenericDesktop {
 /// let u1 = Usage::SimulationControls { usage: SimulationControls::AutomobileSimulationDevice };
 /// let u2 = Usage::new_from_page_and_id(0x2, 0x2).unwrap();
 /// let u3 = Usage::from(SimulationControls::AutomobileSimulationDevice);
+/// let u4: Usage = SimulationControls::AutomobileSimulationDevice.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x2, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -1678,8 +1682,10 @@ impl BitOr<u16> for SimulationControls {
 /// let u1 = Usage::VRControls { usage: VRControls::BodySuit };
 /// let u2 = Usage::new_from_page_and_id(0x3, 0x2).unwrap();
 /// let u3 = Usage::from(VRControls::BodySuit);
+/// let u4: Usage = VRControls::BodySuit.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x3, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -1868,8 +1874,10 @@ impl BitOr<u16> for VRControls {
 /// let u1 = Usage::SportControls { usage: SportControls::GolfClub };
 /// let u2 = Usage::new_from_page_and_id(0x4, 0x2).unwrap();
 /// let u3 = Usage::from(SportControls::GolfClub);
+/// let u4: Usage = SportControls::GolfClub.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x4, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -2168,8 +2176,10 @@ impl BitOr<u16> for SportControls {
 /// let u1 = Usage::GameControls { usage: GameControls::PinballDevice };
 /// let u2 = Usage::new_from_page_and_id(0x5, 0x2).unwrap();
 /// let u3 = Usage::from(GameControls::PinballDevice);
+/// let u4: Usage = GameControls::PinballDevice.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x5, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -2443,8 +2453,10 @@ impl BitOr<u16> for GameControls {
 /// let u1 = Usage::GenericDeviceControls { usage: GenericDeviceControls::BatteryStrength };
 /// let u2 = Usage::new_from_page_and_id(0x6, 0x20).unwrap();
 /// let u3 = Usage::from(GenericDeviceControls::BatteryStrength);
+/// let u4: Usage = GenericDeviceControls::BatteryStrength.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x6, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
@@ -2695,8 +2707,10 @@ impl BitOr<u16> for GenericDeviceControls {
 /// let u1 = Usage::KeyboardKeypad { usage: KeyboardKeypad::POSTFail };
 /// let u2 = Usage::new_from_page_and_id(0x7, 0x2).unwrap();
 /// let u3 = Usage::from(KeyboardKeypad::POSTFail);
+/// let u4: Usage = KeyboardKeypad::POSTFail.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x7, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -3917,8 +3931,10 @@ impl BitOr<u16> for KeyboardKeypad {
 /// let u1 = Usage::LED { usage: LED::CapsLock };
 /// let u2 = Usage::new_from_page_and_id(0x8, 0x2).unwrap();
 /// let u3 = Usage::from(LED::CapsLock);
+/// let u4: Usage = LED::CapsLock.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x8, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -4761,8 +4777,10 @@ impl BitOr<u16> for Ordinal {
 /// let u1 = Usage::TelephonyDevice { usage: TelephonyDevice::AnsweringMachine };
 /// let u2 = Usage::new_from_page_and_id(0xB, 0x2).unwrap();
 /// let u3 = Usage::from(TelephonyDevice::AnsweringMachine);
+/// let u4: Usage = TelephonyDevice::AnsweringMachine.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0xB, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -5386,8 +5404,10 @@ impl BitOr<u16> for TelephonyDevice {
 /// let u1 = Usage::Consumer { usage: Consumer::NumericKeyPad };
 /// let u2 = Usage::new_from_page_and_id(0xC, 0x2).unwrap();
 /// let u3 = Usage::from(Consumer::NumericKeyPad);
+/// let u4: Usage = Consumer::NumericKeyPad.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0xC, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -7772,8 +7792,10 @@ impl BitOr<u16> for Consumer {
 /// let u1 = Usage::Digitizers { usage: Digitizers::Pen };
 /// let u2 = Usage::new_from_page_and_id(0xD, 0x2).unwrap();
 /// let u3 = Usage::from(Digitizers::Pen);
+/// let u4: Usage = Digitizers::Pen.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0xD, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -8452,8 +8474,10 @@ impl BitOr<u16> for Digitizers {
 /// let u1 = Usage::Haptics { usage: Haptics::WaveformList };
 /// let u2 = Usage::new_from_page_and_id(0xE, 0x10).unwrap();
 /// let u3 = Usage::from(Haptics::WaveformList);
+/// let u4: Usage = Haptics::WaveformList.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0xE, u1.usage_page_value());
 /// assert_eq!(0x10, u1.usage_id_value());
@@ -8727,8 +8751,10 @@ impl BitOr<u16> for Haptics {
 /// let u1 = Usage::PhysicalInputDevice { usage: PhysicalInputDevice::Normal };
 /// let u2 = Usage::new_from_page_and_id(0xF, 0x20).unwrap();
 /// let u3 = Usage::from(PhysicalInputDevice::Normal);
+/// let u4: Usage = PhysicalInputDevice::Normal.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0xF, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
@@ -9507,8 +9533,10 @@ impl BitOr<u16> for Unicode {
 /// let u1 = Usage::SoC { usage: SoC::FirmwareTransfer };
 /// let u2 = Usage::new_from_page_and_id(0x11, 0x2).unwrap();
 /// let u3 = Usage::from(SoC::FirmwareTransfer);
+/// let u4: Usage = SoC::FirmwareTransfer.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x11, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -9687,8 +9715,10 @@ impl BitOr<u16> for SoC {
 /// let u1 = Usage::EyeandHeadTrackers { usage: EyeandHeadTrackers::HeadTracker };
 /// let u2 = Usage::new_from_page_and_id(0x12, 0x2).unwrap();
 /// let u3 = Usage::from(EyeandHeadTrackers::HeadTracker);
+/// let u4: Usage = EyeandHeadTrackers::HeadTracker.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x12, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -9987,8 +10017,10 @@ impl BitOr<u16> for EyeandHeadTrackers {
 /// let u1 = Usage::AuxiliaryDisplay { usage: AuxiliaryDisplay::AuxiliaryDisplay };
 /// let u2 = Usage::new_from_page_and_id(0x14, 0x2).unwrap();
 /// let u3 = Usage::from(AuxiliaryDisplay::AuxiliaryDisplay);
+/// let u4: Usage = AuxiliaryDisplay::AuxiliaryDisplay.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x14, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -10492,8 +10524,10 @@ impl BitOr<u16> for AuxiliaryDisplay {
 /// let u1 = Usage::Sensors { usage: Sensors::Biometric };
 /// let u2 = Usage::new_from_page_and_id(0x20, 0x10).unwrap();
 /// let u3 = Usage::from(Sensors::Biometric);
+/// let u4: Usage = Sensors::Biometric.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x20, u1.usage_page_value());
 /// assert_eq!(0x10, u1.usage_id_value());
@@ -14097,8 +14131,10 @@ impl BitOr<u16> for Sensors {
 /// let u1 = Usage::MedicalInstrument { usage: MedicalInstrument::VCRAcquisition };
 /// let u2 = Usage::new_from_page_and_id(0x40, 0x20).unwrap();
 /// let u3 = Usage::from(MedicalInstrument::VCRAcquisition);
+/// let u4: Usage = MedicalInstrument::VCRAcquisition.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x40, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
@@ -14372,8 +14408,10 @@ impl BitOr<u16> for MedicalInstrument {
 /// let u1 = Usage::BrailleDisplay { usage: BrailleDisplay::BrailleRow };
 /// let u2 = Usage::new_from_page_and_id(0x41, 0x2).unwrap();
 /// let u3 = Usage::from(BrailleDisplay::BrailleRow);
+/// let u4: Usage = BrailleDisplay::BrailleRow.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x41, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -14717,8 +14755,10 @@ impl BitOr<u16> for BrailleDisplay {
 /// let u1 = Usage::LightingAndIllumination { usage: LightingAndIllumination::LampArrayAttributesReport };
 /// let u2 = Usage::new_from_page_and_id(0x59, 0x2).unwrap();
 /// let u3 = Usage::from(LightingAndIllumination::LampArrayAttributesReport);
+/// let u4: Usage = LightingAndIllumination::LampArrayAttributesReport.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x59, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -15020,8 +15060,10 @@ impl BitOr<u16> for LightingAndIllumination {
 /// let u1 = Usage::Monitor { usage: Monitor::EDIDInformation };
 /// let u2 = Usage::new_from_page_and_id(0x80, 0x2).unwrap();
 /// let u3 = Usage::from(Monitor::EDIDInformation);
+/// let u4: Usage = Monitor::EDIDInformation.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x80, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -15287,8 +15329,10 @@ impl BitOr<u16> for MonitorEnumerated {
 /// let u1 = Usage::VESAVirtualControls { usage: VESAVirtualControls::Brightness };
 /// let u2 = Usage::new_from_page_and_id(0x82, 0x10).unwrap();
 /// let u3 = Usage::from(VESAVirtualControls::Brightness);
+/// let u4: Usage = VESAVirtualControls::Brightness.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x82, u1.usage_page_value());
 /// assert_eq!(0x10, u1.usage_id_value());
@@ -15652,8 +15696,10 @@ impl BitOr<u16> for VESAVirtualControls {
 /// let u1 = Usage::Power { usage: Power::PresentStatus };
 /// let u2 = Usage::new_from_page_and_id(0x84, 0x2).unwrap();
 /// let u3 = Usage::from(Power::PresentStatus);
+/// let u4: Usage = Power::PresentStatus.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x84, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -16167,8 +16213,10 @@ impl BitOr<u16> for Power {
 /// let u1 = Usage::BatterySystem { usage: BatterySystem::SmartBatteryBatteryStatus };
 /// let u2 = Usage::new_from_page_and_id(0x85, 0x2).unwrap();
 /// let u3 = Usage::from(BatterySystem::SmartBatteryBatteryStatus);
+/// let u4: Usage = BatterySystem::SmartBatteryBatteryStatus.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x85, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -16752,8 +16800,10 @@ impl BitOr<u16> for BatterySystem {
 /// let u1 = Usage::BarcodeScanner { usage: BarcodeScanner::BarcodeScanner };
 /// let u2 = Usage::new_from_page_and_id(0x8C, 0x2).unwrap();
 /// let u3 = Usage::from(BarcodeScanner::BarcodeScanner);
+/// let u4: Usage = BarcodeScanner::BarcodeScanner.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x8C, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -17866,8 +17916,10 @@ impl BitOr<u16> for BarcodeScanner {
 /// let u1 = Usage::Scales { usage: Scales::ScaleDevice };
 /// let u2 = Usage::new_from_page_and_id(0x8D, 0x20).unwrap();
 /// let u3 = Usage::from(Scales::ScaleDevice);
+/// let u4: Usage = Scales::ScaleDevice.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x8D, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
@@ -18226,8 +18278,10 @@ impl BitOr<u16> for Scales {
 /// let u1 = Usage::MagneticStripeReader { usage: MagneticStripeReader::Track1Length };
 /// let u2 = Usage::new_from_page_and_id(0x8E, 0x11).unwrap();
 /// let u3 = Usage::from(MagneticStripeReader::Track1Length);
+/// let u4: Usage = MagneticStripeReader::Track1Length.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x8E, u1.usage_page_value());
 /// assert_eq!(0x11, u1.usage_id_value());
@@ -18406,8 +18460,10 @@ impl BitOr<u16> for MagneticStripeReader {
 /// let u1 = Usage::CameraControl { usage: CameraControl::CameraShutter };
 /// let u2 = Usage::new_from_page_and_id(0x90, 0x21).unwrap();
 /// let u3 = Usage::from(CameraControl::CameraShutter);
+/// let u4: Usage = CameraControl::CameraShutter.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x90, u1.usage_page_value());
 /// assert_eq!(0x21, u1.usage_id_value());
@@ -18546,8 +18602,10 @@ impl BitOr<u16> for CameraControl {
 /// let u1 = Usage::Arcade { usage: Arcade::CoinDoor };
 /// let u2 = Usage::new_from_page_and_id(0x91, 0x2).unwrap();
 /// let u3 = Usage::from(Arcade::CoinDoor);
+/// let u4: Usage = Arcade::CoinDoor.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0x91, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
@@ -18811,8 +18869,10 @@ impl BitOr<u16> for Arcade {
 /// let u1 = Usage::FIDOAlliance { usage: FIDOAlliance::InputReportData };
 /// let u2 = Usage::new_from_page_and_id(0xF1D0, 0x20).unwrap();
 /// let u3 = Usage::from(FIDOAlliance::InputReportData);
+/// let u4: Usage = FIDOAlliance::InputReportData.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0xF1D0, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
@@ -18956,8 +19016,10 @@ impl BitOr<u16> for FIDOAlliance {
 /// let u1 = Usage::Wacom { usage: Wacom::WacomPen };
 /// let u2 = Usage::new_from_page_and_id(0xFF0D, 0x2).unwrap();
 /// let u3 = Usage::from(Wacom::WacomPen);
+/// let u4: Usage = Wacom::WacomPen.into();
 /// assert_eq!(u1, u2);
 /// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
 ///
 /// assert_eq!(0xFF0D, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
