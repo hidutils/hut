@@ -78,10 +78,11 @@
 //! let usage_value: u32 = (usage_page_value as u32) << 16 | usage_id_value as u32;
 //!
 //! let u = Usage::try_from(usage_value).unwrap();
-//! assert!(matches!(Usage::try_from(usage_value).unwrap(),
-//!                  Usage::Button(
-//!                     Button::Button { button: 8 }
-//!                  )));
+//! let button = Usage::Button(Button::Button(8));
+//! assert!(matches!(Usage::try_from(usage_value).unwrap(), button));
+//! // or via from() or into()
+//! let button: Usage = Button::Button(8).into();
+//! assert!(matches!(Usage::try_from(usage_value).unwrap(), button));
 //! ```
 //! Once a Usage is created, the [AsUsagePage] and [AsUsage] traits and conversion to and from
 //! [u16] and [u32] work the same as for a Defined Usage Page.
@@ -113,8 +114,8 @@
 //!
 //! ```
 //! # use hut::*;
-//! let b = Button::Button { button: 3 };
-//! let o = Ordinal::Ordinal { instance: 23 };
+//! let b = Button::Button(3);
+//! let o = Ordinal::Ordinal(23);
 //! ```
 //!
 //! Unlike Defined Usage Pages Generated Usage Pages these need to be destructured in `match`
@@ -4540,13 +4541,13 @@ impl BitOr<u16> for LED {
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum Button {
-    Button { button: u16 },
+    Button(u16),
 }
 
 impl fmt::Display for Button {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let name = match self {
-            Button::Button { button } => format!("Button {button}"),
+            Button::Button(button) => format!("Button {button}"),
         };
         write!(f, "{name}")
     }
@@ -4577,7 +4578,7 @@ impl AsUsagePage for Button {
 impl From<&Button> for u16 {
     fn from(button: &Button) -> u16 {
         match *button {
-            Button::Button { button } => button,
+            Button::Button(button) => button,
         }
     }
 }
@@ -4626,7 +4627,7 @@ impl TryFrom<u16> for Button {
 
     fn try_from(usage_id: u16) -> Result<Button> {
         match usage_id {
-            n => Ok(Button::Button { button: n }),
+            n => Ok(Button::Button(n)),
         }
     }
 }
@@ -4657,13 +4658,13 @@ impl BitOr<u16> for Button {
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum Ordinal {
-    Ordinal { instance: u16 },
+    Ordinal(u16),
 }
 
 impl fmt::Display for Ordinal {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let name = match self {
-            Ordinal::Ordinal { instance } => format!("Instance {instance}"),
+            Ordinal::Ordinal(instance) => format!("Instance {instance}"),
         };
         write!(f, "{name}")
     }
@@ -4694,7 +4695,7 @@ impl AsUsagePage for Ordinal {
 impl From<&Ordinal> for u16 {
     fn from(ordinal: &Ordinal) -> u16 {
         match *ordinal {
-            Ordinal::Ordinal { instance } => instance,
+            Ordinal::Ordinal(instance) => instance,
         }
     }
 }
@@ -4743,7 +4744,7 @@ impl TryFrom<u16> for Ordinal {
 
     fn try_from(usage_id: u16) -> Result<Ordinal> {
         match usage_id {
-            n => Ok(Ordinal::Ordinal { instance: n }),
+            n => Ok(Ordinal::Ordinal(n)),
         }
     }
 }
@@ -9413,13 +9414,13 @@ impl BitOr<u16> for PhysicalInputDevice {
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum Unicode {
-    Unicode { codepoint: u16 },
+    Unicode(u16),
 }
 
 impl fmt::Display for Unicode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let name = match self {
-            Unicode::Unicode { codepoint } => format!("codepoint {codepoint}"),
+            Unicode::Unicode(codepoint) => format!("codepoint {codepoint}"),
         };
         write!(f, "{name}")
     }
@@ -9450,7 +9451,7 @@ impl AsUsagePage for Unicode {
 impl From<&Unicode> for u16 {
     fn from(unicode: &Unicode) -> u16 {
         match *unicode {
-            Unicode::Unicode { codepoint } => codepoint,
+            Unicode::Unicode(codepoint) => codepoint,
         }
     }
 }
@@ -9499,7 +9500,7 @@ impl TryFrom<u16> for Unicode {
 
     fn try_from(usage_id: u16) -> Result<Unicode> {
         match usage_id {
-            n => Ok(Unicode::Unicode { codepoint: n }),
+            n => Ok(Unicode::Unicode(n)),
         }
     }
 }
@@ -15209,13 +15210,13 @@ impl BitOr<u16> for Monitor {
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum MonitorEnumerated {
-    MonitorEnumerated { enumerate: u16 },
+    MonitorEnumerated(u16),
 }
 
 impl fmt::Display for MonitorEnumerated {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let name = match self {
-            MonitorEnumerated::MonitorEnumerated { enumerate } => format!("Enumerate {enumerate}"),
+            MonitorEnumerated::MonitorEnumerated(enumerate) => format!("Enumerate {enumerate}"),
         };
         write!(f, "{name}")
     }
@@ -15246,7 +15247,7 @@ impl AsUsagePage for MonitorEnumerated {
 impl From<&MonitorEnumerated> for u16 {
     fn from(monitorenumerated: &MonitorEnumerated) -> u16 {
         match *monitorenumerated {
-            MonitorEnumerated::MonitorEnumerated { enumerate } => enumerate,
+            MonitorEnumerated::MonitorEnumerated(enumerate) => enumerate,
         }
     }
 }
@@ -15295,7 +15296,7 @@ impl TryFrom<u16> for MonitorEnumerated {
 
     fn try_from(usage_id: u16) -> Result<MonitorEnumerated> {
         match usage_id {
-            n => Ok(MonitorEnumerated::MonitorEnumerated { enumerate: n }),
+            n => Ok(MonitorEnumerated::MonitorEnumerated(n)),
         }
     }
 }
@@ -20249,7 +20250,7 @@ mod tests {
         let hid_usage_id: u16 = 0x5;
         let hid_usage: u32 = (hid_usage_page as u32) << 16 | hid_usage_id as u32;
 
-        let u = Button::Button { button: 5 };
+        let u = Button::Button(5);
         assert!(matches!(
             Usage::try_from(hid_usage).unwrap(),
             Usage::Button(_)
@@ -20280,7 +20281,7 @@ mod tests {
         let hid_usage_id: u16 = 0x8;
         let hid_usage: u32 = (hid_usage_page as u32) << 16 | hid_usage_id as u32;
 
-        let u = Ordinal::Ordinal { instance: 8 };
+        let u = Ordinal::Ordinal(8);
         assert!(matches!(
             Usage::try_from(hid_usage).unwrap(),
             Usage::Ordinal(_)
