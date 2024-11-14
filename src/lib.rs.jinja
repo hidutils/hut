@@ -37,7 +37,7 @@
 //!
 //! // Create a known Usage from a 32-bit value
 //! let u: Usage = Usage::try_from(usage_value).unwrap();
-//! assert!(matches!(u, Usage::GenericDesktop { usage: GenericDesktop::Mouse }));
+//! assert!(matches!(u, Usage::GenericDesktop(GenericDesktop::Mouse)));
 //!
 //! // Create a known Usage from the Usage Page and Usage ID values
 //! let u2 = Usage::new_from_page_and_id(usage_page_value, usage_id_value).unwrap();
@@ -80,9 +80,9 @@
 //!
 //! let u = Usage::try_from(usage_value).unwrap();
 //! assert!(matches!(Usage::try_from(usage_value).unwrap(),
-//!                  Usage::Button {
-//!                     usage: Button::Button { button: 8 }
-//!                  }));
+//!                  Usage::Button(
+//!                     Button::Button { button: 8 }
+//!                  )));
 //! ```
 //! Once a Usage is created, the [AsUsagePage] and [AsUsage] traits and conversion to and from
 //! [u16] and [u32] work the same as for a Defined Usage Page.
@@ -448,7 +448,7 @@ impl AsUsagePage for UsagePage {
 {% if usage_page.usages | length() >= 2 %}
 /// ```
 /// # use hut::*;
-/// let u1 = Usage::{{usage_page.name}} { usage: {{usage_page.name}}::{{usage_page.usages[1].name}} };
+/// let u1 = Usage::{{usage_page.name}}({{usage_page.name}}::{{usage_page.usages[1].name}});
 /// let u2 = Usage::new_from_page_and_id(0x{{'%X' % usage_page.value}}, 0x{{'%X' % usage_page.usages[1].value}}).unwrap();
 /// let u3 = Usage::from({{usage_page.name}}::{{usage_page.usages[1].name}});
 /// let u4: Usage = {{usage_page.name}}::{{usage_page.usages[1].name}}.into();
@@ -773,7 +773,7 @@ impl fmt::Display for UsagePage {
 /// An enum wrapping all known Usages in the HUT.
 /// ```
 /// # use hut::*;
-/// let u1 = Usage::GenericDesktop { usage: GenericDesktop::Mouse};
+/// let u1 = Usage::GenericDesktop(GenericDesktop::Mouse);
 /// let u2 = Usage::new_from_page_and_id(0x01, 0x02).unwrap();
 /// let u3 = Usage::from(GenericDesktop::Mouse);
 /// assert_eq!(u1, u2);
@@ -790,7 +790,7 @@ impl fmt::Display for UsagePage {
 pub enum Usage {
     {% for usage_page in usage_pages %}
     /// "{{usage_page.printable}}"
-    {{usage_page.name}} { usage: {{usage_page.name}} },
+    {{usage_page.name}}({{usage_page.name}}),
     {% endfor %}
     ReservedUsagePage {
         reserved_page: ReservedPage,
@@ -836,7 +836,7 @@ impl fmt::Display for Usage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let name = match self {
 {% for usage_page in usage_pages %}
-            Usage::{{usage_page.name}} { usage } => format!("{usage}"),
+            Usage::{{usage_page.name}}(usage) => format!("{usage}"),
 {%  else %}
             _ => "".into(),
 {% endfor %}
@@ -864,7 +864,7 @@ impl From<&Usage> for u32 {
     fn from(usage: &Usage) -> u32 {
         match usage {
 {% for usage_page in usage_pages %}
-            Usage::{{usage_page.name}} { usage } => {{usage_page.value}} << 16 | u16::from(usage) as u32,
+            Usage::{{usage_page.name}}(usage) => {{usage_page.value}} << 16 | u16::from(usage) as u32,
 {% endfor  %}
             Usage::ReservedUsagePage {
                 reserved_page,
@@ -883,9 +883,9 @@ impl TryFrom<u32> for Usage {
     fn try_from(up: u32) -> Result<Usage> {
         match (up >> 16, up & 0xFFFF) {
 {% for usage_page in usage_pages %}
-            ({{usage_page.value}}, n) => Ok(Usage::{{usage_page.name}} {
-                usage: {{usage_page.name}}::try_from(n as u16)?,
-            }),
+            ({{usage_page.value}}, n) => Ok(Usage::{{usage_page.name}}(
+                {{usage_page.name}}::try_from(n as u16)?
+            )),
 {% endfor  %}
             (p @ 0xff00..=0xffff, n) => Ok(Usage::VendorDefinedPage {
                 vendor_page: VendorPage(p as u16),
@@ -916,7 +916,7 @@ mod tests {
         // 32 bit usage to enum
         assert!(matches!(
             Usage::try_from(hid_usage).unwrap(),
-            Usage::GenericDesktop { usage: _ }
+            Usage::GenericDesktop(_)
         ));
 
         // Usage to u32
@@ -947,7 +947,7 @@ mod tests {
         let u = Button::Button { button: 5 };
         assert!(matches!(
             Usage::try_from(hid_usage).unwrap(),
-            Usage::Button { usage: _ }
+            Usage::Button(_)
         ));
 
         // Usage to u32
@@ -978,7 +978,7 @@ mod tests {
         let u = Ordinal::Ordinal { instance: 8 };
         assert!(matches!(
             Usage::try_from(hid_usage).unwrap(),
-            Usage::Ordinal { usage: _ }
+            Usage::Ordinal(_)
         ));
 
         // Usage to u32
