@@ -79,10 +79,11 @@
 //! let usage_value: u32 = (usage_page_value as u32) << 16 | usage_id_value as u32;
 //!
 //! let u = Usage::try_from(usage_value).unwrap();
-//! assert!(matches!(Usage::try_from(usage_value).unwrap(),
-//!                  Usage::Button(
-//!                     Button::Button { button: 8 }
-//!                  )));
+//! let button = Usage::Button(Button::Button(8));
+//! assert!(matches!(Usage::try_from(usage_value).unwrap(), button));
+//! // or via from() or into()
+//! let button: Usage = Button::Button(8).into();
+//! assert!(matches!(Usage::try_from(usage_value).unwrap(), button));
 //! ```
 //! Once a Usage is created, the [AsUsagePage] and [AsUsage] traits and conversion to and from
 //! [u16] and [u32] work the same as for a Defined Usage Page.
@@ -114,8 +115,8 @@
 //!
 //! ```
 //! # use hut::*;
-//! let b = Button::Button { button: 3 };
-//! let o = Ordinal::Ordinal { instance: 23 };
+//! let b = Button::Button(3);
+//! let o = Ordinal::Ordinal(23);
 //! ```
 //!
 //! Unlike Defined Usage Pages Generated Usage Pages these need to be destructured in `match`
@@ -509,13 +510,13 @@ impl fmt::Display for {{usage_page.name}} {
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum {{usage_page.name}} {
-    {{usage_page.name}} { {{usage_page.name_prefix|lower}}: u16 },
+    {{usage_page.name}}(u16),
 }
 
 impl fmt::Display for {{usage_page.name}} {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let name = match self {
-            {{usage_page.name}}::{{usage_page.name}} { {{usage_page.name_prefix|lower}} } => format!("{{usage_page.name_prefix}} { {{-usage_page.name_prefix|lower-}} }"),
+            {{usage_page.name}}::{{usage_page.name}}({{usage_page.name_prefix|lower}}) => format!("{{usage_page.name_prefix}} { {{-usage_page.name_prefix|lower-}} }"),
         };
         write!(f, "{name}")
     }
@@ -554,7 +555,7 @@ impl From<&{{usage_page.name}}> for u16 {
             {% endfor %}
         {% endif %}
         {% if usage_page.usage_page_type == "Generated" %}
-            {{usage_page.name}}::{{usage_page.name}} { {{usage_page.name_prefix|lower}} } => {{usage_page.name_prefix|lower}},
+            {{usage_page.name}}::{{usage_page.name}}({{usage_page.name_prefix|lower}}) => {{usage_page.name_prefix|lower}},
         {% endif %}
         }
     }
@@ -608,7 +609,7 @@ impl TryFrom<u16> for {{usage_page.name}} {
             {{usage.value}} => Ok({{usage_page.name}}::{{usage.name}}),
 {% endfor %}
 {% if usage_page.usage_page_type == "Generated" %}
-            n => Ok({{usage_page.name}}::{{usage_page.name}} { {{usage_page.name_prefix|lower}}: n }),
+            n => Ok({{usage_page.name}}::{{usage_page.name}}(n)),
 {% else %}
             n => Err(HutError::UnknownUsageId { usage_id: n }),
 {% endif %}
@@ -944,7 +945,7 @@ mod tests {
         let hid_usage_id: u16 = 0x5;
         let hid_usage: u32 = (hid_usage_page as u32) << 16 | hid_usage_id as u32;
 
-        let u = Button::Button { button: 5 };
+        let u = Button::Button(5);
         assert!(matches!(
             Usage::try_from(hid_usage).unwrap(),
             Usage::Button(_)
@@ -975,7 +976,7 @@ mod tests {
         let hid_usage_id: u16 = 0x8;
         let hid_usage: u32 = (hid_usage_page as u32) << 16 | hid_usage_id as u32;
 
-        let u = Ordinal::Ordinal { instance: 8 };
+        let u = Ordinal::Ordinal(8);
         assert!(matches!(
             Usage::try_from(hid_usage).unwrap(),
             Usage::Ordinal(_)
