@@ -516,12 +516,6 @@ impl UsagePage {
         Usage::try_from(up | u)
     }
 
-    pub fn to_usage(&self, usage: u16) -> Result<Usage> {
-        let up: u32 = (self.usage_page_value() as u32) << 16;
-        let u: u32 = usage as u32;
-        Usage::try_from(up | u)
-    }
-
     pub fn name(&self) -> String {
         match self {
             UsagePage::GenericDesktop => "Generic Desktop".into(),
@@ -1292,7 +1286,7 @@ impl BitOr<u16> for GenericDesktop {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -1686,7 +1680,7 @@ impl BitOr<u16> for SimulationControls {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -1885,7 +1879,7 @@ impl BitOr<u16> for VRControls {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -2194,7 +2188,7 @@ impl BitOr<u16> for SportControls {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -2478,7 +2472,7 @@ impl BitOr<u16> for GameControls {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -2739,7 +2733,7 @@ impl BitOr<u16> for GenericDeviceControls {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -3970,7 +3964,7 @@ impl BitOr<u16> for KeyboardKeypad {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -4589,7 +4583,7 @@ impl BitOr<u16> for LED {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -4733,7 +4727,7 @@ impl BitOr<u16> for Button {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -4877,7 +4871,7 @@ impl BitOr<u16> for Ordinal {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -5511,7 +5505,7 @@ impl BitOr<u16> for TelephonyDevice {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -7906,7 +7900,7 @@ impl BitOr<u16> for Consumer {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -8595,7 +8589,7 @@ impl BitOr<u16> for Digitizers {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -8879,7 +8873,7 @@ impl BitOr<u16> for Haptics {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -9551,7 +9545,7 @@ impl BitOr<u16> for PhysicalInputDevice {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -9695,7 +9689,7 @@ impl BitOr<u16> for Unicode {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -9884,7 +9878,7 @@ impl BitOr<u16> for SoC {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -10193,7 +10187,7 @@ impl BitOr<u16> for EyeandHeadTrackers {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -10707,7 +10701,7 @@ impl BitOr<u16> for AuxiliaryDisplay {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -14321,7 +14315,7 @@ impl BitOr<u16> for Sensors {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -14605,7 +14599,7 @@ impl BitOr<u16> for MedicalInstrument {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -14959,7 +14953,7 @@ impl BitOr<u16> for BrailleDisplay {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -15271,7 +15265,7 @@ impl BitOr<u16> for LightingAndIllumination {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -15430,7 +15424,7 @@ impl BitOr<u16> for Monitor {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -15574,7 +15568,7 @@ impl BitOr<u16> for MonitorEnumerated {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -15948,7 +15942,7 @@ impl BitOr<u16> for VESAVirtualControls {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -16472,7 +16466,7 @@ impl BitOr<u16> for Power {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -17066,7 +17060,7 @@ impl BitOr<u16> for BatterySystem {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -18189,7 +18183,7 @@ impl BitOr<u16> for BarcodeScanner {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -18558,7 +18552,7 @@ impl BitOr<u16> for Scales {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -18747,7 +18741,7 @@ impl BitOr<u16> for MagneticStripeReader {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -18896,7 +18890,7 @@ impl BitOr<u16> for CameraControl {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -19170,7 +19164,7 @@ impl BitOr<u16> for Arcade {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -19324,7 +19318,7 @@ impl BitOr<u16> for FIDOAlliance {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
@@ -19993,7 +19987,7 @@ impl BitOr<u16> for Wacom {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
