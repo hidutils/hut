@@ -61,6 +61,8 @@
 //! assert_eq!(usage_id_value, u.usage_id_value());
 //!
 //! // Extract the Usage Page from the Usage enum value
+//! let up = u.usage_page();
+//! assert!(matches!(up, UsagePage::GenericDesktop));
 //! let up: UsagePage = UsagePage::from(&u);
 //! assert!(matches!(up, UsagePage::GenericDesktop));
 //!
@@ -216,6 +218,9 @@ pub trait AsUsage {
 pub trait AsUsagePage {
     /// Returns the 16-bit Usage Page value
     fn usage_page_value(&self) -> u16;
+
+    /// Returns the [UsagePage]
+    fn usage_page(&self) -> UsagePage;
 }
 
 /// A HID UsagePage, see HID Section 5.5. This represents the upper 16 bits in the
@@ -439,6 +444,11 @@ impl AsUsagePage for UsagePage {
     fn usage_page_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns our current [UsagePage]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::try_from(u16::from(self)).unwrap()
+    }
 }
 
 {% for usage_page in usage_pages %}
@@ -457,6 +467,7 @@ impl AsUsagePage for UsagePage {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::{{usage_page.name}}));
 /// assert_eq!(0x{{'%X' % usage_page.value}}, u1.usage_page_value());
 /// assert_eq!(0x{{'%X' % usage_page.usages[1].value}}, u1.usage_id_value());
 /// assert_eq!((0x{{'%X' % usage_page.value}} << 16) | 0x{{'%X' % usage_page.usages[1].value}}, u1.usage_value());
@@ -549,6 +560,11 @@ impl AsUsagePage for {{usage_page.name}} {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::{{usage_page.name}}]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -856,6 +872,20 @@ impl PartialEq for Usage {
 impl AsUsagePage for Usage {
     fn usage_page_value(&self) -> u16 {
         UsagePage::from(self).into()
+    }
+
+    fn usage_page(&self) -> UsagePage {
+        match self {
+{% for usage_page in usage_pages %}
+            Usage::{{usage_page.name}}(_) => UsagePage::{{usage_page.name}},
+{% endfor %}
+            Usage::ReservedUsagePage { reserved_page, .. } => UsagePage::ReservedUsagePage {
+                reserved_page: *reserved_page
+            },
+            Usage::VendorDefinedPage { vendor_page, .. } => UsagePage::VendorDefinedPage {
+                vendor_page: *vendor_page
+            },
+        }
     }
 }
 
