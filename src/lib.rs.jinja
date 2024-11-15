@@ -212,6 +212,9 @@ pub trait AsUsage {
 
     /// Returns the 16-bit Usage Id numeric value of this Usage
     fn usage_id_value(&self) -> u16;
+
+    /// Returns this usage as [Usage]
+    fn usage(&self) -> Usage;
 }
 
 /// A trait to return the Usage Page as numeric value
@@ -596,6 +599,20 @@ impl AsUsage for {{usage_page.name}} {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::{{usage_page.name}}(self)](Usage::{{usage_page.name}})
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for {{usage_page.name}} {
@@ -908,6 +925,11 @@ impl AsUsage for Usage {
     fn usage_id_value(&self) -> u16 {
         self.into()
     }
+
+    /// Returns [Self]
+    fn usage(&self) -> Usage {
+        Usage::try_from(self.usage_value()).unwrap()
+    }
 }
 
 impl PartialEq for Usage {
@@ -1100,6 +1122,13 @@ mod tests {
         );
         assert_eq!(GenericDesktop::CallMuteLED.name().as_str(), "Call Mute LED");
         assert_eq!(VRControls::HeadTracker.name().as_str(), "Head Tracker");
+    }
+
+    #[test]
+    fn usages() {
+        let mouse = GenericDesktop::Mouse;
+        let usage = Usage::GenericDesktop(GenericDesktop::Mouse);
+        assert_eq!(mouse.usage(), usage);
     }
 }
 {# new line at end of file, even if not shown #}

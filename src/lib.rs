@@ -210,6 +210,9 @@ pub trait AsUsage {
 
     /// Returns the 16-bit Usage Id numeric value of this Usage
     fn usage_id_value(&self) -> u16;
+
+    /// Returns this usage as [Usage]
+    fn usage(&self) -> Usage;
 }
 
 /// A trait to return the Usage Page as numeric value
@@ -1011,6 +1014,20 @@ impl AsUsage for GenericDesktop {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::GenericDesktop(self)](Usage::GenericDesktop)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for GenericDesktop {
@@ -1539,6 +1556,20 @@ impl AsUsage for SimulationControls {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::SimulationControls(self)](Usage::SimulationControls)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for SimulationControls {
@@ -1824,6 +1855,20 @@ impl AsUsage for VRControls {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::VRControls(self)](Usage::VRControls)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for VRControls {
@@ -2096,6 +2141,20 @@ impl AsUsage for SportControls {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::SportControls(self)](Usage::SportControls)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -2399,6 +2458,20 @@ impl AsUsage for GameControls {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::GameControls(self)](Usage::GameControls)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for GameControls {
@@ -2677,6 +2750,20 @@ impl AsUsage for GenericDeviceControls {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::GenericDeviceControls(self)](Usage::GenericDeviceControls)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -3528,6 +3615,20 @@ impl AsUsage for KeyboardKeypad {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::KeyboardKeypad(self)](Usage::KeyboardKeypad)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -4400,6 +4501,20 @@ impl AsUsage for LED {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::LED(self)](Usage::LED)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for LED {
@@ -4743,6 +4858,20 @@ impl AsUsage for Button {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::Button(self)](Usage::Button)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for Button {
@@ -4894,6 +5023,20 @@ impl AsUsage for Ordinal {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::Ordinal(self)](Usage::Ordinal)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -5339,6 +5482,20 @@ impl AsUsage for TelephonyDevice {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::TelephonyDevice(self)](Usage::TelephonyDevice)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -7041,6 +7198,20 @@ impl AsUsage for Consumer {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::Consumer(self)](Usage::Consumer)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for Consumer {
@@ -8422,6 +8593,20 @@ impl AsUsage for Digitizers {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::Digitizers(self)](Usage::Digitizers)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for Digitizers {
@@ -8871,6 +9056,20 @@ impl AsUsage for Haptics {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::Haptics(self)](Usage::Haptics)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -9400,6 +9599,20 @@ impl AsUsage for PhysicalInputDevice {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::PhysicalInputDevice(self)](Usage::PhysicalInputDevice)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for PhysicalInputDevice {
@@ -9761,6 +9974,20 @@ impl AsUsage for Unicode {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::Unicode(self)](Usage::Unicode)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for Unicode {
@@ -9938,6 +10165,20 @@ impl AsUsage for SoC {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::SoC(self)](Usage::SoC)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -10207,6 +10448,20 @@ impl AsUsage for EyeandHeadTrackers {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::EyeandHeadTrackers(self)](Usage::EyeandHeadTrackers)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -10647,6 +10902,20 @@ impl AsUsage for AuxiliaryDisplay {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::AuxiliaryDisplay(self)](Usage::AuxiliaryDisplay)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -13074,6 +13343,20 @@ impl AsUsage for Sensors {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::Sensors(self)](Usage::Sensors)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for Sensors {
@@ -14654,6 +14937,20 @@ impl AsUsage for MedicalInstrument {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::MedicalInstrument(self)](Usage::MedicalInstrument)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for MedicalInstrument {
@@ -14987,6 +15284,20 @@ impl AsUsage for BrailleDisplay {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::BrailleDisplay(self)](Usage::BrailleDisplay)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -15328,6 +15639,20 @@ impl AsUsage for LightingAndIllumination {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::LightingAndIllumination(self)](Usage::LightingAndIllumination)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for LightingAndIllumination {
@@ -15553,6 +15878,20 @@ impl AsUsage for Monitor {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::Monitor(self)](Usage::Monitor)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for Monitor {
@@ -15711,6 +16050,20 @@ impl AsUsage for MonitorEnumerated {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::MonitorEnumerated(self)](Usage::MonitorEnumerated)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -16004,6 +16357,20 @@ impl AsUsage for VESAVirtualControls {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::VESAVirtualControls(self)](Usage::VESAVirtualControls)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -16472,6 +16839,20 @@ impl AsUsage for Power {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::Power(self)](Usage::Power)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -17046,6 +17427,20 @@ impl AsUsage for BatterySystem {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::BatterySystem(self)](Usage::BatterySystem)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -17972,6 +18367,20 @@ impl AsUsage for BarcodeScanner {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::BarcodeScanner(self)](Usage::BarcodeScanner)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for BarcodeScanner {
@@ -18645,6 +19054,20 @@ impl AsUsage for Scales {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::Scales(self)](Usage::Scales)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for Scales {
@@ -18914,6 +19337,20 @@ impl AsUsage for MagneticStripeReader {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::MagneticStripeReader(self)](Usage::MagneticStripeReader)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for MagneticStripeReader {
@@ -19086,6 +19523,20 @@ impl AsUsage for CameraControl {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::CameraControl(self)](Usage::CameraControl)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -19319,6 +19770,20 @@ impl AsUsage for Arcade {
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns this usage as [Usage::Arcade(self)](Usage::Arcade)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
+    }
 }
 
 impl AsUsagePage for Arcade {
@@ -19528,6 +19993,20 @@ impl AsUsage for FIDOAlliance {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::FIDOAlliance(self)](Usage::FIDOAlliance)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -19999,6 +20478,20 @@ impl AsUsage for Wacom {
     /// Returns the 16 bit Usage ID value of this Usage
     fn usage_id_value(&self) -> u16 {
         u16::from(self)
+    }
+
+    /// Returns this usage as [Usage::Wacom(self)](Usage::Wacom)
+    /// This is a convenience function to avoid having
+    /// to implement `From` for every used type in the caller.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let gd_x = GenericDesktop::X;
+    /// let usage = Usage::from(GenericDesktop::X);
+    /// assert!(matches!(gd_x.usage(), usage));
+    /// ```
+    fn usage(&self) -> Usage {
+        Usage::from(self)
     }
 }
 
@@ -20705,6 +21198,11 @@ impl AsUsage for Usage {
     fn usage_id_value(&self) -> u16 {
         self.into()
     }
+
+    /// Returns [Self]
+    fn usage(&self) -> Usage {
+        Usage::try_from(self.usage_value()).unwrap()
+    }
 }
 
 impl PartialEq for Usage {
@@ -21015,5 +21513,12 @@ mod tests {
         );
         assert_eq!(GenericDesktop::CallMuteLED.name().as_str(), "Call Mute LED");
         assert_eq!(VRControls::HeadTracker.name().as_str(), "Head Tracker");
+    }
+
+    #[test]
+    fn usages() {
+        let mouse = GenericDesktop::Mouse;
+        let usage = Usage::GenericDesktop(GenericDesktop::Mouse);
+        assert_eq!(mouse.usage(), usage);
     }
 }
