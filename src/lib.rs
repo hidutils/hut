@@ -60,6 +60,8 @@
 //! assert_eq!(usage_id_value, u.usage_id_value());
 //!
 //! // Extract the Usage Page from the Usage enum value
+//! let up = u.usage_page();
+//! assert!(matches!(up, UsagePage::GenericDesktop));
 //! let up: UsagePage = UsagePage::from(&u);
 //! assert!(matches!(up, UsagePage::GenericDesktop));
 //!
@@ -214,6 +216,9 @@ pub trait AsUsage {
 pub trait AsUsagePage {
     /// Returns the 16-bit Usage Page value
     fn usage_page_value(&self) -> u16;
+
+    /// Returns the [UsagePage]
+    fn usage_page(&self) -> UsagePage;
 }
 
 /// A HID UsagePage, see HID Section 5.5. This represents the upper 16 bits in the
@@ -569,6 +574,11 @@ impl AsUsagePage for UsagePage {
     fn usage_page_value(&self) -> u16 {
         u16::from(self)
     }
+
+    /// Returns our current [UsagePage]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::try_from(u16::from(self)).unwrap()
+    }
 }
 
 /// *Usage Page `0x1`: "Generic Desktop"*
@@ -584,6 +594,7 @@ impl AsUsagePage for UsagePage {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::GenericDesktop));
 /// assert_eq!(0x1, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x1 << 16) | 0x2, u1.usage_value());
@@ -982,6 +993,11 @@ impl AsUsagePage for GenericDesktop {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::GenericDesktop]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&GenericDesktop> for u16 {
@@ -1297,6 +1313,7 @@ impl BitOr<u16> for GenericDesktop {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::SimulationControls));
 /// assert_eq!(0x2, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x2 << 16) | 0x2, u1.usage_value());
@@ -1496,6 +1513,11 @@ impl AsUsagePage for SimulationControls {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::SimulationControls]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&SimulationControls> for u16 {
@@ -1685,6 +1707,7 @@ impl BitOr<u16> for SimulationControls {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::VRControls));
 /// assert_eq!(0x3, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x3 << 16) | 0x2, u1.usage_value());
@@ -1766,6 +1789,11 @@ impl AsUsagePage for VRControls {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::VRControls]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -1878,6 +1906,7 @@ impl BitOr<u16> for VRControls {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::SportControls));
 /// assert_eq!(0x4, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x4 << 16) | 0x2, u1.usage_value());
@@ -2025,6 +2054,11 @@ impl AsUsagePage for SportControls {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::SportControls]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -2181,6 +2215,7 @@ impl BitOr<u16> for SportControls {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::GameControls));
 /// assert_eq!(0x5, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x5 << 16) | 0x2, u1.usage_value());
@@ -2313,6 +2348,11 @@ impl AsUsagePage for GameControls {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::GameControls]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -2459,6 +2499,7 @@ impl BitOr<u16> for GameControls {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::GenericDeviceControls));
 /// assert_eq!(0x6, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0x6 << 16) | 0x20, u1.usage_value());
@@ -2578,6 +2619,11 @@ impl AsUsagePage for GenericDeviceControls {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::GenericDeviceControls]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -2714,6 +2760,7 @@ impl BitOr<u16> for GenericDeviceControls {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::KeyboardKeypad));
 /// assert_eq!(0x7, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x7 << 16) | 0x2, u1.usage_value());
@@ -3416,6 +3463,11 @@ impl AsUsagePage for KeyboardKeypad {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::KeyboardKeypad]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&KeyboardKeypad> for u16 {
@@ -3939,6 +3991,7 @@ impl BitOr<u16> for KeyboardKeypad {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::LED));
 /// assert_eq!(0x8, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x8 << 16) | 0x2, u1.usage_value());
@@ -4273,6 +4326,11 @@ impl AsUsagePage for LED {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::LED]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&LED> for u16 {
@@ -4586,6 +4644,11 @@ impl AsUsagePage for Button {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::Button]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&Button> for u16 {
@@ -4708,6 +4771,11 @@ impl AsUsagePage for Ordinal {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::Ordinal]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&Ordinal> for u16 {
@@ -4796,6 +4864,7 @@ impl BitOr<u16> for Ordinal {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::TelephonyDevice));
 /// assert_eq!(0xB, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0xB << 16) | 0x2, u1.usage_value());
@@ -5139,6 +5208,11 @@ impl AsUsagePage for TelephonyDevice {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::TelephonyDevice]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&TelephonyDevice> for u16 {
@@ -5424,6 +5498,7 @@ impl BitOr<u16> for TelephonyDevice {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::Consumer));
 /// assert_eq!(0xC, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0xC << 16) | 0x2, u1.usage_value());
@@ -6826,6 +6901,11 @@ impl AsUsagePage for Consumer {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::Consumer]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&Consumer> for u16 {
@@ -7813,6 +7893,7 @@ impl BitOr<u16> for Consumer {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::Digitizers));
 /// assert_eq!(0xD, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0xD << 16) | 0x2, u1.usage_value());
@@ -8193,6 +8274,11 @@ impl AsUsagePage for Digitizers {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::Digitizers]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&Digitizers> for u16 {
@@ -8496,6 +8582,7 @@ impl BitOr<u16> for Digitizers {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::Haptics));
 /// assert_eq!(0xE, u1.usage_page_value());
 /// assert_eq!(0x10, u1.usage_id_value());
 /// assert_eq!((0xE << 16) | 0x10, u1.usage_value());
@@ -8628,6 +8715,11 @@ impl AsUsagePage for Haptics {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::Haptics]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -8774,6 +8866,7 @@ impl BitOr<u16> for Haptics {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::PhysicalInputDevice));
 /// assert_eq!(0xF, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0xF << 16) | 0x20, u1.usage_value());
@@ -9143,6 +9236,11 @@ impl AsUsagePage for PhysicalInputDevice {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::PhysicalInputDevice]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&PhysicalInputDevice> for u16 {
@@ -9474,6 +9572,11 @@ impl AsUsagePage for Unicode {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::Unicode]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&Unicode> for u16 {
@@ -9562,6 +9665,7 @@ impl BitOr<u16> for Unicode {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::SoC));
 /// assert_eq!(0x11, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x11 << 16) | 0x2, u1.usage_value());
@@ -9637,6 +9741,11 @@ impl AsUsagePage for SoC {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::SoC]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -9745,6 +9854,7 @@ impl BitOr<u16> for SoC {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::EyeandHeadTrackers));
 /// assert_eq!(0x12, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x12 << 16) | 0x2, u1.usage_value());
@@ -9892,6 +10002,11 @@ impl AsUsagePage for EyeandHeadTrackers {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::EyeandHeadTrackers]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -10048,6 +10163,7 @@ impl BitOr<u16> for EyeandHeadTrackers {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::AuxiliaryDisplay));
 /// assert_eq!(0x14, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x14 << 16) | 0x2, u1.usage_value());
@@ -10319,6 +10435,11 @@ impl AsUsagePage for AuxiliaryDisplay {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::AuxiliaryDisplay]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&AuxiliaryDisplay> for u16 {
@@ -10556,6 +10677,7 @@ impl BitOr<u16> for AuxiliaryDisplay {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::Sensors));
 /// assert_eq!(0x20, u1.usage_page_value());
 /// assert_eq!(0x10, u1.usage_id_value());
 /// assert_eq!((0x20 << 16) | 0x10, u1.usage_value());
@@ -12731,6 +12853,11 @@ impl AsUsagePage for Sensors {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::Sensors]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&Sensors> for u16 {
@@ -14164,6 +14291,7 @@ impl BitOr<u16> for Sensors {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::MedicalInstrument));
 /// assert_eq!(0x40, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0x40 << 16) | 0x20, u1.usage_value());
@@ -14296,6 +14424,11 @@ impl AsUsagePage for MedicalInstrument {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::MedicalInstrument]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -14442,6 +14575,7 @@ impl BitOr<u16> for MedicalInstrument {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::BrailleDisplay));
 /// assert_eq!(0x41, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x41 << 16) | 0x2, u1.usage_value());
@@ -14617,6 +14751,11 @@ impl AsUsagePage for BrailleDisplay {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::BrailleDisplay]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&BrailleDisplay> for u16 {
@@ -14790,6 +14929,7 @@ impl BitOr<u16> for BrailleDisplay {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::LightingAndIllumination));
 /// assert_eq!(0x59, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x59 << 16) | 0x2, u1.usage_value());
@@ -14942,6 +15082,11 @@ impl AsUsagePage for LightingAndIllumination {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::LightingAndIllumination]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -15096,6 +15241,7 @@ impl BitOr<u16> for LightingAndIllumination {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::Monitor));
 /// assert_eq!(0x80, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x80 << 16) | 0x2, u1.usage_value());
@@ -15153,6 +15299,11 @@ impl AsUsagePage for Monitor {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::Monitor]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -15283,6 +15434,11 @@ impl AsUsagePage for MonitorEnumerated {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::MonitorEnumerated]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&MonitorEnumerated> for u16 {
@@ -15371,6 +15527,7 @@ impl BitOr<u16> for MonitorEnumerated {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::VESAVirtualControls));
 /// assert_eq!(0x82, u1.usage_page_value());
 /// assert_eq!(0x10, u1.usage_id_value());
 /// assert_eq!((0x82 << 16) | 0x10, u1.usage_value());
@@ -15562,6 +15719,11 @@ impl AsUsagePage for VESAVirtualControls {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::VESAVirtualControls]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&VESAVirtualControls> for u16 {
@@ -15739,6 +15901,7 @@ impl BitOr<u16> for VESAVirtualControls {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::Power));
 /// assert_eq!(0x84, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x84 << 16) | 0x2, u1.usage_value());
@@ -16016,6 +16179,11 @@ impl AsUsagePage for Power {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::Power]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&Power> for u16 {
@@ -16257,6 +16425,7 @@ impl BitOr<u16> for Power {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::BatterySystem));
 /// assert_eq!(0x85, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x85 << 16) | 0x2, u1.usage_value());
@@ -16576,6 +16745,11 @@ impl AsUsagePage for BatterySystem {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::BatterySystem]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&BatterySystem> for u16 {
@@ -16845,6 +17019,7 @@ impl BitOr<u16> for BatterySystem {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::BarcodeScanner));
 /// assert_eq!(0x8C, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x8C << 16) | 0x2, u1.usage_value());
@@ -17487,6 +17662,11 @@ impl AsUsagePage for BarcodeScanner {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::BarcodeScanner]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&BarcodeScanner> for u16 {
@@ -17962,6 +18142,7 @@ impl BitOr<u16> for BarcodeScanner {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::Scales));
 /// assert_eq!(0x8D, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0x8D << 16) | 0x20, u1.usage_value());
@@ -18146,6 +18327,11 @@ impl AsUsagePage for Scales {
         let up = UsagePage::from(self);
         u16::from(up)
     }
+
+    /// Returns [UsagePage::Scales]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
+    }
 }
 
 impl From<&Scales> for u16 {
@@ -18325,6 +18511,7 @@ impl BitOr<u16> for Scales {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::MagneticStripeReader));
 /// assert_eq!(0x8E, u1.usage_page_value());
 /// assert_eq!(0x11, u1.usage_id_value());
 /// assert_eq!((0x8E << 16) | 0x11, u1.usage_value());
@@ -18400,6 +18587,11 @@ impl AsUsagePage for MagneticStripeReader {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::MagneticStripeReader]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -18508,6 +18700,7 @@ impl BitOr<u16> for MagneticStripeReader {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::CameraControl));
 /// assert_eq!(0x90, u1.usage_page_value());
 /// assert_eq!(0x21, u1.usage_id_value());
 /// assert_eq!((0x90 << 16) | 0x21, u1.usage_value());
@@ -18559,6 +18752,11 @@ impl AsUsagePage for CameraControl {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::CameraControl]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -18651,6 +18849,7 @@ impl BitOr<u16> for CameraControl {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::Arcade));
 /// assert_eq!(0x91, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x91 << 16) | 0x2, u1.usage_value());
@@ -18777,6 +18976,11 @@ impl AsUsagePage for Arcade {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::Arcade]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -18919,6 +19123,7 @@ impl BitOr<u16> for Arcade {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::FIDOAlliance));
 /// assert_eq!(0xF1D0, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0xF1D0 << 16) | 0x20, u1.usage_value());
@@ -18973,6 +19178,11 @@ impl AsUsagePage for FIDOAlliance {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::FIDOAlliance]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -19067,6 +19277,7 @@ impl BitOr<u16> for FIDOAlliance {
 /// assert_eq!(u1, u3);
 /// assert_eq!(u1, u4);
 ///
+/// assert!(matches!(u1.usage_page(), UsagePage::Wacom));
 /// assert_eq!(0xFF0D, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0xFF0D << 16) | 0x2, u1.usage_value());
@@ -19430,6 +19641,11 @@ impl AsUsagePage for Wacom {
     fn usage_page_value(&self) -> u16 {
         let up = UsagePage::from(self);
         u16::from(up)
+    }
+
+    /// Returns [UsagePage::Wacom]]
+    fn usage_page(&self) -> UsagePage {
+        UsagePage::from(self)
     }
 }
 
@@ -20126,6 +20342,52 @@ impl PartialEq for Usage {
 impl AsUsagePage for Usage {
     fn usage_page_value(&self) -> u16 {
         UsagePage::from(self).into()
+    }
+
+    fn usage_page(&self) -> UsagePage {
+        match self {
+            Usage::GenericDesktop(_) => UsagePage::GenericDesktop,
+            Usage::SimulationControls(_) => UsagePage::SimulationControls,
+            Usage::VRControls(_) => UsagePage::VRControls,
+            Usage::SportControls(_) => UsagePage::SportControls,
+            Usage::GameControls(_) => UsagePage::GameControls,
+            Usage::GenericDeviceControls(_) => UsagePage::GenericDeviceControls,
+            Usage::KeyboardKeypad(_) => UsagePage::KeyboardKeypad,
+            Usage::LED(_) => UsagePage::LED,
+            Usage::Button(_) => UsagePage::Button,
+            Usage::Ordinal(_) => UsagePage::Ordinal,
+            Usage::TelephonyDevice(_) => UsagePage::TelephonyDevice,
+            Usage::Consumer(_) => UsagePage::Consumer,
+            Usage::Digitizers(_) => UsagePage::Digitizers,
+            Usage::Haptics(_) => UsagePage::Haptics,
+            Usage::PhysicalInputDevice(_) => UsagePage::PhysicalInputDevice,
+            Usage::Unicode(_) => UsagePage::Unicode,
+            Usage::SoC(_) => UsagePage::SoC,
+            Usage::EyeandHeadTrackers(_) => UsagePage::EyeandHeadTrackers,
+            Usage::AuxiliaryDisplay(_) => UsagePage::AuxiliaryDisplay,
+            Usage::Sensors(_) => UsagePage::Sensors,
+            Usage::MedicalInstrument(_) => UsagePage::MedicalInstrument,
+            Usage::BrailleDisplay(_) => UsagePage::BrailleDisplay,
+            Usage::LightingAndIllumination(_) => UsagePage::LightingAndIllumination,
+            Usage::Monitor(_) => UsagePage::Monitor,
+            Usage::MonitorEnumerated(_) => UsagePage::MonitorEnumerated,
+            Usage::VESAVirtualControls(_) => UsagePage::VESAVirtualControls,
+            Usage::Power(_) => UsagePage::Power,
+            Usage::BatterySystem(_) => UsagePage::BatterySystem,
+            Usage::BarcodeScanner(_) => UsagePage::BarcodeScanner,
+            Usage::Scales(_) => UsagePage::Scales,
+            Usage::MagneticStripeReader(_) => UsagePage::MagneticStripeReader,
+            Usage::CameraControl(_) => UsagePage::CameraControl,
+            Usage::Arcade(_) => UsagePage::Arcade,
+            Usage::FIDOAlliance(_) => UsagePage::FIDOAlliance,
+            Usage::Wacom(_) => UsagePage::Wacom,
+            Usage::ReservedUsagePage { reserved_page, .. } => UsagePage::ReservedUsagePage {
+                reserved_page: *reserved_page,
+            },
+            Usage::VendorDefinedPage { vendor_page, .. } => UsagePage::VendorDefinedPage {
+                vendor_page: *vendor_page,
+            },
+        }
     }
 }
 
