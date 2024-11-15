@@ -587,6 +587,7 @@ impl AsUsagePage for UsagePage {
 /// assert_eq!(0x1, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x1 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Mouse", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -1299,6 +1300,7 @@ impl BitOr<u16> for GenericDesktop {
 /// assert_eq!(0x2, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x2 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Automobile Simulation Device", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -1686,6 +1688,7 @@ impl BitOr<u16> for SimulationControls {
 /// assert_eq!(0x3, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x3 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Body Suit", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -1878,6 +1881,7 @@ impl BitOr<u16> for VRControls {
 /// assert_eq!(0x4, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x4 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Golf Club", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -2180,6 +2184,7 @@ impl BitOr<u16> for SportControls {
 /// assert_eq!(0x5, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x5 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Pinball Device", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -2457,6 +2462,7 @@ impl BitOr<u16> for GameControls {
 /// assert_eq!(0x6, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0x6 << 16) | 0x20, u1.usage_value());
+/// assert_eq!("Battery Strength", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -2711,6 +2717,7 @@ impl BitOr<u16> for GenericDeviceControls {
 /// assert_eq!(0x7, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x7 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("POSTFail", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -3935,6 +3942,7 @@ impl BitOr<u16> for KeyboardKeypad {
 /// assert_eq!(0x8, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x8 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Caps Lock", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -4544,12 +4552,17 @@ pub enum Button {
     Button(u16),
 }
 
+impl Button {
+    pub fn name(&self) -> String {
+        match self {
+            Button::Button(button) => format!("Button {button}"),
+        }
+    }
+}
+
 impl fmt::Display for Button {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
-            Button::Button(button) => format!("Button {button}"),
-        };
-        write!(f, "{name}")
+        write!(f, "{}", self.name())
     }
 }
 
@@ -4661,12 +4674,17 @@ pub enum Ordinal {
     Ordinal(u16),
 }
 
+impl Ordinal {
+    pub fn name(&self) -> String {
+        match self {
+            Ordinal::Ordinal(instance) => format!("Instance {instance}"),
+        }
+    }
+}
+
 impl fmt::Display for Ordinal {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
-            Ordinal::Ordinal(instance) => format!("Instance {instance}"),
-        };
-        write!(f, "{name}")
+        write!(f, "{}", self.name())
     }
 }
 
@@ -4781,6 +4799,7 @@ impl BitOr<u16> for Ordinal {
 /// assert_eq!(0xB, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0xB << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Answering Machine", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -5408,6 +5427,7 @@ impl BitOr<u16> for TelephonyDevice {
 /// assert_eq!(0xC, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0xC << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Numeric Key Pad", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -7796,6 +7816,7 @@ impl BitOr<u16> for Consumer {
 /// assert_eq!(0xD, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0xD << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Pen", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -8478,6 +8499,7 @@ impl BitOr<u16> for Digitizers {
 /// assert_eq!(0xE, u1.usage_page_value());
 /// assert_eq!(0x10, u1.usage_id_value());
 /// assert_eq!((0xE << 16) | 0x10, u1.usage_value());
+/// assert_eq!("Waveform List", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -8755,6 +8777,7 @@ impl BitOr<u16> for Haptics {
 /// assert_eq!(0xF, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0xF << 16) | 0x20, u1.usage_value());
+/// assert_eq!("Normal", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -9417,12 +9440,17 @@ pub enum Unicode {
     Unicode(u16),
 }
 
+impl Unicode {
+    pub fn name(&self) -> String {
+        match self {
+            Unicode::Unicode(codepoint) => format!("codepoint {codepoint}"),
+        }
+    }
+}
+
 impl fmt::Display for Unicode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
-            Unicode::Unicode(codepoint) => format!("codepoint {codepoint}"),
-        };
-        write!(f, "{name}")
+        write!(f, "{}", self.name())
     }
 }
 
@@ -9537,6 +9565,7 @@ impl BitOr<u16> for Unicode {
 /// assert_eq!(0x11, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x11 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("FirmwareTransfer", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -9719,6 +9748,7 @@ impl BitOr<u16> for SoC {
 /// assert_eq!(0x12, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x12 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Head Tracker", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -10021,6 +10051,7 @@ impl BitOr<u16> for EyeandHeadTrackers {
 /// assert_eq!(0x14, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x14 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Auxiliary Display", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -10528,6 +10559,7 @@ impl BitOr<u16> for AuxiliaryDisplay {
 /// assert_eq!(0x20, u1.usage_page_value());
 /// assert_eq!(0x10, u1.usage_id_value());
 /// assert_eq!((0x20 << 16) | 0x10, u1.usage_value());
+/// assert_eq!("Biometric", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -14135,6 +14167,7 @@ impl BitOr<u16> for Sensors {
 /// assert_eq!(0x40, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0x40 << 16) | 0x20, u1.usage_value());
+/// assert_eq!("VCR/Acquisition", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -14412,6 +14445,7 @@ impl BitOr<u16> for MedicalInstrument {
 /// assert_eq!(0x41, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x41 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Braille Row", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -14759,6 +14793,7 @@ impl BitOr<u16> for BrailleDisplay {
 /// assert_eq!(0x59, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x59 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("LampArrayAttributesReport", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -15064,6 +15099,7 @@ impl BitOr<u16> for LightingAndIllumination {
 /// assert_eq!(0x80, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x80 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("EDID Information", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -15213,12 +15249,17 @@ pub enum MonitorEnumerated {
     MonitorEnumerated(u16),
 }
 
+impl MonitorEnumerated {
+    pub fn name(&self) -> String {
+        match self {
+            MonitorEnumerated::MonitorEnumerated(enumerate) => format!("Enumerate {enumerate}"),
+        }
+    }
+}
+
 impl fmt::Display for MonitorEnumerated {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
-            MonitorEnumerated::MonitorEnumerated(enumerate) => format!("Enumerate {enumerate}"),
-        };
-        write!(f, "{name}")
+        write!(f, "{}", self.name())
     }
 }
 
@@ -15333,6 +15374,7 @@ impl BitOr<u16> for MonitorEnumerated {
 /// assert_eq!(0x82, u1.usage_page_value());
 /// assert_eq!(0x10, u1.usage_id_value());
 /// assert_eq!((0x82 << 16) | 0x10, u1.usage_value());
+/// assert_eq!("Brightness", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -15700,6 +15742,7 @@ impl BitOr<u16> for VESAVirtualControls {
 /// assert_eq!(0x84, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x84 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Present Status", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -16217,6 +16260,7 @@ impl BitOr<u16> for Power {
 /// assert_eq!(0x85, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x85 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Smart Battery Battery Status", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -16804,6 +16848,7 @@ impl BitOr<u16> for BatterySystem {
 /// assert_eq!(0x8C, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x8C << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Barcode Scanner", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -17920,6 +17965,7 @@ impl BitOr<u16> for BarcodeScanner {
 /// assert_eq!(0x8D, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0x8D << 16) | 0x20, u1.usage_value());
+/// assert_eq!("Scale Device", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -18282,6 +18328,7 @@ impl BitOr<u16> for Scales {
 /// assert_eq!(0x8E, u1.usage_page_value());
 /// assert_eq!(0x11, u1.usage_id_value());
 /// assert_eq!((0x8E << 16) | 0x11, u1.usage_value());
+/// assert_eq!("Track 1 Length", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -18464,6 +18511,7 @@ impl BitOr<u16> for MagneticStripeReader {
 /// assert_eq!(0x90, u1.usage_page_value());
 /// assert_eq!(0x21, u1.usage_id_value());
 /// assert_eq!((0x90 << 16) | 0x21, u1.usage_value());
+/// assert_eq!("Camera Shutter", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -18606,6 +18654,7 @@ impl BitOr<u16> for CameraControl {
 /// assert_eq!(0x91, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x91 << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Coin Door", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -18873,6 +18922,7 @@ impl BitOr<u16> for Arcade {
 /// assert_eq!(0xF1D0, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0xF1D0 << 16) | 0x20, u1.usage_value());
+/// assert_eq!("Input Report Data", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -19020,6 +19070,7 @@ impl BitOr<u16> for FIDOAlliance {
 /// assert_eq!(0xFF0D, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0xFF0D << 16) | 0x2, u1.usage_value());
+/// assert_eq!("Wacom Pen", u1.name());
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -19679,15 +19730,20 @@ pub enum ReservedUsagePage {
     ReservedUsage { usage_id: u16 },
 }
 
-impl fmt::Display for ReservedUsagePage {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl ReservedUsagePage {
+    fn name(&self) -> String {
+        match self {
             ReservedUsagePage::Undefined => "Reserved Usage Undefined".to_string(),
             ReservedUsagePage::ReservedUsage { usage_id } => {
                 format!("Reserved Usage 0x{usage_id:02x}")
             }
-        };
-        write!(f, "{name}")
+        }
+    }
+}
+
+impl fmt::Display for ReservedUsagePage {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -19712,15 +19768,20 @@ pub enum VendorDefinedPage {
     VendorUsage { usage_id: u16 },
 }
 
-impl fmt::Display for VendorDefinedPage {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl VendorDefinedPage {
+    fn name(&self) -> String {
+        match self {
             VendorDefinedPage::Undefined => "Vendor Usage Undefined".to_string(),
             VendorDefinedPage::VendorUsage { usage_id } => {
                 format!("Vendor Usage 0x{usage_id:02x}")
             }
-        };
-        write!(f, "{name}")
+        }
+    }
+}
+
+impl fmt::Display for VendorDefinedPage {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -20000,6 +20061,48 @@ impl Usage {
     pub fn new_from_page_and_id(usage_page: u16, usage_id: u16) -> Result<Usage> {
         Usage::try_from((usage_page as u32) << 16 | usage_id as u32)
     }
+
+    pub fn name(&self) -> String {
+        match self {
+            Usage::GenericDesktop(usage) => usage.name(),
+            Usage::SimulationControls(usage) => usage.name(),
+            Usage::VRControls(usage) => usage.name(),
+            Usage::SportControls(usage) => usage.name(),
+            Usage::GameControls(usage) => usage.name(),
+            Usage::GenericDeviceControls(usage) => usage.name(),
+            Usage::KeyboardKeypad(usage) => usage.name(),
+            Usage::LED(usage) => usage.name(),
+            Usage::Button(usage) => usage.name(),
+            Usage::Ordinal(usage) => usage.name(),
+            Usage::TelephonyDevice(usage) => usage.name(),
+            Usage::Consumer(usage) => usage.name(),
+            Usage::Digitizers(usage) => usage.name(),
+            Usage::Haptics(usage) => usage.name(),
+            Usage::PhysicalInputDevice(usage) => usage.name(),
+            Usage::Unicode(usage) => usage.name(),
+            Usage::SoC(usage) => usage.name(),
+            Usage::EyeandHeadTrackers(usage) => usage.name(),
+            Usage::AuxiliaryDisplay(usage) => usage.name(),
+            Usage::Sensors(usage) => usage.name(),
+            Usage::MedicalInstrument(usage) => usage.name(),
+            Usage::BrailleDisplay(usage) => usage.name(),
+            Usage::LightingAndIllumination(usage) => usage.name(),
+            Usage::Monitor(usage) => usage.name(),
+            Usage::MonitorEnumerated(usage) => usage.name(),
+            Usage::VESAVirtualControls(usage) => usage.name(),
+            Usage::Power(usage) => usage.name(),
+            Usage::BatterySystem(usage) => usage.name(),
+            Usage::BarcodeScanner(usage) => usage.name(),
+            Usage::Scales(usage) => usage.name(),
+            Usage::MagneticStripeReader(usage) => usage.name(),
+            Usage::CameraControl(usage) => usage.name(),
+            Usage::Arcade(usage) => usage.name(),
+            Usage::FIDOAlliance(usage) => usage.name(),
+            Usage::Wacom(usage) => usage.name(),
+            Usage::ReservedUsagePage { usage, .. } => usage.name(),
+            Usage::VendorDefinedPage { usage, .. } => usage.name(),
+        }
+    }
 }
 
 impl AsUsage for Usage {
@@ -20028,46 +20131,7 @@ impl AsUsagePage for Usage {
 
 impl fmt::Display for Usage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
-            Usage::GenericDesktop(usage) => format!("{usage}"),
-            Usage::SimulationControls(usage) => format!("{usage}"),
-            Usage::VRControls(usage) => format!("{usage}"),
-            Usage::SportControls(usage) => format!("{usage}"),
-            Usage::GameControls(usage) => format!("{usage}"),
-            Usage::GenericDeviceControls(usage) => format!("{usage}"),
-            Usage::KeyboardKeypad(usage) => format!("{usage}"),
-            Usage::LED(usage) => format!("{usage}"),
-            Usage::Button(usage) => format!("{usage}"),
-            Usage::Ordinal(usage) => format!("{usage}"),
-            Usage::TelephonyDevice(usage) => format!("{usage}"),
-            Usage::Consumer(usage) => format!("{usage}"),
-            Usage::Digitizers(usage) => format!("{usage}"),
-            Usage::Haptics(usage) => format!("{usage}"),
-            Usage::PhysicalInputDevice(usage) => format!("{usage}"),
-            Usage::Unicode(usage) => format!("{usage}"),
-            Usage::SoC(usage) => format!("{usage}"),
-            Usage::EyeandHeadTrackers(usage) => format!("{usage}"),
-            Usage::AuxiliaryDisplay(usage) => format!("{usage}"),
-            Usage::Sensors(usage) => format!("{usage}"),
-            Usage::MedicalInstrument(usage) => format!("{usage}"),
-            Usage::BrailleDisplay(usage) => format!("{usage}"),
-            Usage::LightingAndIllumination(usage) => format!("{usage}"),
-            Usage::Monitor(usage) => format!("{usage}"),
-            Usage::MonitorEnumerated(usage) => format!("{usage}"),
-            Usage::VESAVirtualControls(usage) => format!("{usage}"),
-            Usage::Power(usage) => format!("{usage}"),
-            Usage::BatterySystem(usage) => format!("{usage}"),
-            Usage::BarcodeScanner(usage) => format!("{usage}"),
-            Usage::Scales(usage) => format!("{usage}"),
-            Usage::MagneticStripeReader(usage) => format!("{usage}"),
-            Usage::CameraControl(usage) => format!("{usage}"),
-            Usage::Arcade(usage) => format!("{usage}"),
-            Usage::FIDOAlliance(usage) => format!("{usage}"),
-            Usage::Wacom(usage) => format!("{usage}"),
-            Usage::ReservedUsagePage { usage, .. } => format!("{usage}"),
-            Usage::VendorDefinedPage { usage, .. } => format!("{usage}"),
-        };
-        write!(f, "{name}")
+        write!(f, "{}", self.name())
     }
 }
 
