@@ -395,9 +395,12 @@ impl TryFrom<u32> for VendorPage {
 impl UsagePage {
     /// Returns the Usage Page for the given Usage Page value. This is the
     /// 16-bit Usage Page value only, not the full 32-bit Usage.
-    ///
-    /// The returned value is always the "Undefined" usage of the matching
-    /// Usage Page.
+    /// ```
+    /// # use hut::*;
+    /// let usage_value: u16 = 0x1; // GenericDesktop
+    /// let usage_page = UsagePage::from_usage_page_value(usage_value).unwrap();
+    /// assert!(matches!(UsagePage::GenericDesktop, usage_page));
+    /// ```
     pub fn from_usage_page_value(usage_page: u16) -> Result<UsagePage> {
         UsagePage::try_from(usage_page)
     }
@@ -405,6 +408,12 @@ impl UsagePage {
     /// Returns the Usage Page for the given Usage numeric value. The Usage Page
     /// must be in the upper 16 bits of the `usage` value and the lower 16 bits
     /// are ignored.
+    /// ```
+    /// # use hut::*;
+    /// let usage_value: u32 = 0x1 << 16 | 0x2;
+    /// let usage = UsagePage::from_usage_value(usage_value).unwrap();
+    /// assert!(matches!(Usage::from(GenericDesktop::Mouse), usage));
+    /// ```
     pub fn from_usage_value(usage: u32) -> Result<UsagePage> {
         let up: u16 = (usage >> 16) as u16;
         UsagePage::try_from(up)
@@ -412,12 +421,27 @@ impl UsagePage {
 
     /// Returns the 32-bit Usage that is this Usage Page combined with
     /// the 16 bits Usage ID.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let up = UsagePage::GenericDesktop;
+    /// let usage_id_value: u16 = 0x02; // Mouse
+    ///
+    /// let usage = up.to_usage_from_value(usage_id_value).unwrap();
+    /// assert!(matches!(Usage::from(GenericDesktop::Mouse), usage));
+    /// ```
     pub fn to_usage_from_value(&self, usage: u16) -> Result<Usage> {
         let up: u32 = (self.usage_page_value() as u32) << 16;
         let u: u32 = usage as u32;
         Usage::try_from(up | u)
     }
 
+    /// Return a printable name for this usage page
+    /// ```
+    /// # use hut::*;
+    /// let up = UsagePage::GenericDesktop;
+    /// assert_eq!(up.name(), "Generic Desktop");
+    /// ```
     pub fn name(&self) -> String {
         match self {
 {% for usage_page in usage_pages %}
@@ -435,11 +459,25 @@ impl UsagePage {
 
 impl AsUsagePage for UsagePage {
     /// Returns the 16 bit Usage Page value of this Usage Page
+    /// ```
+    /// # use hut::*;
+    /// let usage_value: u16 = 0x1; // GenericDesktop
+    /// let usage_page = UsagePage::from_usage_page_value(usage_value).unwrap();
+    /// assert_eq!(usage_page.usage_page_value(), 0x1);
+    /// ```
     fn usage_page_value(&self) -> u16 {
         u16::from(self)
     }
 
     /// Returns our current [UsagePage]
+    /// ```
+    /// # use hut::*;
+    /// let usage_value: u16 = 0x1; // GenericDesktop
+    /// let usage_page = UsagePage::from_usage_page_value(usage_value).unwrap();
+    /// assert!(matches!(usage_page.usage_page(), UsagePage::GenericDesktop));
+    /// ```
+    /// There is seldom a need to invoke this function, it is merely
+    /// implemented to meet the [AsUsagePage] requirements.
     fn usage_page(&self) -> UsagePage {
         UsagePage::try_from(u16::from(self)).unwrap()
     }
@@ -595,12 +633,16 @@ impl From<&{{usage_page.name}}> for u16 {
 }
 
 impl From<{{usage_page.name}}> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [{{usage_page.name}}::usage_page_value()].
     fn from({{usage_page.name.lower()}}: {{usage_page.name}}) -> u16 {
         u16::from(&{{usage_page.name.lower()}})
     }
 }
 
 impl From<&{{usage_page.name}}> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [{{usage_page.name}}::usage_value()].
     fn from({{usage_page.name.lower()}}: &{{usage_page.name}}) -> u32 {
         let up = UsagePage::from({{usage_page.name.lower()}});
         let up = (u16::from(&up) as u32) << 16;
@@ -610,14 +652,18 @@ impl From<&{{usage_page.name}}> for u32 {
 }
 
 impl From<&{{usage_page.name}}> for UsagePage {
-    fn from(_{{usage_page.name.lower()}}: &{{usage_page.name}}) -> UsagePage {
+    /// Always returns [UsagePage::{{usage_page.name}}] and is
+    /// identical to [{{usage_page.name}}::usage_page()].
+    fn from(_: &{{usage_page.name}}) -> UsagePage {
         UsagePage::{{usage_page.name}}
     }
 }
 
 impl From<{{usage_page.name}}> for UsagePage {
-    fn from({{usage_page.name.lower()}}: {{usage_page.name}}) -> UsagePage {
-        UsagePage::from(&{{usage_page.name.lower()}})
+    /// Always returns [UsagePage::{{usage_page.name}}] and is
+    /// identical to [{{usage_page.name}}::usage_page()].
+    fn from(_: {{usage_page.name}}) -> UsagePage {
+        UsagePage::{{usage_page.name}}
     }
 }
 
