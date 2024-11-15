@@ -460,6 +460,7 @@ impl AsUsagePage for UsagePage {
 /// assert_eq!(0x{{'%X' % usage_page.value}}, u1.usage_page_value());
 /// assert_eq!(0x{{'%X' % usage_page.usages[1].value}}, u1.usage_id_value());
 /// assert_eq!((0x{{'%X' % usage_page.value}} << 16) | 0x{{'%X' % usage_page.usages[1].value}}, u1.usage_value());
+/// assert_eq!("{{usage_page.usages[1].printable}}", u1.name());
 /// ```
 {% endif %}
 ///
@@ -513,12 +514,17 @@ pub enum {{usage_page.name}} {
     {{usage_page.name}}(u16),
 }
 
+impl {{usage_page.name}} {
+    pub fn name(&self) -> String {
+        match self {
+            {{usage_page.name}}::{{usage_page.name}}({{usage_page.name_prefix|lower}}) => format!("{{usage_page.name_prefix}} { {{-usage_page.name_prefix|lower-}} }"),
+        }
+    }
+}
+
 impl fmt::Display for {{usage_page.name}} {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
-            {{usage_page.name}}::{{usage_page.name}}({{usage_page.name_prefix|lower}}) => format!("{{usage_page.name_prefix}} { {{-usage_page.name_prefix|lower-}} }"),
-        };
-        write!(f, "{name}")
+        write!(f, "{}", self.name())
     }
 }
 
@@ -648,15 +654,20 @@ pub enum ReservedUsagePage {
     ReservedUsage { usage_id: u16 },
 }
 
-impl fmt::Display for ReservedUsagePage {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl ReservedUsagePage {
+    fn name(&self) -> String {
+        match self {
             ReservedUsagePage::Undefined => "Reserved Usage Undefined".to_string(),
             ReservedUsagePage::ReservedUsage { usage_id } => {
                 format!("Reserved Usage 0x{usage_id:02x}")
             }
-        };
-        write!(f, "{name}")
+        }
+    }
+}
+
+impl fmt::Display for ReservedUsagePage {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -681,15 +692,20 @@ pub enum VendorDefinedPage {
     VendorUsage { usage_id: u16 },
 }
 
-impl fmt::Display for VendorDefinedPage {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
+impl VendorDefinedPage {
+    fn name(&self) -> String {
+        match self {
             VendorDefinedPage::Undefined => "Vendor Usage Undefined".to_string(),
             VendorDefinedPage::VendorUsage { usage_id } => {
                 format!("Vendor Usage 0x{usage_id:02x}")
             }
-        };
-        write!(f, "{name}")
+        }
+    }
+}
+
+impl fmt::Display for VendorDefinedPage {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", self.name())
     }
 }
 
@@ -807,6 +823,16 @@ impl Usage {
     pub fn new_from_page_and_id(usage_page: u16, usage_id: u16) -> Result<Usage> {
         Usage::try_from((usage_page as u32) << 16 | usage_id as u32)
     }
+
+    pub fn name(&self) -> String {
+        match self {
+{% for usage_page in usage_pages %}
+            Usage::{{usage_page.name}}(usage) => usage.name(),
+{% endfor %}
+            Usage::ReservedUsagePage { usage, .. } => usage.name(),
+            Usage::VendorDefinedPage { usage, .. } => usage.name(),
+        }
+    }
 }
 
 impl AsUsage for Usage {
@@ -835,16 +861,7 @@ impl AsUsagePage for Usage {
 
 impl fmt::Display for Usage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        let name = match self {
-{% for usage_page in usage_pages %}
-            Usage::{{usage_page.name}}(usage) => format!("{usage}"),
-{%  else %}
-            _ => "".into(),
-{% endfor %}
-            Usage::ReservedUsagePage { usage, .. } => format!("{usage}"),
-            Usage::VendorDefinedPage { usage, .. } => format!("{usage}"),
-        };
-        write!(f, "{name}")
+        write!(f, "{}", self.name())
     }
 }
 
