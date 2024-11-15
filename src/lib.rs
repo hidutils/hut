@@ -986,8 +986,8 @@ impl AsUsagePage for GenericDesktop {
 }
 
 impl From<&GenericDesktop> for u16 {
-    fn from(up: &GenericDesktop) -> u16 {
-        match *up {
+    fn from(genericdesktop: &GenericDesktop) -> u16 {
+        match *genericdesktop {
             GenericDesktop::Pointer => 1,
             GenericDesktop::Mouse => 2,
             GenericDesktop::Joystick => 4,
@@ -1107,41 +1107,41 @@ impl From<&GenericDesktop> for u16 {
 }
 
 impl From<GenericDesktop> for u16 {
-    fn from(up: GenericDesktop) -> u16 {
-        u16::from(&up)
+    fn from(genericdesktop: GenericDesktop) -> u16 {
+        u16::from(&genericdesktop)
     }
 }
 
 impl From<&GenericDesktop> for u32 {
-    fn from(usage: &GenericDesktop) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(genericdesktop: &GenericDesktop) -> u32 {
+        let up = UsagePage::from(genericdesktop);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(genericdesktop) as u32;
         up | id
     }
 }
 
 impl From<&GenericDesktop> for UsagePage {
-    fn from(_up: &GenericDesktop) -> UsagePage {
+    fn from(_genericdesktop: &GenericDesktop) -> UsagePage {
         UsagePage::GenericDesktop
     }
 }
 
 impl From<GenericDesktop> for UsagePage {
-    fn from(up: GenericDesktop) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(genericdesktop: GenericDesktop) -> UsagePage {
+        UsagePage::from(&genericdesktop)
     }
 }
 
 impl From<&GenericDesktop> for Usage {
-    fn from(u: &GenericDesktop) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(genericdesktop: &GenericDesktop) -> Usage {
+        Usage::try_from(u32::from(genericdesktop)).unwrap()
     }
 }
 
 impl From<GenericDesktop> for Usage {
-    fn from(u: GenericDesktop) -> Usage {
-        Usage::from(&u)
+    fn from(genericdesktop: GenericDesktop) -> Usage {
+        Usage::from(&genericdesktop)
     }
 }
 
@@ -1497,8 +1497,8 @@ impl AsUsagePage for SimulationControls {
 }
 
 impl From<&SimulationControls> for u16 {
-    fn from(up: &SimulationControls) -> u16 {
-        match *up {
+    fn from(simulationcontrols: &SimulationControls) -> u16 {
+        match *simulationcontrols {
             SimulationControls::FlightSimulationDevice => 1,
             SimulationControls::AutomobileSimulationDevice => 2,
             SimulationControls::TankSimulationDevice => 3,
@@ -1555,41 +1555,41 @@ impl From<&SimulationControls> for u16 {
 }
 
 impl From<SimulationControls> for u16 {
-    fn from(up: SimulationControls) -> u16 {
-        u16::from(&up)
+    fn from(simulationcontrols: SimulationControls) -> u16 {
+        u16::from(&simulationcontrols)
     }
 }
 
 impl From<&SimulationControls> for u32 {
-    fn from(usage: &SimulationControls) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(simulationcontrols: &SimulationControls) -> u32 {
+        let up = UsagePage::from(simulationcontrols);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(simulationcontrols) as u32;
         up | id
     }
 }
 
 impl From<&SimulationControls> for UsagePage {
-    fn from(_up: &SimulationControls) -> UsagePage {
+    fn from(_simulationcontrols: &SimulationControls) -> UsagePage {
         UsagePage::SimulationControls
     }
 }
 
 impl From<SimulationControls> for UsagePage {
-    fn from(up: SimulationControls) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(simulationcontrols: SimulationControls) -> UsagePage {
+        UsagePage::from(&simulationcontrols)
     }
 }
 
 impl From<&SimulationControls> for Usage {
-    fn from(u: &SimulationControls) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(simulationcontrols: &SimulationControls) -> Usage {
+        Usage::try_from(u32::from(simulationcontrols)).unwrap()
     }
 }
 
 impl From<SimulationControls> for Usage {
-    fn from(u: SimulationControls) -> Usage {
-        Usage::from(&u)
+    fn from(simulationcontrols: SimulationControls) -> Usage {
+        Usage::from(&simulationcontrols)
     }
 }
 
@@ -1765,8 +1765,8 @@ impl AsUsagePage for VRControls {
 }
 
 impl From<&VRControls> for u16 {
-    fn from(up: &VRControls) -> u16 {
-        match *up {
+    fn from(vrcontrols: &VRControls) -> u16 {
+        match *vrcontrols {
             VRControls::Belt => 1,
             VRControls::BodySuit => 2,
             VRControls::Flexor => 3,
@@ -1784,41 +1784,41 @@ impl From<&VRControls> for u16 {
 }
 
 impl From<VRControls> for u16 {
-    fn from(up: VRControls) -> u16 {
-        u16::from(&up)
+    fn from(vrcontrols: VRControls) -> u16 {
+        u16::from(&vrcontrols)
     }
 }
 
 impl From<&VRControls> for u32 {
-    fn from(usage: &VRControls) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(vrcontrols: &VRControls) -> u32 {
+        let up = UsagePage::from(vrcontrols);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(vrcontrols) as u32;
         up | id
     }
 }
 
 impl From<&VRControls> for UsagePage {
-    fn from(_up: &VRControls) -> UsagePage {
+    fn from(_vrcontrols: &VRControls) -> UsagePage {
         UsagePage::VRControls
     }
 }
 
 impl From<VRControls> for UsagePage {
-    fn from(up: VRControls) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(vrcontrols: VRControls) -> UsagePage {
+        UsagePage::from(&vrcontrols)
     }
 }
 
 impl From<&VRControls> for Usage {
-    fn from(u: &VRControls) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(vrcontrols: &VRControls) -> Usage {
+        Usage::try_from(u32::from(vrcontrols)).unwrap()
     }
 }
 
 impl From<VRControls> for Usage {
-    fn from(u: VRControls) -> Usage {
-        Usage::from(&u)
+    fn from(vrcontrols: VRControls) -> Usage {
+        Usage::from(&vrcontrols)
     }
 }
 
@@ -2021,8 +2021,8 @@ impl AsUsagePage for SportControls {
 }
 
 impl From<&SportControls> for u16 {
-    fn from(up: &SportControls) -> u16 {
-        match *up {
+    fn from(sportcontrols: &SportControls) -> u16 {
+        match *sportcontrols {
             SportControls::BaseballBat => 1,
             SportControls::GolfClub => 2,
             SportControls::RowingMachine => 3,
@@ -2062,41 +2062,41 @@ impl From<&SportControls> for u16 {
 }
 
 impl From<SportControls> for u16 {
-    fn from(up: SportControls) -> u16 {
-        u16::from(&up)
+    fn from(sportcontrols: SportControls) -> u16 {
+        u16::from(&sportcontrols)
     }
 }
 
 impl From<&SportControls> for u32 {
-    fn from(usage: &SportControls) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(sportcontrols: &SportControls) -> u32 {
+        let up = UsagePage::from(sportcontrols);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(sportcontrols) as u32;
         up | id
     }
 }
 
 impl From<&SportControls> for UsagePage {
-    fn from(_up: &SportControls) -> UsagePage {
+    fn from(_sportcontrols: &SportControls) -> UsagePage {
         UsagePage::SportControls
     }
 }
 
 impl From<SportControls> for UsagePage {
-    fn from(up: SportControls) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(sportcontrols: SportControls) -> UsagePage {
+        UsagePage::from(&sportcontrols)
     }
 }
 
 impl From<&SportControls> for Usage {
-    fn from(u: &SportControls) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(sportcontrols: &SportControls) -> Usage {
+        Usage::try_from(u32::from(sportcontrols)).unwrap()
     }
 }
 
 impl From<SportControls> for Usage {
-    fn from(u: SportControls) -> Usage {
-        Usage::from(&u)
+    fn from(sportcontrols: SportControls) -> Usage {
+        Usage::from(&sportcontrols)
     }
 }
 
@@ -2306,8 +2306,8 @@ impl AsUsagePage for GameControls {
 }
 
 impl From<&GameControls> for u16 {
-    fn from(up: &GameControls) -> u16 {
-        match *up {
+    fn from(gamecontrols: &GameControls) -> u16 {
+        match *gamecontrols {
             GameControls::ThreeDGameController => 1,
             GameControls::PinballDevice => 2,
             GameControls::GunDevice => 3,
@@ -2342,41 +2342,41 @@ impl From<&GameControls> for u16 {
 }
 
 impl From<GameControls> for u16 {
-    fn from(up: GameControls) -> u16 {
-        u16::from(&up)
+    fn from(gamecontrols: GameControls) -> u16 {
+        u16::from(&gamecontrols)
     }
 }
 
 impl From<&GameControls> for u32 {
-    fn from(usage: &GameControls) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(gamecontrols: &GameControls) -> u32 {
+        let up = UsagePage::from(gamecontrols);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(gamecontrols) as u32;
         up | id
     }
 }
 
 impl From<&GameControls> for UsagePage {
-    fn from(_up: &GameControls) -> UsagePage {
+    fn from(_gamecontrols: &GameControls) -> UsagePage {
         UsagePage::GameControls
     }
 }
 
 impl From<GameControls> for UsagePage {
-    fn from(up: GameControls) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(gamecontrols: GameControls) -> UsagePage {
+        UsagePage::from(&gamecontrols)
     }
 }
 
 impl From<&GameControls> for Usage {
-    fn from(u: &GameControls) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(gamecontrols: &GameControls) -> Usage {
+        Usage::try_from(u32::from(gamecontrols)).unwrap()
     }
 }
 
 impl From<GameControls> for Usage {
-    fn from(u: GameControls) -> Usage {
-        Usage::from(&u)
+    fn from(gamecontrols: GameControls) -> Usage {
+        Usage::from(&gamecontrols)
     }
 }
 
@@ -2568,8 +2568,8 @@ impl AsUsagePage for GenericDeviceControls {
 }
 
 impl From<&GenericDeviceControls> for u16 {
-    fn from(up: &GenericDeviceControls) -> u16 {
-        match *up {
+    fn from(genericdevicecontrols: &GenericDeviceControls) -> u16 {
+        match *genericdevicecontrols {
             GenericDeviceControls::BackgroundNonuserControls => 1,
             GenericDeviceControls::BatteryStrength => 32,
             GenericDeviceControls::WirelessChannel => 33,
@@ -2599,41 +2599,41 @@ impl From<&GenericDeviceControls> for u16 {
 }
 
 impl From<GenericDeviceControls> for u16 {
-    fn from(up: GenericDeviceControls) -> u16 {
-        u16::from(&up)
+    fn from(genericdevicecontrols: GenericDeviceControls) -> u16 {
+        u16::from(&genericdevicecontrols)
     }
 }
 
 impl From<&GenericDeviceControls> for u32 {
-    fn from(usage: &GenericDeviceControls) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(genericdevicecontrols: &GenericDeviceControls) -> u32 {
+        let up = UsagePage::from(genericdevicecontrols);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(genericdevicecontrols) as u32;
         up | id
     }
 }
 
 impl From<&GenericDeviceControls> for UsagePage {
-    fn from(_up: &GenericDeviceControls) -> UsagePage {
+    fn from(_genericdevicecontrols: &GenericDeviceControls) -> UsagePage {
         UsagePage::GenericDeviceControls
     }
 }
 
 impl From<GenericDeviceControls> for UsagePage {
-    fn from(up: GenericDeviceControls) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(genericdevicecontrols: GenericDeviceControls) -> UsagePage {
+        UsagePage::from(&genericdevicecontrols)
     }
 }
 
 impl From<&GenericDeviceControls> for Usage {
-    fn from(u: &GenericDeviceControls) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(genericdevicecontrols: &GenericDeviceControls) -> Usage {
+        Usage::try_from(u32::from(genericdevicecontrols)).unwrap()
     }
 }
 
 impl From<GenericDeviceControls> for Usage {
-    fn from(u: GenericDeviceControls) -> Usage {
-        Usage::from(&u)
+    fn from(genericdevicecontrols: GenericDeviceControls) -> Usage {
+        Usage::from(&genericdevicecontrols)
     }
 }
 
@@ -3402,8 +3402,8 @@ impl AsUsagePage for KeyboardKeypad {
 }
 
 impl From<&KeyboardKeypad> for u16 {
-    fn from(up: &KeyboardKeypad) -> u16 {
-        match *up {
+    fn from(keyboardkeypad: &KeyboardKeypad) -> u16 {
+        match *keyboardkeypad {
             KeyboardKeypad::ErrorRollOver => 1,
             KeyboardKeypad::POSTFail => 2,
             KeyboardKeypad::ErrorUndefined => 3,
@@ -3627,41 +3627,41 @@ impl From<&KeyboardKeypad> for u16 {
 }
 
 impl From<KeyboardKeypad> for u16 {
-    fn from(up: KeyboardKeypad) -> u16 {
-        u16::from(&up)
+    fn from(keyboardkeypad: KeyboardKeypad) -> u16 {
+        u16::from(&keyboardkeypad)
     }
 }
 
 impl From<&KeyboardKeypad> for u32 {
-    fn from(usage: &KeyboardKeypad) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(keyboardkeypad: &KeyboardKeypad) -> u32 {
+        let up = UsagePage::from(keyboardkeypad);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(keyboardkeypad) as u32;
         up | id
     }
 }
 
 impl From<&KeyboardKeypad> for UsagePage {
-    fn from(_up: &KeyboardKeypad) -> UsagePage {
+    fn from(_keyboardkeypad: &KeyboardKeypad) -> UsagePage {
         UsagePage::KeyboardKeypad
     }
 }
 
 impl From<KeyboardKeypad> for UsagePage {
-    fn from(up: KeyboardKeypad) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(keyboardkeypad: KeyboardKeypad) -> UsagePage {
+        UsagePage::from(&keyboardkeypad)
     }
 }
 
 impl From<&KeyboardKeypad> for Usage {
-    fn from(u: &KeyboardKeypad) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(keyboardkeypad: &KeyboardKeypad) -> Usage {
+        Usage::try_from(u32::from(keyboardkeypad)).unwrap()
     }
 }
 
 impl From<KeyboardKeypad> for Usage {
-    fn from(u: KeyboardKeypad) -> Usage {
-        Usage::from(&u)
+    fn from(keyboardkeypad: KeyboardKeypad) -> Usage {
+        Usage::from(&keyboardkeypad)
     }
 }
 
@@ -4256,8 +4256,8 @@ impl AsUsagePage for LED {
 }
 
 impl From<&LED> for u16 {
-    fn from(up: &LED) -> u16 {
-        match *up {
+    fn from(led: &LED) -> u16 {
+        match *led {
             LED::NumLock => 1,
             LED::CapsLock => 2,
             LED::ScrollLock => 3,
@@ -4359,41 +4359,41 @@ impl From<&LED> for u16 {
 }
 
 impl From<LED> for u16 {
-    fn from(up: LED) -> u16 {
-        u16::from(&up)
+    fn from(led: LED) -> u16 {
+        u16::from(&led)
     }
 }
 
 impl From<&LED> for u32 {
-    fn from(usage: &LED) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(led: &LED) -> u32 {
+        let up = UsagePage::from(led);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(led) as u32;
         up | id
     }
 }
 
 impl From<&LED> for UsagePage {
-    fn from(_up: &LED) -> UsagePage {
+    fn from(_led: &LED) -> UsagePage {
         UsagePage::LED
     }
 }
 
 impl From<LED> for UsagePage {
-    fn from(up: LED) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(led: LED) -> UsagePage {
+        UsagePage::from(&led)
     }
 }
 
 impl From<&LED> for Usage {
-    fn from(u: &LED) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(led: &LED) -> Usage {
+        Usage::try_from(u32::from(led)).unwrap()
     }
 }
 
 impl From<LED> for Usage {
-    fn from(u: LED) -> Usage {
-        Usage::from(&u)
+    fn from(led: LED) -> Usage {
+        Usage::from(&led)
     }
 }
 
@@ -4564,49 +4564,49 @@ impl AsUsagePage for Button {
 }
 
 impl From<&Button> for u16 {
-    fn from(up: &Button) -> u16 {
-        match *up {
+    fn from(button: &Button) -> u16 {
+        match *button {
             Button::Button { button } => button,
         }
     }
 }
 
 impl From<Button> for u16 {
-    fn from(up: Button) -> u16 {
-        u16::from(&up)
+    fn from(button: Button) -> u16 {
+        u16::from(&button)
     }
 }
 
 impl From<&Button> for u32 {
-    fn from(usage: &Button) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(button: &Button) -> u32 {
+        let up = UsagePage::from(button);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(button) as u32;
         up | id
     }
 }
 
 impl From<&Button> for UsagePage {
-    fn from(_up: &Button) -> UsagePage {
+    fn from(_button: &Button) -> UsagePage {
         UsagePage::Button
     }
 }
 
 impl From<Button> for UsagePage {
-    fn from(up: Button) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(button: Button) -> UsagePage {
+        UsagePage::from(&button)
     }
 }
 
 impl From<&Button> for Usage {
-    fn from(u: &Button) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(button: &Button) -> Usage {
+        Usage::try_from(u32::from(button)).unwrap()
     }
 }
 
 impl From<Button> for Usage {
-    fn from(u: Button) -> Usage {
-        Usage::from(&u)
+    fn from(button: Button) -> Usage {
+        Usage::from(&button)
     }
 }
 
@@ -4681,49 +4681,49 @@ impl AsUsagePage for Ordinal {
 }
 
 impl From<&Ordinal> for u16 {
-    fn from(up: &Ordinal) -> u16 {
-        match *up {
+    fn from(ordinal: &Ordinal) -> u16 {
+        match *ordinal {
             Ordinal::Ordinal { instance } => instance,
         }
     }
 }
 
 impl From<Ordinal> for u16 {
-    fn from(up: Ordinal) -> u16 {
-        u16::from(&up)
+    fn from(ordinal: Ordinal) -> u16 {
+        u16::from(&ordinal)
     }
 }
 
 impl From<&Ordinal> for u32 {
-    fn from(usage: &Ordinal) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(ordinal: &Ordinal) -> u32 {
+        let up = UsagePage::from(ordinal);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(ordinal) as u32;
         up | id
     }
 }
 
 impl From<&Ordinal> for UsagePage {
-    fn from(_up: &Ordinal) -> UsagePage {
+    fn from(_ordinal: &Ordinal) -> UsagePage {
         UsagePage::Ordinal
     }
 }
 
 impl From<Ordinal> for UsagePage {
-    fn from(up: Ordinal) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(ordinal: Ordinal) -> UsagePage {
+        UsagePage::from(&ordinal)
     }
 }
 
 impl From<&Ordinal> for Usage {
-    fn from(u: &Ordinal) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(ordinal: &Ordinal) -> Usage {
+        Usage::try_from(u32::from(ordinal)).unwrap()
     }
 }
 
 impl From<Ordinal> for Usage {
-    fn from(u: Ordinal) -> Usage {
-        Usage::from(&u)
+    fn from(ordinal: Ordinal) -> Usage {
+        Usage::from(&ordinal)
     }
 }
 
@@ -5109,8 +5109,8 @@ impl AsUsagePage for TelephonyDevice {
 }
 
 impl From<&TelephonyDevice> for u16 {
-    fn from(up: &TelephonyDevice) -> u16 {
-        match *up {
+    fn from(telephonydevice: &TelephonyDevice) -> u16 {
+        match *telephonydevice {
             TelephonyDevice::Phone => 1,
             TelephonyDevice::AnsweringMachine => 2,
             TelephonyDevice::MessageControls => 3,
@@ -5215,41 +5215,41 @@ impl From<&TelephonyDevice> for u16 {
 }
 
 impl From<TelephonyDevice> for u16 {
-    fn from(up: TelephonyDevice) -> u16 {
-        u16::from(&up)
+    fn from(telephonydevice: TelephonyDevice) -> u16 {
+        u16::from(&telephonydevice)
     }
 }
 
 impl From<&TelephonyDevice> for u32 {
-    fn from(usage: &TelephonyDevice) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(telephonydevice: &TelephonyDevice) -> u32 {
+        let up = UsagePage::from(telephonydevice);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(telephonydevice) as u32;
         up | id
     }
 }
 
 impl From<&TelephonyDevice> for UsagePage {
-    fn from(_up: &TelephonyDevice) -> UsagePage {
+    fn from(_telephonydevice: &TelephonyDevice) -> UsagePage {
         UsagePage::TelephonyDevice
     }
 }
 
 impl From<TelephonyDevice> for UsagePage {
-    fn from(up: TelephonyDevice) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(telephonydevice: TelephonyDevice) -> UsagePage {
+        UsagePage::from(&telephonydevice)
     }
 }
 
 impl From<&TelephonyDevice> for Usage {
-    fn from(u: &TelephonyDevice) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(telephonydevice: &TelephonyDevice) -> Usage {
+        Usage::try_from(u32::from(telephonydevice)).unwrap()
     }
 }
 
 impl From<TelephonyDevice> for Usage {
-    fn from(u: TelephonyDevice) -> Usage {
-        Usage::from(&u)
+    fn from(telephonydevice: TelephonyDevice) -> Usage {
+        Usage::from(&telephonydevice)
     }
 }
 
@@ -6793,8 +6793,8 @@ impl AsUsagePage for Consumer {
 }
 
 impl From<&Consumer> for u16 {
-    fn from(up: &Consumer) -> u16 {
-        match *up {
+    fn from(consumer: &Consumer) -> u16 {
+        match *consumer {
             Consumer::ConsumerControl => 1,
             Consumer::NumericKeyPad => 2,
             Consumer::ProgrammableButtons => 3,
@@ -7250,41 +7250,41 @@ impl From<&Consumer> for u16 {
 }
 
 impl From<Consumer> for u16 {
-    fn from(up: Consumer) -> u16 {
-        u16::from(&up)
+    fn from(consumer: Consumer) -> u16 {
+        u16::from(&consumer)
     }
 }
 
 impl From<&Consumer> for u32 {
-    fn from(usage: &Consumer) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(consumer: &Consumer) -> u32 {
+        let up = UsagePage::from(consumer);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(consumer) as u32;
         up | id
     }
 }
 
 impl From<&Consumer> for UsagePage {
-    fn from(_up: &Consumer) -> UsagePage {
+    fn from(_consumer: &Consumer) -> UsagePage {
         UsagePage::Consumer
     }
 }
 
 impl From<Consumer> for UsagePage {
-    fn from(up: Consumer) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(consumer: Consumer) -> UsagePage {
+        UsagePage::from(&consumer)
     }
 }
 
 impl From<&Consumer> for Usage {
-    fn from(u: &Consumer) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(consumer: &Consumer) -> Usage {
+        Usage::try_from(u32::from(consumer)).unwrap()
     }
 }
 
 impl From<Consumer> for Usage {
-    fn from(u: Consumer) -> Usage {
-        Usage::from(&u)
+    fn from(consumer: Consumer) -> Usage {
+        Usage::from(&consumer)
     }
 }
 
@@ -8157,8 +8157,8 @@ impl AsUsagePage for Digitizers {
 }
 
 impl From<&Digitizers> for u16 {
-    fn from(up: &Digitizers) -> u16 {
-        match *up {
+    fn from(digitizers: &Digitizers) -> u16 {
+        match *digitizers {
             Digitizers::Digitizer => 1,
             Digitizers::Pen => 2,
             Digitizers::LightPen => 3,
@@ -8272,41 +8272,41 @@ impl From<&Digitizers> for u16 {
 }
 
 impl From<Digitizers> for u16 {
-    fn from(up: Digitizers) -> u16 {
-        u16::from(&up)
+    fn from(digitizers: Digitizers) -> u16 {
+        u16::from(&digitizers)
     }
 }
 
 impl From<&Digitizers> for u32 {
-    fn from(usage: &Digitizers) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(digitizers: &Digitizers) -> u32 {
+        let up = UsagePage::from(digitizers);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(digitizers) as u32;
         up | id
     }
 }
 
 impl From<&Digitizers> for UsagePage {
-    fn from(_up: &Digitizers) -> UsagePage {
+    fn from(_digitizers: &Digitizers) -> UsagePage {
         UsagePage::Digitizers
     }
 }
 
 impl From<Digitizers> for UsagePage {
-    fn from(up: Digitizers) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(digitizers: Digitizers) -> UsagePage {
+        UsagePage::from(&digitizers)
     }
 }
 
 impl From<&Digitizers> for Usage {
-    fn from(u: &Digitizers) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(digitizers: &Digitizers) -> Usage {
+        Usage::try_from(u32::from(digitizers)).unwrap()
     }
 }
 
 impl From<Digitizers> for Usage {
-    fn from(u: Digitizers) -> Usage {
-        Usage::from(&u)
+    fn from(digitizers: Digitizers) -> Usage {
+        Usage::from(&digitizers)
     }
 }
 
@@ -8590,8 +8590,8 @@ impl AsUsagePage for Haptics {
 }
 
 impl From<&Haptics> for u16 {
-    fn from(up: &Haptics) -> u16 {
-        match *up {
+    fn from(haptics: &Haptics) -> u16 {
+        match *haptics {
             Haptics::SimpleHapticController => 1,
             Haptics::WaveformList => 16,
             Haptics::DurationList => 17,
@@ -8626,41 +8626,41 @@ impl From<&Haptics> for u16 {
 }
 
 impl From<Haptics> for u16 {
-    fn from(up: Haptics) -> u16 {
-        u16::from(&up)
+    fn from(haptics: Haptics) -> u16 {
+        u16::from(&haptics)
     }
 }
 
 impl From<&Haptics> for u32 {
-    fn from(usage: &Haptics) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(haptics: &Haptics) -> u32 {
+        let up = UsagePage::from(haptics);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(haptics) as u32;
         up | id
     }
 }
 
 impl From<&Haptics> for UsagePage {
-    fn from(_up: &Haptics) -> UsagePage {
+    fn from(_haptics: &Haptics) -> UsagePage {
         UsagePage::Haptics
     }
 }
 
 impl From<Haptics> for UsagePage {
-    fn from(up: Haptics) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(haptics: Haptics) -> UsagePage {
+        UsagePage::from(&haptics)
     }
 }
 
 impl From<&Haptics> for Usage {
-    fn from(u: &Haptics) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(haptics: &Haptics) -> Usage {
+        Usage::try_from(u32::from(haptics)).unwrap()
     }
 }
 
 impl From<Haptics> for Usage {
-    fn from(u: Haptics) -> Usage {
-        Usage::from(&u)
+    fn from(haptics: Haptics) -> Usage {
+        Usage::from(&haptics)
     }
 }
 
@@ -9101,8 +9101,8 @@ impl AsUsagePage for PhysicalInputDevice {
 }
 
 impl From<&PhysicalInputDevice> for u16 {
-    fn from(up: &PhysicalInputDevice) -> u16 {
-        match *up {
+    fn from(physicalinputdevice: &PhysicalInputDevice) -> u16 {
+        match *physicalinputdevice {
             PhysicalInputDevice::PhysicalInputDevice => 1,
             PhysicalInputDevice::Normal => 32,
             PhysicalInputDevice::SetEffectReport => 33,
@@ -9213,41 +9213,41 @@ impl From<&PhysicalInputDevice> for u16 {
 }
 
 impl From<PhysicalInputDevice> for u16 {
-    fn from(up: PhysicalInputDevice) -> u16 {
-        u16::from(&up)
+    fn from(physicalinputdevice: PhysicalInputDevice) -> u16 {
+        u16::from(&physicalinputdevice)
     }
 }
 
 impl From<&PhysicalInputDevice> for u32 {
-    fn from(usage: &PhysicalInputDevice) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(physicalinputdevice: &PhysicalInputDevice) -> u32 {
+        let up = UsagePage::from(physicalinputdevice);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(physicalinputdevice) as u32;
         up | id
     }
 }
 
 impl From<&PhysicalInputDevice> for UsagePage {
-    fn from(_up: &PhysicalInputDevice) -> UsagePage {
+    fn from(_physicalinputdevice: &PhysicalInputDevice) -> UsagePage {
         UsagePage::PhysicalInputDevice
     }
 }
 
 impl From<PhysicalInputDevice> for UsagePage {
-    fn from(up: PhysicalInputDevice) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(physicalinputdevice: PhysicalInputDevice) -> UsagePage {
+        UsagePage::from(&physicalinputdevice)
     }
 }
 
 impl From<&PhysicalInputDevice> for Usage {
-    fn from(u: &PhysicalInputDevice) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(physicalinputdevice: &PhysicalInputDevice) -> Usage {
+        Usage::try_from(u32::from(physicalinputdevice)).unwrap()
     }
 }
 
 impl From<PhysicalInputDevice> for Usage {
-    fn from(u: PhysicalInputDevice) -> Usage {
-        Usage::from(&u)
+    fn from(physicalinputdevice: PhysicalInputDevice) -> Usage {
+        Usage::from(&physicalinputdevice)
     }
 }
 
@@ -9427,49 +9427,49 @@ impl AsUsagePage for Unicode {
 }
 
 impl From<&Unicode> for u16 {
-    fn from(up: &Unicode) -> u16 {
-        match *up {
+    fn from(unicode: &Unicode) -> u16 {
+        match *unicode {
             Unicode::Unicode { codepoint } => codepoint,
         }
     }
 }
 
 impl From<Unicode> for u16 {
-    fn from(up: Unicode) -> u16 {
-        u16::from(&up)
+    fn from(unicode: Unicode) -> u16 {
+        u16::from(&unicode)
     }
 }
 
 impl From<&Unicode> for u32 {
-    fn from(usage: &Unicode) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(unicode: &Unicode) -> u32 {
+        let up = UsagePage::from(unicode);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(unicode) as u32;
         up | id
     }
 }
 
 impl From<&Unicode> for UsagePage {
-    fn from(_up: &Unicode) -> UsagePage {
+    fn from(_unicode: &Unicode) -> UsagePage {
         UsagePage::Unicode
     }
 }
 
 impl From<Unicode> for UsagePage {
-    fn from(up: Unicode) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(unicode: Unicode) -> UsagePage {
+        UsagePage::from(&unicode)
     }
 }
 
 impl From<&Unicode> for Usage {
-    fn from(u: &Unicode) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(unicode: &Unicode) -> Usage {
+        Usage::try_from(u32::from(unicode)).unwrap()
     }
 }
 
 impl From<Unicode> for Usage {
-    fn from(u: Unicode) -> Usage {
-        Usage::from(&u)
+    fn from(unicode: Unicode) -> Usage {
+        Usage::from(&unicode)
     }
 }
 
@@ -9588,8 +9588,8 @@ impl AsUsagePage for SoC {
 }
 
 impl From<&SoC> for u16 {
-    fn from(up: &SoC) -> u16 {
-        match *up {
+    fn from(soc: &SoC) -> u16 {
+        match *soc {
             SoC::SocControl => 1,
             SoC::FirmwareTransfer => 2,
             SoC::FirmwareFileId => 3,
@@ -9605,41 +9605,41 @@ impl From<&SoC> for u16 {
 }
 
 impl From<SoC> for u16 {
-    fn from(up: SoC) -> u16 {
-        u16::from(&up)
+    fn from(soc: SoC) -> u16 {
+        u16::from(&soc)
     }
 }
 
 impl From<&SoC> for u32 {
-    fn from(usage: &SoC) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(soc: &SoC) -> u32 {
+        let up = UsagePage::from(soc);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(soc) as u32;
         up | id
     }
 }
 
 impl From<&SoC> for UsagePage {
-    fn from(_up: &SoC) -> UsagePage {
+    fn from(_soc: &SoC) -> UsagePage {
         UsagePage::SoC
     }
 }
 
 impl From<SoC> for UsagePage {
-    fn from(up: SoC) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(soc: SoC) -> UsagePage {
+        UsagePage::from(&soc)
     }
 }
 
 impl From<&SoC> for Usage {
-    fn from(u: &SoC) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(soc: &SoC) -> Usage {
+        Usage::try_from(u32::from(soc)).unwrap()
     }
 }
 
 impl From<SoC> for Usage {
-    fn from(u: SoC) -> Usage {
-        Usage::from(&u)
+    fn from(soc: SoC) -> Usage {
+        Usage::from(&soc)
     }
 }
 
@@ -9840,8 +9840,8 @@ impl AsUsagePage for EyeandHeadTrackers {
 }
 
 impl From<&EyeandHeadTrackers> for u16 {
-    fn from(up: &EyeandHeadTrackers) -> u16 {
-        match *up {
+    fn from(eyeandheadtrackers: &EyeandHeadTrackers) -> u16 {
+        match *eyeandheadtrackers {
             EyeandHeadTrackers::EyeTracker => 1,
             EyeandHeadTrackers::HeadTracker => 2,
             EyeandHeadTrackers::TrackingData => 16,
@@ -9881,41 +9881,41 @@ impl From<&EyeandHeadTrackers> for u16 {
 }
 
 impl From<EyeandHeadTrackers> for u16 {
-    fn from(up: EyeandHeadTrackers) -> u16 {
-        u16::from(&up)
+    fn from(eyeandheadtrackers: EyeandHeadTrackers) -> u16 {
+        u16::from(&eyeandheadtrackers)
     }
 }
 
 impl From<&EyeandHeadTrackers> for u32 {
-    fn from(usage: &EyeandHeadTrackers) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(eyeandheadtrackers: &EyeandHeadTrackers) -> u32 {
+        let up = UsagePage::from(eyeandheadtrackers);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(eyeandheadtrackers) as u32;
         up | id
     }
 }
 
 impl From<&EyeandHeadTrackers> for UsagePage {
-    fn from(_up: &EyeandHeadTrackers) -> UsagePage {
+    fn from(_eyeandheadtrackers: &EyeandHeadTrackers) -> UsagePage {
         UsagePage::EyeandHeadTrackers
     }
 }
 
 impl From<EyeandHeadTrackers> for UsagePage {
-    fn from(up: EyeandHeadTrackers) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(eyeandheadtrackers: EyeandHeadTrackers) -> UsagePage {
+        UsagePage::from(&eyeandheadtrackers)
     }
 }
 
 impl From<&EyeandHeadTrackers> for Usage {
-    fn from(u: &EyeandHeadTrackers) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(eyeandheadtrackers: &EyeandHeadTrackers) -> Usage {
+        Usage::try_from(u32::from(eyeandheadtrackers)).unwrap()
     }
 }
 
 impl From<EyeandHeadTrackers> for Usage {
-    fn from(u: EyeandHeadTrackers) -> Usage {
-        Usage::from(&u)
+    fn from(eyeandheadtrackers: EyeandHeadTrackers) -> Usage {
+        Usage::from(&eyeandheadtrackers)
     }
 }
 
@@ -10263,8 +10263,8 @@ impl AsUsagePage for AuxiliaryDisplay {
 }
 
 impl From<&AuxiliaryDisplay> for u16 {
-    fn from(up: &AuxiliaryDisplay) -> u16 {
-        match *up {
+    fn from(auxiliarydisplay: &AuxiliaryDisplay) -> u16 {
+        match *auxiliarydisplay {
             AuxiliaryDisplay::AlphanumericDisplay => 1,
             AuxiliaryDisplay::AuxiliaryDisplay => 2,
             AuxiliaryDisplay::DisplayAttributesReport => 32,
@@ -10345,41 +10345,41 @@ impl From<&AuxiliaryDisplay> for u16 {
 }
 
 impl From<AuxiliaryDisplay> for u16 {
-    fn from(up: AuxiliaryDisplay) -> u16 {
-        u16::from(&up)
+    fn from(auxiliarydisplay: AuxiliaryDisplay) -> u16 {
+        u16::from(&auxiliarydisplay)
     }
 }
 
 impl From<&AuxiliaryDisplay> for u32 {
-    fn from(usage: &AuxiliaryDisplay) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(auxiliarydisplay: &AuxiliaryDisplay) -> u32 {
+        let up = UsagePage::from(auxiliarydisplay);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(auxiliarydisplay) as u32;
         up | id
     }
 }
 
 impl From<&AuxiliaryDisplay> for UsagePage {
-    fn from(_up: &AuxiliaryDisplay) -> UsagePage {
+    fn from(_auxiliarydisplay: &AuxiliaryDisplay) -> UsagePage {
         UsagePage::AuxiliaryDisplay
     }
 }
 
 impl From<AuxiliaryDisplay> for UsagePage {
-    fn from(up: AuxiliaryDisplay) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(auxiliarydisplay: AuxiliaryDisplay) -> UsagePage {
+        UsagePage::from(&auxiliarydisplay)
     }
 }
 
 impl From<&AuxiliaryDisplay> for Usage {
-    fn from(u: &AuxiliaryDisplay) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(auxiliarydisplay: &AuxiliaryDisplay) -> Usage {
+        Usage::try_from(u32::from(auxiliarydisplay)).unwrap()
     }
 }
 
 impl From<AuxiliaryDisplay> for Usage {
-    fn from(u: AuxiliaryDisplay) -> Usage {
-        Usage::from(&u)
+    fn from(auxiliarydisplay: AuxiliaryDisplay) -> Usage {
+        Usage::from(&auxiliarydisplay)
     }
 }
 
@@ -12672,8 +12672,8 @@ impl AsUsagePage for Sensors {
 }
 
 impl From<&Sensors> for u16 {
-    fn from(up: &Sensors) -> u16 {
-        match *up {
+    fn from(sensors: &Sensors) -> u16 {
+        match *sensors {
             Sensors::Sensor => 1,
             Sensors::Biometric => 16,
             Sensors::BiometricHumanPresence => 17,
@@ -13352,41 +13352,41 @@ impl From<&Sensors> for u16 {
 }
 
 impl From<Sensors> for u16 {
-    fn from(up: Sensors) -> u16 {
-        u16::from(&up)
+    fn from(sensors: Sensors) -> u16 {
+        u16::from(&sensors)
     }
 }
 
 impl From<&Sensors> for u32 {
-    fn from(usage: &Sensors) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(sensors: &Sensors) -> u32 {
+        let up = UsagePage::from(sensors);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(sensors) as u32;
         up | id
     }
 }
 
 impl From<&Sensors> for UsagePage {
-    fn from(_up: &Sensors) -> UsagePage {
+    fn from(_sensors: &Sensors) -> UsagePage {
         UsagePage::Sensors
     }
 }
 
 impl From<Sensors> for UsagePage {
-    fn from(up: Sensors) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(sensors: Sensors) -> UsagePage {
+        UsagePage::from(&sensors)
     }
 }
 
 impl From<&Sensors> for Usage {
-    fn from(u: &Sensors) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(sensors: &Sensors) -> Usage {
+        Usage::try_from(u32::from(sensors)).unwrap()
     }
 }
 
 impl From<Sensors> for Usage {
-    fn from(u: Sensors) -> Usage {
-        Usage::from(&u)
+    fn from(sensors: Sensors) -> Usage {
+        Usage::from(&sensors)
     }
 }
 
@@ -14235,8 +14235,8 @@ impl AsUsagePage for MedicalInstrument {
 }
 
 impl From<&MedicalInstrument> for u16 {
-    fn from(up: &MedicalInstrument) -> u16 {
-        match *up {
+    fn from(medicalinstrument: &MedicalInstrument) -> u16 {
+        match *medicalinstrument {
             MedicalInstrument::MedicalUltrasound => 1,
             MedicalInstrument::VCRAcquisition => 32,
             MedicalInstrument::FreezeThaw => 33,
@@ -14271,41 +14271,41 @@ impl From<&MedicalInstrument> for u16 {
 }
 
 impl From<MedicalInstrument> for u16 {
-    fn from(up: MedicalInstrument) -> u16 {
-        u16::from(&up)
+    fn from(medicalinstrument: MedicalInstrument) -> u16 {
+        u16::from(&medicalinstrument)
     }
 }
 
 impl From<&MedicalInstrument> for u32 {
-    fn from(usage: &MedicalInstrument) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(medicalinstrument: &MedicalInstrument) -> u32 {
+        let up = UsagePage::from(medicalinstrument);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(medicalinstrument) as u32;
         up | id
     }
 }
 
 impl From<&MedicalInstrument> for UsagePage {
-    fn from(_up: &MedicalInstrument) -> UsagePage {
+    fn from(_medicalinstrument: &MedicalInstrument) -> UsagePage {
         UsagePage::MedicalInstrument
     }
 }
 
 impl From<MedicalInstrument> for UsagePage {
-    fn from(up: MedicalInstrument) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(medicalinstrument: MedicalInstrument) -> UsagePage {
+        UsagePage::from(&medicalinstrument)
     }
 }
 
 impl From<&MedicalInstrument> for Usage {
-    fn from(u: &MedicalInstrument) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(medicalinstrument: &MedicalInstrument) -> Usage {
+        Usage::try_from(u32::from(medicalinstrument)).unwrap()
     }
 }
 
 impl From<MedicalInstrument> for Usage {
-    fn from(u: MedicalInstrument) -> Usage {
-        Usage::from(&u)
+    fn from(medicalinstrument: MedicalInstrument) -> Usage {
+        Usage::from(&medicalinstrument)
     }
 }
 
@@ -14552,8 +14552,8 @@ impl AsUsagePage for BrailleDisplay {
 }
 
 impl From<&BrailleDisplay> for u16 {
-    fn from(up: &BrailleDisplay) -> u16 {
-        match *up {
+    fn from(brailledisplay: &BrailleDisplay) -> u16 {
+        match *brailledisplay {
             BrailleDisplay::BrailleDisplay => 1,
             BrailleDisplay::BrailleRow => 2,
             BrailleDisplay::EightDotBrailleCell => 3,
@@ -14602,41 +14602,41 @@ impl From<&BrailleDisplay> for u16 {
 }
 
 impl From<BrailleDisplay> for u16 {
-    fn from(up: BrailleDisplay) -> u16 {
-        u16::from(&up)
+    fn from(brailledisplay: BrailleDisplay) -> u16 {
+        u16::from(&brailledisplay)
     }
 }
 
 impl From<&BrailleDisplay> for u32 {
-    fn from(usage: &BrailleDisplay) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(brailledisplay: &BrailleDisplay) -> u32 {
+        let up = UsagePage::from(brailledisplay);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(brailledisplay) as u32;
         up | id
     }
 }
 
 impl From<&BrailleDisplay> for UsagePage {
-    fn from(_up: &BrailleDisplay) -> UsagePage {
+    fn from(_brailledisplay: &BrailleDisplay) -> UsagePage {
         UsagePage::BrailleDisplay
     }
 }
 
 impl From<BrailleDisplay> for UsagePage {
-    fn from(up: BrailleDisplay) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(brailledisplay: BrailleDisplay) -> UsagePage {
+        UsagePage::from(&brailledisplay)
     }
 }
 
 impl From<&BrailleDisplay> for Usage {
-    fn from(u: &BrailleDisplay) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(brailledisplay: &BrailleDisplay) -> Usage {
+        Usage::try_from(u32::from(brailledisplay)).unwrap()
     }
 }
 
 impl From<BrailleDisplay> for Usage {
-    fn from(u: BrailleDisplay) -> Usage {
-        Usage::from(&u)
+    fn from(brailledisplay: BrailleDisplay) -> Usage {
+        Usage::from(&brailledisplay)
     }
 }
 
@@ -14875,8 +14875,8 @@ impl AsUsagePage for LightingAndIllumination {
 }
 
 impl From<&LightingAndIllumination> for u16 {
-    fn from(up: &LightingAndIllumination) -> u16 {
-        match *up {
+    fn from(lightingandillumination: &LightingAndIllumination) -> u16 {
+        match *lightingandillumination {
             LightingAndIllumination::LampArray => 1,
             LightingAndIllumination::LampArrayAttributesReport => 2,
             LightingAndIllumination::LampCount => 3,
@@ -14915,41 +14915,41 @@ impl From<&LightingAndIllumination> for u16 {
 }
 
 impl From<LightingAndIllumination> for u16 {
-    fn from(up: LightingAndIllumination) -> u16 {
-        u16::from(&up)
+    fn from(lightingandillumination: LightingAndIllumination) -> u16 {
+        u16::from(&lightingandillumination)
     }
 }
 
 impl From<&LightingAndIllumination> for u32 {
-    fn from(usage: &LightingAndIllumination) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(lightingandillumination: &LightingAndIllumination) -> u32 {
+        let up = UsagePage::from(lightingandillumination);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(lightingandillumination) as u32;
         up | id
     }
 }
 
 impl From<&LightingAndIllumination> for UsagePage {
-    fn from(_up: &LightingAndIllumination) -> UsagePage {
+    fn from(_lightingandillumination: &LightingAndIllumination) -> UsagePage {
         UsagePage::LightingAndIllumination
     }
 }
 
 impl From<LightingAndIllumination> for UsagePage {
-    fn from(up: LightingAndIllumination) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(lightingandillumination: LightingAndIllumination) -> UsagePage {
+        UsagePage::from(&lightingandillumination)
     }
 }
 
 impl From<&LightingAndIllumination> for Usage {
-    fn from(u: &LightingAndIllumination) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(lightingandillumination: &LightingAndIllumination) -> Usage {
+        Usage::try_from(u32::from(lightingandillumination)).unwrap()
     }
 }
 
 impl From<LightingAndIllumination> for Usage {
-    fn from(u: LightingAndIllumination) -> Usage {
-        Usage::from(&u)
+    fn from(lightingandillumination: LightingAndIllumination) -> Usage {
+        Usage::from(&lightingandillumination)
     }
 }
 
@@ -15083,8 +15083,8 @@ impl AsUsagePage for Monitor {
 }
 
 impl From<&Monitor> for u16 {
-    fn from(up: &Monitor) -> u16 {
-        match *up {
+    fn from(monitor: &Monitor) -> u16 {
+        match *monitor {
             Monitor::MonitorControl => 1,
             Monitor::EDIDInformation => 2,
             Monitor::VDIFInformation => 3,
@@ -15094,41 +15094,41 @@ impl From<&Monitor> for u16 {
 }
 
 impl From<Monitor> for u16 {
-    fn from(up: Monitor) -> u16 {
-        u16::from(&up)
+    fn from(monitor: Monitor) -> u16 {
+        u16::from(&monitor)
     }
 }
 
 impl From<&Monitor> for u32 {
-    fn from(usage: &Monitor) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(monitor: &Monitor) -> u32 {
+        let up = UsagePage::from(monitor);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(monitor) as u32;
         up | id
     }
 }
 
 impl From<&Monitor> for UsagePage {
-    fn from(_up: &Monitor) -> UsagePage {
+    fn from(_monitor: &Monitor) -> UsagePage {
         UsagePage::Monitor
     }
 }
 
 impl From<Monitor> for UsagePage {
-    fn from(up: Monitor) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(monitor: Monitor) -> UsagePage {
+        UsagePage::from(&monitor)
     }
 }
 
 impl From<&Monitor> for Usage {
-    fn from(u: &Monitor) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(monitor: &Monitor) -> Usage {
+        Usage::try_from(u32::from(monitor)).unwrap()
     }
 }
 
 impl From<Monitor> for Usage {
-    fn from(u: Monitor) -> Usage {
-        Usage::from(&u)
+    fn from(monitor: Monitor) -> Usage {
+        Usage::from(&monitor)
     }
 }
 
@@ -15207,49 +15207,49 @@ impl AsUsagePage for MonitorEnumerated {
 }
 
 impl From<&MonitorEnumerated> for u16 {
-    fn from(up: &MonitorEnumerated) -> u16 {
-        match *up {
+    fn from(monitorenumerated: &MonitorEnumerated) -> u16 {
+        match *monitorenumerated {
             MonitorEnumerated::MonitorEnumerated { enumerate } => enumerate,
         }
     }
 }
 
 impl From<MonitorEnumerated> for u16 {
-    fn from(up: MonitorEnumerated) -> u16 {
-        u16::from(&up)
+    fn from(monitorenumerated: MonitorEnumerated) -> u16 {
+        u16::from(&monitorenumerated)
     }
 }
 
 impl From<&MonitorEnumerated> for u32 {
-    fn from(usage: &MonitorEnumerated) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(monitorenumerated: &MonitorEnumerated) -> u32 {
+        let up = UsagePage::from(monitorenumerated);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(monitorenumerated) as u32;
         up | id
     }
 }
 
 impl From<&MonitorEnumerated> for UsagePage {
-    fn from(_up: &MonitorEnumerated) -> UsagePage {
+    fn from(_monitorenumerated: &MonitorEnumerated) -> UsagePage {
         UsagePage::MonitorEnumerated
     }
 }
 
 impl From<MonitorEnumerated> for UsagePage {
-    fn from(up: MonitorEnumerated) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(monitorenumerated: MonitorEnumerated) -> UsagePage {
+        UsagePage::from(&monitorenumerated)
     }
 }
 
 impl From<&MonitorEnumerated> for Usage {
-    fn from(u: &MonitorEnumerated) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(monitorenumerated: &MonitorEnumerated) -> Usage {
+        Usage::try_from(u32::from(monitorenumerated)).unwrap()
     }
 }
 
 impl From<MonitorEnumerated> for Usage {
-    fn from(u: MonitorEnumerated) -> Usage {
-        Usage::from(&u)
+    fn from(monitorenumerated: MonitorEnumerated) -> Usage {
+        Usage::from(&monitorenumerated)
     }
 }
 
@@ -15483,8 +15483,8 @@ impl AsUsagePage for VESAVirtualControls {
 }
 
 impl From<&VESAVirtualControls> for u16 {
-    fn from(up: &VESAVirtualControls) -> u16 {
-        match *up {
+    fn from(vesavirtualcontrols: &VESAVirtualControls) -> u16 {
+        match *vesavirtualcontrols {
             VESAVirtualControls::Degauss => 1,
             VESAVirtualControls::Brightness => 16,
             VESAVirtualControls::Contrast => 18,
@@ -15535,41 +15535,41 @@ impl From<&VESAVirtualControls> for u16 {
 }
 
 impl From<VESAVirtualControls> for u16 {
-    fn from(up: VESAVirtualControls) -> u16 {
-        u16::from(&up)
+    fn from(vesavirtualcontrols: VESAVirtualControls) -> u16 {
+        u16::from(&vesavirtualcontrols)
     }
 }
 
 impl From<&VESAVirtualControls> for u32 {
-    fn from(usage: &VESAVirtualControls) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(vesavirtualcontrols: &VESAVirtualControls) -> u32 {
+        let up = UsagePage::from(vesavirtualcontrols);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(vesavirtualcontrols) as u32;
         up | id
     }
 }
 
 impl From<&VESAVirtualControls> for UsagePage {
-    fn from(_up: &VESAVirtualControls) -> UsagePage {
+    fn from(_vesavirtualcontrols: &VESAVirtualControls) -> UsagePage {
         UsagePage::VESAVirtualControls
     }
 }
 
 impl From<VESAVirtualControls> for UsagePage {
-    fn from(up: VESAVirtualControls) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(vesavirtualcontrols: VESAVirtualControls) -> UsagePage {
+        UsagePage::from(&vesavirtualcontrols)
     }
 }
 
 impl From<&VESAVirtualControls> for Usage {
-    fn from(u: &VESAVirtualControls) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(vesavirtualcontrols: &VESAVirtualControls) -> Usage {
+        Usage::try_from(u32::from(vesavirtualcontrols)).unwrap()
     }
 }
 
 impl From<VESAVirtualControls> for Usage {
-    fn from(u: VESAVirtualControls) -> Usage {
-        Usage::from(&u)
+    fn from(vesavirtualcontrols: VESAVirtualControls) -> Usage {
+        Usage::from(&vesavirtualcontrols)
     }
 }
 
@@ -15934,8 +15934,8 @@ impl AsUsagePage for Power {
 }
 
 impl From<&Power> for u16 {
-    fn from(up: &Power) -> u16 {
-        match *up {
+    fn from(power: &Power) -> u16 {
+        match *power {
             Power::iName => 1,
             Power::PresentStatus => 2,
             Power::ChangedStatus => 3,
@@ -16018,41 +16018,41 @@ impl From<&Power> for u16 {
 }
 
 impl From<Power> for u16 {
-    fn from(up: Power) -> u16 {
-        u16::from(&up)
+    fn from(power: Power) -> u16 {
+        u16::from(&power)
     }
 }
 
 impl From<&Power> for u32 {
-    fn from(usage: &Power) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(power: &Power) -> u32 {
+        let up = UsagePage::from(power);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(power) as u32;
         up | id
     }
 }
 
 impl From<&Power> for UsagePage {
-    fn from(_up: &Power) -> UsagePage {
+    fn from(_power: &Power) -> UsagePage {
         UsagePage::Power
     }
 }
 
 impl From<Power> for UsagePage {
-    fn from(up: Power) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(power: Power) -> UsagePage {
+        UsagePage::from(&power)
     }
 }
 
 impl From<&Power> for Usage {
-    fn from(u: &Power) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(power: &Power) -> Usage {
+        Usage::try_from(u32::from(power)).unwrap()
     }
 }
 
 impl From<Power> for Usage {
-    fn from(u: Power) -> Usage {
-        Usage::from(&u)
+    fn from(power: Power) -> Usage {
+        Usage::from(&power)
     }
 }
 
@@ -16491,8 +16491,8 @@ impl AsUsagePage for BatterySystem {
 }
 
 impl From<&BatterySystem> for u16 {
-    fn from(up: &BatterySystem) -> u16 {
-        match *up {
+    fn from(batterysystem: &BatterySystem) -> u16 {
+        match *batterysystem {
             BatterySystem::SmartBatteryBatteryMode => 1,
             BatterySystem::SmartBatteryBatteryStatus => 2,
             BatterySystem::SmartBatteryAlarmWarning => 3,
@@ -16589,41 +16589,41 @@ impl From<&BatterySystem> for u16 {
 }
 
 impl From<BatterySystem> for u16 {
-    fn from(up: BatterySystem) -> u16 {
-        u16::from(&up)
+    fn from(batterysystem: BatterySystem) -> u16 {
+        u16::from(&batterysystem)
     }
 }
 
 impl From<&BatterySystem> for u32 {
-    fn from(usage: &BatterySystem) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(batterysystem: &BatterySystem) -> u32 {
+        let up = UsagePage::from(batterysystem);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(batterysystem) as u32;
         up | id
     }
 }
 
 impl From<&BatterySystem> for UsagePage {
-    fn from(_up: &BatterySystem) -> UsagePage {
+    fn from(_batterysystem: &BatterySystem) -> UsagePage {
         UsagePage::BatterySystem
     }
 }
 
 impl From<BatterySystem> for UsagePage {
-    fn from(up: BatterySystem) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(batterysystem: BatterySystem) -> UsagePage {
+        UsagePage::from(&batterysystem)
     }
 }
 
 impl From<&BatterySystem> for Usage {
-    fn from(u: &BatterySystem) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(batterysystem: &BatterySystem) -> Usage {
+        Usage::try_from(u32::from(batterysystem)).unwrap()
     }
 }
 
 impl From<BatterySystem> for Usage {
-    fn from(u: BatterySystem) -> Usage {
-        Usage::from(&u)
+    fn from(batterysystem: BatterySystem) -> Usage {
+        Usage::from(&batterysystem)
     }
 }
 
@@ -17399,8 +17399,8 @@ impl AsUsagePage for BarcodeScanner {
 }
 
 impl From<&BarcodeScanner> for u16 {
-    fn from(up: &BarcodeScanner) -> u16 {
-        match *up {
+    fn from(barcodescanner: &BarcodeScanner) -> u16 {
+        match *barcodescanner {
             BarcodeScanner::BarcodeBadgeReader => 1,
             BarcodeScanner::BarcodeScanner => 2,
             BarcodeScanner::DumbBarCodeScanner => 3,
@@ -17600,41 +17600,41 @@ impl From<&BarcodeScanner> for u16 {
 }
 
 impl From<BarcodeScanner> for u16 {
-    fn from(up: BarcodeScanner) -> u16 {
-        u16::from(&up)
+    fn from(barcodescanner: BarcodeScanner) -> u16 {
+        u16::from(&barcodescanner)
     }
 }
 
 impl From<&BarcodeScanner> for u32 {
-    fn from(usage: &BarcodeScanner) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(barcodescanner: &BarcodeScanner) -> u32 {
+        let up = UsagePage::from(barcodescanner);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(barcodescanner) as u32;
         up | id
     }
 }
 
 impl From<&BarcodeScanner> for UsagePage {
-    fn from(_up: &BarcodeScanner) -> UsagePage {
+    fn from(_barcodescanner: &BarcodeScanner) -> UsagePage {
         UsagePage::BarcodeScanner
     }
 }
 
 impl From<BarcodeScanner> for UsagePage {
-    fn from(up: BarcodeScanner) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(barcodescanner: BarcodeScanner) -> UsagePage {
+        UsagePage::from(&barcodescanner)
     }
 }
 
 impl From<&BarcodeScanner> for Usage {
-    fn from(u: &BarcodeScanner) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(barcodescanner: &BarcodeScanner) -> Usage {
+        Usage::try_from(u32::from(barcodescanner)).unwrap()
     }
 }
 
 impl From<BarcodeScanner> for Usage {
-    fn from(u: BarcodeScanner) -> Usage {
-        Usage::from(&u)
+    fn from(barcodescanner: BarcodeScanner) -> Usage {
+        Usage::from(&barcodescanner)
     }
 }
 
@@ -18055,8 +18055,8 @@ impl AsUsagePage for Scales {
 }
 
 impl From<&Scales> for u16 {
-    fn from(up: &Scales) -> u16 {
-        match *up {
+    fn from(scales: &Scales) -> u16 {
+        match *scales {
             Scales::Scales => 1,
             Scales::ScaleDevice => 32,
             Scales::ScaleClass => 33,
@@ -18108,41 +18108,41 @@ impl From<&Scales> for u16 {
 }
 
 impl From<Scales> for u16 {
-    fn from(up: Scales) -> u16 {
-        u16::from(&up)
+    fn from(scales: Scales) -> u16 {
+        u16::from(&scales)
     }
 }
 
 impl From<&Scales> for u32 {
-    fn from(usage: &Scales) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(scales: &Scales) -> u32 {
+        let up = UsagePage::from(scales);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(scales) as u32;
         up | id
     }
 }
 
 impl From<&Scales> for UsagePage {
-    fn from(_up: &Scales) -> UsagePage {
+    fn from(_scales: &Scales) -> UsagePage {
         UsagePage::Scales
     }
 }
 
 impl From<Scales> for UsagePage {
-    fn from(up: Scales) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(scales: Scales) -> UsagePage {
+        UsagePage::from(&scales)
     }
 }
 
 impl From<&Scales> for Usage {
-    fn from(u: &Scales) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(scales: &Scales) -> Usage {
+        Usage::try_from(u32::from(scales)).unwrap()
     }
 }
 
 impl From<Scales> for Usage {
-    fn from(u: Scales) -> Usage {
-        Usage::from(&u)
+    fn from(scales: Scales) -> Usage {
+        Usage::from(&scales)
     }
 }
 
@@ -18307,8 +18307,8 @@ impl AsUsagePage for MagneticStripeReader {
 }
 
 impl From<&MagneticStripeReader> for u16 {
-    fn from(up: &MagneticStripeReader) -> u16 {
-        match *up {
+    fn from(magneticstripereader: &MagneticStripeReader) -> u16 {
+        match *magneticstripereader {
             MagneticStripeReader::MSRDeviceReadOnly => 1,
             MagneticStripeReader::Track1Length => 17,
             MagneticStripeReader::Track2Length => 18,
@@ -18324,41 +18324,41 @@ impl From<&MagneticStripeReader> for u16 {
 }
 
 impl From<MagneticStripeReader> for u16 {
-    fn from(up: MagneticStripeReader) -> u16 {
-        u16::from(&up)
+    fn from(magneticstripereader: MagneticStripeReader) -> u16 {
+        u16::from(&magneticstripereader)
     }
 }
 
 impl From<&MagneticStripeReader> for u32 {
-    fn from(usage: &MagneticStripeReader) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(magneticstripereader: &MagneticStripeReader) -> u32 {
+        let up = UsagePage::from(magneticstripereader);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(magneticstripereader) as u32;
         up | id
     }
 }
 
 impl From<&MagneticStripeReader> for UsagePage {
-    fn from(_up: &MagneticStripeReader) -> UsagePage {
+    fn from(_magneticstripereader: &MagneticStripeReader) -> UsagePage {
         UsagePage::MagneticStripeReader
     }
 }
 
 impl From<MagneticStripeReader> for UsagePage {
-    fn from(up: MagneticStripeReader) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(magneticstripereader: MagneticStripeReader) -> UsagePage {
+        UsagePage::from(&magneticstripereader)
     }
 }
 
 impl From<&MagneticStripeReader> for Usage {
-    fn from(u: &MagneticStripeReader) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(magneticstripereader: &MagneticStripeReader) -> Usage {
+        Usage::try_from(u32::from(magneticstripereader)).unwrap()
     }
 }
 
 impl From<MagneticStripeReader> for Usage {
-    fn from(u: MagneticStripeReader) -> Usage {
-        Usage::from(&u)
+    fn from(magneticstripereader: MagneticStripeReader) -> Usage {
+        Usage::from(&magneticstripereader)
     }
 }
 
@@ -18463,8 +18463,8 @@ impl AsUsagePage for CameraControl {
 }
 
 impl From<&CameraControl> for u16 {
-    fn from(up: &CameraControl) -> u16 {
-        match *up {
+    fn from(cameracontrol: &CameraControl) -> u16 {
+        match *cameracontrol {
             CameraControl::CameraAutofocus => 32,
             CameraControl::CameraShutter => 33,
         }
@@ -18472,41 +18472,41 @@ impl From<&CameraControl> for u16 {
 }
 
 impl From<CameraControl> for u16 {
-    fn from(up: CameraControl) -> u16 {
-        u16::from(&up)
+    fn from(cameracontrol: CameraControl) -> u16 {
+        u16::from(&cameracontrol)
     }
 }
 
 impl From<&CameraControl> for u32 {
-    fn from(usage: &CameraControl) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(cameracontrol: &CameraControl) -> u32 {
+        let up = UsagePage::from(cameracontrol);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(cameracontrol) as u32;
         up | id
     }
 }
 
 impl From<&CameraControl> for UsagePage {
-    fn from(_up: &CameraControl) -> UsagePage {
+    fn from(_cameracontrol: &CameraControl) -> UsagePage {
         UsagePage::CameraControl
     }
 }
 
 impl From<CameraControl> for UsagePage {
-    fn from(up: CameraControl) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(cameracontrol: CameraControl) -> UsagePage {
+        UsagePage::from(&cameracontrol)
     }
 }
 
 impl From<&CameraControl> for Usage {
-    fn from(u: &CameraControl) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(cameracontrol: &CameraControl) -> Usage {
+        Usage::try_from(u32::from(cameracontrol)).unwrap()
     }
 }
 
 impl From<CameraControl> for Usage {
-    fn from(u: CameraControl) -> Usage {
-        Usage::from(&u)
+    fn from(cameracontrol: CameraControl) -> Usage {
+        Usage::from(&cameracontrol)
     }
 }
 
@@ -18678,8 +18678,8 @@ impl AsUsagePage for Arcade {
 }
 
 impl From<&Arcade> for u16 {
-    fn from(up: &Arcade) -> u16 {
-        match *up {
+    fn from(arcade: &Arcade) -> u16 {
+        match *arcade {
             Arcade::GeneralPurposeIOCard => 1,
             Arcade::CoinDoor => 2,
             Arcade::WatchdogTimer => 3,
@@ -18712,41 +18712,41 @@ impl From<&Arcade> for u16 {
 }
 
 impl From<Arcade> for u16 {
-    fn from(up: Arcade) -> u16 {
-        u16::from(&up)
+    fn from(arcade: Arcade) -> u16 {
+        u16::from(&arcade)
     }
 }
 
 impl From<&Arcade> for u32 {
-    fn from(usage: &Arcade) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(arcade: &Arcade) -> u32 {
+        let up = UsagePage::from(arcade);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(arcade) as u32;
         up | id
     }
 }
 
 impl From<&Arcade> for UsagePage {
-    fn from(_up: &Arcade) -> UsagePage {
+    fn from(_arcade: &Arcade) -> UsagePage {
         UsagePage::Arcade
     }
 }
 
 impl From<Arcade> for UsagePage {
-    fn from(up: Arcade) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(arcade: Arcade) -> UsagePage {
+        UsagePage::from(&arcade)
     }
 }
 
 impl From<&Arcade> for Usage {
-    fn from(u: &Arcade) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(arcade: &Arcade) -> Usage {
+        Usage::try_from(u32::from(arcade)).unwrap()
     }
 }
 
 impl From<Arcade> for Usage {
-    fn from(u: Arcade) -> Usage {
-        Usage::from(&u)
+    fn from(arcade: Arcade) -> Usage {
+        Usage::from(&arcade)
     }
 }
 
@@ -18871,8 +18871,8 @@ impl AsUsagePage for FIDOAlliance {
 }
 
 impl From<&FIDOAlliance> for u16 {
-    fn from(up: &FIDOAlliance) -> u16 {
-        match *up {
+    fn from(fidoalliance: &FIDOAlliance) -> u16 {
+        match *fidoalliance {
             FIDOAlliance::U2FAuthenticatorDevice => 1,
             FIDOAlliance::InputReportData => 32,
             FIDOAlliance::OutputReportData => 33,
@@ -18881,41 +18881,41 @@ impl From<&FIDOAlliance> for u16 {
 }
 
 impl From<FIDOAlliance> for u16 {
-    fn from(up: FIDOAlliance) -> u16 {
-        u16::from(&up)
+    fn from(fidoalliance: FIDOAlliance) -> u16 {
+        u16::from(&fidoalliance)
     }
 }
 
 impl From<&FIDOAlliance> for u32 {
-    fn from(usage: &FIDOAlliance) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(fidoalliance: &FIDOAlliance) -> u32 {
+        let up = UsagePage::from(fidoalliance);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(fidoalliance) as u32;
         up | id
     }
 }
 
 impl From<&FIDOAlliance> for UsagePage {
-    fn from(_up: &FIDOAlliance) -> UsagePage {
+    fn from(_fidoalliance: &FIDOAlliance) -> UsagePage {
         UsagePage::FIDOAlliance
     }
 }
 
 impl From<FIDOAlliance> for UsagePage {
-    fn from(up: FIDOAlliance) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(fidoalliance: FIDOAlliance) -> UsagePage {
+        UsagePage::from(&fidoalliance)
     }
 }
 
 impl From<&FIDOAlliance> for Usage {
-    fn from(u: &FIDOAlliance) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(fidoalliance: &FIDOAlliance) -> Usage {
+        Usage::try_from(u32::from(fidoalliance)).unwrap()
     }
 }
 
 impl From<FIDOAlliance> for Usage {
-    fn from(u: FIDOAlliance) -> Usage {
-        Usage::from(&u)
+    fn from(fidoalliance: FIDOAlliance) -> Usage {
+        Usage::from(&fidoalliance)
     }
 }
 
@@ -19325,8 +19325,8 @@ impl AsUsagePage for Wacom {
 }
 
 impl From<&Wacom> for u16 {
-    fn from(up: &Wacom) -> u16 {
-        match *up {
+    fn from(wacom: &Wacom) -> u16 {
+        match *wacom {
             Wacom::WacomDigitizer => 1,
             Wacom::WacomPen => 2,
             Wacom::LightPen => 3,
@@ -19438,41 +19438,41 @@ impl From<&Wacom> for u16 {
 }
 
 impl From<Wacom> for u16 {
-    fn from(up: Wacom) -> u16 {
-        u16::from(&up)
+    fn from(wacom: Wacom) -> u16 {
+        u16::from(&wacom)
     }
 }
 
 impl From<&Wacom> for u32 {
-    fn from(usage: &Wacom) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from(wacom: &Wacom) -> u32 {
+        let up = UsagePage::from(wacom);
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from(wacom) as u32;
         up | id
     }
 }
 
 impl From<&Wacom> for UsagePage {
-    fn from(_up: &Wacom) -> UsagePage {
+    fn from(_wacom: &Wacom) -> UsagePage {
         UsagePage::Wacom
     }
 }
 
 impl From<Wacom> for UsagePage {
-    fn from(up: Wacom) -> UsagePage {
-        UsagePage::from(&up)
+    fn from(wacom: Wacom) -> UsagePage {
+        UsagePage::from(&wacom)
     }
 }
 
 impl From<&Wacom> for Usage {
-    fn from(u: &Wacom) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from(wacom: &Wacom) -> Usage {
+        Usage::try_from(u32::from(wacom)).unwrap()
     }
 }
 
 impl From<Wacom> for Usage {
-    fn from(u: Wacom) -> Usage {
-        Usage::from(&u)
+    fn from(wacom: Wacom) -> Usage {
+        Usage::from(&wacom)
     }
 }
 

@@ -549,8 +549,8 @@ impl AsUsagePage for {{usage_page.name}} {
 }
 
 impl From<&{{usage_page.name}}> for u16 {
-    fn from(up: &{{usage_page.name}}) -> u16 {
-        match *up {
+    fn from({{usage_page.name.lower()}}: &{{usage_page.name}}) -> u16 {
+        match *{{usage_page.name.lower()}} {
         {% if usage_page.usage_page_type == "Defined" %}
             {% for usage in usage_page.usages %}
             {{usage_page.name}}::{{usage.name}} => {{usage.value}},
@@ -564,41 +564,41 @@ impl From<&{{usage_page.name}}> for u16 {
 }
 
 impl From<{{usage_page.name}}> for u16 {
-    fn from(up: {{usage_page.name}}) -> u16 {
-        u16::from(&up)
+    fn from({{usage_page.name.lower()}}: {{usage_page.name}}) -> u16 {
+        u16::from(&{{usage_page.name.lower()}})
     }
 }
 
 impl From<&{{usage_page.name}}> for u32 {
-    fn from(usage: &{{usage_page.name}}) -> u32 {
-        let up = UsagePage::from(usage);
+    fn from({{usage_page.name.lower()}}: &{{usage_page.name}}) -> u32 {
+        let up = UsagePage::from({{usage_page.name.lower()}});
         let up = (u16::from(&up) as u32) << 16;
-        let id = u16::from(usage) as u32;
+        let id = u16::from({{usage_page.name.lower()}}) as u32;
         up | id
     }
 }
 
 impl From<&{{usage_page.name}}> for UsagePage {
-    fn from(_up: &{{usage_page.name}}) -> UsagePage {
+    fn from(_{{usage_page.name.lower()}}: &{{usage_page.name}}) -> UsagePage {
         UsagePage::{{usage_page.name}}
     }
 }
 
 impl From<{{usage_page.name}}> for UsagePage {
-    fn from(up: {{usage_page.name}}) -> UsagePage {
-        UsagePage::from(&up)
+    fn from({{usage_page.name.lower()}}: {{usage_page.name}}) -> UsagePage {
+        UsagePage::from(&{{usage_page.name.lower()}})
     }
 }
 
 impl From<&{{usage_page.name}}> for Usage {
-    fn from(u: &{{usage_page.name}}) -> Usage {
-        Usage::try_from(u32::from(u)).unwrap()
+    fn from({{usage_page.name.lower()}}: &{{usage_page.name}}) -> Usage {
+        Usage::try_from(u32::from({{usage_page.name.lower()}})).unwrap()
     }
 }
 
 impl From<{{usage_page.name}}> for Usage {
-    fn from(u: {{usage_page.name}}) -> Usage {
-        Usage::from(&u)
+    fn from({{usage_page.name.lower()}}: {{usage_page.name}}) -> Usage {
+        Usage::from(&{{usage_page.name.lower()}})
     }
 }
 
