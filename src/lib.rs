@@ -502,21 +502,16 @@ impl UsagePage {
         UsagePage::try_from(up)
     }
 
-    /// Returns the 16-bit value for this Usage Page.
-    pub fn usage_page(&self) -> u16 {
-        u16::from(self)
-    }
-
     /// Returns the 32-bit Usage that is this Usage Page combined with
     /// the 16 bits Usage ID.
     pub fn to_usage_from_value(&self, usage: u16) -> Result<Usage> {
-        let up: u32 = (self.usage_page() as u32) << 16;
+        let up: u32 = (self.usage_page_value() as u32) << 16;
         let u: u32 = usage as u32;
         Usage::try_from(up | u)
     }
 
     pub fn to_usage(&self, usage: u16) -> Result<Usage> {
-        let up: u32 = (self.usage_page() as u32) << 16;
+        let up: u32 = (self.usage_page_value() as u32) << 16;
         let u: u32 = usage as u32;
         Usage::try_from(up | u)
     }
