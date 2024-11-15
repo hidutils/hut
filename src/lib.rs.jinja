@@ -418,12 +418,6 @@ impl UsagePage {
         Usage::try_from(up | u)
     }
 
-    pub fn to_usage(&self, usage: u16) -> Result<Usage> {
-        let up: u32 = (self.usage_page_value() as u32) << 16;
-        let u: u32 = usage as u32;
-        Usage::try_from(up | u)
-    }
-
     pub fn name(&self) -> String {
         match self {
 {% for usage_page in usage_pages %}
@@ -664,7 +658,7 @@ impl BitOr<u16> for {{usage_page.name}} {
     ///
     /// This function panics if the Usage ID value results in
     /// an unknown Usage. Where error checking is required,
-    /// use [UsagePage::to_usage].
+    /// use [UsagePage::to_usage_from_value].
     fn bitor(self, usage: u16) -> Usage {
         let up = u16::from(self) as u32;
         let u = usage as u32;
