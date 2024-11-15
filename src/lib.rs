@@ -493,9 +493,12 @@ impl TryFrom<u32> for VendorPage {
 impl UsagePage {
     /// Returns the Usage Page for the given Usage Page value. This is the
     /// 16-bit Usage Page value only, not the full 32-bit Usage.
-    ///
-    /// The returned value is always the "Undefined" usage of the matching
-    /// Usage Page.
+    /// ```
+    /// # use hut::*;
+    /// let usage_value: u16 = 0x1; // GenericDesktop
+    /// let usage_page = UsagePage::from_usage_page_value(usage_value).unwrap();
+    /// assert!(matches!(UsagePage::GenericDesktop, usage_page));
+    /// ```
     pub fn from_usage_page_value(usage_page: u16) -> Result<UsagePage> {
         UsagePage::try_from(usage_page)
     }
@@ -503,6 +506,12 @@ impl UsagePage {
     /// Returns the Usage Page for the given Usage numeric value. The Usage Page
     /// must be in the upper 16 bits of the `usage` value and the lower 16 bits
     /// are ignored.
+    /// ```
+    /// # use hut::*;
+    /// let usage_value: u32 = 0x1 << 16 | 0x2;
+    /// let usage = UsagePage::from_usage_value(usage_value).unwrap();
+    /// assert!(matches!(Usage::from(GenericDesktop::Mouse), usage));
+    /// ```
     pub fn from_usage_value(usage: u32) -> Result<UsagePage> {
         let up: u16 = (usage >> 16) as u16;
         UsagePage::try_from(up)
@@ -510,12 +519,27 @@ impl UsagePage {
 
     /// Returns the 32-bit Usage that is this Usage Page combined with
     /// the 16 bits Usage ID.
+    ///
+    /// ```
+    /// # use hut::*;
+    /// let up = UsagePage::GenericDesktop;
+    /// let usage_id_value: u16 = 0x02; // Mouse
+    ///
+    /// let usage = up.to_usage_from_value(usage_id_value).unwrap();
+    /// assert!(matches!(Usage::from(GenericDesktop::Mouse), usage));
+    /// ```
     pub fn to_usage_from_value(&self, usage: u16) -> Result<Usage> {
         let up: u32 = (self.usage_page_value() as u32) << 16;
         let u: u32 = usage as u32;
         Usage::try_from(up | u)
     }
 
+    /// Return a printable name for this usage page
+    /// ```
+    /// # use hut::*;
+    /// let up = UsagePage::GenericDesktop;
+    /// assert_eq!(up.name(), "Generic Desktop");
+    /// ```
     pub fn name(&self) -> String {
         match self {
             UsagePage::GenericDesktop => "Generic Desktop".into(),
@@ -565,11 +589,25 @@ impl UsagePage {
 
 impl AsUsagePage for UsagePage {
     /// Returns the 16 bit Usage Page value of this Usage Page
+    /// ```
+    /// # use hut::*;
+    /// let usage_value: u16 = 0x1; // GenericDesktop
+    /// let usage_page = UsagePage::from_usage_page_value(usage_value).unwrap();
+    /// assert_eq!(usage_page.usage_page_value(), 0x1);
+    /// ```
     fn usage_page_value(&self) -> u16 {
         u16::from(self)
     }
 
     /// Returns our current [UsagePage]
+    /// ```
+    /// # use hut::*;
+    /// let usage_value: u16 = 0x1; // GenericDesktop
+    /// let usage_page = UsagePage::from_usage_page_value(usage_value).unwrap();
+    /// assert!(matches!(usage_page.usage_page(), UsagePage::GenericDesktop));
+    /// ```
+    /// There is seldom a need to invoke this function, it is merely
+    /// implemented to meet the [AsUsagePage] requirements.
     fn usage_page(&self) -> UsagePage {
         UsagePage::try_from(u16::from(self)).unwrap()
     }
@@ -1116,12 +1154,16 @@ impl From<&GenericDesktop> for u16 {
 }
 
 impl From<GenericDesktop> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [GenericDesktop::usage_page_value()].
     fn from(genericdesktop: GenericDesktop) -> u16 {
         u16::from(&genericdesktop)
     }
 }
 
 impl From<&GenericDesktop> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [GenericDesktop::usage_value()].
     fn from(genericdesktop: &GenericDesktop) -> u32 {
         let up = UsagePage::from(genericdesktop);
         let up = (u16::from(&up) as u32) << 16;
@@ -1131,14 +1173,18 @@ impl From<&GenericDesktop> for u32 {
 }
 
 impl From<&GenericDesktop> for UsagePage {
-    fn from(_genericdesktop: &GenericDesktop) -> UsagePage {
+    /// Always returns [UsagePage::GenericDesktop] and is
+    /// identical to [GenericDesktop::usage_page()].
+    fn from(_: &GenericDesktop) -> UsagePage {
         UsagePage::GenericDesktop
     }
 }
 
 impl From<GenericDesktop> for UsagePage {
-    fn from(genericdesktop: GenericDesktop) -> UsagePage {
-        UsagePage::from(&genericdesktop)
+    /// Always returns [UsagePage::GenericDesktop] and is
+    /// identical to [GenericDesktop::usage_page()].
+    fn from(_: GenericDesktop) -> UsagePage {
+        UsagePage::GenericDesktop
     }
 }
 
@@ -1573,12 +1619,16 @@ impl From<&SimulationControls> for u16 {
 }
 
 impl From<SimulationControls> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [SimulationControls::usage_page_value()].
     fn from(simulationcontrols: SimulationControls) -> u16 {
         u16::from(&simulationcontrols)
     }
 }
 
 impl From<&SimulationControls> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [SimulationControls::usage_value()].
     fn from(simulationcontrols: &SimulationControls) -> u32 {
         let up = UsagePage::from(simulationcontrols);
         let up = (u16::from(&up) as u32) << 16;
@@ -1588,14 +1638,18 @@ impl From<&SimulationControls> for u32 {
 }
 
 impl From<&SimulationControls> for UsagePage {
-    fn from(_simulationcontrols: &SimulationControls) -> UsagePage {
+    /// Always returns [UsagePage::SimulationControls] and is
+    /// identical to [SimulationControls::usage_page()].
+    fn from(_: &SimulationControls) -> UsagePage {
         UsagePage::SimulationControls
     }
 }
 
 impl From<SimulationControls> for UsagePage {
-    fn from(simulationcontrols: SimulationControls) -> UsagePage {
-        UsagePage::from(&simulationcontrols)
+    /// Always returns [UsagePage::SimulationControls] and is
+    /// identical to [SimulationControls::usage_page()].
+    fn from(_: SimulationControls) -> UsagePage {
+        UsagePage::SimulationControls
     }
 }
 
@@ -1811,12 +1865,16 @@ impl From<&VRControls> for u16 {
 }
 
 impl From<VRControls> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [VRControls::usage_page_value()].
     fn from(vrcontrols: VRControls) -> u16 {
         u16::from(&vrcontrols)
     }
 }
 
 impl From<&VRControls> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [VRControls::usage_value()].
     fn from(vrcontrols: &VRControls) -> u32 {
         let up = UsagePage::from(vrcontrols);
         let up = (u16::from(&up) as u32) << 16;
@@ -1826,14 +1884,18 @@ impl From<&VRControls> for u32 {
 }
 
 impl From<&VRControls> for UsagePage {
-    fn from(_vrcontrols: &VRControls) -> UsagePage {
+    /// Always returns [UsagePage::VRControls] and is
+    /// identical to [VRControls::usage_page()].
+    fn from(_: &VRControls) -> UsagePage {
         UsagePage::VRControls
     }
 }
 
 impl From<VRControls> for UsagePage {
-    fn from(vrcontrols: VRControls) -> UsagePage {
-        UsagePage::from(&vrcontrols)
+    /// Always returns [UsagePage::VRControls] and is
+    /// identical to [VRControls::usage_page()].
+    fn from(_: VRControls) -> UsagePage {
+        UsagePage::VRControls
     }
 }
 
@@ -2098,12 +2160,16 @@ impl From<&SportControls> for u16 {
 }
 
 impl From<SportControls> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [SportControls::usage_page_value()].
     fn from(sportcontrols: SportControls) -> u16 {
         u16::from(&sportcontrols)
     }
 }
 
 impl From<&SportControls> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [SportControls::usage_value()].
     fn from(sportcontrols: &SportControls) -> u32 {
         let up = UsagePage::from(sportcontrols);
         let up = (u16::from(&up) as u32) << 16;
@@ -2113,14 +2179,18 @@ impl From<&SportControls> for u32 {
 }
 
 impl From<&SportControls> for UsagePage {
-    fn from(_sportcontrols: &SportControls) -> UsagePage {
+    /// Always returns [UsagePage::SportControls] and is
+    /// identical to [SportControls::usage_page()].
+    fn from(_: &SportControls) -> UsagePage {
         UsagePage::SportControls
     }
 }
 
 impl From<SportControls> for UsagePage {
-    fn from(sportcontrols: SportControls) -> UsagePage {
-        UsagePage::from(&sportcontrols)
+    /// Always returns [UsagePage::SportControls] and is
+    /// identical to [SportControls::usage_page()].
+    fn from(_: SportControls) -> UsagePage {
+        UsagePage::SportControls
     }
 }
 
@@ -2387,12 +2457,16 @@ impl From<&GameControls> for u16 {
 }
 
 impl From<GameControls> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [GameControls::usage_page_value()].
     fn from(gamecontrols: GameControls) -> u16 {
         u16::from(&gamecontrols)
     }
 }
 
 impl From<&GameControls> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [GameControls::usage_value()].
     fn from(gamecontrols: &GameControls) -> u32 {
         let up = UsagePage::from(gamecontrols);
         let up = (u16::from(&up) as u32) << 16;
@@ -2402,14 +2476,18 @@ impl From<&GameControls> for u32 {
 }
 
 impl From<&GameControls> for UsagePage {
-    fn from(_gamecontrols: &GameControls) -> UsagePage {
+    /// Always returns [UsagePage::GameControls] and is
+    /// identical to [GameControls::usage_page()].
+    fn from(_: &GameControls) -> UsagePage {
         UsagePage::GameControls
     }
 }
 
 impl From<GameControls> for UsagePage {
-    fn from(gamecontrols: GameControls) -> UsagePage {
-        UsagePage::from(&gamecontrols)
+    /// Always returns [UsagePage::GameControls] and is
+    /// identical to [GameControls::usage_page()].
+    fn from(_: GameControls) -> UsagePage {
+        UsagePage::GameControls
     }
 }
 
@@ -2653,12 +2731,16 @@ impl From<&GenericDeviceControls> for u16 {
 }
 
 impl From<GenericDeviceControls> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [GenericDeviceControls::usage_page_value()].
     fn from(genericdevicecontrols: GenericDeviceControls) -> u16 {
         u16::from(&genericdevicecontrols)
     }
 }
 
 impl From<&GenericDeviceControls> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [GenericDeviceControls::usage_value()].
     fn from(genericdevicecontrols: &GenericDeviceControls) -> u32 {
         let up = UsagePage::from(genericdevicecontrols);
         let up = (u16::from(&up) as u32) << 16;
@@ -2668,14 +2750,18 @@ impl From<&GenericDeviceControls> for u32 {
 }
 
 impl From<&GenericDeviceControls> for UsagePage {
-    fn from(_genericdevicecontrols: &GenericDeviceControls) -> UsagePage {
+    /// Always returns [UsagePage::GenericDeviceControls] and is
+    /// identical to [GenericDeviceControls::usage_page()].
+    fn from(_: &GenericDeviceControls) -> UsagePage {
         UsagePage::GenericDeviceControls
     }
 }
 
 impl From<GenericDeviceControls> for UsagePage {
-    fn from(genericdevicecontrols: GenericDeviceControls) -> UsagePage {
-        UsagePage::from(&genericdevicecontrols)
+    /// Always returns [UsagePage::GenericDeviceControls] and is
+    /// identical to [GenericDeviceControls::usage_page()].
+    fn from(_: GenericDeviceControls) -> UsagePage {
+        UsagePage::GenericDeviceControls
     }
 }
 
@@ -3690,12 +3776,16 @@ impl From<&KeyboardKeypad> for u16 {
 }
 
 impl From<KeyboardKeypad> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [KeyboardKeypad::usage_page_value()].
     fn from(keyboardkeypad: KeyboardKeypad) -> u16 {
         u16::from(&keyboardkeypad)
     }
 }
 
 impl From<&KeyboardKeypad> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [KeyboardKeypad::usage_value()].
     fn from(keyboardkeypad: &KeyboardKeypad) -> u32 {
         let up = UsagePage::from(keyboardkeypad);
         let up = (u16::from(&up) as u32) << 16;
@@ -3705,14 +3795,18 @@ impl From<&KeyboardKeypad> for u32 {
 }
 
 impl From<&KeyboardKeypad> for UsagePage {
-    fn from(_keyboardkeypad: &KeyboardKeypad) -> UsagePage {
+    /// Always returns [UsagePage::KeyboardKeypad] and is
+    /// identical to [KeyboardKeypad::usage_page()].
+    fn from(_: &KeyboardKeypad) -> UsagePage {
         UsagePage::KeyboardKeypad
     }
 }
 
 impl From<KeyboardKeypad> for UsagePage {
-    fn from(keyboardkeypad: KeyboardKeypad) -> UsagePage {
-        UsagePage::from(&keyboardkeypad)
+    /// Always returns [UsagePage::KeyboardKeypad] and is
+    /// identical to [KeyboardKeypad::usage_page()].
+    fn from(_: KeyboardKeypad) -> UsagePage {
+        UsagePage::KeyboardKeypad
     }
 }
 
@@ -4431,12 +4525,16 @@ impl From<&LED> for u16 {
 }
 
 impl From<LED> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [LED::usage_page_value()].
     fn from(led: LED) -> u16 {
         u16::from(&led)
     }
 }
 
 impl From<&LED> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [LED::usage_value()].
     fn from(led: &LED) -> u32 {
         let up = UsagePage::from(led);
         let up = (u16::from(&up) as u32) << 16;
@@ -4446,14 +4544,18 @@ impl From<&LED> for u32 {
 }
 
 impl From<&LED> for UsagePage {
-    fn from(_led: &LED) -> UsagePage {
+    /// Always returns [UsagePage::LED] and is
+    /// identical to [LED::usage_page()].
+    fn from(_: &LED) -> UsagePage {
         UsagePage::LED
     }
 }
 
 impl From<LED> for UsagePage {
-    fn from(led: LED) -> UsagePage {
-        UsagePage::from(&led)
+    /// Always returns [UsagePage::LED] and is
+    /// identical to [LED::usage_page()].
+    fn from(_: LED) -> UsagePage {
+        UsagePage::LED
     }
 }
 
@@ -4671,12 +4773,16 @@ impl From<&Button> for u16 {
 }
 
 impl From<Button> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [Button::usage_page_value()].
     fn from(button: Button) -> u16 {
         u16::from(&button)
     }
 }
 
 impl From<&Button> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [Button::usage_value()].
     fn from(button: &Button) -> u32 {
         let up = UsagePage::from(button);
         let up = (u16::from(&up) as u32) << 16;
@@ -4686,14 +4792,18 @@ impl From<&Button> for u32 {
 }
 
 impl From<&Button> for UsagePage {
-    fn from(_button: &Button) -> UsagePage {
+    /// Always returns [UsagePage::Button] and is
+    /// identical to [Button::usage_page()].
+    fn from(_: &Button) -> UsagePage {
         UsagePage::Button
     }
 }
 
 impl From<Button> for UsagePage {
-    fn from(button: Button) -> UsagePage {
-        UsagePage::from(&button)
+    /// Always returns [UsagePage::Button] and is
+    /// identical to [Button::usage_page()].
+    fn from(_: Button) -> UsagePage {
+        UsagePage::Button
     }
 }
 
@@ -4815,12 +4925,16 @@ impl From<&Ordinal> for u16 {
 }
 
 impl From<Ordinal> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [Ordinal::usage_page_value()].
     fn from(ordinal: Ordinal) -> u16 {
         u16::from(&ordinal)
     }
 }
 
 impl From<&Ordinal> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [Ordinal::usage_value()].
     fn from(ordinal: &Ordinal) -> u32 {
         let up = UsagePage::from(ordinal);
         let up = (u16::from(&up) as u32) << 16;
@@ -4830,14 +4944,18 @@ impl From<&Ordinal> for u32 {
 }
 
 impl From<&Ordinal> for UsagePage {
-    fn from(_ordinal: &Ordinal) -> UsagePage {
+    /// Always returns [UsagePage::Ordinal] and is
+    /// identical to [Ordinal::usage_page()].
+    fn from(_: &Ordinal) -> UsagePage {
         UsagePage::Ordinal
     }
 }
 
 impl From<Ordinal> for UsagePage {
-    fn from(ordinal: Ordinal) -> UsagePage {
-        UsagePage::from(&ordinal)
+    /// Always returns [UsagePage::Ordinal] and is
+    /// identical to [Ordinal::usage_page()].
+    fn from(_: Ordinal) -> UsagePage {
+        UsagePage::Ordinal
     }
 }
 
@@ -5350,12 +5468,16 @@ impl From<&TelephonyDevice> for u16 {
 }
 
 impl From<TelephonyDevice> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [TelephonyDevice::usage_page_value()].
     fn from(telephonydevice: TelephonyDevice) -> u16 {
         u16::from(&telephonydevice)
     }
 }
 
 impl From<&TelephonyDevice> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [TelephonyDevice::usage_value()].
     fn from(telephonydevice: &TelephonyDevice) -> u32 {
         let up = UsagePage::from(telephonydevice);
         let up = (u16::from(&up) as u32) << 16;
@@ -5365,14 +5487,18 @@ impl From<&TelephonyDevice> for u32 {
 }
 
 impl From<&TelephonyDevice> for UsagePage {
-    fn from(_telephonydevice: &TelephonyDevice) -> UsagePage {
+    /// Always returns [UsagePage::TelephonyDevice] and is
+    /// identical to [TelephonyDevice::usage_page()].
+    fn from(_: &TelephonyDevice) -> UsagePage {
         UsagePage::TelephonyDevice
     }
 }
 
 impl From<TelephonyDevice> for UsagePage {
-    fn from(telephonydevice: TelephonyDevice) -> UsagePage {
-        UsagePage::from(&telephonydevice)
+    /// Always returns [UsagePage::TelephonyDevice] and is
+    /// identical to [TelephonyDevice::usage_page()].
+    fn from(_: TelephonyDevice) -> UsagePage {
+        UsagePage::TelephonyDevice
     }
 }
 
@@ -7394,12 +7520,16 @@ impl From<&Consumer> for u16 {
 }
 
 impl From<Consumer> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [Consumer::usage_page_value()].
     fn from(consumer: Consumer) -> u16 {
         u16::from(&consumer)
     }
 }
 
 impl From<&Consumer> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [Consumer::usage_value()].
     fn from(consumer: &Consumer) -> u32 {
         let up = UsagePage::from(consumer);
         let up = (u16::from(&up) as u32) << 16;
@@ -7409,14 +7539,18 @@ impl From<&Consumer> for u32 {
 }
 
 impl From<&Consumer> for UsagePage {
-    fn from(_consumer: &Consumer) -> UsagePage {
+    /// Always returns [UsagePage::Consumer] and is
+    /// identical to [Consumer::usage_page()].
+    fn from(_: &Consumer) -> UsagePage {
         UsagePage::Consumer
     }
 }
 
 impl From<Consumer> for UsagePage {
-    fn from(consumer: Consumer) -> UsagePage {
-        UsagePage::from(&consumer)
+    /// Always returns [UsagePage::Consumer] and is
+    /// identical to [Consumer::usage_page()].
+    fn from(_: Consumer) -> UsagePage {
+        UsagePage::Consumer
     }
 }
 
@@ -8425,12 +8559,16 @@ impl From<&Digitizers> for u16 {
 }
 
 impl From<Digitizers> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [Digitizers::usage_page_value()].
     fn from(digitizers: Digitizers) -> u16 {
         u16::from(&digitizers)
     }
 }
 
 impl From<&Digitizers> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [Digitizers::usage_value()].
     fn from(digitizers: &Digitizers) -> u32 {
         let up = UsagePage::from(digitizers);
         let up = (u16::from(&up) as u32) << 16;
@@ -8440,14 +8578,18 @@ impl From<&Digitizers> for u32 {
 }
 
 impl From<&Digitizers> for UsagePage {
-    fn from(_digitizers: &Digitizers) -> UsagePage {
+    /// Always returns [UsagePage::Digitizers] and is
+    /// identical to [Digitizers::usage_page()].
+    fn from(_: &Digitizers) -> UsagePage {
         UsagePage::Digitizers
     }
 }
 
 impl From<Digitizers> for UsagePage {
-    fn from(digitizers: Digitizers) -> UsagePage {
-        UsagePage::from(&digitizers)
+    /// Always returns [UsagePage::Digitizers] and is
+    /// identical to [Digitizers::usage_page()].
+    fn from(_: Digitizers) -> UsagePage {
+        UsagePage::Digitizers
     }
 }
 
@@ -8788,12 +8930,16 @@ impl From<&Haptics> for u16 {
 }
 
 impl From<Haptics> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [Haptics::usage_page_value()].
     fn from(haptics: Haptics) -> u16 {
         u16::from(&haptics)
     }
 }
 
 impl From<&Haptics> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [Haptics::usage_value()].
     fn from(haptics: &Haptics) -> u32 {
         let up = UsagePage::from(haptics);
         let up = (u16::from(&up) as u32) << 16;
@@ -8803,14 +8949,18 @@ impl From<&Haptics> for u32 {
 }
 
 impl From<&Haptics> for UsagePage {
-    fn from(_haptics: &Haptics) -> UsagePage {
+    /// Always returns [UsagePage::Haptics] and is
+    /// identical to [Haptics::usage_page()].
+    fn from(_: &Haptics) -> UsagePage {
         UsagePage::Haptics
     }
 }
 
 impl From<Haptics> for UsagePage {
-    fn from(haptics: Haptics) -> UsagePage {
-        UsagePage::from(&haptics)
+    /// Always returns [UsagePage::Haptics] and is
+    /// identical to [Haptics::usage_page()].
+    fn from(_: Haptics) -> UsagePage {
+        UsagePage::Haptics
     }
 }
 
@@ -9384,12 +9534,16 @@ impl From<&PhysicalInputDevice> for u16 {
 }
 
 impl From<PhysicalInputDevice> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [PhysicalInputDevice::usage_page_value()].
     fn from(physicalinputdevice: PhysicalInputDevice) -> u16 {
         u16::from(&physicalinputdevice)
     }
 }
 
 impl From<&PhysicalInputDevice> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [PhysicalInputDevice::usage_value()].
     fn from(physicalinputdevice: &PhysicalInputDevice) -> u32 {
         let up = UsagePage::from(physicalinputdevice);
         let up = (u16::from(&up) as u32) << 16;
@@ -9399,14 +9553,18 @@ impl From<&PhysicalInputDevice> for u32 {
 }
 
 impl From<&PhysicalInputDevice> for UsagePage {
-    fn from(_physicalinputdevice: &PhysicalInputDevice) -> UsagePage {
+    /// Always returns [UsagePage::PhysicalInputDevice] and is
+    /// identical to [PhysicalInputDevice::usage_page()].
+    fn from(_: &PhysicalInputDevice) -> UsagePage {
         UsagePage::PhysicalInputDevice
     }
 }
 
 impl From<PhysicalInputDevice> for UsagePage {
-    fn from(physicalinputdevice: PhysicalInputDevice) -> UsagePage {
-        UsagePage::from(&physicalinputdevice)
+    /// Always returns [UsagePage::PhysicalInputDevice] and is
+    /// identical to [PhysicalInputDevice::usage_page()].
+    fn from(_: PhysicalInputDevice) -> UsagePage {
+        UsagePage::PhysicalInputDevice
     }
 }
 
@@ -9633,12 +9791,16 @@ impl From<&Unicode> for u16 {
 }
 
 impl From<Unicode> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [Unicode::usage_page_value()].
     fn from(unicode: Unicode) -> u16 {
         u16::from(&unicode)
     }
 }
 
 impl From<&Unicode> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [Unicode::usage_value()].
     fn from(unicode: &Unicode) -> u32 {
         let up = UsagePage::from(unicode);
         let up = (u16::from(&up) as u32) << 16;
@@ -9648,14 +9810,18 @@ impl From<&Unicode> for u32 {
 }
 
 impl From<&Unicode> for UsagePage {
-    fn from(_unicode: &Unicode) -> UsagePage {
+    /// Always returns [UsagePage::Unicode] and is
+    /// identical to [Unicode::usage_page()].
+    fn from(_: &Unicode) -> UsagePage {
         UsagePage::Unicode
     }
 }
 
 impl From<Unicode> for UsagePage {
-    fn from(unicode: Unicode) -> UsagePage {
-        UsagePage::from(&unicode)
+    /// Always returns [UsagePage::Unicode] and is
+    /// identical to [Unicode::usage_page()].
+    fn from(_: Unicode) -> UsagePage {
+        UsagePage::Unicode
     }
 }
 
@@ -9812,12 +9978,16 @@ impl From<&SoC> for u16 {
 }
 
 impl From<SoC> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [SoC::usage_page_value()].
     fn from(soc: SoC) -> u16 {
         u16::from(&soc)
     }
 }
 
 impl From<&SoC> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [SoC::usage_value()].
     fn from(soc: &SoC) -> u32 {
         let up = UsagePage::from(soc);
         let up = (u16::from(&up) as u32) << 16;
@@ -9827,14 +9997,18 @@ impl From<&SoC> for u32 {
 }
 
 impl From<&SoC> for UsagePage {
-    fn from(_soc: &SoC) -> UsagePage {
+    /// Always returns [UsagePage::SoC] and is
+    /// identical to [SoC::usage_page()].
+    fn from(_: &SoC) -> UsagePage {
         UsagePage::SoC
     }
 }
 
 impl From<SoC> for UsagePage {
-    fn from(soc: SoC) -> UsagePage {
-        UsagePage::from(&soc)
+    /// Always returns [UsagePage::SoC] and is
+    /// identical to [SoC::usage_page()].
+    fn from(_: SoC) -> UsagePage {
+        UsagePage::SoC
     }
 }
 
@@ -10097,12 +10271,16 @@ impl From<&EyeandHeadTrackers> for u16 {
 }
 
 impl From<EyeandHeadTrackers> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [EyeandHeadTrackers::usage_page_value()].
     fn from(eyeandheadtrackers: EyeandHeadTrackers) -> u16 {
         u16::from(&eyeandheadtrackers)
     }
 }
 
 impl From<&EyeandHeadTrackers> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [EyeandHeadTrackers::usage_value()].
     fn from(eyeandheadtrackers: &EyeandHeadTrackers) -> u32 {
         let up = UsagePage::from(eyeandheadtrackers);
         let up = (u16::from(&up) as u32) << 16;
@@ -10112,14 +10290,18 @@ impl From<&EyeandHeadTrackers> for u32 {
 }
 
 impl From<&EyeandHeadTrackers> for UsagePage {
-    fn from(_eyeandheadtrackers: &EyeandHeadTrackers) -> UsagePage {
+    /// Always returns [UsagePage::EyeandHeadTrackers] and is
+    /// identical to [EyeandHeadTrackers::usage_page()].
+    fn from(_: &EyeandHeadTrackers) -> UsagePage {
         UsagePage::EyeandHeadTrackers
     }
 }
 
 impl From<EyeandHeadTrackers> for UsagePage {
-    fn from(eyeandheadtrackers: EyeandHeadTrackers) -> UsagePage {
-        UsagePage::from(&eyeandheadtrackers)
+    /// Always returns [UsagePage::EyeandHeadTrackers] and is
+    /// identical to [EyeandHeadTrackers::usage_page()].
+    fn from(_: EyeandHeadTrackers) -> UsagePage {
+        UsagePage::EyeandHeadTrackers
     }
 }
 
@@ -10570,12 +10752,16 @@ impl From<&AuxiliaryDisplay> for u16 {
 }
 
 impl From<AuxiliaryDisplay> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [AuxiliaryDisplay::usage_page_value()].
     fn from(auxiliarydisplay: AuxiliaryDisplay) -> u16 {
         u16::from(&auxiliarydisplay)
     }
 }
 
 impl From<&AuxiliaryDisplay> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [AuxiliaryDisplay::usage_value()].
     fn from(auxiliarydisplay: &AuxiliaryDisplay) -> u32 {
         let up = UsagePage::from(auxiliarydisplay);
         let up = (u16::from(&up) as u32) << 16;
@@ -10585,14 +10771,18 @@ impl From<&AuxiliaryDisplay> for u32 {
 }
 
 impl From<&AuxiliaryDisplay> for UsagePage {
-    fn from(_auxiliarydisplay: &AuxiliaryDisplay) -> UsagePage {
+    /// Always returns [UsagePage::AuxiliaryDisplay] and is
+    /// identical to [AuxiliaryDisplay::usage_page()].
+    fn from(_: &AuxiliaryDisplay) -> UsagePage {
         UsagePage::AuxiliaryDisplay
     }
 }
 
 impl From<AuxiliaryDisplay> for UsagePage {
-    fn from(auxiliarydisplay: AuxiliaryDisplay) -> UsagePage {
-        UsagePage::from(&auxiliarydisplay)
+    /// Always returns [UsagePage::AuxiliaryDisplay] and is
+    /// identical to [AuxiliaryDisplay::usage_page()].
+    fn from(_: AuxiliaryDisplay) -> UsagePage {
+        UsagePage::AuxiliaryDisplay
     }
 }
 
@@ -13586,12 +13776,16 @@ impl From<&Sensors> for u16 {
 }
 
 impl From<Sensors> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [Sensors::usage_page_value()].
     fn from(sensors: Sensors) -> u16 {
         u16::from(&sensors)
     }
 }
 
 impl From<&Sensors> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [Sensors::usage_value()].
     fn from(sensors: &Sensors) -> u32 {
         let up = UsagePage::from(sensors);
         let up = (u16::from(&up) as u32) << 16;
@@ -13601,14 +13795,18 @@ impl From<&Sensors> for u32 {
 }
 
 impl From<&Sensors> for UsagePage {
-    fn from(_sensors: &Sensors) -> UsagePage {
+    /// Always returns [UsagePage::Sensors] and is
+    /// identical to [Sensors::usage_page()].
+    fn from(_: &Sensors) -> UsagePage {
         UsagePage::Sensors
     }
 }
 
 impl From<Sensors> for UsagePage {
-    fn from(sensors: Sensors) -> UsagePage {
-        UsagePage::from(&sensors)
+    /// Always returns [UsagePage::Sensors] and is
+    /// identical to [Sensors::usage_page()].
+    fn from(_: Sensors) -> UsagePage {
+        UsagePage::Sensors
     }
 }
 
@@ -14514,12 +14712,16 @@ impl From<&MedicalInstrument> for u16 {
 }
 
 impl From<MedicalInstrument> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [MedicalInstrument::usage_page_value()].
     fn from(medicalinstrument: MedicalInstrument) -> u16 {
         u16::from(&medicalinstrument)
     }
 }
 
 impl From<&MedicalInstrument> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [MedicalInstrument::usage_value()].
     fn from(medicalinstrument: &MedicalInstrument) -> u32 {
         let up = UsagePage::from(medicalinstrument);
         let up = (u16::from(&up) as u32) << 16;
@@ -14529,14 +14731,18 @@ impl From<&MedicalInstrument> for u32 {
 }
 
 impl From<&MedicalInstrument> for UsagePage {
-    fn from(_medicalinstrument: &MedicalInstrument) -> UsagePage {
+    /// Always returns [UsagePage::MedicalInstrument] and is
+    /// identical to [MedicalInstrument::usage_page()].
+    fn from(_: &MedicalInstrument) -> UsagePage {
         UsagePage::MedicalInstrument
     }
 }
 
 impl From<MedicalInstrument> for UsagePage {
-    fn from(medicalinstrument: MedicalInstrument) -> UsagePage {
-        UsagePage::from(&medicalinstrument)
+    /// Always returns [UsagePage::MedicalInstrument] and is
+    /// identical to [MedicalInstrument::usage_page()].
+    fn from(_: MedicalInstrument) -> UsagePage {
+        UsagePage::MedicalInstrument
     }
 }
 
@@ -14854,12 +15060,16 @@ impl From<&BrailleDisplay> for u16 {
 }
 
 impl From<BrailleDisplay> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [BrailleDisplay::usage_page_value()].
     fn from(brailledisplay: BrailleDisplay) -> u16 {
         u16::from(&brailledisplay)
     }
 }
 
 impl From<&BrailleDisplay> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [BrailleDisplay::usage_value()].
     fn from(brailledisplay: &BrailleDisplay) -> u32 {
         let up = UsagePage::from(brailledisplay);
         let up = (u16::from(&up) as u32) << 16;
@@ -14869,14 +15079,18 @@ impl From<&BrailleDisplay> for u32 {
 }
 
 impl From<&BrailleDisplay> for UsagePage {
-    fn from(_brailledisplay: &BrailleDisplay) -> UsagePage {
+    /// Always returns [UsagePage::BrailleDisplay] and is
+    /// identical to [BrailleDisplay::usage_page()].
+    fn from(_: &BrailleDisplay) -> UsagePage {
         UsagePage::BrailleDisplay
     }
 }
 
 impl From<BrailleDisplay> for UsagePage {
-    fn from(brailledisplay: BrailleDisplay) -> UsagePage {
-        UsagePage::from(&brailledisplay)
+    /// Always returns [UsagePage::BrailleDisplay] and is
+    /// identical to [BrailleDisplay::usage_page()].
+    fn from(_: BrailleDisplay) -> UsagePage {
+        UsagePage::BrailleDisplay
     }
 }
 
@@ -15176,12 +15390,16 @@ impl From<&LightingAndIllumination> for u16 {
 }
 
 impl From<LightingAndIllumination> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [LightingAndIllumination::usage_page_value()].
     fn from(lightingandillumination: LightingAndIllumination) -> u16 {
         u16::from(&lightingandillumination)
     }
 }
 
 impl From<&LightingAndIllumination> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [LightingAndIllumination::usage_value()].
     fn from(lightingandillumination: &LightingAndIllumination) -> u32 {
         let up = UsagePage::from(lightingandillumination);
         let up = (u16::from(&up) as u32) << 16;
@@ -15191,14 +15409,18 @@ impl From<&LightingAndIllumination> for u32 {
 }
 
 impl From<&LightingAndIllumination> for UsagePage {
-    fn from(_lightingandillumination: &LightingAndIllumination) -> UsagePage {
+    /// Always returns [UsagePage::LightingAndIllumination] and is
+    /// identical to [LightingAndIllumination::usage_page()].
+    fn from(_: &LightingAndIllumination) -> UsagePage {
         UsagePage::LightingAndIllumination
     }
 }
 
 impl From<LightingAndIllumination> for UsagePage {
-    fn from(lightingandillumination: LightingAndIllumination) -> UsagePage {
-        UsagePage::from(&lightingandillumination)
+    /// Always returns [UsagePage::LightingAndIllumination] and is
+    /// identical to [LightingAndIllumination::usage_page()].
+    fn from(_: LightingAndIllumination) -> UsagePage {
+        UsagePage::LightingAndIllumination
     }
 }
 
@@ -15364,12 +15586,16 @@ impl From<&Monitor> for u16 {
 }
 
 impl From<Monitor> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [Monitor::usage_page_value()].
     fn from(monitor: Monitor) -> u16 {
         u16::from(&monitor)
     }
 }
 
 impl From<&Monitor> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [Monitor::usage_value()].
     fn from(monitor: &Monitor) -> u32 {
         let up = UsagePage::from(monitor);
         let up = (u16::from(&up) as u32) << 16;
@@ -15379,14 +15605,18 @@ impl From<&Monitor> for u32 {
 }
 
 impl From<&Monitor> for UsagePage {
-    fn from(_monitor: &Monitor) -> UsagePage {
+    /// Always returns [UsagePage::Monitor] and is
+    /// identical to [Monitor::usage_page()].
+    fn from(_: &Monitor) -> UsagePage {
         UsagePage::Monitor
     }
 }
 
 impl From<Monitor> for UsagePage {
-    fn from(monitor: Monitor) -> UsagePage {
-        UsagePage::from(&monitor)
+    /// Always returns [UsagePage::Monitor] and is
+    /// identical to [Monitor::usage_page()].
+    fn from(_: Monitor) -> UsagePage {
+        UsagePage::Monitor
     }
 }
 
@@ -15512,12 +15742,16 @@ impl From<&MonitorEnumerated> for u16 {
 }
 
 impl From<MonitorEnumerated> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [MonitorEnumerated::usage_page_value()].
     fn from(monitorenumerated: MonitorEnumerated) -> u16 {
         u16::from(&monitorenumerated)
     }
 }
 
 impl From<&MonitorEnumerated> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [MonitorEnumerated::usage_value()].
     fn from(monitorenumerated: &MonitorEnumerated) -> u32 {
         let up = UsagePage::from(monitorenumerated);
         let up = (u16::from(&up) as u32) << 16;
@@ -15527,14 +15761,18 @@ impl From<&MonitorEnumerated> for u32 {
 }
 
 impl From<&MonitorEnumerated> for UsagePage {
-    fn from(_monitorenumerated: &MonitorEnumerated) -> UsagePage {
+    /// Always returns [UsagePage::MonitorEnumerated] and is
+    /// identical to [MonitorEnumerated::usage_page()].
+    fn from(_: &MonitorEnumerated) -> UsagePage {
         UsagePage::MonitorEnumerated
     }
 }
 
 impl From<MonitorEnumerated> for UsagePage {
-    fn from(monitorenumerated: MonitorEnumerated) -> UsagePage {
-        UsagePage::from(&monitorenumerated)
+    /// Always returns [UsagePage::MonitorEnumerated] and is
+    /// identical to [MonitorEnumerated::usage_page()].
+    fn from(_: MonitorEnumerated) -> UsagePage {
+        UsagePage::MonitorEnumerated
     }
 }
 
@@ -15841,12 +16079,16 @@ impl From<&VESAVirtualControls> for u16 {
 }
 
 impl From<VESAVirtualControls> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [VESAVirtualControls::usage_page_value()].
     fn from(vesavirtualcontrols: VESAVirtualControls) -> u16 {
         u16::from(&vesavirtualcontrols)
     }
 }
 
 impl From<&VESAVirtualControls> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [VESAVirtualControls::usage_value()].
     fn from(vesavirtualcontrols: &VESAVirtualControls) -> u32 {
         let up = UsagePage::from(vesavirtualcontrols);
         let up = (u16::from(&up) as u32) << 16;
@@ -15856,14 +16098,18 @@ impl From<&VESAVirtualControls> for u32 {
 }
 
 impl From<&VESAVirtualControls> for UsagePage {
-    fn from(_vesavirtualcontrols: &VESAVirtualControls) -> UsagePage {
+    /// Always returns [UsagePage::VESAVirtualControls] and is
+    /// identical to [VESAVirtualControls::usage_page()].
+    fn from(_: &VESAVirtualControls) -> UsagePage {
         UsagePage::VESAVirtualControls
     }
 }
 
 impl From<VESAVirtualControls> for UsagePage {
-    fn from(vesavirtualcontrols: VESAVirtualControls) -> UsagePage {
-        UsagePage::from(&vesavirtualcontrols)
+    /// Always returns [UsagePage::VESAVirtualControls] and is
+    /// identical to [VESAVirtualControls::usage_page()].
+    fn from(_: VESAVirtualControls) -> UsagePage {
+        UsagePage::VESAVirtualControls
     }
 }
 
@@ -16333,12 +16579,16 @@ impl From<&Power> for u16 {
 }
 
 impl From<Power> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [Power::usage_page_value()].
     fn from(power: Power) -> u16 {
         u16::from(&power)
     }
 }
 
 impl From<&Power> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [Power::usage_value()].
     fn from(power: &Power) -> u32 {
         let up = UsagePage::from(power);
         let up = (u16::from(&up) as u32) << 16;
@@ -16348,14 +16598,18 @@ impl From<&Power> for u32 {
 }
 
 impl From<&Power> for UsagePage {
-    fn from(_power: &Power) -> UsagePage {
+    /// Always returns [UsagePage::Power] and is
+    /// identical to [Power::usage_page()].
+    fn from(_: &Power) -> UsagePage {
         UsagePage::Power
     }
 }
 
 impl From<Power> for UsagePage {
-    fn from(power: Power) -> UsagePage {
-        UsagePage::from(&power)
+    /// Always returns [UsagePage::Power] and is
+    /// identical to [Power::usage_page()].
+    fn from(_: Power) -> UsagePage {
+        UsagePage::Power
     }
 }
 
@@ -16913,12 +17167,16 @@ impl From<&BatterySystem> for u16 {
 }
 
 impl From<BatterySystem> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [BatterySystem::usage_page_value()].
     fn from(batterysystem: BatterySystem) -> u16 {
         u16::from(&batterysystem)
     }
 }
 
 impl From<&BatterySystem> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [BatterySystem::usage_value()].
     fn from(batterysystem: &BatterySystem) -> u32 {
         let up = UsagePage::from(batterysystem);
         let up = (u16::from(&up) as u32) << 16;
@@ -16928,14 +17186,18 @@ impl From<&BatterySystem> for u32 {
 }
 
 impl From<&BatterySystem> for UsagePage {
-    fn from(_batterysystem: &BatterySystem) -> UsagePage {
+    /// Always returns [UsagePage::BatterySystem] and is
+    /// identical to [BatterySystem::usage_page()].
+    fn from(_: &BatterySystem) -> UsagePage {
         UsagePage::BatterySystem
     }
 }
 
 impl From<BatterySystem> for UsagePage {
-    fn from(batterysystem: BatterySystem) -> UsagePage {
-        UsagePage::from(&batterysystem)
+    /// Always returns [UsagePage::BatterySystem] and is
+    /// identical to [BatterySystem::usage_page()].
+    fn from(_: BatterySystem) -> UsagePage {
+        UsagePage::BatterySystem
     }
 }
 
@@ -17933,12 +18195,16 @@ impl From<&BarcodeScanner> for u16 {
 }
 
 impl From<BarcodeScanner> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [BarcodeScanner::usage_page_value()].
     fn from(barcodescanner: BarcodeScanner) -> u16 {
         u16::from(&barcodescanner)
     }
 }
 
 impl From<&BarcodeScanner> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [BarcodeScanner::usage_value()].
     fn from(barcodescanner: &BarcodeScanner) -> u32 {
         let up = UsagePage::from(barcodescanner);
         let up = (u16::from(&up) as u32) << 16;
@@ -17948,14 +18214,18 @@ impl From<&BarcodeScanner> for u32 {
 }
 
 impl From<&BarcodeScanner> for UsagePage {
-    fn from(_barcodescanner: &BarcodeScanner) -> UsagePage {
+    /// Always returns [UsagePage::BarcodeScanner] and is
+    /// identical to [BarcodeScanner::usage_page()].
+    fn from(_: &BarcodeScanner) -> UsagePage {
         UsagePage::BarcodeScanner
     }
 }
 
 impl From<BarcodeScanner> for UsagePage {
-    fn from(barcodescanner: BarcodeScanner) -> UsagePage {
-        UsagePage::from(&barcodescanner)
+    /// Always returns [UsagePage::BarcodeScanner] and is
+    /// identical to [BarcodeScanner::usage_page()].
+    fn from(_: BarcodeScanner) -> UsagePage {
+        UsagePage::BarcodeScanner
     }
 }
 
@@ -18450,12 +18720,16 @@ impl From<&Scales> for u16 {
 }
 
 impl From<Scales> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [Scales::usage_page_value()].
     fn from(scales: Scales) -> u16 {
         u16::from(&scales)
     }
 }
 
 impl From<&Scales> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [Scales::usage_value()].
     fn from(scales: &Scales) -> u32 {
         let up = UsagePage::from(scales);
         let up = (u16::from(&up) as u32) << 16;
@@ -18465,14 +18739,18 @@ impl From<&Scales> for u32 {
 }
 
 impl From<&Scales> for UsagePage {
-    fn from(_scales: &Scales) -> UsagePage {
+    /// Always returns [UsagePage::Scales] and is
+    /// identical to [Scales::usage_page()].
+    fn from(_: &Scales) -> UsagePage {
         UsagePage::Scales
     }
 }
 
 impl From<Scales> for UsagePage {
-    fn from(scales: Scales) -> UsagePage {
-        UsagePage::from(&scales)
+    /// Always returns [UsagePage::Scales] and is
+    /// identical to [Scales::usage_page()].
+    fn from(_: Scales) -> UsagePage {
+        UsagePage::Scales
     }
 }
 
@@ -18675,12 +18953,16 @@ impl From<&MagneticStripeReader> for u16 {
 }
 
 impl From<MagneticStripeReader> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [MagneticStripeReader::usage_page_value()].
     fn from(magneticstripereader: MagneticStripeReader) -> u16 {
         u16::from(&magneticstripereader)
     }
 }
 
 impl From<&MagneticStripeReader> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [MagneticStripeReader::usage_value()].
     fn from(magneticstripereader: &MagneticStripeReader) -> u32 {
         let up = UsagePage::from(magneticstripereader);
         let up = (u16::from(&up) as u32) << 16;
@@ -18690,14 +18972,18 @@ impl From<&MagneticStripeReader> for u32 {
 }
 
 impl From<&MagneticStripeReader> for UsagePage {
-    fn from(_magneticstripereader: &MagneticStripeReader) -> UsagePage {
+    /// Always returns [UsagePage::MagneticStripeReader] and is
+    /// identical to [MagneticStripeReader::usage_page()].
+    fn from(_: &MagneticStripeReader) -> UsagePage {
         UsagePage::MagneticStripeReader
     }
 }
 
 impl From<MagneticStripeReader> for UsagePage {
-    fn from(magneticstripereader: MagneticStripeReader) -> UsagePage {
-        UsagePage::from(&magneticstripereader)
+    /// Always returns [UsagePage::MagneticStripeReader] and is
+    /// identical to [MagneticStripeReader::usage_page()].
+    fn from(_: MagneticStripeReader) -> UsagePage {
+        UsagePage::MagneticStripeReader
     }
 }
 
@@ -18832,12 +19118,16 @@ impl From<&CameraControl> for u16 {
 }
 
 impl From<CameraControl> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [CameraControl::usage_page_value()].
     fn from(cameracontrol: CameraControl) -> u16 {
         u16::from(&cameracontrol)
     }
 }
 
 impl From<&CameraControl> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [CameraControl::usage_value()].
     fn from(cameracontrol: &CameraControl) -> u32 {
         let up = UsagePage::from(cameracontrol);
         let up = (u16::from(&up) as u32) << 16;
@@ -18847,14 +19137,18 @@ impl From<&CameraControl> for u32 {
 }
 
 impl From<&CameraControl> for UsagePage {
-    fn from(_cameracontrol: &CameraControl) -> UsagePage {
+    /// Always returns [UsagePage::CameraControl] and is
+    /// identical to [CameraControl::usage_page()].
+    fn from(_: &CameraControl) -> UsagePage {
         UsagePage::CameraControl
     }
 }
 
 impl From<CameraControl> for UsagePage {
-    fn from(cameracontrol: CameraControl) -> UsagePage {
-        UsagePage::from(&cameracontrol)
+    /// Always returns [UsagePage::CameraControl] and is
+    /// identical to [CameraControl::usage_page()].
+    fn from(_: CameraControl) -> UsagePage {
+        UsagePage::CameraControl
     }
 }
 
@@ -19081,12 +19375,16 @@ impl From<&Arcade> for u16 {
 }
 
 impl From<Arcade> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [Arcade::usage_page_value()].
     fn from(arcade: Arcade) -> u16 {
         u16::from(&arcade)
     }
 }
 
 impl From<&Arcade> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [Arcade::usage_value()].
     fn from(arcade: &Arcade) -> u32 {
         let up = UsagePage::from(arcade);
         let up = (u16::from(&up) as u32) << 16;
@@ -19096,14 +19394,18 @@ impl From<&Arcade> for u32 {
 }
 
 impl From<&Arcade> for UsagePage {
-    fn from(_arcade: &Arcade) -> UsagePage {
+    /// Always returns [UsagePage::Arcade] and is
+    /// identical to [Arcade::usage_page()].
+    fn from(_: &Arcade) -> UsagePage {
         UsagePage::Arcade
     }
 }
 
 impl From<Arcade> for UsagePage {
-    fn from(arcade: Arcade) -> UsagePage {
-        UsagePage::from(&arcade)
+    /// Always returns [UsagePage::Arcade] and is
+    /// identical to [Arcade::usage_page()].
+    fn from(_: Arcade) -> UsagePage {
+        UsagePage::Arcade
     }
 }
 
@@ -19259,12 +19561,16 @@ impl From<&FIDOAlliance> for u16 {
 }
 
 impl From<FIDOAlliance> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [FIDOAlliance::usage_page_value()].
     fn from(fidoalliance: FIDOAlliance) -> u16 {
         u16::from(&fidoalliance)
     }
 }
 
 impl From<&FIDOAlliance> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [FIDOAlliance::usage_value()].
     fn from(fidoalliance: &FIDOAlliance) -> u32 {
         let up = UsagePage::from(fidoalliance);
         let up = (u16::from(&up) as u32) << 16;
@@ -19274,14 +19580,18 @@ impl From<&FIDOAlliance> for u32 {
 }
 
 impl From<&FIDOAlliance> for UsagePage {
-    fn from(_fidoalliance: &FIDOAlliance) -> UsagePage {
+    /// Always returns [UsagePage::FIDOAlliance] and is
+    /// identical to [FIDOAlliance::usage_page()].
+    fn from(_: &FIDOAlliance) -> UsagePage {
         UsagePage::FIDOAlliance
     }
 }
 
 impl From<FIDOAlliance> for UsagePage {
-    fn from(fidoalliance: FIDOAlliance) -> UsagePage {
-        UsagePage::from(&fidoalliance)
+    /// Always returns [UsagePage::FIDOAlliance] and is
+    /// identical to [FIDOAlliance::usage_page()].
+    fn from(_: FIDOAlliance) -> UsagePage {
+        UsagePage::FIDOAlliance
     }
 }
 
@@ -19825,12 +20135,16 @@ impl From<&Wacom> for u16 {
 }
 
 impl From<Wacom> for u16 {
+    /// Returns the 16bit value of this usage. This is identical
+    /// to [Wacom::usage_page_value()].
     fn from(wacom: Wacom) -> u16 {
         u16::from(&wacom)
     }
 }
 
 impl From<&Wacom> for u32 {
+    /// Returns the 32 bit value of this usage. This is identical
+    /// to [Wacom::usage_value()].
     fn from(wacom: &Wacom) -> u32 {
         let up = UsagePage::from(wacom);
         let up = (u16::from(&up) as u32) << 16;
@@ -19840,14 +20154,18 @@ impl From<&Wacom> for u32 {
 }
 
 impl From<&Wacom> for UsagePage {
-    fn from(_wacom: &Wacom) -> UsagePage {
+    /// Always returns [UsagePage::Wacom] and is
+    /// identical to [Wacom::usage_page()].
+    fn from(_: &Wacom) -> UsagePage {
         UsagePage::Wacom
     }
 }
 
 impl From<Wacom> for UsagePage {
-    fn from(wacom: Wacom) -> UsagePage {
-        UsagePage::from(&wacom)
+    /// Always returns [UsagePage::Wacom] and is
+    /// identical to [Wacom::usage_page()].
+    fn from(_: Wacom) -> UsagePage {
+        UsagePage::Wacom
     }
 }
 
