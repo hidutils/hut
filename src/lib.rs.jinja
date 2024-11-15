@@ -518,6 +518,23 @@ impl fmt::Display for {{usage_page.name}} {
 ///
 /// This Usage Page is generated, not defined, any Usage IDs in this Usage
 /// Page are simply the {{usage_page.name_prefix|lower}} number.
+///
+/// ```
+/// # use hut::*;
+/// let u1 = Usage::{{usage_page.name}}({{usage_page.name}}::{{usage_page.name}}(3));
+/// let u2 = Usage::new_from_page_and_id(0x{{'%X' % usage_page.value}}, 3).unwrap();
+/// let u3 = Usage::from({{usage_page.name}}::{{usage_page.name}}(3));
+/// let u4: Usage = {{usage_page.name}}::{{usage_page.name}}(3).into();
+/// assert_eq!(u1, u2);
+/// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
+///
+/// assert!(matches!(u1.usage_page(), UsagePage::{{usage_page.name}}));
+/// assert_eq!(0x{{'%X' % usage_page.value}}, u1.usage_page_value());
+/// assert_eq!(3, u1.usage_id_value());
+/// assert_eq!((0x{{'%X' % usage_page.value}} << 16) | 3, u1.usage_value());
+/// assert_eq!("{{usage_page.name_prefix}} 3", u1.name());
+/// ```
 #[allow(non_camel_case_types)]
 #[derive(Debug)]
 #[non_exhaustive]

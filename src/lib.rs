@@ -4603,6 +4603,23 @@ impl BitOr<u16> for LED {
 ///
 /// This Usage Page is generated, not defined, any Usage IDs in this Usage
 /// Page are simply the button number.
+///
+/// ```
+/// # use hut::*;
+/// let u1 = Usage::Button(Button::Button(3));
+/// let u2 = Usage::new_from_page_and_id(0x9, 3).unwrap();
+/// let u3 = Usage::from(Button::Button(3));
+/// let u4: Usage = Button::Button(3).into();
+/// assert_eq!(u1, u2);
+/// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
+///
+/// assert!(matches!(u1.usage_page(), UsagePage::Button));
+/// assert_eq!(0x9, u1.usage_page_value());
+/// assert_eq!(3, u1.usage_id_value());
+/// assert_eq!((0x9 << 16) | 3, u1.usage_value());
+/// assert_eq!("Button 3", u1.name());
+/// ```
 #[allow(non_camel_case_types)]
 #[derive(Debug)]
 #[non_exhaustive]
@@ -4730,6 +4747,23 @@ impl BitOr<u16> for Button {
 ///
 /// This Usage Page is generated, not defined, any Usage IDs in this Usage
 /// Page are simply the instance number.
+///
+/// ```
+/// # use hut::*;
+/// let u1 = Usage::Ordinal(Ordinal::Ordinal(3));
+/// let u2 = Usage::new_from_page_and_id(0xA, 3).unwrap();
+/// let u3 = Usage::from(Ordinal::Ordinal(3));
+/// let u4: Usage = Ordinal::Ordinal(3).into();
+/// assert_eq!(u1, u2);
+/// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
+///
+/// assert!(matches!(u1.usage_page(), UsagePage::Ordinal));
+/// assert_eq!(0xA, u1.usage_page_value());
+/// assert_eq!(3, u1.usage_id_value());
+/// assert_eq!((0xA << 16) | 3, u1.usage_value());
+/// assert_eq!("Instance 3", u1.name());
+/// ```
 #[allow(non_camel_case_types)]
 #[derive(Debug)]
 #[non_exhaustive]
@@ -9531,6 +9565,23 @@ impl BitOr<u16> for PhysicalInputDevice {
 ///
 /// This Usage Page is generated, not defined, any Usage IDs in this Usage
 /// Page are simply the codepoint number.
+///
+/// ```
+/// # use hut::*;
+/// let u1 = Usage::Unicode(Unicode::Unicode(3));
+/// let u2 = Usage::new_from_page_and_id(0x10, 3).unwrap();
+/// let u3 = Usage::from(Unicode::Unicode(3));
+/// let u4: Usage = Unicode::Unicode(3).into();
+/// assert_eq!(u1, u2);
+/// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
+///
+/// assert!(matches!(u1.usage_page(), UsagePage::Unicode));
+/// assert_eq!(0x10, u1.usage_page_value());
+/// assert_eq!(3, u1.usage_id_value());
+/// assert_eq!((0x10 << 16) | 3, u1.usage_value());
+/// assert_eq!("codepoint 3", u1.name());
+/// ```
 #[allow(non_camel_case_types)]
 #[derive(Debug)]
 #[non_exhaustive]
@@ -15393,6 +15444,23 @@ impl BitOr<u16> for Monitor {
 ///
 /// This Usage Page is generated, not defined, any Usage IDs in this Usage
 /// Page are simply the enumerate number.
+///
+/// ```
+/// # use hut::*;
+/// let u1 = Usage::MonitorEnumerated(MonitorEnumerated::MonitorEnumerated(3));
+/// let u2 = Usage::new_from_page_and_id(0x81, 3).unwrap();
+/// let u3 = Usage::from(MonitorEnumerated::MonitorEnumerated(3));
+/// let u4: Usage = MonitorEnumerated::MonitorEnumerated(3).into();
+/// assert_eq!(u1, u2);
+/// assert_eq!(u1, u3);
+/// assert_eq!(u1, u4);
+///
+/// assert!(matches!(u1.usage_page(), UsagePage::MonitorEnumerated));
+/// assert_eq!(0x81, u1.usage_page_value());
+/// assert_eq!(3, u1.usage_id_value());
+/// assert_eq!((0x81 << 16) | 3, u1.usage_value());
+/// assert_eq!("Enumerate 3", u1.name());
+/// ```
 #[allow(non_camel_case_types)]
 #[derive(Debug)]
 #[non_exhaustive]
