@@ -46,6 +46,10 @@
 //! let u3 = Usage::from(GenericDesktop::Mouse);
 //! assert_eq!(u, u3);
 //!
+//! // Create a known Usage from an known Usage Page enum item
+//! let u4 = Usage::from(GenericDesktop::try_from(usage_id_value).unwrap());
+//! assert_eq!(u, u4);
+//!
 //! // Convert to and fro the Usage either via u32 or the AsUsage trait
 //! let u = GenericDesktop::Mouse;
 //! assert_eq!(u32::from(&u), usage_value);
