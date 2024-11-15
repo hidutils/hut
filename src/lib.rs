@@ -342,9 +342,9 @@ pub enum UsagePage {
     /// see [Wacom].
     Wacom,
     /// The Reserved Usage Pages (range: various). See [ReservedUsagePage].
-    ReservedUsagePage { reserved_page: ReservedPage },
+    ReservedUsagePage(ReservedPage),
     /// The Vendor Defined Pages, range `0xFF00 - 0xFFFF`. See [VendorDefinedPage].
-    VendorDefinedPage { vendor_page: VendorPage },
+    VendorDefinedPage(VendorPage),
 }
 
 /// Represents a Reserved Page number value of in the current range of
@@ -358,9 +358,7 @@ pub enum UsagePage {
 ///
 /// let usage = Usage::try_from(0x003f1234).unwrap();
 /// let up = UsagePage::from(&usage);
-/// assert!(matches!(up, UsagePage::ReservedUsagePage {
-///                          reserved_page: _,
-///                      }));
+/// assert!(matches!(up, UsagePage::ReservedUsagePage(_)));
 /// ```
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 pub struct ReservedPage(u16);
@@ -434,9 +432,7 @@ impl TryFrom<u32> for ReservedPage {
 ///
 /// let usage = Usage::try_from(0xff001234).unwrap();
 /// let up = UsagePage::from(&usage);
-/// assert!(matches!(up, UsagePage::VendorDefinedPage {
-///                          vendor_page: _,
-///                      }));
+/// assert!(matches!(up, UsagePage::VendorDefinedPage(_)));
 /// ```
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
 pub struct VendorPage(u16);
@@ -577,10 +573,10 @@ impl UsagePage {
             UsagePage::Arcade => "Arcade".into(),
             UsagePage::FIDOAlliance => "FIDO Alliance".into(),
             UsagePage::Wacom => "Wacom".into(),
-            UsagePage::ReservedUsagePage { reserved_page, .. } => {
+            UsagePage::ReservedUsagePage(reserved_page) => {
                 format!("Reserved Usage Page {:04X}", u16::from(reserved_page))
             }
-            UsagePage::VendorDefinedPage { vendor_page, .. } => {
+            UsagePage::VendorDefinedPage(vendor_page) => {
                 format!("Vendor Defined Page {:04X}", u16::from(vendor_page))
             }
         }
@@ -20428,12 +20424,12 @@ impl From<&Usage> for UsagePage {
             Usage::Arcade { .. } => UsagePage::Arcade,
             Usage::FIDOAlliance { .. } => UsagePage::FIDOAlliance,
             Usage::Wacom { .. } => UsagePage::Wacom,
-            Usage::ReservedUsagePage { reserved_page, .. } => UsagePage::ReservedUsagePage {
-                reserved_page: *reserved_page,
-            },
-            Usage::VendorDefinedPage { vendor_page, .. } => UsagePage::VendorDefinedPage {
-                vendor_page: *vendor_page,
-            },
+            Usage::ReservedUsagePage { reserved_page, .. } => {
+                UsagePage::ReservedUsagePage(*reserved_page)
+            }
+            Usage::VendorDefinedPage { vendor_page, .. } => {
+                UsagePage::VendorDefinedPage(*vendor_page)
+            }
         }
     }
 }
@@ -20478,8 +20474,8 @@ impl From<&UsagePage> for u16 {
             UsagePage::Arcade { .. } => 145,
             UsagePage::FIDOAlliance { .. } => 61904,
             UsagePage::Wacom { .. } => 65293,
-            UsagePage::ReservedUsagePage { reserved_page } => u16::from(reserved_page),
-            UsagePage::VendorDefinedPage { vendor_page } => u16::from(vendor_page),
+            UsagePage::ReservedUsagePage(reserved_page) => u16::from(reserved_page),
+            UsagePage::VendorDefinedPage(vendor_page) => u16::from(vendor_page),
         }
     }
 }
@@ -20530,11 +20526,9 @@ impl TryFrom<u16> for UsagePage {
             145 => Ok(UsagePage::Arcade),
             61904 => Ok(UsagePage::FIDOAlliance),
             65293 => Ok(UsagePage::Wacom),
-            page @ 0xff00..=0xffff => Ok(UsagePage::VendorDefinedPage {
-                vendor_page: VendorPage(page),
-            }),
+            page @ 0xff00..=0xffff => Ok(UsagePage::VendorDefinedPage(VendorPage(page))),
             n => match ReservedPage::try_from(n) {
-                Ok(r) => Ok(UsagePage::ReservedUsagePage { reserved_page: r }),
+                Ok(r) => Ok(UsagePage::ReservedUsagePage(r)),
                 Err(_) => Err(HutError::UnknownUsagePage { usage_page: n }),
             },
         }
@@ -20761,12 +20755,12 @@ impl AsUsagePage for Usage {
             Usage::Arcade(_) => UsagePage::Arcade,
             Usage::FIDOAlliance(_) => UsagePage::FIDOAlliance,
             Usage::Wacom(_) => UsagePage::Wacom,
-            Usage::ReservedUsagePage { reserved_page, .. } => UsagePage::ReservedUsagePage {
-                reserved_page: *reserved_page,
-            },
-            Usage::VendorDefinedPage { vendor_page, .. } => UsagePage::VendorDefinedPage {
-                vendor_page: *vendor_page,
-            },
+            Usage::ReservedUsagePage { reserved_page, .. } => {
+                UsagePage::ReservedUsagePage(*reserved_page)
+            }
+            Usage::VendorDefinedPage { vendor_page, .. } => {
+                UsagePage::VendorDefinedPage(*vendor_page)
+            }
         }
     }
 }
