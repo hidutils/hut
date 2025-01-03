@@ -214,37 +214,51 @@
 
 #![allow(clippy::identity_op, clippy::eq_op, clippy::match_single_binding)]
 
-use std::fmt;
-use std::ops::BitOr;
-use thiserror::Error;
+#![no_std]
+
+#[cfg(feature = "std")]
+extern crate std;
+
+#[cfg(feature = "std")]
+use std::{fmt, format, string::String, string::ToString};
+use core::ops::BitOr;
 
 /// Error raised if conversion between HUT elements fails.
-#[derive(Error, Debug)]
+#[derive(Debug)]
 pub enum HutError {
     /// The usage page value is not known. Usage Pages
     /// may get added in the future and a future version
     /// of this crate may not raise this error for the same value.
-    #[error("Unknown Usage Page {usage_page}")]
     UnknownUsagePage { usage_page: u16 },
     /// The usage ID value is not known. Usage IDs
     /// may get added in the future and a future version
     /// of this crate may not raise this error for the same value.
-    #[error("Unknown Usage ID {usage_id}")]
     UnknownUsageId { usage_id: u16 },
     /// The value given for a [VendorDefinedPage] is outside the allowed range.
-    #[error("Invalid Vendor Page {vendor_page}")]
     InvalidVendorPage { vendor_page: u16 },
     /// The value given for a [ReservedUsagePage] is outside the allowed range.
-    #[error("Invalid Reserved Page {reserved_page}")]
     InvalidReservedPage { reserved_page: u16 },
     /// The 32-bit usage value given cannot be resolved. Usages
     /// may get added in the future and a future version
     /// of this crate may not raise this error for the same value.
-    #[error("Unknown Usage")]
     UnknownUsage,
 }
 
-type Result<T> = std::result::Result<T, HutError>;
+impl core::error::Error for HutError { }
+
+impl core::fmt::Display for HutError {
+    fn fmt(&self, fmt: &mut core::fmt::Formatter) -> core::fmt::Result {
+        match self {
+                HutError::UnknownUsagePage { usage_page } => write!(fmt, "Unknown Usage Page {}", usage_page),
+                HutError::UnknownUsageId { usage_id } => write!(fmt, "Unknown Usage ID {}", usage_id),
+                HutError::InvalidVendorPage { vendor_page } => write!(fmt, "Invalid Vendor Page {}", vendor_page),
+                HutError::InvalidReservedPage {reserved_page } => write!(fmt, "Invalid Reserved Page {}", reserved_page),
+                HutError::UnknownUsage => write!(fmt, "Unknown Usage"),
+        }
+    }
+}
+
+type Result<T> = core::result::Result<T, HutError>;
 
 /// A trait to return the Usage and Usage ID as numeric value
 pub trait AsUsage {
@@ -482,6 +496,7 @@ impl UsagePage {
     /// let up = UsagePage::GenericDesktop;
     /// assert_eq!(up.name(), "Generic Desktop");
     /// ```
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
 {% for usage_page in usage_pages %}
@@ -558,6 +573,7 @@ pub enum {{usage_page.name}} {
 }
 
 impl {{usage_page.name}} {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
 {% for usage in usage_page.usages %}
@@ -576,6 +592,7 @@ impl {{usage_page.name}} {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for {{usage_page.name}} {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -615,6 +632,7 @@ pub enum {{usage_page.name}} {
 }
 
 impl {{usage_page.name}} {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             {{usage_page.name}}::{{usage_page.name}}({{usage_page.name_prefix|lower}}) => format!("{{usage_page.name_prefix}} { {{-usage_page.name_prefix|lower-}} }"),
@@ -622,6 +640,7 @@ impl {{usage_page.name}} {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for {{usage_page.name}} {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -782,6 +801,7 @@ pub enum ReservedUsagePage {
 }
 
 impl ReservedUsagePage {
+    #[cfg(feature = "std")]
     fn name(&self) -> String {
         match self {
             ReservedUsagePage::Undefined => "Reserved Usage Undefined".to_string(),
@@ -792,6 +812,7 @@ impl ReservedUsagePage {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for ReservedUsagePage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -820,6 +841,7 @@ pub enum VendorDefinedPage {
 }
 
 impl VendorDefinedPage {
+    #[cfg(feature = "std")]
     fn name(&self) -> String {
         match self {
             VendorDefinedPage::Undefined => "Vendor Usage Undefined".to_string(),
@@ -830,6 +852,7 @@ impl VendorDefinedPage {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for VendorDefinedPage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -902,6 +925,7 @@ impl TryFrom<u32> for UsagePage {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for UsagePage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -941,10 +965,12 @@ pub enum Usage {
 }
 
 impl Usage {
+    #[cfg(feature = "std")]
     pub fn new_from_page_and_id(usage_page: u16, usage_id: u16) -> Result<Usage> {
         Usage::try_from((usage_page as u32) << 16 | usage_id as u32)
     }
 
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
 {% for usage_page in usage_pages %}
@@ -995,6 +1021,7 @@ impl AsUsagePage for Usage {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Usage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -1154,6 +1181,7 @@ mod tests {
         assert_eq!(hid_usage_page, up.usage_page_value());
     }
 
+    #[cfg(feature = "std")]
     #[test]
     fn names() {
         assert_eq!(UsagePage::GenericDesktop.name().as_str(), "Generic Desktop");
