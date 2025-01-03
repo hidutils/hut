@@ -211,38 +211,57 @@
 //! the `Display` trait will have the unmodified value.
 
 #![allow(clippy::identity_op, clippy::eq_op, clippy::match_single_binding)]
+#![no_std]
 
-use std::fmt;
-use std::ops::BitOr;
-use thiserror::Error;
+#[cfg(feature = "std")]
+extern crate std;
+
+use core::ops::BitOr;
+#[cfg(feature = "std")]
+use std::{fmt, format, string::String, string::ToString};
 
 /// Error raised if conversion between HUT elements fails.
-#[derive(Error, Debug)]
+#[derive(Debug)]
 pub enum HutError {
     /// The usage page value is not known. Usage Pages
     /// may get added in the future and a future version
     /// of this crate may not raise this error for the same value.
-    #[error("Unknown Usage Page {usage_page}")]
     UnknownUsagePage { usage_page: u16 },
     /// The usage ID value is not known. Usage IDs
     /// may get added in the future and a future version
     /// of this crate may not raise this error for the same value.
-    #[error("Unknown Usage ID {usage_id}")]
     UnknownUsageId { usage_id: u16 },
     /// The value given for a [VendorDefinedPage] is outside the allowed range.
-    #[error("Invalid Vendor Page {vendor_page}")]
     InvalidVendorPage { vendor_page: u16 },
     /// The value given for a [ReservedUsagePage] is outside the allowed range.
-    #[error("Invalid Reserved Page {reserved_page}")]
     InvalidReservedPage { reserved_page: u16 },
     /// The 32-bit usage value given cannot be resolved. Usages
     /// may get added in the future and a future version
     /// of this crate may not raise this error for the same value.
-    #[error("Unknown Usage")]
     UnknownUsage,
 }
 
-type Result<T> = std::result::Result<T, HutError>;
+impl core::error::Error for HutError {}
+
+impl core::fmt::Display for HutError {
+    fn fmt(&self, fmt: &mut core::fmt::Formatter) -> core::fmt::Result {
+        match self {
+            HutError::UnknownUsagePage { usage_page } => {
+                write!(fmt, "Unknown Usage Page {}", usage_page)
+            }
+            HutError::UnknownUsageId { usage_id } => write!(fmt, "Unknown Usage ID {}", usage_id),
+            HutError::InvalidVendorPage { vendor_page } => {
+                write!(fmt, "Invalid Vendor Page {}", vendor_page)
+            }
+            HutError::InvalidReservedPage { reserved_page } => {
+                write!(fmt, "Invalid Reserved Page {}", reserved_page)
+            }
+            HutError::UnknownUsage => write!(fmt, "Unknown Usage"),
+        }
+    }
+}
+
+type Result<T> = core::result::Result<T, HutError>;
 
 /// A trait to return the Usage and Usage ID as numeric value
 pub trait AsUsage {
@@ -580,6 +599,7 @@ impl UsagePage {
     /// let up = UsagePage::GenericDesktop;
     /// assert_eq!(up.name(), "Generic Desktop");
     /// ```
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             UsagePage::GenericDesktop => "Generic Desktop".into(),
@@ -908,6 +928,7 @@ pub enum GenericDesktop {
 }
 
 impl GenericDesktop {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             GenericDesktop::Pointer => "Pointer",
@@ -1039,6 +1060,7 @@ impl GenericDesktop {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for GenericDesktop {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -1523,6 +1545,7 @@ pub enum SimulationControls {
 }
 
 impl SimulationControls {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             SimulationControls::FlightSimulationDevice => "Flight Simulation Device",
@@ -1581,6 +1604,7 @@ impl SimulationControls {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for SimulationControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -1861,6 +1885,7 @@ pub enum VRControls {
 }
 
 impl VRControls {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             VRControls::Belt => "Belt",
@@ -1880,6 +1905,7 @@ impl VRControls {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for VRControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -2126,6 +2152,7 @@ pub enum SportControls {
 }
 
 impl SportControls {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             SportControls::BaseballBat => "Baseball Bat",
@@ -2167,6 +2194,7 @@ impl SportControls {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for SportControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -2447,6 +2475,7 @@ pub enum GameControls {
 }
 
 impl GameControls {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             GameControls::ThreeDGameController => "3D Game Controller",
@@ -2483,6 +2512,7 @@ impl GameControls {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for GameControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -2743,6 +2773,7 @@ pub enum GenericDeviceControls {
 }
 
 impl GenericDeviceControls {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             GenericDeviceControls::BackgroundNonuserControls => "Background/Nonuser Controls",
@@ -2776,6 +2807,7 @@ impl GenericDeviceControls {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for GenericDeviceControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -3414,6 +3446,7 @@ pub enum KeyboardKeypad {
 }
 
 impl KeyboardKeypad {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             KeyboardKeypad::ErrorRollOver => "ErrorRollOver",
@@ -3641,6 +3674,7 @@ impl KeyboardKeypad {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for KeyboardKeypad {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -4423,6 +4457,7 @@ pub enum LED {
 }
 
 impl LED {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             LED::NumLock => "Num Lock",
@@ -4526,6 +4561,7 @@ impl LED {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for LED {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -4876,6 +4912,7 @@ pub enum Button {
 }
 
 impl Button {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Button::Button(button) => format!("Button {button}"),
@@ -4883,6 +4920,7 @@ impl Button {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Button {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -5042,6 +5080,7 @@ pub enum Ordinal {
 }
 
 impl Ordinal {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Ordinal::Ordinal(instance) => format!("Instance {instance}"),
@@ -5049,6 +5088,7 @@ impl Ordinal {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Ordinal {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -5402,6 +5442,7 @@ pub enum TelephonyDevice {
 }
 
 impl TelephonyDevice {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             TelephonyDevice::Phone => "Phone",
@@ -5508,6 +5549,7 @@ impl TelephonyDevice {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for TelephonyDevice {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -6760,6 +6802,7 @@ pub enum Consumer {
 }
 
 impl Consumer {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Consumer::ConsumerControl => "Consumer Control",
@@ -7223,6 +7266,7 @@ impl Consumer {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Consumer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -8493,6 +8537,7 @@ pub enum Digitizers {
 }
 
 impl Digitizers {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Digitizers::Digitizer => "Digitizer",
@@ -8618,6 +8663,7 @@ impl Digitizers {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Digitizers {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -9046,6 +9092,7 @@ pub enum Haptics {
 }
 
 impl Haptics {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Haptics::SimpleHapticController => "Simple Haptic Controller",
@@ -9082,6 +9129,7 @@ impl Haptics {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Haptics {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -9504,6 +9552,7 @@ pub enum PhysicalInputDevice {
 }
 
 impl PhysicalInputDevice {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             PhysicalInputDevice::PhysicalInputDevice => "Physical Input Device",
@@ -9624,6 +9673,7 @@ impl PhysicalInputDevice {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for PhysicalInputDevice {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -9992,6 +10042,7 @@ pub enum Unicode {
 }
 
 impl Unicode {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Unicode::Unicode(codepoint) => format!("codepoint {codepoint}"),
@@ -9999,6 +10050,7 @@ impl Unicode {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Unicode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -10174,6 +10226,7 @@ pub enum SoC {
 }
 
 impl SoC {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             SoC::SocControl => "SocControl",
@@ -10191,6 +10244,7 @@ impl SoC {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for SoC {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -10433,6 +10487,7 @@ pub enum EyeandHeadTrackers {
 }
 
 impl EyeandHeadTrackers {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             EyeandHeadTrackers::EyeTracker => "Eye Tracker",
@@ -10474,6 +10529,7 @@ impl EyeandHeadTrackers {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for EyeandHeadTrackers {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -10846,6 +10902,7 @@ pub enum AuxiliaryDisplay {
 }
 
 impl AuxiliaryDisplay {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             AuxiliaryDisplay::AlphanumericDisplay => "Alphanumeric Display",
@@ -10928,6 +10985,7 @@ impl AuxiliaryDisplay {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for AuxiliaryDisplay {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -12578,6 +12636,7 @@ pub enum Sensors {
 }
 
 impl Sensors {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Sensors::Sensor => "Sensor",
@@ -13368,6 +13427,7 @@ impl Sensors {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Sensors {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -14926,6 +14986,7 @@ pub enum MedicalInstrument {
 }
 
 impl MedicalInstrument {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             MedicalInstrument::MedicalUltrasound => "Medical Ultrasound",
@@ -14962,6 +15023,7 @@ impl MedicalInstrument {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for MedicalInstrument {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -15260,6 +15322,7 @@ pub enum BrailleDisplay {
 }
 
 impl BrailleDisplay {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             BrailleDisplay::BrailleDisplay => "Braille Display",
@@ -15310,6 +15373,7 @@ impl BrailleDisplay {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for BrailleDisplay {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -15616,6 +15680,7 @@ pub enum LightingAndIllumination {
 }
 
 impl LightingAndIllumination {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             LightingAndIllumination::LampArray => "LampArray",
@@ -15664,6 +15729,7 @@ impl LightingAndIllumination {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for LightingAndIllumination {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -15892,6 +15958,7 @@ pub enum Monitor {
 }
 
 impl Monitor {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Monitor::MonitorControl => "Monitor Control",
@@ -15903,6 +15970,7 @@ impl Monitor {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Monitor {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -16069,6 +16137,7 @@ pub enum MonitorEnumerated {
 }
 
 impl MonitorEnumerated {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             MonitorEnumerated::MonitorEnumerated(enumerate) => format!("Enumerate {enumerate}"),
@@ -16076,6 +16145,7 @@ impl MonitorEnumerated {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for MonitorEnumerated {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -16321,6 +16391,7 @@ pub enum VESAVirtualControls {
 }
 
 impl VESAVirtualControls {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             VESAVirtualControls::Degauss => "Degauss",
@@ -16383,6 +16454,7 @@ impl VESAVirtualControls {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for VESAVirtualControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -16781,6 +16853,7 @@ pub enum Power {
 }
 
 impl Power {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Power::iName => "iName",
@@ -16865,6 +16938,7 @@ impl Power {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Power {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -17355,6 +17429,7 @@ pub enum BatterySystem {
 }
 
 impl BatterySystem {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             BatterySystem::SmartBatteryBatteryMode => "Smart Battery Battery Mode",
@@ -17453,6 +17528,7 @@ impl BatterySystem {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for BatterySystem {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -18177,6 +18253,7 @@ pub enum BarcodeScanner {
 }
 
 impl BarcodeScanner {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             BarcodeScanner::BarcodeBadgeReader => "Barcode Badge Reader",
@@ -18392,6 +18469,7 @@ impl BarcodeScanner {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for BarcodeScanner {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -19026,6 +19104,7 @@ pub enum Scales {
 }
 
 impl Scales {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Scales::Scales => "Scales",
@@ -19079,6 +19158,7 @@ impl Scales {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Scales {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -19345,6 +19425,7 @@ pub enum MagneticStripeReader {
 }
 
 impl MagneticStripeReader {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             MagneticStripeReader::MSRDeviceReadOnly => "MSR Device Read-Only",
@@ -19362,6 +19443,7 @@ impl MagneticStripeReader {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for MagneticStripeReader {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -19540,6 +19622,7 @@ pub enum CameraControl {
 }
 
 impl CameraControl {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             CameraControl::CameraAutofocus => "Camera Auto-focus",
@@ -19549,6 +19632,7 @@ impl CameraControl {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for CameraControl {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -19761,6 +19845,7 @@ pub enum Arcade {
 }
 
 impl Arcade {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Arcade::GeneralPurposeIOCard => "General Purpose IO Card",
@@ -19795,6 +19880,7 @@ impl Arcade {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Arcade {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -20009,6 +20095,7 @@ pub enum FIDOAlliance {
 }
 
 impl FIDOAlliance {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             FIDOAlliance::U2FAuthenticatorDevice => "U2F Authenticator Device",
@@ -20019,6 +20106,7 @@ impl FIDOAlliance {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for FIDOAlliance {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -20391,6 +20479,7 @@ pub enum Wacom {
 }
 
 impl Wacom {
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Wacom::WacomDigitizer => "Wacom Digitizer",
@@ -20504,6 +20593,7 @@ impl Wacom {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Wacom {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -20857,6 +20947,7 @@ pub enum ReservedUsagePage {
 }
 
 impl ReservedUsagePage {
+    #[cfg(feature = "std")]
     fn name(&self) -> String {
         match self {
             ReservedUsagePage::Undefined => "Reserved Usage Undefined".to_string(),
@@ -20867,6 +20958,7 @@ impl ReservedUsagePage {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for ReservedUsagePage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -20895,6 +20987,7 @@ pub enum VendorDefinedPage {
 }
 
 impl VendorDefinedPage {
+    #[cfg(feature = "std")]
     fn name(&self) -> String {
         match self {
             VendorDefinedPage::Undefined => "Vendor Usage Undefined".to_string(),
@@ -20905,6 +20998,7 @@ impl VendorDefinedPage {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for VendorDefinedPage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -21077,6 +21171,7 @@ impl TryFrom<u32> for UsagePage {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for UsagePage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -21182,10 +21277,12 @@ pub enum Usage {
 }
 
 impl Usage {
+    #[cfg(feature = "std")]
     pub fn new_from_page_and_id(usage_page: u16, usage_id: u16) -> Result<Usage> {
         Usage::try_from((usage_page as u32) << 16 | usage_id as u32)
     }
 
+    #[cfg(feature = "std")]
     pub fn name(&self) -> String {
         match self {
             Usage::GenericDesktop(usage) => usage.name(),
@@ -21304,6 +21401,7 @@ impl AsUsagePage for Usage {
     }
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for Usage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -21545,6 +21643,7 @@ mod tests {
         assert_eq!(hid_usage_page, up.usage_page_value());
     }
 
+    #[cfg(feature = "std")]
     #[test]
     fn names() {
         assert_eq!(UsagePage::GenericDesktop.name().as_str(), "Generic Desktop");
