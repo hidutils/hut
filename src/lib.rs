@@ -865,6 +865,8 @@ pub enum GenericDesktop {
     SystemHibernate,
     /// Usage ID `0xA9`: "System Microphone Mute"
     SystemMicrophoneMute,
+    /// Usage ID `0xAA`: "System Accessibility Binding"
+    SystemAccessibilityBinding,
     /// Usage ID `0xB0`: "System Display Invert"
     SystemDisplayInvert,
     /// Usage ID `0xB1`: "System Display Internal"
@@ -1017,6 +1019,7 @@ impl GenericDesktop {
             GenericDesktop::SystemSpeakerMute => "System Speaker Mute",
             GenericDesktop::SystemHibernate => "System Hibernate",
             GenericDesktop::SystemMicrophoneMute => "System Microphone Mute",
+            GenericDesktop::SystemAccessibilityBinding => "System Accessibility Binding",
             GenericDesktop::SystemDisplayInvert => "System Display Invert",
             GenericDesktop::SystemDisplayInternal => "System Display Internal",
             GenericDesktop::SystemDisplayExternal => "System Display External",
@@ -1195,6 +1198,7 @@ impl From<&GenericDesktop> for u16 {
             GenericDesktop::SystemSpeakerMute => 167,
             GenericDesktop::SystemHibernate => 168,
             GenericDesktop::SystemMicrophoneMute => 169,
+            GenericDesktop::SystemAccessibilityBinding => 170,
             GenericDesktop::SystemDisplayInvert => 176,
             GenericDesktop::SystemDisplayInternal => 177,
             GenericDesktop::SystemDisplayExternal => 178,
@@ -1365,6 +1369,7 @@ impl TryFrom<u16> for GenericDesktop {
             167 => Ok(GenericDesktop::SystemSpeakerMute),
             168 => Ok(GenericDesktop::SystemHibernate),
             169 => Ok(GenericDesktop::SystemMicrophoneMute),
+            170 => Ok(GenericDesktop::SystemAccessibilityBinding),
             176 => Ok(GenericDesktop::SystemDisplayInvert),
             177 => Ok(GenericDesktop::SystemDisplayInternal),
             178 => Ok(GenericDesktop::SystemDisplayExternal),

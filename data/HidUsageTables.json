@@ -1,8 +1,8 @@
 {
   "UsageTableVersion": 1,
-  "UsageTableRevision": 5,
+  "UsageTableRevision": 6,
   "UsageTableSubRevisionInternal": 0,
-  "LastGenerated": "2024-01-08T15:33:15.3528199-08:00",
+  "LastGenerated": "2025-01-08T20:19:39.6034331-08:00",
   "UsagePages": [
     {
       "Kind": "Defined",
@@ -8102,6 +8102,13 @@
         {
           "Id": 169,
           "Name": "System Microphone Mute",
+          "Kinds": [
+            "OOC"
+          ]
+        },
+        {
+          "Id": 170,
+          "Name": "System Accessibility Binding",
           "Kinds": [
             "OOC"
           ]
