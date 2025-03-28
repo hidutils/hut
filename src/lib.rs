@@ -48,7 +48,7 @@
 //! # use hut::*;
 //! let usage_page_value: u16 = 0x01; // Generic Desktop
 //! let usage_id_value: u16 = 0x02; // Mouse
-//! let usage_value: u32 = (usage_page_value as u32) << 16 | usage_id_value as u32;
+//! let usage_value: u32 = ((usage_page_value as u32) << 16) | usage_id_value as u32;
 //!
 //! // Create a known Usage from a 32-bit value
 //! let u: Usage = Usage::try_from(usage_value).unwrap();
@@ -94,7 +94,7 @@
 //! # use hut::*;
 //! let usage_page_value: u16 = 0x09; // Button
 //! let usage_id_value: u16 = 8; // Button number 8
-//! let usage_value: u32 = (usage_page_value as u32) << 16 | usage_id_value as u32;
+//! let usage_value: u32 = ((usage_page_value as u32) << 16) | usage_id_value as u32;
 //!
 //! let u = Usage::try_from(usage_value).unwrap();
 //! let button = Usage::Button(Button::Button(8));
@@ -567,7 +567,7 @@ impl UsagePage {
     /// are ignored.
     /// ```
     /// # use hut::*;
-    /// let usage_value: u32 = 0x1 << 16 | 0x2;
+    /// let usage_value: u32 = (0x1 << 16) | 0x2;
     /// let usage = UsagePage::from_usage_value(usage_value).unwrap();
     /// assert!(matches!(Usage::from(GenericDesktop::Mouse), usage));
     /// ```
@@ -21194,7 +21194,7 @@ impl fmt::Display for UsagePage {
 ///
 /// assert_eq!(0x1, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
-/// assert_eq!(0x1 << 16 | 0x2, u1.usage_value());
+/// assert_eq!((0x1 << 16) | 0x2, u1.usage_value());
 /// ```
 /// Note: this enum is generated from the HUT documents.
 #[allow(non_camel_case_types)]
@@ -21284,7 +21284,7 @@ pub enum Usage {
 impl Usage {
     #[cfg(feature = "std")]
     pub fn new_from_page_and_id(usage_page: u16, usage_id: u16) -> Result<Usage> {
-        Usage::try_from((usage_page as u32) << 16 | usage_id as u32)
+        Usage::try_from(((usage_page as u32) << 16) | usage_id as u32)
     }
 
     #[cfg(feature = "std")]
@@ -21429,47 +21429,47 @@ impl From<Usage> for u16 {
 impl From<&Usage> for u32 {
     fn from(usage: &Usage) -> u32 {
         match usage {
-            Usage::GenericDesktop(usage) => 1 << 16 | u16::from(usage) as u32,
-            Usage::SimulationControls(usage) => 2 << 16 | u16::from(usage) as u32,
-            Usage::VRControls(usage) => 3 << 16 | u16::from(usage) as u32,
-            Usage::SportControls(usage) => 4 << 16 | u16::from(usage) as u32,
-            Usage::GameControls(usage) => 5 << 16 | u16::from(usage) as u32,
-            Usage::GenericDeviceControls(usage) => 6 << 16 | u16::from(usage) as u32,
-            Usage::KeyboardKeypad(usage) => 7 << 16 | u16::from(usage) as u32,
-            Usage::LED(usage) => 8 << 16 | u16::from(usage) as u32,
-            Usage::Button(usage) => 9 << 16 | u16::from(usage) as u32,
-            Usage::Ordinal(usage) => 10 << 16 | u16::from(usage) as u32,
-            Usage::TelephonyDevice(usage) => 11 << 16 | u16::from(usage) as u32,
-            Usage::Consumer(usage) => 12 << 16 | u16::from(usage) as u32,
-            Usage::Digitizers(usage) => 13 << 16 | u16::from(usage) as u32,
-            Usage::Haptics(usage) => 14 << 16 | u16::from(usage) as u32,
-            Usage::PhysicalInputDevice(usage) => 15 << 16 | u16::from(usage) as u32,
-            Usage::Unicode(usage) => 16 << 16 | u16::from(usage) as u32,
-            Usage::SoC(usage) => 17 << 16 | u16::from(usage) as u32,
-            Usage::EyeandHeadTrackers(usage) => 18 << 16 | u16::from(usage) as u32,
-            Usage::AuxiliaryDisplay(usage) => 20 << 16 | u16::from(usage) as u32,
-            Usage::Sensors(usage) => 32 << 16 | u16::from(usage) as u32,
-            Usage::MedicalInstrument(usage) => 64 << 16 | u16::from(usage) as u32,
-            Usage::BrailleDisplay(usage) => 65 << 16 | u16::from(usage) as u32,
-            Usage::LightingAndIllumination(usage) => 89 << 16 | u16::from(usage) as u32,
-            Usage::Monitor(usage) => 128 << 16 | u16::from(usage) as u32,
-            Usage::MonitorEnumerated(usage) => 129 << 16 | u16::from(usage) as u32,
-            Usage::VESAVirtualControls(usage) => 130 << 16 | u16::from(usage) as u32,
-            Usage::Power(usage) => 132 << 16 | u16::from(usage) as u32,
-            Usage::BatterySystem(usage) => 133 << 16 | u16::from(usage) as u32,
-            Usage::BarcodeScanner(usage) => 140 << 16 | u16::from(usage) as u32,
-            Usage::Scales(usage) => 141 << 16 | u16::from(usage) as u32,
-            Usage::MagneticStripeReader(usage) => 142 << 16 | u16::from(usage) as u32,
-            Usage::CameraControl(usage) => 144 << 16 | u16::from(usage) as u32,
-            Usage::Arcade(usage) => 145 << 16 | u16::from(usage) as u32,
-            Usage::FIDOAlliance(usage) => 61904 << 16 | u16::from(usage) as u32,
-            Usage::Wacom(usage) => 65293 << 16 | u16::from(usage) as u32,
+            Usage::GenericDesktop(usage) => (1 << 16) | u16::from(usage) as u32,
+            Usage::SimulationControls(usage) => (2 << 16) | u16::from(usage) as u32,
+            Usage::VRControls(usage) => (3 << 16) | u16::from(usage) as u32,
+            Usage::SportControls(usage) => (4 << 16) | u16::from(usage) as u32,
+            Usage::GameControls(usage) => (5 << 16) | u16::from(usage) as u32,
+            Usage::GenericDeviceControls(usage) => (6 << 16) | u16::from(usage) as u32,
+            Usage::KeyboardKeypad(usage) => (7 << 16) | u16::from(usage) as u32,
+            Usage::LED(usage) => (8 << 16) | u16::from(usage) as u32,
+            Usage::Button(usage) => (9 << 16) | u16::from(usage) as u32,
+            Usage::Ordinal(usage) => (10 << 16) | u16::from(usage) as u32,
+            Usage::TelephonyDevice(usage) => (11 << 16) | u16::from(usage) as u32,
+            Usage::Consumer(usage) => (12 << 16) | u16::from(usage) as u32,
+            Usage::Digitizers(usage) => (13 << 16) | u16::from(usage) as u32,
+            Usage::Haptics(usage) => (14 << 16) | u16::from(usage) as u32,
+            Usage::PhysicalInputDevice(usage) => (15 << 16) | u16::from(usage) as u32,
+            Usage::Unicode(usage) => (16 << 16) | u16::from(usage) as u32,
+            Usage::SoC(usage) => (17 << 16) | u16::from(usage) as u32,
+            Usage::EyeandHeadTrackers(usage) => (18 << 16) | u16::from(usage) as u32,
+            Usage::AuxiliaryDisplay(usage) => (20 << 16) | u16::from(usage) as u32,
+            Usage::Sensors(usage) => (32 << 16) | u16::from(usage) as u32,
+            Usage::MedicalInstrument(usage) => (64 << 16) | u16::from(usage) as u32,
+            Usage::BrailleDisplay(usage) => (65 << 16) | u16::from(usage) as u32,
+            Usage::LightingAndIllumination(usage) => (89 << 16) | u16::from(usage) as u32,
+            Usage::Monitor(usage) => (128 << 16) | u16::from(usage) as u32,
+            Usage::MonitorEnumerated(usage) => (129 << 16) | u16::from(usage) as u32,
+            Usage::VESAVirtualControls(usage) => (130 << 16) | u16::from(usage) as u32,
+            Usage::Power(usage) => (132 << 16) | u16::from(usage) as u32,
+            Usage::BatterySystem(usage) => (133 << 16) | u16::from(usage) as u32,
+            Usage::BarcodeScanner(usage) => (140 << 16) | u16::from(usage) as u32,
+            Usage::Scales(usage) => (141 << 16) | u16::from(usage) as u32,
+            Usage::MagneticStripeReader(usage) => (142 << 16) | u16::from(usage) as u32,
+            Usage::CameraControl(usage) => (144 << 16) | u16::from(usage) as u32,
+            Usage::Arcade(usage) => (145 << 16) | u16::from(usage) as u32,
+            Usage::FIDOAlliance(usage) => (61904 << 16) | u16::from(usage) as u32,
+            Usage::Wacom(usage) => (65293 << 16) | u16::from(usage) as u32,
             Usage::ReservedUsagePage {
                 reserved_page,
                 usage,
-            } => (u16::from(reserved_page) as u32) << 16 | u16::from(usage) as u32,
+            } => ((u16::from(reserved_page) as u32) << 16) | u16::from(usage) as u32,
             Usage::VendorDefinedPage { vendor_page, usage } => {
-                (u16::from(vendor_page) as u32) << 16 | u16::from(usage) as u32
+                ((u16::from(vendor_page) as u32) << 16) | u16::from(usage) as u32
             }
         }
     }
@@ -21558,7 +21558,7 @@ mod tests {
     fn conversions() {
         let hid_usage_page: u16 = 0x01; // Generic Desktop
         let hid_usage_id: u16 = 0x02; // Mouse
-        let hid_usage: u32 = (hid_usage_page as u32) << 16 | hid_usage_id as u32;
+        let hid_usage: u32 = ((hid_usage_page as u32) << 16) | hid_usage_id as u32;
 
         let u = GenericDesktop::Mouse;
         // 32 bit usage to enum
@@ -21590,7 +21590,7 @@ mod tests {
     fn buttons() {
         let hid_usage_page: u16 = 0x9;
         let hid_usage_id: u16 = 0x5;
-        let hid_usage: u32 = (hid_usage_page as u32) << 16 | hid_usage_id as u32;
+        let hid_usage: u32 = ((hid_usage_page as u32) << 16) | hid_usage_id as u32;
 
         let u = Button::Button(5);
         assert!(matches!(
@@ -21621,7 +21621,7 @@ mod tests {
     fn ordinals() {
         let hid_usage_page: u16 = 0xA;
         let hid_usage_id: u16 = 0x8;
-        let hid_usage: u32 = (hid_usage_page as u32) << 16 | hid_usage_id as u32;
+        let hid_usage: u32 = ((hid_usage_page as u32) << 16) | hid_usage_id as u32;
 
         let u = Ordinal::Ordinal(8);
         assert!(matches!(
