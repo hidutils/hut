@@ -694,239 +694,240 @@ impl AsUsagePage for UsagePage {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum GenericDesktop {
     /// Usage ID `0x1`: "Pointer"
-    Pointer,
+    Pointer = 0x1,
     /// Usage ID `0x2`: "Mouse"
-    Mouse,
+    Mouse = 0x2,
     /// Usage ID `0x4`: "Joystick"
-    Joystick,
+    Joystick = 0x4,
     /// Usage ID `0x5`: "Gamepad"
-    Gamepad,
+    Gamepad = 0x5,
     /// Usage ID `0x6`: "Keyboard"
-    Keyboard,
+    Keyboard = 0x6,
     /// Usage ID `0x7`: "Keypad"
-    Keypad,
+    Keypad = 0x7,
     /// Usage ID `0x8`: "Multi-axis Controller"
-    MultiaxisController,
+    MultiaxisController = 0x8,
     /// Usage ID `0x9`: "Tablet PC System Controls"
-    TabletPCSystemControls,
+    TabletPCSystemControls = 0x9,
     /// Usage ID `0xA`: "Water Cooling Device"
-    WaterCoolingDevice,
+    WaterCoolingDevice = 0xA,
     /// Usage ID `0xB`: "Computer Chassis Device"
-    ComputerChassisDevice,
+    ComputerChassisDevice = 0xB,
     /// Usage ID `0xC`: "Wireless Radio Controls"
-    WirelessRadioControls,
+    WirelessRadioControls = 0xC,
     /// Usage ID `0xD`: "Portable Device Control"
-    PortableDeviceControl,
+    PortableDeviceControl = 0xD,
     /// Usage ID `0xE`: "System Multi-Axis Controller"
-    SystemMultiAxisController,
+    SystemMultiAxisController = 0xE,
     /// Usage ID `0xF`: "Spatial Controller"
-    SpatialController,
+    SpatialController = 0xF,
     /// Usage ID `0x10`: "Assistive Control"
-    AssistiveControl,
+    AssistiveControl = 0x10,
     /// Usage ID `0x11`: "Device Dock"
-    DeviceDock,
+    DeviceDock = 0x11,
     /// Usage ID `0x12`: "Dockable Device"
-    DockableDevice,
+    DockableDevice = 0x12,
     /// Usage ID `0x13`: "Call State Management Control"
-    CallStateManagementControl,
+    CallStateManagementControl = 0x13,
     /// Usage ID `0x30`: "X"
-    X,
+    X = 0x30,
     /// Usage ID `0x31`: "Y"
-    Y,
+    Y = 0x31,
     /// Usage ID `0x32`: "Z"
-    Z,
+    Z = 0x32,
     /// Usage ID `0x33`: "Rx"
-    Rx,
+    Rx = 0x33,
     /// Usage ID `0x34`: "Ry"
-    Ry,
+    Ry = 0x34,
     /// Usage ID `0x35`: "Rz"
-    Rz,
+    Rz = 0x35,
     /// Usage ID `0x36`: "Slider"
-    Slider,
+    Slider = 0x36,
     /// Usage ID `0x37`: "Dial"
-    Dial,
+    Dial = 0x37,
     /// Usage ID `0x38`: "Wheel"
-    Wheel,
+    Wheel = 0x38,
     /// Usage ID `0x39`: "Hat Switch"
-    HatSwitch,
+    HatSwitch = 0x39,
     /// Usage ID `0x3A`: "Counted Buffer"
-    CountedBuffer,
+    CountedBuffer = 0x3A,
     /// Usage ID `0x3B`: "Byte Count"
-    ByteCount,
+    ByteCount = 0x3B,
     /// Usage ID `0x3C`: "Motion Wakeup"
-    MotionWakeup,
+    MotionWakeup = 0x3C,
     /// Usage ID `0x3D`: "Start"
-    Start,
+    Start = 0x3D,
     /// Usage ID `0x3E`: "Select"
-    Select,
+    Select = 0x3E,
     /// Usage ID `0x40`: "Vx"
-    Vx,
+    Vx = 0x40,
     /// Usage ID `0x41`: "Vy"
-    Vy,
+    Vy = 0x41,
     /// Usage ID `0x42`: "Vz"
-    Vz,
+    Vz = 0x42,
     /// Usage ID `0x43`: "Vbrx"
-    Vbrx,
+    Vbrx = 0x43,
     /// Usage ID `0x44`: "Vbry"
-    Vbry,
+    Vbry = 0x44,
     /// Usage ID `0x45`: "Vbrz"
-    Vbrz,
+    Vbrz = 0x45,
     /// Usage ID `0x46`: "Vno"
-    Vno,
+    Vno = 0x46,
     /// Usage ID `0x47`: "Feature Notification"
-    FeatureNotification,
+    FeatureNotification = 0x47,
     /// Usage ID `0x48`: "Resolution Multiplier"
-    ResolutionMultiplier,
+    ResolutionMultiplier = 0x48,
     /// Usage ID `0x49`: "Qx"
-    Qx,
+    Qx = 0x49,
     /// Usage ID `0x4A`: "Qy"
-    Qy,
+    Qy = 0x4A,
     /// Usage ID `0x4B`: "Qz"
-    Qz,
+    Qz = 0x4B,
     /// Usage ID `0x4C`: "Qw"
-    Qw,
+    Qw = 0x4C,
     /// Usage ID `0x80`: "System Control"
-    SystemControl,
+    SystemControl = 0x80,
     /// Usage ID `0x81`: "System Power Down"
-    SystemPowerDown,
+    SystemPowerDown = 0x81,
     /// Usage ID `0x82`: "System Sleep"
-    SystemSleep,
+    SystemSleep = 0x82,
     /// Usage ID `0x83`: "System Wake Up"
-    SystemWakeUp,
+    SystemWakeUp = 0x83,
     /// Usage ID `0x84`: "System Context Menu"
-    SystemContextMenu,
+    SystemContextMenu = 0x84,
     /// Usage ID `0x85`: "System Main Menu"
-    SystemMainMenu,
+    SystemMainMenu = 0x85,
     /// Usage ID `0x86`: "System App Menu"
-    SystemAppMenu,
+    SystemAppMenu = 0x86,
     /// Usage ID `0x87`: "System Menu Help"
-    SystemMenuHelp,
+    SystemMenuHelp = 0x87,
     /// Usage ID `0x88`: "System Menu Exit"
-    SystemMenuExit,
+    SystemMenuExit = 0x88,
     /// Usage ID `0x89`: "System Menu Select"
-    SystemMenuSelect,
+    SystemMenuSelect = 0x89,
     /// Usage ID `0x8A`: "System Menu Right"
-    SystemMenuRight,
+    SystemMenuRight = 0x8A,
     /// Usage ID `0x8B`: "System Menu Left"
-    SystemMenuLeft,
+    SystemMenuLeft = 0x8B,
     /// Usage ID `0x8C`: "System Menu Up"
-    SystemMenuUp,
+    SystemMenuUp = 0x8C,
     /// Usage ID `0x8D`: "System Menu Down"
-    SystemMenuDown,
+    SystemMenuDown = 0x8D,
     /// Usage ID `0x8E`: "System Cold Restart"
-    SystemColdRestart,
+    SystemColdRestart = 0x8E,
     /// Usage ID `0x8F`: "System Warm Restart"
-    SystemWarmRestart,
+    SystemWarmRestart = 0x8F,
     /// Usage ID `0x90`: "D-pad Up"
-    DpadUp,
+    DpadUp = 0x90,
     /// Usage ID `0x91`: "D-pad Down"
-    DpadDown,
+    DpadDown = 0x91,
     /// Usage ID `0x92`: "D-pad Right"
-    DpadRight,
+    DpadRight = 0x92,
     /// Usage ID `0x93`: "D-pad Left"
-    DpadLeft,
+    DpadLeft = 0x93,
     /// Usage ID `0x94`: "Index Trigger"
-    IndexTrigger,
+    IndexTrigger = 0x94,
     /// Usage ID `0x95`: "Palm Trigger"
-    PalmTrigger,
+    PalmTrigger = 0x95,
     /// Usage ID `0x96`: "Thumbstick"
-    Thumbstick,
+    Thumbstick = 0x96,
     /// Usage ID `0x97`: "System Function Shift"
-    SystemFunctionShift,
+    SystemFunctionShift = 0x97,
     /// Usage ID `0x98`: "System Function Shift Lock"
-    SystemFunctionShiftLock,
+    SystemFunctionShiftLock = 0x98,
     /// Usage ID `0x99`: "System Function Shift Lock Indicator"
-    SystemFunctionShiftLockIndicator,
+    SystemFunctionShiftLockIndicator = 0x99,
     /// Usage ID `0x9A`: "System Dismiss Notification"
-    SystemDismissNotification,
+    SystemDismissNotification = 0x9A,
     /// Usage ID `0x9B`: "System Do Not Disturb"
-    SystemDoNotDisturb,
+    SystemDoNotDisturb = 0x9B,
     /// Usage ID `0xA0`: "System Dock"
-    SystemDock,
+    SystemDock = 0xA0,
     /// Usage ID `0xA1`: "System Undock"
-    SystemUndock,
+    SystemUndock = 0xA1,
     /// Usage ID `0xA2`: "System Setup"
-    SystemSetup,
+    SystemSetup = 0xA2,
     /// Usage ID `0xA3`: "System Break"
-    SystemBreak,
+    SystemBreak = 0xA3,
     /// Usage ID `0xA4`: "System Debugger Break"
-    SystemDebuggerBreak,
+    SystemDebuggerBreak = 0xA4,
     /// Usage ID `0xA5`: "Application Break"
-    ApplicationBreak,
+    ApplicationBreak = 0xA5,
     /// Usage ID `0xA6`: "Application Debugger Break"
-    ApplicationDebuggerBreak,
+    ApplicationDebuggerBreak = 0xA6,
     /// Usage ID `0xA7`: "System Speaker Mute"
-    SystemSpeakerMute,
+    SystemSpeakerMute = 0xA7,
     /// Usage ID `0xA8`: "System Hibernate"
-    SystemHibernate,
+    SystemHibernate = 0xA8,
     /// Usage ID `0xA9`: "System Microphone Mute"
-    SystemMicrophoneMute,
+    SystemMicrophoneMute = 0xA9,
     /// Usage ID `0xAA`: "System Accessibility Binding"
-    SystemAccessibilityBinding,
+    SystemAccessibilityBinding = 0xAA,
     /// Usage ID `0xB0`: "System Display Invert"
-    SystemDisplayInvert,
+    SystemDisplayInvert = 0xB0,
     /// Usage ID `0xB1`: "System Display Internal"
-    SystemDisplayInternal,
+    SystemDisplayInternal = 0xB1,
     /// Usage ID `0xB2`: "System Display External"
-    SystemDisplayExternal,
+    SystemDisplayExternal = 0xB2,
     /// Usage ID `0xB3`: "System Display Both"
-    SystemDisplayBoth,
+    SystemDisplayBoth = 0xB3,
     /// Usage ID `0xB4`: "System Display Dual"
-    SystemDisplayDual,
+    SystemDisplayDual = 0xB4,
     /// Usage ID `0xB5`: "System Display Toggle Int/Ext Mode"
-    SystemDisplayToggleIntExtMode,
+    SystemDisplayToggleIntExtMode = 0xB5,
     /// Usage ID `0xB6`: "System Display Swap Primary/Secondary"
-    SystemDisplaySwapPrimarySecondary,
+    SystemDisplaySwapPrimarySecondary = 0xB6,
     /// Usage ID `0xB7`: "System Display Toggle LCD Autoscale"
-    SystemDisplayToggleLCDAutoscale,
+    SystemDisplayToggleLCDAutoscale = 0xB7,
     /// Usage ID `0xC0`: "Sensor Zone"
-    SensorZone,
+    SensorZone = 0xC0,
     /// Usage ID `0xC1`: "RPM"
-    RPM,
+    RPM = 0xC1,
     /// Usage ID `0xC2`: "Coolant Level"
-    CoolantLevel,
+    CoolantLevel = 0xC2,
     /// Usage ID `0xC3`: "Coolant Critical Level"
-    CoolantCriticalLevel,
+    CoolantCriticalLevel = 0xC3,
     /// Usage ID `0xC4`: "Coolant Pump"
-    CoolantPump,
+    CoolantPump = 0xC4,
     /// Usage ID `0xC5`: "Chassis Enclosure"
-    ChassisEnclosure,
+    ChassisEnclosure = 0xC5,
     /// Usage ID `0xC6`: "Wireless Radio Button"
-    WirelessRadioButton,
+    WirelessRadioButton = 0xC6,
     /// Usage ID `0xC7`: "Wireless Radio LED"
-    WirelessRadioLED,
+    WirelessRadioLED = 0xC7,
     /// Usage ID `0xC8`: "Wireless Radio Slider Switch"
-    WirelessRadioSliderSwitch,
+    WirelessRadioSliderSwitch = 0xC8,
     /// Usage ID `0xC9`: "System Display Rotation Lock Button"
-    SystemDisplayRotationLockButton,
+    SystemDisplayRotationLockButton = 0xC9,
     /// Usage ID `0xCA`: "System Display Rotation Lock Slider Switch"
-    SystemDisplayRotationLockSliderSwitch,
+    SystemDisplayRotationLockSliderSwitch = 0xCA,
     /// Usage ID `0xCB`: "Control Enable"
-    ControlEnable,
+    ControlEnable = 0xCB,
     /// Usage ID `0xD0`: "Dockable Device Unique ID"
-    DockableDeviceUniqueID,
+    DockableDeviceUniqueID = 0xD0,
     /// Usage ID `0xD1`: "Dockable Device Vendor ID"
-    DockableDeviceVendorID,
+    DockableDeviceVendorID = 0xD1,
     /// Usage ID `0xD2`: "Dockable Device Primary Usage Page"
-    DockableDevicePrimaryUsagePage,
+    DockableDevicePrimaryUsagePage = 0xD2,
     /// Usage ID `0xD3`: "Dockable Device Primary Usage ID"
-    DockableDevicePrimaryUsageID,
+    DockableDevicePrimaryUsageID = 0xD3,
     /// Usage ID `0xD4`: "Dockable Device Docking State"
-    DockableDeviceDockingState,
+    DockableDeviceDockingState = 0xD4,
     /// Usage ID `0xD5`: "Dockable Device Display Occlusion"
-    DockableDeviceDisplayOcclusion,
+    DockableDeviceDisplayOcclusion = 0xD5,
     /// Usage ID `0xD6`: "Dockable Device Object Type"
-    DockableDeviceObjectType,
+    DockableDeviceObjectType = 0xD6,
     /// Usage ID `0xE0`: "Call Active LED"
-    CallActiveLED,
+    CallActiveLED = 0xE0,
     /// Usage ID `0xE1`: "Call Mute Toggle"
-    CallMuteToggle,
+    CallMuteToggle = 0xE1,
     /// Usage ID `0xE2`: "Call Mute LED"
-    CallMuteLED,
+    CallMuteLED = 0xE2,
 }
 
 impl GenericDesktop {
@@ -1113,123 +1114,7 @@ impl AsUsagePage for GenericDesktop {
 
 impl From<&GenericDesktop> for u16 {
     fn from(genericdesktop: &GenericDesktop) -> u16 {
-        match *genericdesktop {
-            GenericDesktop::Pointer => 1,
-            GenericDesktop::Mouse => 2,
-            GenericDesktop::Joystick => 4,
-            GenericDesktop::Gamepad => 5,
-            GenericDesktop::Keyboard => 6,
-            GenericDesktop::Keypad => 7,
-            GenericDesktop::MultiaxisController => 8,
-            GenericDesktop::TabletPCSystemControls => 9,
-            GenericDesktop::WaterCoolingDevice => 10,
-            GenericDesktop::ComputerChassisDevice => 11,
-            GenericDesktop::WirelessRadioControls => 12,
-            GenericDesktop::PortableDeviceControl => 13,
-            GenericDesktop::SystemMultiAxisController => 14,
-            GenericDesktop::SpatialController => 15,
-            GenericDesktop::AssistiveControl => 16,
-            GenericDesktop::DeviceDock => 17,
-            GenericDesktop::DockableDevice => 18,
-            GenericDesktop::CallStateManagementControl => 19,
-            GenericDesktop::X => 48,
-            GenericDesktop::Y => 49,
-            GenericDesktop::Z => 50,
-            GenericDesktop::Rx => 51,
-            GenericDesktop::Ry => 52,
-            GenericDesktop::Rz => 53,
-            GenericDesktop::Slider => 54,
-            GenericDesktop::Dial => 55,
-            GenericDesktop::Wheel => 56,
-            GenericDesktop::HatSwitch => 57,
-            GenericDesktop::CountedBuffer => 58,
-            GenericDesktop::ByteCount => 59,
-            GenericDesktop::MotionWakeup => 60,
-            GenericDesktop::Start => 61,
-            GenericDesktop::Select => 62,
-            GenericDesktop::Vx => 64,
-            GenericDesktop::Vy => 65,
-            GenericDesktop::Vz => 66,
-            GenericDesktop::Vbrx => 67,
-            GenericDesktop::Vbry => 68,
-            GenericDesktop::Vbrz => 69,
-            GenericDesktop::Vno => 70,
-            GenericDesktop::FeatureNotification => 71,
-            GenericDesktop::ResolutionMultiplier => 72,
-            GenericDesktop::Qx => 73,
-            GenericDesktop::Qy => 74,
-            GenericDesktop::Qz => 75,
-            GenericDesktop::Qw => 76,
-            GenericDesktop::SystemControl => 128,
-            GenericDesktop::SystemPowerDown => 129,
-            GenericDesktop::SystemSleep => 130,
-            GenericDesktop::SystemWakeUp => 131,
-            GenericDesktop::SystemContextMenu => 132,
-            GenericDesktop::SystemMainMenu => 133,
-            GenericDesktop::SystemAppMenu => 134,
-            GenericDesktop::SystemMenuHelp => 135,
-            GenericDesktop::SystemMenuExit => 136,
-            GenericDesktop::SystemMenuSelect => 137,
-            GenericDesktop::SystemMenuRight => 138,
-            GenericDesktop::SystemMenuLeft => 139,
-            GenericDesktop::SystemMenuUp => 140,
-            GenericDesktop::SystemMenuDown => 141,
-            GenericDesktop::SystemColdRestart => 142,
-            GenericDesktop::SystemWarmRestart => 143,
-            GenericDesktop::DpadUp => 144,
-            GenericDesktop::DpadDown => 145,
-            GenericDesktop::DpadRight => 146,
-            GenericDesktop::DpadLeft => 147,
-            GenericDesktop::IndexTrigger => 148,
-            GenericDesktop::PalmTrigger => 149,
-            GenericDesktop::Thumbstick => 150,
-            GenericDesktop::SystemFunctionShift => 151,
-            GenericDesktop::SystemFunctionShiftLock => 152,
-            GenericDesktop::SystemFunctionShiftLockIndicator => 153,
-            GenericDesktop::SystemDismissNotification => 154,
-            GenericDesktop::SystemDoNotDisturb => 155,
-            GenericDesktop::SystemDock => 160,
-            GenericDesktop::SystemUndock => 161,
-            GenericDesktop::SystemSetup => 162,
-            GenericDesktop::SystemBreak => 163,
-            GenericDesktop::SystemDebuggerBreak => 164,
-            GenericDesktop::ApplicationBreak => 165,
-            GenericDesktop::ApplicationDebuggerBreak => 166,
-            GenericDesktop::SystemSpeakerMute => 167,
-            GenericDesktop::SystemHibernate => 168,
-            GenericDesktop::SystemMicrophoneMute => 169,
-            GenericDesktop::SystemAccessibilityBinding => 170,
-            GenericDesktop::SystemDisplayInvert => 176,
-            GenericDesktop::SystemDisplayInternal => 177,
-            GenericDesktop::SystemDisplayExternal => 178,
-            GenericDesktop::SystemDisplayBoth => 179,
-            GenericDesktop::SystemDisplayDual => 180,
-            GenericDesktop::SystemDisplayToggleIntExtMode => 181,
-            GenericDesktop::SystemDisplaySwapPrimarySecondary => 182,
-            GenericDesktop::SystemDisplayToggleLCDAutoscale => 183,
-            GenericDesktop::SensorZone => 192,
-            GenericDesktop::RPM => 193,
-            GenericDesktop::CoolantLevel => 194,
-            GenericDesktop::CoolantCriticalLevel => 195,
-            GenericDesktop::CoolantPump => 196,
-            GenericDesktop::ChassisEnclosure => 197,
-            GenericDesktop::WirelessRadioButton => 198,
-            GenericDesktop::WirelessRadioLED => 199,
-            GenericDesktop::WirelessRadioSliderSwitch => 200,
-            GenericDesktop::SystemDisplayRotationLockButton => 201,
-            GenericDesktop::SystemDisplayRotationLockSliderSwitch => 202,
-            GenericDesktop::ControlEnable => 203,
-            GenericDesktop::DockableDeviceUniqueID => 208,
-            GenericDesktop::DockableDeviceVendorID => 209,
-            GenericDesktop::DockableDevicePrimaryUsagePage => 210,
-            GenericDesktop::DockableDevicePrimaryUsageID => 211,
-            GenericDesktop::DockableDeviceDockingState => 212,
-            GenericDesktop::DockableDeviceDisplayOcclusion => 213,
-            GenericDesktop::DockableDeviceObjectType => 214,
-            GenericDesktop::CallActiveLED => 224,
-            GenericDesktop::CallMuteToggle => 225,
-            GenericDesktop::CallMuteLED => 226,
-        }
+        *genericdesktop as u16
     }
 }
 
@@ -1442,111 +1327,112 @@ impl BitOr<u16> for GenericDesktop {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum SimulationControls {
     /// Usage ID `0x1`: "Flight Simulation Device"
-    FlightSimulationDevice,
+    FlightSimulationDevice = 0x1,
     /// Usage ID `0x2`: "Automobile Simulation Device"
-    AutomobileSimulationDevice,
+    AutomobileSimulationDevice = 0x2,
     /// Usage ID `0x3`: "Tank Simulation Device"
-    TankSimulationDevice,
+    TankSimulationDevice = 0x3,
     /// Usage ID `0x4`: "Spaceship Simulation Device"
-    SpaceshipSimulationDevice,
+    SpaceshipSimulationDevice = 0x4,
     /// Usage ID `0x5`: "Submarine Simulation Device"
-    SubmarineSimulationDevice,
+    SubmarineSimulationDevice = 0x5,
     /// Usage ID `0x6`: "Sailing Simulation Device"
-    SailingSimulationDevice,
+    SailingSimulationDevice = 0x6,
     /// Usage ID `0x7`: "Motorcycle Simulation Device"
-    MotorcycleSimulationDevice,
+    MotorcycleSimulationDevice = 0x7,
     /// Usage ID `0x8`: "Sports Simulation Device"
-    SportsSimulationDevice,
+    SportsSimulationDevice = 0x8,
     /// Usage ID `0x9`: "Airplane Simulation Device"
-    AirplaneSimulationDevice,
+    AirplaneSimulationDevice = 0x9,
     /// Usage ID `0xA`: "Helicopter Simulation Device"
-    HelicopterSimulationDevice,
+    HelicopterSimulationDevice = 0xA,
     /// Usage ID `0xB`: "Magic Carpet Simulation Device"
-    MagicCarpetSimulationDevice,
+    MagicCarpetSimulationDevice = 0xB,
     /// Usage ID `0xC`: "Bicycle Simulation Device"
-    BicycleSimulationDevice,
+    BicycleSimulationDevice = 0xC,
     /// Usage ID `0x20`: "Flight Control Stick"
-    FlightControlStick,
+    FlightControlStick = 0x20,
     /// Usage ID `0x21`: "Flight Stick"
-    FlightStick,
+    FlightStick = 0x21,
     /// Usage ID `0x22`: "Cyclic Control"
-    CyclicControl,
+    CyclicControl = 0x22,
     /// Usage ID `0x23`: "Cyclic Trim"
-    CyclicTrim,
+    CyclicTrim = 0x23,
     /// Usage ID `0x24`: "Flight Yoke"
-    FlightYoke,
+    FlightYoke = 0x24,
     /// Usage ID `0x25`: "Track Control"
-    TrackControl,
+    TrackControl = 0x25,
     /// Usage ID `0xB0`: "Aileron"
-    Aileron,
+    Aileron = 0xB0,
     /// Usage ID `0xB1`: "Aileron Trim"
-    AileronTrim,
+    AileronTrim = 0xB1,
     /// Usage ID `0xB2`: "Anti-Torque Control"
-    AntiTorqueControl,
+    AntiTorqueControl = 0xB2,
     /// Usage ID `0xB3`: "Autopilot Enable"
-    AutopilotEnable,
+    AutopilotEnable = 0xB3,
     /// Usage ID `0xB4`: "Chaff Release"
-    ChaffRelease,
+    ChaffRelease = 0xB4,
     /// Usage ID `0xB5`: "Collective Control"
-    CollectiveControl,
+    CollectiveControl = 0xB5,
     /// Usage ID `0xB6`: "Dive Brake"
-    DiveBrake,
+    DiveBrake = 0xB6,
     /// Usage ID `0xB7`: "Electronic Countermeasures"
-    ElectronicCountermeasures,
+    ElectronicCountermeasures = 0xB7,
     /// Usage ID `0xB8`: "Elevator"
-    Elevator,
+    Elevator = 0xB8,
     /// Usage ID `0xB9`: "Elevator Trim"
-    ElevatorTrim,
+    ElevatorTrim = 0xB9,
     /// Usage ID `0xBA`: "Rudder"
-    Rudder,
+    Rudder = 0xBA,
     /// Usage ID `0xBB`: "Throttle"
-    Throttle,
+    Throttle = 0xBB,
     /// Usage ID `0xBC`: "Flight Communications"
-    FlightCommunications,
+    FlightCommunications = 0xBC,
     /// Usage ID `0xBD`: "Flare Release"
-    FlareRelease,
+    FlareRelease = 0xBD,
     /// Usage ID `0xBE`: "Landing Gear"
-    LandingGear,
+    LandingGear = 0xBE,
     /// Usage ID `0xBF`: "Toe Brake"
-    ToeBrake,
+    ToeBrake = 0xBF,
     /// Usage ID `0xC0`: "Trigger"
-    Trigger,
+    Trigger = 0xC0,
     /// Usage ID `0xC1`: "Weapons Arm"
-    WeaponsArm,
+    WeaponsArm = 0xC1,
     /// Usage ID `0xC2`: "Weapons Select"
-    WeaponsSelect,
+    WeaponsSelect = 0xC2,
     /// Usage ID `0xC3`: "Wing Flaps"
-    WingFlaps,
+    WingFlaps = 0xC3,
     /// Usage ID `0xC4`: "Accelerator"
-    Accelerator,
+    Accelerator = 0xC4,
     /// Usage ID `0xC5`: "Brake"
-    Brake,
+    Brake = 0xC5,
     /// Usage ID `0xC6`: "Clutch"
-    Clutch,
+    Clutch = 0xC6,
     /// Usage ID `0xC7`: "Shifter"
-    Shifter,
+    Shifter = 0xC7,
     /// Usage ID `0xC8`: "Steering"
-    Steering,
+    Steering = 0xC8,
     /// Usage ID `0xC9`: "Turret Direction"
-    TurretDirection,
+    TurretDirection = 0xC9,
     /// Usage ID `0xCA`: "Barrel Elevation"
-    BarrelElevation,
+    BarrelElevation = 0xCA,
     /// Usage ID `0xCB`: "Dive Plane"
-    DivePlane,
+    DivePlane = 0xCB,
     /// Usage ID `0xCC`: "Ballast"
-    Ballast,
+    Ballast = 0xCC,
     /// Usage ID `0xCD`: "Bicycle Crank"
-    BicycleCrank,
+    BicycleCrank = 0xCD,
     /// Usage ID `0xCE`: "Handle Bars"
-    HandleBars,
+    HandleBars = 0xCE,
     /// Usage ID `0xCF`: "Front Brake"
-    FrontBrake,
+    FrontBrake = 0xCF,
     /// Usage ID `0xD0`: "Rear Brake"
-    RearBrake,
+    RearBrake = 0xD0,
 }
 
 impl SimulationControls {
@@ -1659,59 +1545,7 @@ impl AsUsagePage for SimulationControls {
 
 impl From<&SimulationControls> for u16 {
     fn from(simulationcontrols: &SimulationControls) -> u16 {
-        match *simulationcontrols {
-            SimulationControls::FlightSimulationDevice => 1,
-            SimulationControls::AutomobileSimulationDevice => 2,
-            SimulationControls::TankSimulationDevice => 3,
-            SimulationControls::SpaceshipSimulationDevice => 4,
-            SimulationControls::SubmarineSimulationDevice => 5,
-            SimulationControls::SailingSimulationDevice => 6,
-            SimulationControls::MotorcycleSimulationDevice => 7,
-            SimulationControls::SportsSimulationDevice => 8,
-            SimulationControls::AirplaneSimulationDevice => 9,
-            SimulationControls::HelicopterSimulationDevice => 10,
-            SimulationControls::MagicCarpetSimulationDevice => 11,
-            SimulationControls::BicycleSimulationDevice => 12,
-            SimulationControls::FlightControlStick => 32,
-            SimulationControls::FlightStick => 33,
-            SimulationControls::CyclicControl => 34,
-            SimulationControls::CyclicTrim => 35,
-            SimulationControls::FlightYoke => 36,
-            SimulationControls::TrackControl => 37,
-            SimulationControls::Aileron => 176,
-            SimulationControls::AileronTrim => 177,
-            SimulationControls::AntiTorqueControl => 178,
-            SimulationControls::AutopilotEnable => 179,
-            SimulationControls::ChaffRelease => 180,
-            SimulationControls::CollectiveControl => 181,
-            SimulationControls::DiveBrake => 182,
-            SimulationControls::ElectronicCountermeasures => 183,
-            SimulationControls::Elevator => 184,
-            SimulationControls::ElevatorTrim => 185,
-            SimulationControls::Rudder => 186,
-            SimulationControls::Throttle => 187,
-            SimulationControls::FlightCommunications => 188,
-            SimulationControls::FlareRelease => 189,
-            SimulationControls::LandingGear => 190,
-            SimulationControls::ToeBrake => 191,
-            SimulationControls::Trigger => 192,
-            SimulationControls::WeaponsArm => 193,
-            SimulationControls::WeaponsSelect => 194,
-            SimulationControls::WingFlaps => 195,
-            SimulationControls::Accelerator => 196,
-            SimulationControls::Brake => 197,
-            SimulationControls::Clutch => 198,
-            SimulationControls::Shifter => 199,
-            SimulationControls::Steering => 200,
-            SimulationControls::TurretDirection => 201,
-            SimulationControls::BarrelElevation => 202,
-            SimulationControls::DivePlane => 203,
-            SimulationControls::Ballast => 204,
-            SimulationControls::BicycleCrank => 205,
-            SimulationControls::HandleBars => 206,
-            SimulationControls::FrontBrake => 207,
-            SimulationControls::RearBrake => 208,
-        }
+        *simulationcontrols as u16
     }
 }
 
@@ -1860,33 +1694,34 @@ impl BitOr<u16> for SimulationControls {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum VRControls {
     /// Usage ID `0x1`: "Belt"
-    Belt,
+    Belt = 0x1,
     /// Usage ID `0x2`: "Body Suit"
-    BodySuit,
+    BodySuit = 0x2,
     /// Usage ID `0x3`: "Flexor"
-    Flexor,
+    Flexor = 0x3,
     /// Usage ID `0x4`: "Glove"
-    Glove,
+    Glove = 0x4,
     /// Usage ID `0x5`: "Head Tracker"
-    HeadTracker,
+    HeadTracker = 0x5,
     /// Usage ID `0x6`: "Head Mounted Display"
-    HeadMountedDisplay,
+    HeadMountedDisplay = 0x6,
     /// Usage ID `0x7`: "Hand Tracker"
-    HandTracker,
+    HandTracker = 0x7,
     /// Usage ID `0x8`: "Oculometer"
-    Oculometer,
+    Oculometer = 0x8,
     /// Usage ID `0x9`: "Vest"
-    Vest,
+    Vest = 0x9,
     /// Usage ID `0xA`: "Animatronic Device"
-    AnimatronicDevice,
+    AnimatronicDevice = 0xA,
     /// Usage ID `0x20`: "Stereo Enable"
-    StereoEnable,
+    StereoEnable = 0x20,
     /// Usage ID `0x21`: "Display Enable"
-    DisplayEnable,
+    DisplayEnable = 0x21,
 }
 
 impl VRControls {
@@ -1960,20 +1795,7 @@ impl AsUsagePage for VRControls {
 
 impl From<&VRControls> for u16 {
     fn from(vrcontrols: &VRControls) -> u16 {
-        match *vrcontrols {
-            VRControls::Belt => 1,
-            VRControls::BodySuit => 2,
-            VRControls::Flexor => 3,
-            VRControls::Glove => 4,
-            VRControls::HeadTracker => 5,
-            VRControls::HeadMountedDisplay => 6,
-            VRControls::HandTracker => 7,
-            VRControls::Oculometer => 8,
-            VRControls::Vest => 9,
-            VRControls::AnimatronicDevice => 10,
-            VRControls::StereoEnable => 32,
-            VRControls::DisplayEnable => 33,
-        }
+        *vrcontrols as u16
     }
 }
 
@@ -2083,77 +1905,78 @@ impl BitOr<u16> for VRControls {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum SportControls {
     /// Usage ID `0x1`: "Baseball Bat"
-    BaseballBat,
+    BaseballBat = 0x1,
     /// Usage ID `0x2`: "Golf Club"
-    GolfClub,
+    GolfClub = 0x2,
     /// Usage ID `0x3`: "Rowing Machine"
-    RowingMachine,
+    RowingMachine = 0x3,
     /// Usage ID `0x4`: "Treadmill"
-    Treadmill,
+    Treadmill = 0x4,
     /// Usage ID `0x30`: "Oar"
-    Oar,
+    Oar = 0x30,
     /// Usage ID `0x31`: "Slope"
-    Slope,
+    Slope = 0x31,
     /// Usage ID `0x32`: "Rate"
-    Rate,
+    Rate = 0x32,
     /// Usage ID `0x33`: "Stick Speed"
-    StickSpeed,
+    StickSpeed = 0x33,
     /// Usage ID `0x34`: "Stick Face Angle"
-    StickFaceAngle,
+    StickFaceAngle = 0x34,
     /// Usage ID `0x35`: "Stick Heel/Toe"
-    StickHeelToe,
+    StickHeelToe = 0x35,
     /// Usage ID `0x36`: "Stick Follow Through"
-    StickFollowThrough,
+    StickFollowThrough = 0x36,
     /// Usage ID `0x37`: "Stick Tempo"
-    StickTempo,
+    StickTempo = 0x37,
     /// Usage ID `0x38`: "Stick Type"
-    StickType,
+    StickType = 0x38,
     /// Usage ID `0x39`: "Stick Height"
-    StickHeight,
+    StickHeight = 0x39,
     /// Usage ID `0x50`: "Putter"
-    Putter,
+    Putter = 0x50,
     /// Usage ID `0x51`: "1 Iron"
-    OneIron,
+    OneIron = 0x51,
     /// Usage ID `0x52`: "2 Iron"
-    TwoIron,
+    TwoIron = 0x52,
     /// Usage ID `0x53`: "3 Iron"
-    ThreeIron,
+    ThreeIron = 0x53,
     /// Usage ID `0x54`: "4 Iron"
-    FourIron,
+    FourIron = 0x54,
     /// Usage ID `0x55`: "5 Iron"
-    FiveIron,
+    FiveIron = 0x55,
     /// Usage ID `0x56`: "6 Iron"
-    SixIron,
+    SixIron = 0x56,
     /// Usage ID `0x57`: "7 Iron"
-    SevenIron,
+    SevenIron = 0x57,
     /// Usage ID `0x58`: "8 Iron"
-    EightIron,
+    EightIron = 0x58,
     /// Usage ID `0x59`: "9 Iron"
-    NineIron,
+    NineIron = 0x59,
     /// Usage ID `0x5A`: "10 Iron"
-    One0Iron,
+    One0Iron = 0x5A,
     /// Usage ID `0x5B`: "11 Iron"
-    One1Iron,
+    One1Iron = 0x5B,
     /// Usage ID `0x5C`: "Sand Wedge"
-    SandWedge,
+    SandWedge = 0x5C,
     /// Usage ID `0x5D`: "Loft Wedge"
-    LoftWedge,
+    LoftWedge = 0x5D,
     /// Usage ID `0x5E`: "Power Wedge"
-    PowerWedge,
+    PowerWedge = 0x5E,
     /// Usage ID `0x5F`: "1 Wood"
-    OneWood,
+    OneWood = 0x5F,
     /// Usage ID `0x60`: "3 Wood"
-    ThreeWood,
+    ThreeWood = 0x60,
     /// Usage ID `0x61`: "5 Wood"
-    FiveWood,
+    FiveWood = 0x61,
     /// Usage ID `0x62`: "7 Wood"
-    SevenWood,
+    SevenWood = 0x62,
     /// Usage ID `0x63`: "9 Wood"
-    NineWood,
+    NineWood = 0x63,
 }
 
 impl SportControls {
@@ -2249,42 +2072,7 @@ impl AsUsagePage for SportControls {
 
 impl From<&SportControls> for u16 {
     fn from(sportcontrols: &SportControls) -> u16 {
-        match *sportcontrols {
-            SportControls::BaseballBat => 1,
-            SportControls::GolfClub => 2,
-            SportControls::RowingMachine => 3,
-            SportControls::Treadmill => 4,
-            SportControls::Oar => 48,
-            SportControls::Slope => 49,
-            SportControls::Rate => 50,
-            SportControls::StickSpeed => 51,
-            SportControls::StickFaceAngle => 52,
-            SportControls::StickHeelToe => 53,
-            SportControls::StickFollowThrough => 54,
-            SportControls::StickTempo => 55,
-            SportControls::StickType => 56,
-            SportControls::StickHeight => 57,
-            SportControls::Putter => 80,
-            SportControls::OneIron => 81,
-            SportControls::TwoIron => 82,
-            SportControls::ThreeIron => 83,
-            SportControls::FourIron => 84,
-            SportControls::FiveIron => 85,
-            SportControls::SixIron => 86,
-            SportControls::SevenIron => 87,
-            SportControls::EightIron => 88,
-            SportControls::NineIron => 89,
-            SportControls::One0Iron => 90,
-            SportControls::One1Iron => 91,
-            SportControls::SandWedge => 92,
-            SportControls::LoftWedge => 93,
-            SportControls::PowerWedge => 94,
-            SportControls::OneWood => 95,
-            SportControls::ThreeWood => 96,
-            SportControls::FiveWood => 97,
-            SportControls::SevenWood => 98,
-            SportControls::NineWood => 99,
-        }
+        *sportcontrols as u16
     }
 }
 
@@ -2416,67 +2204,68 @@ impl BitOr<u16> for SportControls {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum GameControls {
     /// Usage ID `0x1`: "3D Game Controller"
-    ThreeDGameController,
+    ThreeDGameController = 0x1,
     /// Usage ID `0x2`: "Pinball Device"
-    PinballDevice,
+    PinballDevice = 0x2,
     /// Usage ID `0x3`: "Gun Device"
-    GunDevice,
+    GunDevice = 0x3,
     /// Usage ID `0x20`: "Point of View"
-    PointofView,
+    PointofView = 0x20,
     /// Usage ID `0x21`: "Turn Right/Left"
-    TurnRightLeft,
+    TurnRightLeft = 0x21,
     /// Usage ID `0x22`: "Pitch Forward/Backward"
-    PitchForwardBackward,
+    PitchForwardBackward = 0x22,
     /// Usage ID `0x23`: "Roll Right/Left"
-    RollRightLeft,
+    RollRightLeft = 0x23,
     /// Usage ID `0x24`: "Move Right/Left"
-    MoveRightLeft,
+    MoveRightLeft = 0x24,
     /// Usage ID `0x25`: "Move Forward/Backward"
-    MoveForwardBackward,
+    MoveForwardBackward = 0x25,
     /// Usage ID `0x26`: "Move Up/Down"
-    MoveUpDown,
+    MoveUpDown = 0x26,
     /// Usage ID `0x27`: "Lean Right/Left"
-    LeanRightLeft,
+    LeanRightLeft = 0x27,
     /// Usage ID `0x28`: "Lean Forward/Backward"
-    LeanForwardBackward,
+    LeanForwardBackward = 0x28,
     /// Usage ID `0x29`: "Height of POV"
-    HeightofPOV,
+    HeightofPOV = 0x29,
     /// Usage ID `0x2A`: "Flipper"
-    Flipper,
+    Flipper = 0x2A,
     /// Usage ID `0x2B`: "Secondary Flipper"
-    SecondaryFlipper,
+    SecondaryFlipper = 0x2B,
     /// Usage ID `0x2C`: "Bump"
-    Bump,
+    Bump = 0x2C,
     /// Usage ID `0x2D`: "New Game"
-    NewGame,
+    NewGame = 0x2D,
     /// Usage ID `0x2E`: "Shoot Ball"
-    ShootBall,
+    ShootBall = 0x2E,
     /// Usage ID `0x2F`: "Player"
-    Player,
+    Player = 0x2F,
     /// Usage ID `0x30`: "Gun Bolt"
-    GunBolt,
+    GunBolt = 0x30,
     /// Usage ID `0x31`: "Gun Clip"
-    GunClip,
+    GunClip = 0x31,
     /// Usage ID `0x32`: "Gun Selector"
-    GunSelector,
+    GunSelector = 0x32,
     /// Usage ID `0x33`: "Gun Single Shot"
-    GunSingleShot,
+    GunSingleShot = 0x33,
     /// Usage ID `0x34`: "Gun Burst"
-    GunBurst,
+    GunBurst = 0x34,
     /// Usage ID `0x35`: "Gun Automatic"
-    GunAutomatic,
+    GunAutomatic = 0x35,
     /// Usage ID `0x36`: "Gun Safety"
-    GunSafety,
+    GunSafety = 0x36,
     /// Usage ID `0x37`: "Gamepad Fire/Jump"
-    GamepadFireJump,
+    GamepadFireJump = 0x37,
     /// Usage ID `0x39`: "Gamepad Trigger"
-    GamepadTrigger,
+    GamepadTrigger = 0x39,
     /// Usage ID `0x3A`: "Form-fitting Gamepad"
-    FormfittingGamepad,
+    FormfittingGamepad = 0x3A,
 }
 
 impl GameControls {
@@ -2567,37 +2356,7 @@ impl AsUsagePage for GameControls {
 
 impl From<&GameControls> for u16 {
     fn from(gamecontrols: &GameControls) -> u16 {
-        match *gamecontrols {
-            GameControls::ThreeDGameController => 1,
-            GameControls::PinballDevice => 2,
-            GameControls::GunDevice => 3,
-            GameControls::PointofView => 32,
-            GameControls::TurnRightLeft => 33,
-            GameControls::PitchForwardBackward => 34,
-            GameControls::RollRightLeft => 35,
-            GameControls::MoveRightLeft => 36,
-            GameControls::MoveForwardBackward => 37,
-            GameControls::MoveUpDown => 38,
-            GameControls::LeanRightLeft => 39,
-            GameControls::LeanForwardBackward => 40,
-            GameControls::HeightofPOV => 41,
-            GameControls::Flipper => 42,
-            GameControls::SecondaryFlipper => 43,
-            GameControls::Bump => 44,
-            GameControls::NewGame => 45,
-            GameControls::ShootBall => 46,
-            GameControls::Player => 47,
-            GameControls::GunBolt => 48,
-            GameControls::GunClip => 49,
-            GameControls::GunSelector => 50,
-            GameControls::GunSingleShot => 51,
-            GameControls::GunBurst => 52,
-            GameControls::GunAutomatic => 53,
-            GameControls::GunSafety => 54,
-            GameControls::GamepadFireJump => 55,
-            GameControls::GamepadTrigger => 57,
-            GameControls::FormfittingGamepad => 58,
-        }
+        *gamecontrols as u16
     }
 }
 
@@ -2724,57 +2483,58 @@ impl BitOr<u16> for GameControls {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum GenericDeviceControls {
     /// Usage ID `0x1`: "Background/Nonuser Controls"
-    BackgroundNonuserControls,
+    BackgroundNonuserControls = 0x1,
     /// Usage ID `0x20`: "Battery Strength"
-    BatteryStrength,
+    BatteryStrength = 0x20,
     /// Usage ID `0x21`: "Wireless Channel"
-    WirelessChannel,
+    WirelessChannel = 0x21,
     /// Usage ID `0x22`: "Wireless ID"
-    WirelessID,
+    WirelessID = 0x22,
     /// Usage ID `0x23`: "Discover Wireless Control"
-    DiscoverWirelessControl,
+    DiscoverWirelessControl = 0x23,
     /// Usage ID `0x24`: "Security Code Character Entered"
-    SecurityCodeCharacterEntered,
+    SecurityCodeCharacterEntered = 0x24,
     /// Usage ID `0x25`: "Security Code Character Erased"
-    SecurityCodeCharacterErased,
+    SecurityCodeCharacterErased = 0x25,
     /// Usage ID `0x26`: "Security Code Cleared"
-    SecurityCodeCleared,
+    SecurityCodeCleared = 0x26,
     /// Usage ID `0x27`: "Sequence ID"
-    SequenceID,
+    SequenceID = 0x27,
     /// Usage ID `0x28`: "Sequence ID Reset"
-    SequenceIDReset,
+    SequenceIDReset = 0x28,
     /// Usage ID `0x29`: "RF Signal Strength"
-    RFSignalStrength,
+    RFSignalStrength = 0x29,
     /// Usage ID `0x2A`: "Software Version"
-    SoftwareVersion,
+    SoftwareVersion = 0x2A,
     /// Usage ID `0x2B`: "Protocol Version"
-    ProtocolVersion,
+    ProtocolVersion = 0x2B,
     /// Usage ID `0x2C`: "Hardware Version"
-    HardwareVersion,
+    HardwareVersion = 0x2C,
     /// Usage ID `0x2D`: "Major"
-    Major,
+    Major = 0x2D,
     /// Usage ID `0x2E`: "Minor"
-    Minor,
+    Minor = 0x2E,
     /// Usage ID `0x2F`: "Revision"
-    Revision,
+    Revision = 0x2F,
     /// Usage ID `0x30`: "Handedness"
-    Handedness,
+    Handedness = 0x30,
     /// Usage ID `0x31`: "Either Hand"
-    EitherHand,
+    EitherHand = 0x31,
     /// Usage ID `0x32`: "Left Hand"
-    LeftHand,
+    LeftHand = 0x32,
     /// Usage ID `0x33`: "Right Hand"
-    RightHand,
+    RightHand = 0x33,
     /// Usage ID `0x34`: "Both Hands"
-    BothHands,
+    BothHands = 0x34,
     /// Usage ID `0x40`: "Grip Pose Offset"
-    GripPoseOffset,
+    GripPoseOffset = 0x40,
     /// Usage ID `0x41`: "Pointer Pose Offset"
-    PointerPoseOffset,
+    PointerPoseOffset = 0x41,
 }
 
 impl GenericDeviceControls {
@@ -2862,32 +2622,7 @@ impl AsUsagePage for GenericDeviceControls {
 
 impl From<&GenericDeviceControls> for u16 {
     fn from(genericdevicecontrols: &GenericDeviceControls) -> u16 {
-        match *genericdevicecontrols {
-            GenericDeviceControls::BackgroundNonuserControls => 1,
-            GenericDeviceControls::BatteryStrength => 32,
-            GenericDeviceControls::WirelessChannel => 33,
-            GenericDeviceControls::WirelessID => 34,
-            GenericDeviceControls::DiscoverWirelessControl => 35,
-            GenericDeviceControls::SecurityCodeCharacterEntered => 36,
-            GenericDeviceControls::SecurityCodeCharacterErased => 37,
-            GenericDeviceControls::SecurityCodeCleared => 38,
-            GenericDeviceControls::SequenceID => 39,
-            GenericDeviceControls::SequenceIDReset => 40,
-            GenericDeviceControls::RFSignalStrength => 41,
-            GenericDeviceControls::SoftwareVersion => 42,
-            GenericDeviceControls::ProtocolVersion => 43,
-            GenericDeviceControls::HardwareVersion => 44,
-            GenericDeviceControls::Major => 45,
-            GenericDeviceControls::Minor => 46,
-            GenericDeviceControls::Revision => 47,
-            GenericDeviceControls::Handedness => 48,
-            GenericDeviceControls::EitherHand => 49,
-            GenericDeviceControls::LeftHand => 50,
-            GenericDeviceControls::RightHand => 51,
-            GenericDeviceControls::BothHands => 52,
-            GenericDeviceControls::GripPoseOffset => 64,
-            GenericDeviceControls::PointerPoseOffset => 65,
-        }
+        *genericdevicecontrols as u16
     }
 }
 
@@ -3009,445 +2744,446 @@ impl BitOr<u16> for GenericDeviceControls {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum KeyboardKeypad {
     /// Usage ID `0x1`: "ErrorRollOver"
-    ErrorRollOver,
+    ErrorRollOver = 0x1,
     /// Usage ID `0x2`: "POSTFail"
-    POSTFail,
+    POSTFail = 0x2,
     /// Usage ID `0x3`: "ErrorUndefined"
-    ErrorUndefined,
+    ErrorUndefined = 0x3,
     /// Usage ID `0x4`: "Keyboard A"
-    KeyboardA,
+    KeyboardA = 0x4,
     /// Usage ID `0x5`: "Keyboard B"
-    KeyboardB,
+    KeyboardB = 0x5,
     /// Usage ID `0x6`: "Keyboard C"
-    KeyboardC,
+    KeyboardC = 0x6,
     /// Usage ID `0x7`: "Keyboard D"
-    KeyboardD,
+    KeyboardD = 0x7,
     /// Usage ID `0x8`: "Keyboard E"
-    KeyboardE,
+    KeyboardE = 0x8,
     /// Usage ID `0x9`: "Keyboard F"
-    KeyboardF,
+    KeyboardF = 0x9,
     /// Usage ID `0xA`: "Keyboard G"
-    KeyboardG,
+    KeyboardG = 0xA,
     /// Usage ID `0xB`: "Keyboard H"
-    KeyboardH,
+    KeyboardH = 0xB,
     /// Usage ID `0xC`: "Keyboard I"
-    KeyboardI,
+    KeyboardI = 0xC,
     /// Usage ID `0xD`: "Keyboard J"
-    KeyboardJ,
+    KeyboardJ = 0xD,
     /// Usage ID `0xE`: "Keyboard K"
-    KeyboardK,
+    KeyboardK = 0xE,
     /// Usage ID `0xF`: "Keyboard L"
-    KeyboardL,
+    KeyboardL = 0xF,
     /// Usage ID `0x10`: "Keyboard M"
-    KeyboardM,
+    KeyboardM = 0x10,
     /// Usage ID `0x11`: "Keyboard N"
-    KeyboardN,
+    KeyboardN = 0x11,
     /// Usage ID `0x12`: "Keyboard O"
-    KeyboardO,
+    KeyboardO = 0x12,
     /// Usage ID `0x13`: "Keyboard P"
-    KeyboardP,
+    KeyboardP = 0x13,
     /// Usage ID `0x14`: "Keyboard Q"
-    KeyboardQ,
+    KeyboardQ = 0x14,
     /// Usage ID `0x15`: "Keyboard R"
-    KeyboardR,
+    KeyboardR = 0x15,
     /// Usage ID `0x16`: "Keyboard S"
-    KeyboardS,
+    KeyboardS = 0x16,
     /// Usage ID `0x17`: "Keyboard T"
-    KeyboardT,
+    KeyboardT = 0x17,
     /// Usage ID `0x18`: "Keyboard U"
-    KeyboardU,
+    KeyboardU = 0x18,
     /// Usage ID `0x19`: "Keyboard V"
-    KeyboardV,
+    KeyboardV = 0x19,
     /// Usage ID `0x1A`: "Keyboard W"
-    KeyboardW,
+    KeyboardW = 0x1A,
     /// Usage ID `0x1B`: "Keyboard X"
-    KeyboardX,
+    KeyboardX = 0x1B,
     /// Usage ID `0x1C`: "Keyboard Y"
-    KeyboardY,
+    KeyboardY = 0x1C,
     /// Usage ID `0x1D`: "Keyboard Z"
-    KeyboardZ,
+    KeyboardZ = 0x1D,
     /// Usage ID `0x1E`: "Keyboard 1 and Bang"
-    Keyboard1andBang,
+    Keyboard1andBang = 0x1E,
     /// Usage ID `0x1F`: "Keyboard 2 and At"
-    Keyboard2andAt,
+    Keyboard2andAt = 0x1F,
     /// Usage ID `0x20`: "Keyboard 3 and Hash"
-    Keyboard3andHash,
+    Keyboard3andHash = 0x20,
     /// Usage ID `0x21`: "Keyboard 4 and Dollar"
-    Keyboard4andDollar,
+    Keyboard4andDollar = 0x21,
     /// Usage ID `0x22`: "Keyboard 5 and Percent"
-    Keyboard5andPercent,
+    Keyboard5andPercent = 0x22,
     /// Usage ID `0x23`: "Keyboard 6 and Caret"
-    Keyboard6andCaret,
+    Keyboard6andCaret = 0x23,
     /// Usage ID `0x24`: "Keyboard 7 and Ampersand"
-    Keyboard7andAmpersand,
+    Keyboard7andAmpersand = 0x24,
     /// Usage ID `0x25`: "Keyboard 8 and Star"
-    Keyboard8andStar,
+    Keyboard8andStar = 0x25,
     /// Usage ID `0x26`: "Keyboard 9 and Left Bracket"
-    Keyboard9andLeftBracket,
+    Keyboard9andLeftBracket = 0x26,
     /// Usage ID `0x27`: "Keyboard 0 and Right Bracket"
-    Keyboard0andRightBracket,
+    Keyboard0andRightBracket = 0x27,
     /// Usage ID `0x28`: "Keyboard Return Enter"
-    KeyboardReturnEnter,
+    KeyboardReturnEnter = 0x28,
     /// Usage ID `0x29`: "Keyboard Escape"
-    KeyboardEscape,
+    KeyboardEscape = 0x29,
     /// Usage ID `0x2A`: "Keyboard Delete"
-    KeyboardDelete,
+    KeyboardDelete = 0x2A,
     /// Usage ID `0x2B`: "Keyboard Tab"
-    KeyboardTab,
+    KeyboardTab = 0x2B,
     /// Usage ID `0x2C`: "Keyboard Spacebar"
-    KeyboardSpacebar,
+    KeyboardSpacebar = 0x2C,
     /// Usage ID `0x2D`: "Keyboard Dash and Underscore"
-    KeyboardDashandUnderscore,
+    KeyboardDashandUnderscore = 0x2D,
     /// Usage ID `0x2E`: "Keyboard Equals and Plus"
-    KeyboardEqualsandPlus,
+    KeyboardEqualsandPlus = 0x2E,
     /// Usage ID `0x2F`: "Keyboard Left Brace"
-    KeyboardLeftBrace,
+    KeyboardLeftBrace = 0x2F,
     /// Usage ID `0x30`: "Keyboard Right Brace"
-    KeyboardRightBrace,
+    KeyboardRightBrace = 0x30,
     /// Usage ID `0x31`: "Keyboard Backslash and Pipe"
-    KeyboardBackslashandPipe,
+    KeyboardBackslashandPipe = 0x31,
     /// Usage ID `0x32`: "Keyboard Non-US Hash and Tilde"
-    KeyboardNonUSHashandTilde,
+    KeyboardNonUSHashandTilde = 0x32,
     /// Usage ID `0x33`: "Keyboard SemiColon and Colon"
-    KeyboardSemiColonandColon,
+    KeyboardSemiColonandColon = 0x33,
     /// Usage ID `0x34`: "Keyboard Left Apos and Double"
-    KeyboardLeftAposandDouble,
+    KeyboardLeftAposandDouble = 0x34,
     /// Usage ID `0x35`: "Keyboard Grave Accent and Tilde"
-    KeyboardGraveAccentandTilde,
+    KeyboardGraveAccentandTilde = 0x35,
     /// Usage ID `0x36`: "Keyboard Comma and LessThan"
-    KeyboardCommaandLessThan,
+    KeyboardCommaandLessThan = 0x36,
     /// Usage ID `0x37`: "Keyboard Period and GreaterThan"
-    KeyboardPeriodandGreaterThan,
+    KeyboardPeriodandGreaterThan = 0x37,
     /// Usage ID `0x38`: "Keyboard ForwardSlash and QuestionMark"
-    KeyboardForwardSlashandQuestionMark,
+    KeyboardForwardSlashandQuestionMark = 0x38,
     /// Usage ID `0x39`: "Keyboard Caps Lock"
-    KeyboardCapsLock,
+    KeyboardCapsLock = 0x39,
     /// Usage ID `0x3A`: "Keyboard F1"
-    KeyboardF1,
+    KeyboardF1 = 0x3A,
     /// Usage ID `0x3B`: "Keyboard F2"
-    KeyboardF2,
+    KeyboardF2 = 0x3B,
     /// Usage ID `0x3C`: "Keyboard F3"
-    KeyboardF3,
+    KeyboardF3 = 0x3C,
     /// Usage ID `0x3D`: "Keyboard F4"
-    KeyboardF4,
+    KeyboardF4 = 0x3D,
     /// Usage ID `0x3E`: "Keyboard F5"
-    KeyboardF5,
+    KeyboardF5 = 0x3E,
     /// Usage ID `0x3F`: "Keyboard F6"
-    KeyboardF6,
+    KeyboardF6 = 0x3F,
     /// Usage ID `0x40`: "Keyboard F7"
-    KeyboardF7,
+    KeyboardF7 = 0x40,
     /// Usage ID `0x41`: "Keyboard F8"
-    KeyboardF8,
+    KeyboardF8 = 0x41,
     /// Usage ID `0x42`: "Keyboard F9"
-    KeyboardF9,
+    KeyboardF9 = 0x42,
     /// Usage ID `0x43`: "Keyboard F10"
-    KeyboardF10,
+    KeyboardF10 = 0x43,
     /// Usage ID `0x44`: "Keyboard F11"
-    KeyboardF11,
+    KeyboardF11 = 0x44,
     /// Usage ID `0x45`: "Keyboard F12"
-    KeyboardF12,
+    KeyboardF12 = 0x45,
     /// Usage ID `0x46`: "Keyboard PrintScreen"
-    KeyboardPrintScreen,
+    KeyboardPrintScreen = 0x46,
     /// Usage ID `0x47`: "Keyboard Scroll Lock"
-    KeyboardScrollLock,
+    KeyboardScrollLock = 0x47,
     /// Usage ID `0x48`: "Keyboard Pause"
-    KeyboardPause,
+    KeyboardPause = 0x48,
     /// Usage ID `0x49`: "Keyboard Insert"
-    KeyboardInsert,
+    KeyboardInsert = 0x49,
     /// Usage ID `0x4A`: "Keyboard Home"
-    KeyboardHome,
+    KeyboardHome = 0x4A,
     /// Usage ID `0x4B`: "Keyboard PageUp"
-    KeyboardPageUp,
+    KeyboardPageUp = 0x4B,
     /// Usage ID `0x4C`: "Keyboard Delete Forward"
-    KeyboardDeleteForward,
+    KeyboardDeleteForward = 0x4C,
     /// Usage ID `0x4D`: "Keyboard End"
-    KeyboardEnd,
+    KeyboardEnd = 0x4D,
     /// Usage ID `0x4E`: "Keyboard PageDown"
-    KeyboardPageDown,
+    KeyboardPageDown = 0x4E,
     /// Usage ID `0x4F`: "Keyboard RightArrow"
-    KeyboardRightArrow,
+    KeyboardRightArrow = 0x4F,
     /// Usage ID `0x50`: "Keyboard LeftArrow"
-    KeyboardLeftArrow,
+    KeyboardLeftArrow = 0x50,
     /// Usage ID `0x51`: "Keyboard DownArrow"
-    KeyboardDownArrow,
+    KeyboardDownArrow = 0x51,
     /// Usage ID `0x52`: "Keyboard UpArrow"
-    KeyboardUpArrow,
+    KeyboardUpArrow = 0x52,
     /// Usage ID `0x53`: "Keypad Num Lock and Clear"
-    KeypadNumLockandClear,
+    KeypadNumLockandClear = 0x53,
     /// Usage ID `0x54`: "Keypad ForwardSlash"
-    KeypadForwardSlash,
+    KeypadForwardSlash = 0x54,
     /// Usage ID `0x55`: "Keypad Star"
-    KeypadStar,
+    KeypadStar = 0x55,
     /// Usage ID `0x56`: "Keypad Dash"
-    KeypadDash,
+    KeypadDash = 0x56,
     /// Usage ID `0x57`: "Keypad Plus"
-    KeypadPlus,
+    KeypadPlus = 0x57,
     /// Usage ID `0x58`: "Keypad ENTER"
-    KeypadENTER,
+    KeypadENTER = 0x58,
     /// Usage ID `0x59`: "Keypad 1 and End"
-    Keypad1andEnd,
+    Keypad1andEnd = 0x59,
     /// Usage ID `0x5A`: "Keypad 2 and Down Arrow"
-    Keypad2andDownArrow,
+    Keypad2andDownArrow = 0x5A,
     /// Usage ID `0x5B`: "Keypad 3 and PageDn"
-    Keypad3andPageDn,
+    Keypad3andPageDn = 0x5B,
     /// Usage ID `0x5C`: "Keypad 4 and Left Arrow"
-    Keypad4andLeftArrow,
+    Keypad4andLeftArrow = 0x5C,
     /// Usage ID `0x5D`: "Keypad 5"
-    Keypad5,
+    Keypad5 = 0x5D,
     /// Usage ID `0x5E`: "Keypad 6 and Right Arrow"
-    Keypad6andRightArrow,
+    Keypad6andRightArrow = 0x5E,
     /// Usage ID `0x5F`: "Keypad 7 and Home"
-    Keypad7andHome,
+    Keypad7andHome = 0x5F,
     /// Usage ID `0x60`: "Keypad 8 and Up Arrow"
-    Keypad8andUpArrow,
+    Keypad8andUpArrow = 0x60,
     /// Usage ID `0x61`: "Keypad 9 and PageUp"
-    Keypad9andPageUp,
+    Keypad9andPageUp = 0x61,
     /// Usage ID `0x62`: "Keypad 0 and Insert"
-    Keypad0andInsert,
+    Keypad0andInsert = 0x62,
     /// Usage ID `0x63`: "Keypad Period and Delete"
-    KeypadPeriodandDelete,
+    KeypadPeriodandDelete = 0x63,
     /// Usage ID `0x64`: "Keyboard Non-US Backslash and Pipe"
-    KeyboardNonUSBackslashandPipe,
+    KeyboardNonUSBackslashandPipe = 0x64,
     /// Usage ID `0x65`: "Keyboard Application"
-    KeyboardApplication,
+    KeyboardApplication = 0x65,
     /// Usage ID `0x66`: "Keyboard Power"
-    KeyboardPower,
+    KeyboardPower = 0x66,
     /// Usage ID `0x67`: "Keypad Equals"
-    KeypadEquals,
+    KeypadEquals = 0x67,
     /// Usage ID `0x68`: "Keyboard F13"
-    KeyboardF13,
+    KeyboardF13 = 0x68,
     /// Usage ID `0x69`: "Keyboard F14"
-    KeyboardF14,
+    KeyboardF14 = 0x69,
     /// Usage ID `0x6A`: "Keyboard F15"
-    KeyboardF15,
+    KeyboardF15 = 0x6A,
     /// Usage ID `0x6B`: "Keyboard F16"
-    KeyboardF16,
+    KeyboardF16 = 0x6B,
     /// Usage ID `0x6C`: "Keyboard F17"
-    KeyboardF17,
+    KeyboardF17 = 0x6C,
     /// Usage ID `0x6D`: "Keyboard F18"
-    KeyboardF18,
+    KeyboardF18 = 0x6D,
     /// Usage ID `0x6E`: "Keyboard F19"
-    KeyboardF19,
+    KeyboardF19 = 0x6E,
     /// Usage ID `0x6F`: "Keyboard F20"
-    KeyboardF20,
+    KeyboardF20 = 0x6F,
     /// Usage ID `0x70`: "Keyboard F21"
-    KeyboardF21,
+    KeyboardF21 = 0x70,
     /// Usage ID `0x71`: "Keyboard F22"
-    KeyboardF22,
+    KeyboardF22 = 0x71,
     /// Usage ID `0x72`: "Keyboard F23"
-    KeyboardF23,
+    KeyboardF23 = 0x72,
     /// Usage ID `0x73`: "Keyboard F24"
-    KeyboardF24,
+    KeyboardF24 = 0x73,
     /// Usage ID `0x74`: "Keyboard Execute"
-    KeyboardExecute,
+    KeyboardExecute = 0x74,
     /// Usage ID `0x75`: "Keyboard Help"
-    KeyboardHelp,
+    KeyboardHelp = 0x75,
     /// Usage ID `0x76`: "Keyboard Menu"
-    KeyboardMenu,
+    KeyboardMenu = 0x76,
     /// Usage ID `0x77`: "Keyboard Select"
-    KeyboardSelect,
+    KeyboardSelect = 0x77,
     /// Usage ID `0x78`: "Keyboard Stop"
-    KeyboardStop,
+    KeyboardStop = 0x78,
     /// Usage ID `0x79`: "Keyboard Again"
-    KeyboardAgain,
+    KeyboardAgain = 0x79,
     /// Usage ID `0x7A`: "Keyboard Undo"
-    KeyboardUndo,
+    KeyboardUndo = 0x7A,
     /// Usage ID `0x7B`: "Keyboard Cut"
-    KeyboardCut,
+    KeyboardCut = 0x7B,
     /// Usage ID `0x7C`: "Keyboard Copy"
-    KeyboardCopy,
+    KeyboardCopy = 0x7C,
     /// Usage ID `0x7D`: "Keyboard Paste"
-    KeyboardPaste,
+    KeyboardPaste = 0x7D,
     /// Usage ID `0x7E`: "Keyboard Find"
-    KeyboardFind,
+    KeyboardFind = 0x7E,
     /// Usage ID `0x7F`: "Keyboard Mute"
-    KeyboardMute,
+    KeyboardMute = 0x7F,
     /// Usage ID `0x80`: "Keyboard Volume Up"
-    KeyboardVolumeUp,
+    KeyboardVolumeUp = 0x80,
     /// Usage ID `0x81`: "Keyboard Volume Down"
-    KeyboardVolumeDown,
+    KeyboardVolumeDown = 0x81,
     /// Usage ID `0x82`: "Keyboard Locking Caps Lock"
-    KeyboardLockingCapsLock,
+    KeyboardLockingCapsLock = 0x82,
     /// Usage ID `0x83`: "Keyboard Locking Num Lock"
-    KeyboardLockingNumLock,
+    KeyboardLockingNumLock = 0x83,
     /// Usage ID `0x84`: "Keyboard Locking Scroll Lock"
-    KeyboardLockingScrollLock,
+    KeyboardLockingScrollLock = 0x84,
     /// Usage ID `0x85`: "Keypad Comma"
-    KeypadComma,
+    KeypadComma = 0x85,
     /// Usage ID `0x86`: "Keypad Equal Sign"
-    KeypadEqualSign,
+    KeypadEqualSign = 0x86,
     /// Usage ID `0x87`: "Keyboard International1"
-    KeyboardInternational1,
+    KeyboardInternational1 = 0x87,
     /// Usage ID `0x88`: "Keyboard International2"
-    KeyboardInternational2,
+    KeyboardInternational2 = 0x88,
     /// Usage ID `0x89`: "Keyboard International3"
-    KeyboardInternational3,
+    KeyboardInternational3 = 0x89,
     /// Usage ID `0x8A`: "Keyboard International4"
-    KeyboardInternational4,
+    KeyboardInternational4 = 0x8A,
     /// Usage ID `0x8B`: "Keyboard International5"
-    KeyboardInternational5,
+    KeyboardInternational5 = 0x8B,
     /// Usage ID `0x8C`: "Keyboard International6"
-    KeyboardInternational6,
+    KeyboardInternational6 = 0x8C,
     /// Usage ID `0x8D`: "Keyboard International7"
-    KeyboardInternational7,
+    KeyboardInternational7 = 0x8D,
     /// Usage ID `0x8E`: "Keyboard International8"
-    KeyboardInternational8,
+    KeyboardInternational8 = 0x8E,
     /// Usage ID `0x8F`: "Keyboard International9"
-    KeyboardInternational9,
+    KeyboardInternational9 = 0x8F,
     /// Usage ID `0x90`: "Keyboard LANG1"
-    KeyboardLANG1,
+    KeyboardLANG1 = 0x90,
     /// Usage ID `0x91`: "Keyboard LANG2"
-    KeyboardLANG2,
+    KeyboardLANG2 = 0x91,
     /// Usage ID `0x92`: "Keyboard LANG3"
-    KeyboardLANG3,
+    KeyboardLANG3 = 0x92,
     /// Usage ID `0x93`: "Keyboard LANG4"
-    KeyboardLANG4,
+    KeyboardLANG4 = 0x93,
     /// Usage ID `0x94`: "Keyboard LANG5"
-    KeyboardLANG5,
+    KeyboardLANG5 = 0x94,
     /// Usage ID `0x95`: "Keyboard LANG6"
-    KeyboardLANG6,
+    KeyboardLANG6 = 0x95,
     /// Usage ID `0x96`: "Keyboard LANG7"
-    KeyboardLANG7,
+    KeyboardLANG7 = 0x96,
     /// Usage ID `0x97`: "Keyboard LANG8"
-    KeyboardLANG8,
+    KeyboardLANG8 = 0x97,
     /// Usage ID `0x98`: "Keyboard LANG9"
-    KeyboardLANG9,
+    KeyboardLANG9 = 0x98,
     /// Usage ID `0x99`: "Keyboard Alternate Erase"
-    KeyboardAlternateErase,
+    KeyboardAlternateErase = 0x99,
     /// Usage ID `0x9A`: "Keyboard SysReq Attention"
-    KeyboardSysReqAttention,
+    KeyboardSysReqAttention = 0x9A,
     /// Usage ID `0x9B`: "Keyboard Cancel"
-    KeyboardCancel,
+    KeyboardCancel = 0x9B,
     /// Usage ID `0x9C`: "Keyboard Clear"
-    KeyboardClear,
+    KeyboardClear = 0x9C,
     /// Usage ID `0x9D`: "Keyboard Prior"
-    KeyboardPrior,
+    KeyboardPrior = 0x9D,
     /// Usage ID `0x9E`: "Keyboard Return"
-    KeyboardReturn,
+    KeyboardReturn = 0x9E,
     /// Usage ID `0x9F`: "Keyboard Separator"
-    KeyboardSeparator,
+    KeyboardSeparator = 0x9F,
     /// Usage ID `0xA0`: "Keyboard Out"
-    KeyboardOut,
+    KeyboardOut = 0xA0,
     /// Usage ID `0xA1`: "Keyboard Oper"
-    KeyboardOper,
+    KeyboardOper = 0xA1,
     /// Usage ID `0xA2`: "Keyboard Clear Again"
-    KeyboardClearAgain,
+    KeyboardClearAgain = 0xA2,
     /// Usage ID `0xA3`: "Keyboard CrSel Props"
-    KeyboardCrSelProps,
+    KeyboardCrSelProps = 0xA3,
     /// Usage ID `0xA4`: "Keyboard ExSel"
-    KeyboardExSel,
+    KeyboardExSel = 0xA4,
     /// Usage ID `0xB0`: "Keypad Double 0"
-    KeypadDouble0,
+    KeypadDouble0 = 0xB0,
     /// Usage ID `0xB1`: "Keypad Triple 0"
-    KeypadTriple0,
+    KeypadTriple0 = 0xB1,
     /// Usage ID `0xB2`: "Thousands Separator"
-    ThousandsSeparator,
+    ThousandsSeparator = 0xB2,
     /// Usage ID `0xB3`: "Decimal Separator"
-    DecimalSeparator,
+    DecimalSeparator = 0xB3,
     /// Usage ID `0xB4`: "Currency Unit"
-    CurrencyUnit,
+    CurrencyUnit = 0xB4,
     /// Usage ID `0xB5`: "Currency Sub-unit"
-    CurrencySubunit,
+    CurrencySubunit = 0xB5,
     /// Usage ID `0xB6`: "Keypad Left Bracket"
-    KeypadLeftBracket,
+    KeypadLeftBracket = 0xB6,
     /// Usage ID `0xB7`: "Keypad Right Bracket"
-    KeypadRightBracket,
+    KeypadRightBracket = 0xB7,
     /// Usage ID `0xB8`: "Keypad Left Brace"
-    KeypadLeftBrace,
+    KeypadLeftBrace = 0xB8,
     /// Usage ID `0xB9`: "Keypad Right Brace"
-    KeypadRightBrace,
+    KeypadRightBrace = 0xB9,
     /// Usage ID `0xBA`: "Keypad Tab"
-    KeypadTab,
+    KeypadTab = 0xBA,
     /// Usage ID `0xBB`: "Keypad Backspace"
-    KeypadBackspace,
+    KeypadBackspace = 0xBB,
     /// Usage ID `0xBC`: "Keypad A"
-    KeypadA,
+    KeypadA = 0xBC,
     /// Usage ID `0xBD`: "Keypad B"
-    KeypadB,
+    KeypadB = 0xBD,
     /// Usage ID `0xBE`: "Keypad C"
-    KeypadC,
+    KeypadC = 0xBE,
     /// Usage ID `0xBF`: "Keypad D"
-    KeypadD,
+    KeypadD = 0xBF,
     /// Usage ID `0xC0`: "Keypad E"
-    KeypadE,
+    KeypadE = 0xC0,
     /// Usage ID `0xC1`: "Keypad F"
-    KeypadF,
+    KeypadF = 0xC1,
     /// Usage ID `0xC2`: "Keypad XOR"
-    KeypadXOR,
+    KeypadXOR = 0xC2,
     /// Usage ID `0xC3`: "Keypad Caret"
-    KeypadCaret,
+    KeypadCaret = 0xC3,
     /// Usage ID `0xC4`: "Keypad Percentage"
-    KeypadPercentage,
+    KeypadPercentage = 0xC4,
     /// Usage ID `0xC5`: "Keypad Less"
-    KeypadLess,
+    KeypadLess = 0xC5,
     /// Usage ID `0xC6`: "Keypad Greater"
-    KeypadGreater,
+    KeypadGreater = 0xC6,
     /// Usage ID `0xC7`: "Keypad Ampersand"
-    KeypadAmpersand,
+    KeypadAmpersand = 0xC7,
     /// Usage ID `0xC8`: "Keypad Double Ampersand"
-    KeypadDoubleAmpersand,
+    KeypadDoubleAmpersand = 0xC8,
     /// Usage ID `0xC9`: "Keypad Bar"
-    KeypadBar,
+    KeypadBar = 0xC9,
     /// Usage ID `0xCA`: "Keypad Double Bar"
-    KeypadDoubleBar,
+    KeypadDoubleBar = 0xCA,
     /// Usage ID `0xCB`: "Keypad Colon"
-    KeypadColon,
+    KeypadColon = 0xCB,
     /// Usage ID `0xCC`: "Keypad Hash"
-    KeypadHash,
+    KeypadHash = 0xCC,
     /// Usage ID `0xCD`: "Keypad Space"
-    KeypadSpace,
+    KeypadSpace = 0xCD,
     /// Usage ID `0xCE`: "Keypad At"
-    KeypadAt,
+    KeypadAt = 0xCE,
     /// Usage ID `0xCF`: "Keypad Bang"
-    KeypadBang,
+    KeypadBang = 0xCF,
     /// Usage ID `0xD0`: "Keypad Memory Store"
-    KeypadMemoryStore,
+    KeypadMemoryStore = 0xD0,
     /// Usage ID `0xD1`: "Keypad Memory Recall"
-    KeypadMemoryRecall,
+    KeypadMemoryRecall = 0xD1,
     /// Usage ID `0xD2`: "Keypad Memory Clear"
-    KeypadMemoryClear,
+    KeypadMemoryClear = 0xD2,
     /// Usage ID `0xD3`: "Keypad Memory Add"
-    KeypadMemoryAdd,
+    KeypadMemoryAdd = 0xD3,
     /// Usage ID `0xD4`: "Keypad Memory Subtract"
-    KeypadMemorySubtract,
+    KeypadMemorySubtract = 0xD4,
     /// Usage ID `0xD5`: "Keypad Memory Multiply"
-    KeypadMemoryMultiply,
+    KeypadMemoryMultiply = 0xD5,
     /// Usage ID `0xD6`: "Keypad Memory Divide"
-    KeypadMemoryDivide,
+    KeypadMemoryDivide = 0xD6,
     /// Usage ID `0xD7`: "Keypad Plus Minus"
-    KeypadPlusMinus,
+    KeypadPlusMinus = 0xD7,
     /// Usage ID `0xD8`: "Keypad Clear"
-    KeypadClear,
+    KeypadClear = 0xD8,
     /// Usage ID `0xD9`: "Keypad Clear Entry"
-    KeypadClearEntry,
+    KeypadClearEntry = 0xD9,
     /// Usage ID `0xDA`: "Keypad Binary"
-    KeypadBinary,
+    KeypadBinary = 0xDA,
     /// Usage ID `0xDB`: "Keypad Octal"
-    KeypadOctal,
+    KeypadOctal = 0xDB,
     /// Usage ID `0xDC`: "Keypad Decimal"
-    KeypadDecimal,
+    KeypadDecimal = 0xDC,
     /// Usage ID `0xDD`: "Keypad Hexadecimal"
-    KeypadHexadecimal,
+    KeypadHexadecimal = 0xDD,
     /// Usage ID `0xE0`: "Keyboard LeftControl"
-    KeyboardLeftControl,
+    KeyboardLeftControl = 0xE0,
     /// Usage ID `0xE1`: "Keyboard LeftShift"
-    KeyboardLeftShift,
+    KeyboardLeftShift = 0xE1,
     /// Usage ID `0xE2`: "Keyboard LeftAlt"
-    KeyboardLeftAlt,
+    KeyboardLeftAlt = 0xE2,
     /// Usage ID `0xE3`: "Keyboard Left GUI"
-    KeyboardLeftGUI,
+    KeyboardLeftGUI = 0xE3,
     /// Usage ID `0xE4`: "Keyboard RightControl"
-    KeyboardRightControl,
+    KeyboardRightControl = 0xE4,
     /// Usage ID `0xE5`: "Keyboard RightShift"
-    KeyboardRightShift,
+    KeyboardRightShift = 0xE5,
     /// Usage ID `0xE6`: "Keyboard RightAlt"
-    KeyboardRightAlt,
+    KeyboardRightAlt = 0xE6,
     /// Usage ID `0xE7`: "Keyboard Right GUI"
-    KeyboardRightGUI,
+    KeyboardRightGUI = 0xE7,
 }
 
 impl KeyboardKeypad {
@@ -3729,226 +3465,7 @@ impl AsUsagePage for KeyboardKeypad {
 
 impl From<&KeyboardKeypad> for u16 {
     fn from(keyboardkeypad: &KeyboardKeypad) -> u16 {
-        match *keyboardkeypad {
-            KeyboardKeypad::ErrorRollOver => 1,
-            KeyboardKeypad::POSTFail => 2,
-            KeyboardKeypad::ErrorUndefined => 3,
-            KeyboardKeypad::KeyboardA => 4,
-            KeyboardKeypad::KeyboardB => 5,
-            KeyboardKeypad::KeyboardC => 6,
-            KeyboardKeypad::KeyboardD => 7,
-            KeyboardKeypad::KeyboardE => 8,
-            KeyboardKeypad::KeyboardF => 9,
-            KeyboardKeypad::KeyboardG => 10,
-            KeyboardKeypad::KeyboardH => 11,
-            KeyboardKeypad::KeyboardI => 12,
-            KeyboardKeypad::KeyboardJ => 13,
-            KeyboardKeypad::KeyboardK => 14,
-            KeyboardKeypad::KeyboardL => 15,
-            KeyboardKeypad::KeyboardM => 16,
-            KeyboardKeypad::KeyboardN => 17,
-            KeyboardKeypad::KeyboardO => 18,
-            KeyboardKeypad::KeyboardP => 19,
-            KeyboardKeypad::KeyboardQ => 20,
-            KeyboardKeypad::KeyboardR => 21,
-            KeyboardKeypad::KeyboardS => 22,
-            KeyboardKeypad::KeyboardT => 23,
-            KeyboardKeypad::KeyboardU => 24,
-            KeyboardKeypad::KeyboardV => 25,
-            KeyboardKeypad::KeyboardW => 26,
-            KeyboardKeypad::KeyboardX => 27,
-            KeyboardKeypad::KeyboardY => 28,
-            KeyboardKeypad::KeyboardZ => 29,
-            KeyboardKeypad::Keyboard1andBang => 30,
-            KeyboardKeypad::Keyboard2andAt => 31,
-            KeyboardKeypad::Keyboard3andHash => 32,
-            KeyboardKeypad::Keyboard4andDollar => 33,
-            KeyboardKeypad::Keyboard5andPercent => 34,
-            KeyboardKeypad::Keyboard6andCaret => 35,
-            KeyboardKeypad::Keyboard7andAmpersand => 36,
-            KeyboardKeypad::Keyboard8andStar => 37,
-            KeyboardKeypad::Keyboard9andLeftBracket => 38,
-            KeyboardKeypad::Keyboard0andRightBracket => 39,
-            KeyboardKeypad::KeyboardReturnEnter => 40,
-            KeyboardKeypad::KeyboardEscape => 41,
-            KeyboardKeypad::KeyboardDelete => 42,
-            KeyboardKeypad::KeyboardTab => 43,
-            KeyboardKeypad::KeyboardSpacebar => 44,
-            KeyboardKeypad::KeyboardDashandUnderscore => 45,
-            KeyboardKeypad::KeyboardEqualsandPlus => 46,
-            KeyboardKeypad::KeyboardLeftBrace => 47,
-            KeyboardKeypad::KeyboardRightBrace => 48,
-            KeyboardKeypad::KeyboardBackslashandPipe => 49,
-            KeyboardKeypad::KeyboardNonUSHashandTilde => 50,
-            KeyboardKeypad::KeyboardSemiColonandColon => 51,
-            KeyboardKeypad::KeyboardLeftAposandDouble => 52,
-            KeyboardKeypad::KeyboardGraveAccentandTilde => 53,
-            KeyboardKeypad::KeyboardCommaandLessThan => 54,
-            KeyboardKeypad::KeyboardPeriodandGreaterThan => 55,
-            KeyboardKeypad::KeyboardForwardSlashandQuestionMark => 56,
-            KeyboardKeypad::KeyboardCapsLock => 57,
-            KeyboardKeypad::KeyboardF1 => 58,
-            KeyboardKeypad::KeyboardF2 => 59,
-            KeyboardKeypad::KeyboardF3 => 60,
-            KeyboardKeypad::KeyboardF4 => 61,
-            KeyboardKeypad::KeyboardF5 => 62,
-            KeyboardKeypad::KeyboardF6 => 63,
-            KeyboardKeypad::KeyboardF7 => 64,
-            KeyboardKeypad::KeyboardF8 => 65,
-            KeyboardKeypad::KeyboardF9 => 66,
-            KeyboardKeypad::KeyboardF10 => 67,
-            KeyboardKeypad::KeyboardF11 => 68,
-            KeyboardKeypad::KeyboardF12 => 69,
-            KeyboardKeypad::KeyboardPrintScreen => 70,
-            KeyboardKeypad::KeyboardScrollLock => 71,
-            KeyboardKeypad::KeyboardPause => 72,
-            KeyboardKeypad::KeyboardInsert => 73,
-            KeyboardKeypad::KeyboardHome => 74,
-            KeyboardKeypad::KeyboardPageUp => 75,
-            KeyboardKeypad::KeyboardDeleteForward => 76,
-            KeyboardKeypad::KeyboardEnd => 77,
-            KeyboardKeypad::KeyboardPageDown => 78,
-            KeyboardKeypad::KeyboardRightArrow => 79,
-            KeyboardKeypad::KeyboardLeftArrow => 80,
-            KeyboardKeypad::KeyboardDownArrow => 81,
-            KeyboardKeypad::KeyboardUpArrow => 82,
-            KeyboardKeypad::KeypadNumLockandClear => 83,
-            KeyboardKeypad::KeypadForwardSlash => 84,
-            KeyboardKeypad::KeypadStar => 85,
-            KeyboardKeypad::KeypadDash => 86,
-            KeyboardKeypad::KeypadPlus => 87,
-            KeyboardKeypad::KeypadENTER => 88,
-            KeyboardKeypad::Keypad1andEnd => 89,
-            KeyboardKeypad::Keypad2andDownArrow => 90,
-            KeyboardKeypad::Keypad3andPageDn => 91,
-            KeyboardKeypad::Keypad4andLeftArrow => 92,
-            KeyboardKeypad::Keypad5 => 93,
-            KeyboardKeypad::Keypad6andRightArrow => 94,
-            KeyboardKeypad::Keypad7andHome => 95,
-            KeyboardKeypad::Keypad8andUpArrow => 96,
-            KeyboardKeypad::Keypad9andPageUp => 97,
-            KeyboardKeypad::Keypad0andInsert => 98,
-            KeyboardKeypad::KeypadPeriodandDelete => 99,
-            KeyboardKeypad::KeyboardNonUSBackslashandPipe => 100,
-            KeyboardKeypad::KeyboardApplication => 101,
-            KeyboardKeypad::KeyboardPower => 102,
-            KeyboardKeypad::KeypadEquals => 103,
-            KeyboardKeypad::KeyboardF13 => 104,
-            KeyboardKeypad::KeyboardF14 => 105,
-            KeyboardKeypad::KeyboardF15 => 106,
-            KeyboardKeypad::KeyboardF16 => 107,
-            KeyboardKeypad::KeyboardF17 => 108,
-            KeyboardKeypad::KeyboardF18 => 109,
-            KeyboardKeypad::KeyboardF19 => 110,
-            KeyboardKeypad::KeyboardF20 => 111,
-            KeyboardKeypad::KeyboardF21 => 112,
-            KeyboardKeypad::KeyboardF22 => 113,
-            KeyboardKeypad::KeyboardF23 => 114,
-            KeyboardKeypad::KeyboardF24 => 115,
-            KeyboardKeypad::KeyboardExecute => 116,
-            KeyboardKeypad::KeyboardHelp => 117,
-            KeyboardKeypad::KeyboardMenu => 118,
-            KeyboardKeypad::KeyboardSelect => 119,
-            KeyboardKeypad::KeyboardStop => 120,
-            KeyboardKeypad::KeyboardAgain => 121,
-            KeyboardKeypad::KeyboardUndo => 122,
-            KeyboardKeypad::KeyboardCut => 123,
-            KeyboardKeypad::KeyboardCopy => 124,
-            KeyboardKeypad::KeyboardPaste => 125,
-            KeyboardKeypad::KeyboardFind => 126,
-            KeyboardKeypad::KeyboardMute => 127,
-            KeyboardKeypad::KeyboardVolumeUp => 128,
-            KeyboardKeypad::KeyboardVolumeDown => 129,
-            KeyboardKeypad::KeyboardLockingCapsLock => 130,
-            KeyboardKeypad::KeyboardLockingNumLock => 131,
-            KeyboardKeypad::KeyboardLockingScrollLock => 132,
-            KeyboardKeypad::KeypadComma => 133,
-            KeyboardKeypad::KeypadEqualSign => 134,
-            KeyboardKeypad::KeyboardInternational1 => 135,
-            KeyboardKeypad::KeyboardInternational2 => 136,
-            KeyboardKeypad::KeyboardInternational3 => 137,
-            KeyboardKeypad::KeyboardInternational4 => 138,
-            KeyboardKeypad::KeyboardInternational5 => 139,
-            KeyboardKeypad::KeyboardInternational6 => 140,
-            KeyboardKeypad::KeyboardInternational7 => 141,
-            KeyboardKeypad::KeyboardInternational8 => 142,
-            KeyboardKeypad::KeyboardInternational9 => 143,
-            KeyboardKeypad::KeyboardLANG1 => 144,
-            KeyboardKeypad::KeyboardLANG2 => 145,
-            KeyboardKeypad::KeyboardLANG3 => 146,
-            KeyboardKeypad::KeyboardLANG4 => 147,
-            KeyboardKeypad::KeyboardLANG5 => 148,
-            KeyboardKeypad::KeyboardLANG6 => 149,
-            KeyboardKeypad::KeyboardLANG7 => 150,
-            KeyboardKeypad::KeyboardLANG8 => 151,
-            KeyboardKeypad::KeyboardLANG9 => 152,
-            KeyboardKeypad::KeyboardAlternateErase => 153,
-            KeyboardKeypad::KeyboardSysReqAttention => 154,
-            KeyboardKeypad::KeyboardCancel => 155,
-            KeyboardKeypad::KeyboardClear => 156,
-            KeyboardKeypad::KeyboardPrior => 157,
-            KeyboardKeypad::KeyboardReturn => 158,
-            KeyboardKeypad::KeyboardSeparator => 159,
-            KeyboardKeypad::KeyboardOut => 160,
-            KeyboardKeypad::KeyboardOper => 161,
-            KeyboardKeypad::KeyboardClearAgain => 162,
-            KeyboardKeypad::KeyboardCrSelProps => 163,
-            KeyboardKeypad::KeyboardExSel => 164,
-            KeyboardKeypad::KeypadDouble0 => 176,
-            KeyboardKeypad::KeypadTriple0 => 177,
-            KeyboardKeypad::ThousandsSeparator => 178,
-            KeyboardKeypad::DecimalSeparator => 179,
-            KeyboardKeypad::CurrencyUnit => 180,
-            KeyboardKeypad::CurrencySubunit => 181,
-            KeyboardKeypad::KeypadLeftBracket => 182,
-            KeyboardKeypad::KeypadRightBracket => 183,
-            KeyboardKeypad::KeypadLeftBrace => 184,
-            KeyboardKeypad::KeypadRightBrace => 185,
-            KeyboardKeypad::KeypadTab => 186,
-            KeyboardKeypad::KeypadBackspace => 187,
-            KeyboardKeypad::KeypadA => 188,
-            KeyboardKeypad::KeypadB => 189,
-            KeyboardKeypad::KeypadC => 190,
-            KeyboardKeypad::KeypadD => 191,
-            KeyboardKeypad::KeypadE => 192,
-            KeyboardKeypad::KeypadF => 193,
-            KeyboardKeypad::KeypadXOR => 194,
-            KeyboardKeypad::KeypadCaret => 195,
-            KeyboardKeypad::KeypadPercentage => 196,
-            KeyboardKeypad::KeypadLess => 197,
-            KeyboardKeypad::KeypadGreater => 198,
-            KeyboardKeypad::KeypadAmpersand => 199,
-            KeyboardKeypad::KeypadDoubleAmpersand => 200,
-            KeyboardKeypad::KeypadBar => 201,
-            KeyboardKeypad::KeypadDoubleBar => 202,
-            KeyboardKeypad::KeypadColon => 203,
-            KeyboardKeypad::KeypadHash => 204,
-            KeyboardKeypad::KeypadSpace => 205,
-            KeyboardKeypad::KeypadAt => 206,
-            KeyboardKeypad::KeypadBang => 207,
-            KeyboardKeypad::KeypadMemoryStore => 208,
-            KeyboardKeypad::KeypadMemoryRecall => 209,
-            KeyboardKeypad::KeypadMemoryClear => 210,
-            KeyboardKeypad::KeypadMemoryAdd => 211,
-            KeyboardKeypad::KeypadMemorySubtract => 212,
-            KeyboardKeypad::KeypadMemoryMultiply => 213,
-            KeyboardKeypad::KeypadMemoryDivide => 214,
-            KeyboardKeypad::KeypadPlusMinus => 215,
-            KeyboardKeypad::KeypadClear => 216,
-            KeyboardKeypad::KeypadClearEntry => 217,
-            KeyboardKeypad::KeypadBinary => 218,
-            KeyboardKeypad::KeypadOctal => 219,
-            KeyboardKeypad::KeypadDecimal => 220,
-            KeyboardKeypad::KeypadHexadecimal => 221,
-            KeyboardKeypad::KeyboardLeftControl => 224,
-            KeyboardKeypad::KeyboardLeftShift => 225,
-            KeyboardKeypad::KeyboardLeftAlt => 226,
-            KeyboardKeypad::KeyboardLeftGUI => 227,
-            KeyboardKeypad::KeyboardRightControl => 228,
-            KeyboardKeypad::KeyboardRightShift => 229,
-            KeyboardKeypad::KeyboardRightAlt => 230,
-            KeyboardKeypad::KeyboardRightGUI => 231,
-        }
+        *keyboardkeypad as u16
     }
 }
 
@@ -4264,201 +3781,202 @@ impl BitOr<u16> for KeyboardKeypad {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum LED {
     /// Usage ID `0x1`: "Num Lock"
-    NumLock,
+    NumLock = 0x1,
     /// Usage ID `0x2`: "Caps Lock"
-    CapsLock,
+    CapsLock = 0x2,
     /// Usage ID `0x3`: "Scroll Lock"
-    ScrollLock,
+    ScrollLock = 0x3,
     /// Usage ID `0x4`: "Compose"
-    Compose,
+    Compose = 0x4,
     /// Usage ID `0x5`: "Kana"
-    Kana,
+    Kana = 0x5,
     /// Usage ID `0x6`: "Power"
-    Power,
+    Power = 0x6,
     /// Usage ID `0x7`: "Shift"
-    Shift,
+    Shift = 0x7,
     /// Usage ID `0x8`: "Do Not Disturb"
-    DoNotDisturb,
+    DoNotDisturb = 0x8,
     /// Usage ID `0x9`: "Mute"
-    Mute,
+    Mute = 0x9,
     /// Usage ID `0xA`: "Tone Enable"
-    ToneEnable,
+    ToneEnable = 0xA,
     /// Usage ID `0xB`: "High Cut Filter"
-    HighCutFilter,
+    HighCutFilter = 0xB,
     /// Usage ID `0xC`: "Low Cut Filter"
-    LowCutFilter,
+    LowCutFilter = 0xC,
     /// Usage ID `0xD`: "Equalizer Enable"
-    EqualizerEnable,
+    EqualizerEnable = 0xD,
     /// Usage ID `0xE`: "Sound Field On"
-    SoundFieldOn,
+    SoundFieldOn = 0xE,
     /// Usage ID `0xF`: "Surround On"
-    SurroundOn,
+    SurroundOn = 0xF,
     /// Usage ID `0x10`: "Repeat"
-    Repeat,
+    Repeat = 0x10,
     /// Usage ID `0x11`: "Stereo"
-    Stereo,
+    Stereo = 0x11,
     /// Usage ID `0x12`: "Sampling Rate Detect"
-    SamplingRateDetect,
+    SamplingRateDetect = 0x12,
     /// Usage ID `0x13`: "Spinning"
-    Spinning,
+    Spinning = 0x13,
     /// Usage ID `0x14`: "CAV"
-    CAV,
+    CAV = 0x14,
     /// Usage ID `0x15`: "CLV"
-    CLV,
+    CLV = 0x15,
     /// Usage ID `0x16`: "Recording Format Detect"
-    RecordingFormatDetect,
+    RecordingFormatDetect = 0x16,
     /// Usage ID `0x17`: "Off-Hook"
-    OffHook,
+    OffHook = 0x17,
     /// Usage ID `0x18`: "Ring"
-    Ring,
+    Ring = 0x18,
     /// Usage ID `0x19`: "Message Waiting"
-    MessageWaiting,
+    MessageWaiting = 0x19,
     /// Usage ID `0x1A`: "Data Mode"
-    DataMode,
+    DataMode = 0x1A,
     /// Usage ID `0x1B`: "Battery Operation"
-    BatteryOperation,
+    BatteryOperation = 0x1B,
     /// Usage ID `0x1C`: "Battery OK"
-    BatteryOK,
+    BatteryOK = 0x1C,
     /// Usage ID `0x1D`: "Battery Low"
-    BatteryLow,
+    BatteryLow = 0x1D,
     /// Usage ID `0x1E`: "Speaker"
-    Speaker,
+    Speaker = 0x1E,
     /// Usage ID `0x1F`: "Headset"
-    Headset,
+    Headset = 0x1F,
     /// Usage ID `0x20`: "Hold"
-    Hold,
+    Hold = 0x20,
     /// Usage ID `0x21`: "Microphone"
-    Microphone,
+    Microphone = 0x21,
     /// Usage ID `0x22`: "Coverage"
-    Coverage,
+    Coverage = 0x22,
     /// Usage ID `0x23`: "Night Mode"
-    NightMode,
+    NightMode = 0x23,
     /// Usage ID `0x24`: "Send Calls"
-    SendCalls,
+    SendCalls = 0x24,
     /// Usage ID `0x25`: "Call Pickup"
-    CallPickup,
+    CallPickup = 0x25,
     /// Usage ID `0x26`: "Conference"
-    Conference,
+    Conference = 0x26,
     /// Usage ID `0x27`: "Stand-by"
-    Standby,
+    Standby = 0x27,
     /// Usage ID `0x28`: "Camera On"
-    CameraOn,
+    CameraOn = 0x28,
     /// Usage ID `0x29`: "Camera Off"
-    CameraOff,
+    CameraOff = 0x29,
     /// Usage ID `0x2A`: "On-Line"
-    OnLine,
+    OnLine = 0x2A,
     /// Usage ID `0x2B`: "Off-Line"
-    OffLine,
+    OffLine = 0x2B,
     /// Usage ID `0x2C`: "Busy"
-    Busy,
+    Busy = 0x2C,
     /// Usage ID `0x2D`: "Ready"
-    Ready,
+    Ready = 0x2D,
     /// Usage ID `0x2E`: "Paper-Out"
-    PaperOut,
+    PaperOut = 0x2E,
     /// Usage ID `0x2F`: "Paper-Jam"
-    PaperJam,
+    PaperJam = 0x2F,
     /// Usage ID `0x30`: "Remote"
-    Remote,
+    Remote = 0x30,
     /// Usage ID `0x31`: "Forward"
-    Forward,
+    Forward = 0x31,
     /// Usage ID `0x32`: "Reverse"
-    Reverse,
+    Reverse = 0x32,
     /// Usage ID `0x33`: "Stop"
-    Stop,
+    Stop = 0x33,
     /// Usage ID `0x34`: "Rewind"
-    Rewind,
+    Rewind = 0x34,
     /// Usage ID `0x35`: "Fast Forward"
-    FastForward,
+    FastForward = 0x35,
     /// Usage ID `0x36`: "Play"
-    Play,
+    Play = 0x36,
     /// Usage ID `0x37`: "Pause"
-    Pause,
+    Pause = 0x37,
     /// Usage ID `0x38`: "Record"
-    Record,
+    Record = 0x38,
     /// Usage ID `0x39`: "Error"
-    Error,
+    Error = 0x39,
     /// Usage ID `0x3A`: "Usage Selected Indicator"
-    UsageSelectedIndicator,
+    UsageSelectedIndicator = 0x3A,
     /// Usage ID `0x3B`: "Usage In Use Indicator"
-    UsageInUseIndicator,
+    UsageInUseIndicator = 0x3B,
     /// Usage ID `0x3C`: "Usage Multi Mode Indicator"
-    UsageMultiModeIndicator,
+    UsageMultiModeIndicator = 0x3C,
     /// Usage ID `0x3D`: "Indicator On"
-    IndicatorOn,
+    IndicatorOn = 0x3D,
     /// Usage ID `0x3E`: "Indicator Flash"
-    IndicatorFlash,
+    IndicatorFlash = 0x3E,
     /// Usage ID `0x3F`: "Indicator Slow Blink"
-    IndicatorSlowBlink,
+    IndicatorSlowBlink = 0x3F,
     /// Usage ID `0x40`: "Indicator Fast Blink"
-    IndicatorFastBlink,
+    IndicatorFastBlink = 0x40,
     /// Usage ID `0x41`: "Indicator Off"
-    IndicatorOff,
+    IndicatorOff = 0x41,
     /// Usage ID `0x42`: "Flash On Time"
-    FlashOnTime,
+    FlashOnTime = 0x42,
     /// Usage ID `0x43`: "Slow Blink On Time"
-    SlowBlinkOnTime,
+    SlowBlinkOnTime = 0x43,
     /// Usage ID `0x44`: "Slow Blink Off Time"
-    SlowBlinkOffTime,
+    SlowBlinkOffTime = 0x44,
     /// Usage ID `0x45`: "Fast Blink On Time"
-    FastBlinkOnTime,
+    FastBlinkOnTime = 0x45,
     /// Usage ID `0x46`: "Fast Blink Off Time"
-    FastBlinkOffTime,
+    FastBlinkOffTime = 0x46,
     /// Usage ID `0x47`: "Usage Indicator Color"
-    UsageIndicatorColor,
+    UsageIndicatorColor = 0x47,
     /// Usage ID `0x48`: "Indicator Red"
-    IndicatorRed,
+    IndicatorRed = 0x48,
     /// Usage ID `0x49`: "Indicator Green"
-    IndicatorGreen,
+    IndicatorGreen = 0x49,
     /// Usage ID `0x4A`: "Indicator Amber"
-    IndicatorAmber,
+    IndicatorAmber = 0x4A,
     /// Usage ID `0x4B`: "Generic Indicator"
-    GenericIndicator,
+    GenericIndicator = 0x4B,
     /// Usage ID `0x4C`: "System Suspend"
-    SystemSuspend,
+    SystemSuspend = 0x4C,
     /// Usage ID `0x4D`: "External Power Connected"
-    ExternalPowerConnected,
+    ExternalPowerConnected = 0x4D,
     /// Usage ID `0x4E`: "Indicator Blue"
-    IndicatorBlue,
+    IndicatorBlue = 0x4E,
     /// Usage ID `0x4F`: "Indicator Orange"
-    IndicatorOrange,
+    IndicatorOrange = 0x4F,
     /// Usage ID `0x50`: "Good Status"
-    GoodStatus,
+    GoodStatus = 0x50,
     /// Usage ID `0x51`: "Warning Status"
-    WarningStatus,
+    WarningStatus = 0x51,
     /// Usage ID `0x52`: "RGB LED"
-    RGBLED,
+    RGBLED = 0x52,
     /// Usage ID `0x53`: "Red LED Channel"
-    RedLEDChannel,
+    RedLEDChannel = 0x53,
     /// Usage ID `0x54`: "Blue LED Channel"
-    BlueLEDChannel,
+    BlueLEDChannel = 0x54,
     /// Usage ID `0x55`: "Green LED Channel"
-    GreenLEDChannel,
+    GreenLEDChannel = 0x55,
     /// Usage ID `0x56`: "LED Intensity"
-    LEDIntensity,
+    LEDIntensity = 0x56,
     /// Usage ID `0x57`: "System Microphone Mute"
-    SystemMicrophoneMute,
+    SystemMicrophoneMute = 0x57,
     /// Usage ID `0x60`: "Player Indicator"
-    PlayerIndicator,
+    PlayerIndicator = 0x60,
     /// Usage ID `0x61`: "Player 1"
-    Player1,
+    Player1 = 0x61,
     /// Usage ID `0x62`: "Player 2"
-    Player2,
+    Player2 = 0x62,
     /// Usage ID `0x63`: "Player 3"
-    Player3,
+    Player3 = 0x63,
     /// Usage ID `0x64`: "Player 4"
-    Player4,
+    Player4 = 0x64,
     /// Usage ID `0x65`: "Player 5"
-    Player5,
+    Player5 = 0x65,
     /// Usage ID `0x66`: "Player 6"
-    Player6,
+    Player6 = 0x66,
     /// Usage ID `0x67`: "Player 7"
-    Player7,
+    Player7 = 0x67,
     /// Usage ID `0x68`: "Player 8"
-    Player8,
+    Player8 = 0x68,
 }
 
 impl LED {
@@ -4616,104 +4134,7 @@ impl AsUsagePage for LED {
 
 impl From<&LED> for u16 {
     fn from(led: &LED) -> u16 {
-        match *led {
-            LED::NumLock => 1,
-            LED::CapsLock => 2,
-            LED::ScrollLock => 3,
-            LED::Compose => 4,
-            LED::Kana => 5,
-            LED::Power => 6,
-            LED::Shift => 7,
-            LED::DoNotDisturb => 8,
-            LED::Mute => 9,
-            LED::ToneEnable => 10,
-            LED::HighCutFilter => 11,
-            LED::LowCutFilter => 12,
-            LED::EqualizerEnable => 13,
-            LED::SoundFieldOn => 14,
-            LED::SurroundOn => 15,
-            LED::Repeat => 16,
-            LED::Stereo => 17,
-            LED::SamplingRateDetect => 18,
-            LED::Spinning => 19,
-            LED::CAV => 20,
-            LED::CLV => 21,
-            LED::RecordingFormatDetect => 22,
-            LED::OffHook => 23,
-            LED::Ring => 24,
-            LED::MessageWaiting => 25,
-            LED::DataMode => 26,
-            LED::BatteryOperation => 27,
-            LED::BatteryOK => 28,
-            LED::BatteryLow => 29,
-            LED::Speaker => 30,
-            LED::Headset => 31,
-            LED::Hold => 32,
-            LED::Microphone => 33,
-            LED::Coverage => 34,
-            LED::NightMode => 35,
-            LED::SendCalls => 36,
-            LED::CallPickup => 37,
-            LED::Conference => 38,
-            LED::Standby => 39,
-            LED::CameraOn => 40,
-            LED::CameraOff => 41,
-            LED::OnLine => 42,
-            LED::OffLine => 43,
-            LED::Busy => 44,
-            LED::Ready => 45,
-            LED::PaperOut => 46,
-            LED::PaperJam => 47,
-            LED::Remote => 48,
-            LED::Forward => 49,
-            LED::Reverse => 50,
-            LED::Stop => 51,
-            LED::Rewind => 52,
-            LED::FastForward => 53,
-            LED::Play => 54,
-            LED::Pause => 55,
-            LED::Record => 56,
-            LED::Error => 57,
-            LED::UsageSelectedIndicator => 58,
-            LED::UsageInUseIndicator => 59,
-            LED::UsageMultiModeIndicator => 60,
-            LED::IndicatorOn => 61,
-            LED::IndicatorFlash => 62,
-            LED::IndicatorSlowBlink => 63,
-            LED::IndicatorFastBlink => 64,
-            LED::IndicatorOff => 65,
-            LED::FlashOnTime => 66,
-            LED::SlowBlinkOnTime => 67,
-            LED::SlowBlinkOffTime => 68,
-            LED::FastBlinkOnTime => 69,
-            LED::FastBlinkOffTime => 70,
-            LED::UsageIndicatorColor => 71,
-            LED::IndicatorRed => 72,
-            LED::IndicatorGreen => 73,
-            LED::IndicatorAmber => 74,
-            LED::GenericIndicator => 75,
-            LED::SystemSuspend => 76,
-            LED::ExternalPowerConnected => 77,
-            LED::IndicatorBlue => 78,
-            LED::IndicatorOrange => 79,
-            LED::GoodStatus => 80,
-            LED::WarningStatus => 81,
-            LED::RGBLED => 82,
-            LED::RedLEDChannel => 83,
-            LED::BlueLEDChannel => 84,
-            LED::GreenLEDChannel => 85,
-            LED::LEDIntensity => 86,
-            LED::SystemMicrophoneMute => 87,
-            LED::PlayerIndicator => 96,
-            LED::Player1 => 97,
-            LED::Player2 => 98,
-            LED::Player3 => 99,
-            LED::Player4 => 100,
-            LED::Player5 => 101,
-            LED::Player6 => 102,
-            LED::Player7 => 103,
-            LED::Player8 => 104,
-        }
+        *led as u16
     }
 }
 
@@ -5243,207 +4664,208 @@ impl BitOr<u16> for Ordinal {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum TelephonyDevice {
     /// Usage ID `0x1`: "Phone"
-    Phone,
+    Phone = 0x1,
     /// Usage ID `0x2`: "Answering Machine"
-    AnsweringMachine,
+    AnsweringMachine = 0x2,
     /// Usage ID `0x3`: "Message Controls"
-    MessageControls,
+    MessageControls = 0x3,
     /// Usage ID `0x4`: "Handset"
-    Handset,
+    Handset = 0x4,
     /// Usage ID `0x5`: "Headset"
-    Headset,
+    Headset = 0x5,
     /// Usage ID `0x6`: "Telephony Key Pad"
-    TelephonyKeyPad,
+    TelephonyKeyPad = 0x6,
     /// Usage ID `0x7`: "Programmable Button"
-    ProgrammableButton,
+    ProgrammableButton = 0x7,
     /// Usage ID `0x20`: "Hook Switch"
-    HookSwitch,
+    HookSwitch = 0x20,
     /// Usage ID `0x21`: "Flash"
-    Flash,
+    Flash = 0x21,
     /// Usage ID `0x22`: "Feature"
-    Feature,
+    Feature = 0x22,
     /// Usage ID `0x23`: "Hold"
-    Hold,
+    Hold = 0x23,
     /// Usage ID `0x24`: "Redial"
-    Redial,
+    Redial = 0x24,
     /// Usage ID `0x25`: "Transfer"
-    Transfer,
+    Transfer = 0x25,
     /// Usage ID `0x26`: "Drop"
-    Drop,
+    Drop = 0x26,
     /// Usage ID `0x27`: "Park"
-    Park,
+    Park = 0x27,
     /// Usage ID `0x28`: "Forward Calls"
-    ForwardCalls,
+    ForwardCalls = 0x28,
     /// Usage ID `0x29`: "Alternate Function"
-    AlternateFunction,
+    AlternateFunction = 0x29,
     /// Usage ID `0x2A`: "Line"
-    Line,
+    Line = 0x2A,
     /// Usage ID `0x2B`: "Speaker Phone"
-    SpeakerPhone,
+    SpeakerPhone = 0x2B,
     /// Usage ID `0x2C`: "Conference"
-    Conference,
+    Conference = 0x2C,
     /// Usage ID `0x2D`: "Ring Enable"
-    RingEnable,
+    RingEnable = 0x2D,
     /// Usage ID `0x2E`: "Ring Select"
-    RingSelect,
+    RingSelect = 0x2E,
     /// Usage ID `0x2F`: "Phone Mute"
-    PhoneMute,
+    PhoneMute = 0x2F,
     /// Usage ID `0x30`: "Caller ID"
-    CallerID,
+    CallerID = 0x30,
     /// Usage ID `0x31`: "Send"
-    Send,
+    Send = 0x31,
     /// Usage ID `0x50`: "Speed Dial"
-    SpeedDial,
+    SpeedDial = 0x50,
     /// Usage ID `0x51`: "Store Number"
-    StoreNumber,
+    StoreNumber = 0x51,
     /// Usage ID `0x52`: "Recall Number"
-    RecallNumber,
+    RecallNumber = 0x52,
     /// Usage ID `0x53`: "Phone Directory"
-    PhoneDirectory,
+    PhoneDirectory = 0x53,
     /// Usage ID `0x70`: "Voice Mail"
-    VoiceMail,
+    VoiceMail = 0x70,
     /// Usage ID `0x71`: "Screen Calls"
-    ScreenCalls,
+    ScreenCalls = 0x71,
     /// Usage ID `0x72`: "Do Not Disturb"
-    DoNotDisturb,
+    DoNotDisturb = 0x72,
     /// Usage ID `0x73`: "Message"
-    Message,
+    Message = 0x73,
     /// Usage ID `0x74`: "Answer On/Off"
-    AnswerOnOff,
+    AnswerOnOff = 0x74,
     /// Usage ID `0x90`: "Inside Dial Tone"
-    InsideDialTone,
+    InsideDialTone = 0x90,
     /// Usage ID `0x91`: "Outside Dial Tone"
-    OutsideDialTone,
+    OutsideDialTone = 0x91,
     /// Usage ID `0x92`: "Inside Ring Tone"
-    InsideRingTone,
+    InsideRingTone = 0x92,
     /// Usage ID `0x93`: "Outside Ring Tone"
-    OutsideRingTone,
+    OutsideRingTone = 0x93,
     /// Usage ID `0x94`: "Priority Ring Tone"
-    PriorityRingTone,
+    PriorityRingTone = 0x94,
     /// Usage ID `0x95`: "Inside Ringback"
-    InsideRingback,
+    InsideRingback = 0x95,
     /// Usage ID `0x96`: "Priority Ringback"
-    PriorityRingback,
+    PriorityRingback = 0x96,
     /// Usage ID `0x97`: "Line Busy Tone"
-    LineBusyTone,
+    LineBusyTone = 0x97,
     /// Usage ID `0x98`: "Reorder Tone"
-    ReorderTone,
+    ReorderTone = 0x98,
     /// Usage ID `0x99`: "Call Waiting Tone"
-    CallWaitingTone,
+    CallWaitingTone = 0x99,
     /// Usage ID `0x9A`: "Confirmation Tone 1"
-    ConfirmationTone1,
+    ConfirmationTone1 = 0x9A,
     /// Usage ID `0x9B`: "Confirmation Tone 2"
-    ConfirmationTone2,
+    ConfirmationTone2 = 0x9B,
     /// Usage ID `0x9C`: "Tones Off"
-    TonesOff,
+    TonesOff = 0x9C,
     /// Usage ID `0x9D`: "Outside Ringback"
-    OutsideRingback,
+    OutsideRingback = 0x9D,
     /// Usage ID `0x9E`: "Ringer"
-    Ringer,
+    Ringer = 0x9E,
     /// Usage ID `0xB0`: "Phone Key 0"
-    PhoneKey0,
+    PhoneKey0 = 0xB0,
     /// Usage ID `0xB1`: "Phone Key 1"
-    PhoneKey1,
+    PhoneKey1 = 0xB1,
     /// Usage ID `0xB2`: "Phone Key 2"
-    PhoneKey2,
+    PhoneKey2 = 0xB2,
     /// Usage ID `0xB3`: "Phone Key 3"
-    PhoneKey3,
+    PhoneKey3 = 0xB3,
     /// Usage ID `0xB4`: "Phone Key 4"
-    PhoneKey4,
+    PhoneKey4 = 0xB4,
     /// Usage ID `0xB5`: "Phone Key 5"
-    PhoneKey5,
+    PhoneKey5 = 0xB5,
     /// Usage ID `0xB6`: "Phone Key 6"
-    PhoneKey6,
+    PhoneKey6 = 0xB6,
     /// Usage ID `0xB7`: "Phone Key 7"
-    PhoneKey7,
+    PhoneKey7 = 0xB7,
     /// Usage ID `0xB8`: "Phone Key 8"
-    PhoneKey8,
+    PhoneKey8 = 0xB8,
     /// Usage ID `0xB9`: "Phone Key 9"
-    PhoneKey9,
+    PhoneKey9 = 0xB9,
     /// Usage ID `0xBA`: "Phone Key Star"
-    PhoneKeyStar,
+    PhoneKeyStar = 0xBA,
     /// Usage ID `0xBB`: "Phone Key Pound"
-    PhoneKeyPound,
+    PhoneKeyPound = 0xBB,
     /// Usage ID `0xBC`: "Phone Key A"
-    PhoneKeyA,
+    PhoneKeyA = 0xBC,
     /// Usage ID `0xBD`: "Phone Key B"
-    PhoneKeyB,
+    PhoneKeyB = 0xBD,
     /// Usage ID `0xBE`: "Phone Key C"
-    PhoneKeyC,
+    PhoneKeyC = 0xBE,
     /// Usage ID `0xBF`: "Phone Key D"
-    PhoneKeyD,
+    PhoneKeyD = 0xBF,
     /// Usage ID `0xC0`: "Phone Call History Key"
-    PhoneCallHistoryKey,
+    PhoneCallHistoryKey = 0xC0,
     /// Usage ID `0xC1`: "Phone Caller ID Key"
-    PhoneCallerIDKey,
+    PhoneCallerIDKey = 0xC1,
     /// Usage ID `0xC2`: "Phone Settings Key"
-    PhoneSettingsKey,
+    PhoneSettingsKey = 0xC2,
     /// Usage ID `0xF0`: "Host Control"
-    HostControl,
+    HostControl = 0xF0,
     /// Usage ID `0xF1`: "Host Available"
-    HostAvailable,
+    HostAvailable = 0xF1,
     /// Usage ID `0xF2`: "Host Call Active"
-    HostCallActive,
+    HostCallActive = 0xF2,
     /// Usage ID `0xF3`: "Activate Handset Audio"
-    ActivateHandsetAudio,
+    ActivateHandsetAudio = 0xF3,
     /// Usage ID `0xF4`: "Ring Type"
-    RingType,
+    RingType = 0xF4,
     /// Usage ID `0xF5`: "Re-dialable Phone Number"
-    RedialablePhoneNumber,
+    RedialablePhoneNumber = 0xF5,
     /// Usage ID `0xF8`: "Stop Ring Tone"
-    StopRingTone,
+    StopRingTone = 0xF8,
     /// Usage ID `0xF9`: "PSTN Ring Tone"
-    PSTNRingTone,
+    PSTNRingTone = 0xF9,
     /// Usage ID `0xFA`: "Host Ring Tone"
-    HostRingTone,
+    HostRingTone = 0xFA,
     /// Usage ID `0xFB`: "Alert Sound Error"
-    AlertSoundError,
+    AlertSoundError = 0xFB,
     /// Usage ID `0xFC`: "Alert Sound Confirm"
-    AlertSoundConfirm,
+    AlertSoundConfirm = 0xFC,
     /// Usage ID `0xFD`: "Alert Sound Notification"
-    AlertSoundNotification,
+    AlertSoundNotification = 0xFD,
     /// Usage ID `0xFE`: "Silent Ring"
-    SilentRing,
+    SilentRing = 0xFE,
     /// Usage ID `0x108`: "Email Message Waiting"
-    EmailMessageWaiting,
+    EmailMessageWaiting = 0x108,
     /// Usage ID `0x109`: "Voicemail Message Waiting"
-    VoicemailMessageWaiting,
+    VoicemailMessageWaiting = 0x109,
     /// Usage ID `0x10A`: "Host Hold"
-    HostHold,
+    HostHold = 0x10A,
     /// Usage ID `0x110`: "Incoming Call History Count"
-    IncomingCallHistoryCount,
+    IncomingCallHistoryCount = 0x110,
     /// Usage ID `0x111`: "Outgoing Call History Count"
-    OutgoingCallHistoryCount,
+    OutgoingCallHistoryCount = 0x111,
     /// Usage ID `0x112`: "Incoming Call History"
-    IncomingCallHistory,
+    IncomingCallHistory = 0x112,
     /// Usage ID `0x113`: "Outgoing Call History"
-    OutgoingCallHistory,
+    OutgoingCallHistory = 0x113,
     /// Usage ID `0x114`: "Phone Locale"
-    PhoneLocale,
+    PhoneLocale = 0x114,
     /// Usage ID `0x140`: "Phone Time Second"
-    PhoneTimeSecond,
+    PhoneTimeSecond = 0x140,
     /// Usage ID `0x141`: "Phone Time Minute"
-    PhoneTimeMinute,
+    PhoneTimeMinute = 0x141,
     /// Usage ID `0x142`: "Phone Time Hour"
-    PhoneTimeHour,
+    PhoneTimeHour = 0x142,
     /// Usage ID `0x143`: "Phone Date Day"
-    PhoneDateDay,
+    PhoneDateDay = 0x143,
     /// Usage ID `0x144`: "Phone Date Month"
-    PhoneDateMonth,
+    PhoneDateMonth = 0x144,
     /// Usage ID `0x145`: "Phone Date Year"
-    PhoneDateYear,
+    PhoneDateYear = 0x145,
     /// Usage ID `0x146`: "Handset Nickname"
-    HandsetNickname,
+    HandsetNickname = 0x146,
     /// Usage ID `0x147`: "Address Book ID"
-    AddressBookID,
+    AddressBookID = 0x147,
     /// Usage ID `0x14A`: "Call Duration"
-    CallDuration,
+    CallDuration = 0x14A,
     /// Usage ID `0x14B`: "Dual Mode Phone"
-    DualModePhone,
+    DualModePhone = 0x14B,
 }
 
 impl TelephonyDevice {
@@ -5604,107 +5026,7 @@ impl AsUsagePage for TelephonyDevice {
 
 impl From<&TelephonyDevice> for u16 {
     fn from(telephonydevice: &TelephonyDevice) -> u16 {
-        match *telephonydevice {
-            TelephonyDevice::Phone => 1,
-            TelephonyDevice::AnsweringMachine => 2,
-            TelephonyDevice::MessageControls => 3,
-            TelephonyDevice::Handset => 4,
-            TelephonyDevice::Headset => 5,
-            TelephonyDevice::TelephonyKeyPad => 6,
-            TelephonyDevice::ProgrammableButton => 7,
-            TelephonyDevice::HookSwitch => 32,
-            TelephonyDevice::Flash => 33,
-            TelephonyDevice::Feature => 34,
-            TelephonyDevice::Hold => 35,
-            TelephonyDevice::Redial => 36,
-            TelephonyDevice::Transfer => 37,
-            TelephonyDevice::Drop => 38,
-            TelephonyDevice::Park => 39,
-            TelephonyDevice::ForwardCalls => 40,
-            TelephonyDevice::AlternateFunction => 41,
-            TelephonyDevice::Line => 42,
-            TelephonyDevice::SpeakerPhone => 43,
-            TelephonyDevice::Conference => 44,
-            TelephonyDevice::RingEnable => 45,
-            TelephonyDevice::RingSelect => 46,
-            TelephonyDevice::PhoneMute => 47,
-            TelephonyDevice::CallerID => 48,
-            TelephonyDevice::Send => 49,
-            TelephonyDevice::SpeedDial => 80,
-            TelephonyDevice::StoreNumber => 81,
-            TelephonyDevice::RecallNumber => 82,
-            TelephonyDevice::PhoneDirectory => 83,
-            TelephonyDevice::VoiceMail => 112,
-            TelephonyDevice::ScreenCalls => 113,
-            TelephonyDevice::DoNotDisturb => 114,
-            TelephonyDevice::Message => 115,
-            TelephonyDevice::AnswerOnOff => 116,
-            TelephonyDevice::InsideDialTone => 144,
-            TelephonyDevice::OutsideDialTone => 145,
-            TelephonyDevice::InsideRingTone => 146,
-            TelephonyDevice::OutsideRingTone => 147,
-            TelephonyDevice::PriorityRingTone => 148,
-            TelephonyDevice::InsideRingback => 149,
-            TelephonyDevice::PriorityRingback => 150,
-            TelephonyDevice::LineBusyTone => 151,
-            TelephonyDevice::ReorderTone => 152,
-            TelephonyDevice::CallWaitingTone => 153,
-            TelephonyDevice::ConfirmationTone1 => 154,
-            TelephonyDevice::ConfirmationTone2 => 155,
-            TelephonyDevice::TonesOff => 156,
-            TelephonyDevice::OutsideRingback => 157,
-            TelephonyDevice::Ringer => 158,
-            TelephonyDevice::PhoneKey0 => 176,
-            TelephonyDevice::PhoneKey1 => 177,
-            TelephonyDevice::PhoneKey2 => 178,
-            TelephonyDevice::PhoneKey3 => 179,
-            TelephonyDevice::PhoneKey4 => 180,
-            TelephonyDevice::PhoneKey5 => 181,
-            TelephonyDevice::PhoneKey6 => 182,
-            TelephonyDevice::PhoneKey7 => 183,
-            TelephonyDevice::PhoneKey8 => 184,
-            TelephonyDevice::PhoneKey9 => 185,
-            TelephonyDevice::PhoneKeyStar => 186,
-            TelephonyDevice::PhoneKeyPound => 187,
-            TelephonyDevice::PhoneKeyA => 188,
-            TelephonyDevice::PhoneKeyB => 189,
-            TelephonyDevice::PhoneKeyC => 190,
-            TelephonyDevice::PhoneKeyD => 191,
-            TelephonyDevice::PhoneCallHistoryKey => 192,
-            TelephonyDevice::PhoneCallerIDKey => 193,
-            TelephonyDevice::PhoneSettingsKey => 194,
-            TelephonyDevice::HostControl => 240,
-            TelephonyDevice::HostAvailable => 241,
-            TelephonyDevice::HostCallActive => 242,
-            TelephonyDevice::ActivateHandsetAudio => 243,
-            TelephonyDevice::RingType => 244,
-            TelephonyDevice::RedialablePhoneNumber => 245,
-            TelephonyDevice::StopRingTone => 248,
-            TelephonyDevice::PSTNRingTone => 249,
-            TelephonyDevice::HostRingTone => 250,
-            TelephonyDevice::AlertSoundError => 251,
-            TelephonyDevice::AlertSoundConfirm => 252,
-            TelephonyDevice::AlertSoundNotification => 253,
-            TelephonyDevice::SilentRing => 254,
-            TelephonyDevice::EmailMessageWaiting => 264,
-            TelephonyDevice::VoicemailMessageWaiting => 265,
-            TelephonyDevice::HostHold => 266,
-            TelephonyDevice::IncomingCallHistoryCount => 272,
-            TelephonyDevice::OutgoingCallHistoryCount => 273,
-            TelephonyDevice::IncomingCallHistory => 274,
-            TelephonyDevice::OutgoingCallHistory => 275,
-            TelephonyDevice::PhoneLocale => 276,
-            TelephonyDevice::PhoneTimeSecond => 320,
-            TelephonyDevice::PhoneTimeMinute => 321,
-            TelephonyDevice::PhoneTimeHour => 322,
-            TelephonyDevice::PhoneDateDay => 323,
-            TelephonyDevice::PhoneDateMonth => 324,
-            TelephonyDevice::PhoneDateYear => 325,
-            TelephonyDevice::HandsetNickname => 326,
-            TelephonyDevice::AddressBookID => 327,
-            TelephonyDevice::CallDuration => 330,
-            TelephonyDevice::DualModePhone => 331,
-        }
+        *telephonydevice as u16
     }
 }
 
@@ -5901,909 +5223,910 @@ impl BitOr<u16> for TelephonyDevice {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum Consumer {
     /// Usage ID `0x1`: "Consumer Control"
-    ConsumerControl,
+    ConsumerControl = 0x1,
     /// Usage ID `0x2`: "Numeric Key Pad"
-    NumericKeyPad,
+    NumericKeyPad = 0x2,
     /// Usage ID `0x3`: "Programmable Buttons"
-    ProgrammableButtons,
+    ProgrammableButtons = 0x3,
     /// Usage ID `0x4`: "Microphone"
-    Microphone,
+    Microphone = 0x4,
     /// Usage ID `0x5`: "Headphone"
-    Headphone,
+    Headphone = 0x5,
     /// Usage ID `0x6`: "Graphic Equalizer"
-    GraphicEqualizer,
+    GraphicEqualizer = 0x6,
     /// Usage ID `0x20`: "+10"
-    Plus10,
+    Plus10 = 0x20,
     /// Usage ID `0x21`: "+100"
-    Plus100,
+    Plus100 = 0x21,
     /// Usage ID `0x22`: "AM/PM"
-    AMPM,
+    AMPM = 0x22,
     /// Usage ID `0x30`: "Power"
-    Power,
+    Power = 0x30,
     /// Usage ID `0x31`: "Reset"
-    Reset,
+    Reset = 0x31,
     /// Usage ID `0x32`: "Sleep"
-    Sleep,
+    Sleep = 0x32,
     /// Usage ID `0x33`: "Sleep After"
-    SleepAfter,
+    SleepAfter = 0x33,
     /// Usage ID `0x34`: "Sleep Mode"
-    SleepMode,
+    SleepMode = 0x34,
     /// Usage ID `0x35`: "Illumination"
-    Illumination,
+    Illumination = 0x35,
     /// Usage ID `0x36`: "Function Buttons"
-    FunctionButtons,
+    FunctionButtons = 0x36,
     /// Usage ID `0x40`: "Menu"
-    Menu,
+    Menu = 0x40,
     /// Usage ID `0x41`: "Menu Pick"
-    MenuPick,
+    MenuPick = 0x41,
     /// Usage ID `0x42`: "Menu Up"
-    MenuUp,
+    MenuUp = 0x42,
     /// Usage ID `0x43`: "Menu Down"
-    MenuDown,
+    MenuDown = 0x43,
     /// Usage ID `0x44`: "Menu Left"
-    MenuLeft,
+    MenuLeft = 0x44,
     /// Usage ID `0x45`: "Menu Right"
-    MenuRight,
+    MenuRight = 0x45,
     /// Usage ID `0x46`: "Menu Escape"
-    MenuEscape,
+    MenuEscape = 0x46,
     /// Usage ID `0x47`: "Menu Value Increase"
-    MenuValueIncrease,
+    MenuValueIncrease = 0x47,
     /// Usage ID `0x48`: "Menu Value Decrease"
-    MenuValueDecrease,
+    MenuValueDecrease = 0x48,
     /// Usage ID `0x60`: "Data On Screen"
-    DataOnScreen,
+    DataOnScreen = 0x60,
     /// Usage ID `0x61`: "Closed Caption"
-    ClosedCaption,
+    ClosedCaption = 0x61,
     /// Usage ID `0x62`: "Closed Caption Select"
-    ClosedCaptionSelect,
+    ClosedCaptionSelect = 0x62,
     /// Usage ID `0x63`: "VCR/TV"
-    VCRTV,
+    VCRTV = 0x63,
     /// Usage ID `0x64`: "Broadcast Mode"
-    BroadcastMode,
+    BroadcastMode = 0x64,
     /// Usage ID `0x65`: "Snapshot"
-    Snapshot,
+    Snapshot = 0x65,
     /// Usage ID `0x66`: "Still"
-    Still,
+    Still = 0x66,
     /// Usage ID `0x67`: "Picture-in-Picture Toggle"
-    PictureinPictureToggle,
+    PictureinPictureToggle = 0x67,
     /// Usage ID `0x68`: "Picture-in-Picture Swap"
-    PictureinPictureSwap,
+    PictureinPictureSwap = 0x68,
     /// Usage ID `0x69`: "Red Menu Button"
-    RedMenuButton,
+    RedMenuButton = 0x69,
     /// Usage ID `0x6A`: "Green Menu Button"
-    GreenMenuButton,
+    GreenMenuButton = 0x6A,
     /// Usage ID `0x6B`: "Blue Menu Button"
-    BlueMenuButton,
+    BlueMenuButton = 0x6B,
     /// Usage ID `0x6C`: "Yellow Menu Button"
-    YellowMenuButton,
+    YellowMenuButton = 0x6C,
     /// Usage ID `0x6D`: "Aspect"
-    Aspect,
+    Aspect = 0x6D,
     /// Usage ID `0x6E`: "3D Mode Select"
-    ThreeDModeSelect,
+    ThreeDModeSelect = 0x6E,
     /// Usage ID `0x6F`: "Display Brightness Increment"
-    DisplayBrightnessIncrement,
+    DisplayBrightnessIncrement = 0x6F,
     /// Usage ID `0x70`: "Display Brightness Decrement"
-    DisplayBrightnessDecrement,
+    DisplayBrightnessDecrement = 0x70,
     /// Usage ID `0x71`: "Display Brightness"
-    DisplayBrightness,
+    DisplayBrightness = 0x71,
     /// Usage ID `0x72`: "Display Backlight Toggle"
-    DisplayBacklightToggle,
+    DisplayBacklightToggle = 0x72,
     /// Usage ID `0x73`: "Display Set Brightness to Minimum"
-    DisplaySetBrightnesstoMinimum,
+    DisplaySetBrightnesstoMinimum = 0x73,
     /// Usage ID `0x74`: "Display Set Brightness to Maximum"
-    DisplaySetBrightnesstoMaximum,
+    DisplaySetBrightnesstoMaximum = 0x74,
     /// Usage ID `0x75`: "Display Set Auto Brightness"
-    DisplaySetAutoBrightness,
+    DisplaySetAutoBrightness = 0x75,
     /// Usage ID `0x76`: "Camera Access Enabled"
-    CameraAccessEnabled,
+    CameraAccessEnabled = 0x76,
     /// Usage ID `0x77`: "Camera Access Disabled"
-    CameraAccessDisabled,
+    CameraAccessDisabled = 0x77,
     /// Usage ID `0x78`: "Camera Access Toggle"
-    CameraAccessToggle,
+    CameraAccessToggle = 0x78,
     /// Usage ID `0x79`: "Keyboard Brightness Increment"
-    KeyboardBrightnessIncrement,
+    KeyboardBrightnessIncrement = 0x79,
     /// Usage ID `0x7A`: "Keyboard Brightness Decrement"
-    KeyboardBrightnessDecrement,
+    KeyboardBrightnessDecrement = 0x7A,
     /// Usage ID `0x7B`: "Keyboard Backlight Set Level"
-    KeyboardBacklightSetLevel,
+    KeyboardBacklightSetLevel = 0x7B,
     /// Usage ID `0x7C`: "Keyboard Backlight OOC"
-    KeyboardBacklightOOC,
+    KeyboardBacklightOOC = 0x7C,
     /// Usage ID `0x7D`: "Keyboard Backlight Set Minimum"
-    KeyboardBacklightSetMinimum,
+    KeyboardBacklightSetMinimum = 0x7D,
     /// Usage ID `0x7E`: "Keyboard Backlight Set Maximum"
-    KeyboardBacklightSetMaximum,
+    KeyboardBacklightSetMaximum = 0x7E,
     /// Usage ID `0x7F`: "Keyboard Backlight Auto"
-    KeyboardBacklightAuto,
+    KeyboardBacklightAuto = 0x7F,
     /// Usage ID `0x80`: "Selection"
-    Selection,
+    Selection = 0x80,
     /// Usage ID `0x81`: "Assign Selection"
-    AssignSelection,
+    AssignSelection = 0x81,
     /// Usage ID `0x82`: "Mode Step"
-    ModeStep,
+    ModeStep = 0x82,
     /// Usage ID `0x83`: "Recall Last"
-    RecallLast,
+    RecallLast = 0x83,
     /// Usage ID `0x84`: "Enter Channel"
-    EnterChannel,
+    EnterChannel = 0x84,
     /// Usage ID `0x85`: "Order Movie"
-    OrderMovie,
+    OrderMovie = 0x85,
     /// Usage ID `0x86`: "Channel"
-    Channel,
+    Channel = 0x86,
     /// Usage ID `0x87`: "Media Selection"
-    MediaSelection,
+    MediaSelection = 0x87,
     /// Usage ID `0x88`: "Media Select Computer"
-    MediaSelectComputer,
+    MediaSelectComputer = 0x88,
     /// Usage ID `0x89`: "Media Select TV"
-    MediaSelectTV,
+    MediaSelectTV = 0x89,
     /// Usage ID `0x8A`: "Media Select WWW"
-    MediaSelectWWW,
+    MediaSelectWWW = 0x8A,
     /// Usage ID `0x8B`: "Media Select DVD"
-    MediaSelectDVD,
+    MediaSelectDVD = 0x8B,
     /// Usage ID `0x8C`: "Media Select Telephone"
-    MediaSelectTelephone,
+    MediaSelectTelephone = 0x8C,
     /// Usage ID `0x8D`: "Media Select Program Guide"
-    MediaSelectProgramGuide,
+    MediaSelectProgramGuide = 0x8D,
     /// Usage ID `0x8E`: "Media Select Video Phone"
-    MediaSelectVideoPhone,
+    MediaSelectVideoPhone = 0x8E,
     /// Usage ID `0x8F`: "Media Select Games"
-    MediaSelectGames,
+    MediaSelectGames = 0x8F,
     /// Usage ID `0x90`: "Media Select Messages"
-    MediaSelectMessages,
+    MediaSelectMessages = 0x90,
     /// Usage ID `0x91`: "Media Select CD"
-    MediaSelectCD,
+    MediaSelectCD = 0x91,
     /// Usage ID `0x92`: "Media Select VCR"
-    MediaSelectVCR,
+    MediaSelectVCR = 0x92,
     /// Usage ID `0x93`: "Media Select Tuner"
-    MediaSelectTuner,
+    MediaSelectTuner = 0x93,
     /// Usage ID `0x94`: "Quit"
-    Quit,
+    Quit = 0x94,
     /// Usage ID `0x95`: "Help"
-    Help,
+    Help = 0x95,
     /// Usage ID `0x96`: "Media Select Tape"
-    MediaSelectTape,
+    MediaSelectTape = 0x96,
     /// Usage ID `0x97`: "Media Select Cable"
-    MediaSelectCable,
+    MediaSelectCable = 0x97,
     /// Usage ID `0x98`: "Media Select Satellite"
-    MediaSelectSatellite,
+    MediaSelectSatellite = 0x98,
     /// Usage ID `0x99`: "Media Select Security"
-    MediaSelectSecurity,
+    MediaSelectSecurity = 0x99,
     /// Usage ID `0x9A`: "Media Select Home"
-    MediaSelectHome,
+    MediaSelectHome = 0x9A,
     /// Usage ID `0x9B`: "Media Select Call"
-    MediaSelectCall,
+    MediaSelectCall = 0x9B,
     /// Usage ID `0x9C`: "Channel Increment"
-    ChannelIncrement,
+    ChannelIncrement = 0x9C,
     /// Usage ID `0x9D`: "Channel Decrement"
-    ChannelDecrement,
+    ChannelDecrement = 0x9D,
     /// Usage ID `0x9E`: "Media Select SAP"
-    MediaSelectSAP,
+    MediaSelectSAP = 0x9E,
     /// Usage ID `0xA0`: "VCR Plus"
-    VCRPlus,
+    VCRPlus = 0xA0,
     /// Usage ID `0xA1`: "Once"
-    Once,
+    Once = 0xA1,
     /// Usage ID `0xA2`: "Daily"
-    Daily,
+    Daily = 0xA2,
     /// Usage ID `0xA3`: "Weekly"
-    Weekly,
+    Weekly = 0xA3,
     /// Usage ID `0xA4`: "Monthly"
-    Monthly,
+    Monthly = 0xA4,
     /// Usage ID `0xB0`: "Play"
-    Play,
+    Play = 0xB0,
     /// Usage ID `0xB1`: "Pause"
-    Pause,
+    Pause = 0xB1,
     /// Usage ID `0xB2`: "Record"
-    Record,
+    Record = 0xB2,
     /// Usage ID `0xB3`: "Fast Forward"
-    FastForward,
+    FastForward = 0xB3,
     /// Usage ID `0xB4`: "Rewind"
-    Rewind,
+    Rewind = 0xB4,
     /// Usage ID `0xB5`: "Scan Next Track"
-    ScanNextTrack,
+    ScanNextTrack = 0xB5,
     /// Usage ID `0xB6`: "Scan Previous Track"
-    ScanPreviousTrack,
+    ScanPreviousTrack = 0xB6,
     /// Usage ID `0xB7`: "Stop"
-    Stop,
+    Stop = 0xB7,
     /// Usage ID `0xB8`: "Eject"
-    Eject,
+    Eject = 0xB8,
     /// Usage ID `0xB9`: "Random Play"
-    RandomPlay,
+    RandomPlay = 0xB9,
     /// Usage ID `0xBA`: "Select Disc"
-    SelectDisc,
+    SelectDisc = 0xBA,
     /// Usage ID `0xBB`: "Enter Disc"
-    EnterDisc,
+    EnterDisc = 0xBB,
     /// Usage ID `0xBC`: "Repeat"
-    Repeat,
+    Repeat = 0xBC,
     /// Usage ID `0xBD`: "Tracking"
-    Tracking,
+    Tracking = 0xBD,
     /// Usage ID `0xBE`: "Track Normal"
-    TrackNormal,
+    TrackNormal = 0xBE,
     /// Usage ID `0xBF`: "Slow Tracking"
-    SlowTracking,
+    SlowTracking = 0xBF,
     /// Usage ID `0xC0`: "Frame Forward"
-    FrameForward,
+    FrameForward = 0xC0,
     /// Usage ID `0xC1`: "Frame Back"
-    FrameBack,
+    FrameBack = 0xC1,
     /// Usage ID `0xC2`: "Mark"
-    Mark,
+    Mark = 0xC2,
     /// Usage ID `0xC3`: "Clear Mark"
-    ClearMark,
+    ClearMark = 0xC3,
     /// Usage ID `0xC4`: "Repeat From Mark"
-    RepeatFromMark,
+    RepeatFromMark = 0xC4,
     /// Usage ID `0xC5`: "Return To Mark"
-    ReturnToMark,
+    ReturnToMark = 0xC5,
     /// Usage ID `0xC6`: "Search Mark Forward"
-    SearchMarkForward,
+    SearchMarkForward = 0xC6,
     /// Usage ID `0xC7`: "Search Mark Backwards"
-    SearchMarkBackwards,
+    SearchMarkBackwards = 0xC7,
     /// Usage ID `0xC8`: "Counter Reset"
-    CounterReset,
+    CounterReset = 0xC8,
     /// Usage ID `0xC9`: "Show Counter"
-    ShowCounter,
+    ShowCounter = 0xC9,
     /// Usage ID `0xCA`: "Tracking Increment"
-    TrackingIncrement,
+    TrackingIncrement = 0xCA,
     /// Usage ID `0xCB`: "Tracking Decrement"
-    TrackingDecrement,
+    TrackingDecrement = 0xCB,
     /// Usage ID `0xCC`: "Stop/Eject"
-    StopEject,
+    StopEject = 0xCC,
     /// Usage ID `0xCD`: "Play/Pause"
-    PlayPause,
+    PlayPause = 0xCD,
     /// Usage ID `0xCE`: "Play/Skip"
-    PlaySkip,
+    PlaySkip = 0xCE,
     /// Usage ID `0xCF`: "Voice Command"
-    VoiceCommand,
+    VoiceCommand = 0xCF,
     /// Usage ID `0xD0`: "Invoke Capture Interface"
-    InvokeCaptureInterface,
+    InvokeCaptureInterface = 0xD0,
     /// Usage ID `0xD1`: "Start or Stop Game Recording"
-    StartorStopGameRecording,
+    StartorStopGameRecording = 0xD1,
     /// Usage ID `0xD2`: "Historical Game Capture"
-    HistoricalGameCapture,
+    HistoricalGameCapture = 0xD2,
     /// Usage ID `0xD3`: "Capture Game Screenshot"
-    CaptureGameScreenshot,
+    CaptureGameScreenshot = 0xD3,
     /// Usage ID `0xD4`: "Show or Hide Recording Indicator"
-    ShoworHideRecordingIndicator,
+    ShoworHideRecordingIndicator = 0xD4,
     /// Usage ID `0xD5`: "Start or Stop Microphone Capture"
-    StartorStopMicrophoneCapture,
+    StartorStopMicrophoneCapture = 0xD5,
     /// Usage ID `0xD6`: "Start or Stop Camera Capture"
-    StartorStopCameraCapture,
+    StartorStopCameraCapture = 0xD6,
     /// Usage ID `0xD7`: "Start or Stop Game Broadcast"
-    StartorStopGameBroadcast,
+    StartorStopGameBroadcast = 0xD7,
     /// Usage ID `0xD8`: "Start or Stop Voice Dictation Session"
-    StartorStopVoiceDictationSession,
+    StartorStopVoiceDictationSession = 0xD8,
     /// Usage ID `0xD9`: "Invoke/Dismiss Emoji Picker"
-    InvokeDismissEmojiPicker,
+    InvokeDismissEmojiPicker = 0xD9,
     /// Usage ID `0xE0`: "Volume"
-    Volume,
+    Volume = 0xE0,
     /// Usage ID `0xE1`: "Balance"
-    Balance,
+    Balance = 0xE1,
     /// Usage ID `0xE2`: "Mute"
-    Mute,
+    Mute = 0xE2,
     /// Usage ID `0xE3`: "Bass"
-    Bass,
+    Bass = 0xE3,
     /// Usage ID `0xE4`: "Treble"
-    Treble,
+    Treble = 0xE4,
     /// Usage ID `0xE5`: "Bass Boost"
-    BassBoost,
+    BassBoost = 0xE5,
     /// Usage ID `0xE6`: "Surround Mode"
-    SurroundMode,
+    SurroundMode = 0xE6,
     /// Usage ID `0xE7`: "Loudness"
-    Loudness,
+    Loudness = 0xE7,
     /// Usage ID `0xE8`: "MPX"
-    MPX,
+    MPX = 0xE8,
     /// Usage ID `0xE9`: "Volume Increment"
-    VolumeIncrement,
+    VolumeIncrement = 0xE9,
     /// Usage ID `0xEA`: "Volume Decrement"
-    VolumeDecrement,
+    VolumeDecrement = 0xEA,
     /// Usage ID `0xF0`: "Speed Select"
-    SpeedSelect,
+    SpeedSelect = 0xF0,
     /// Usage ID `0xF1`: "Playback Speed"
-    PlaybackSpeed,
+    PlaybackSpeed = 0xF1,
     /// Usage ID `0xF2`: "Standard Play"
-    StandardPlay,
+    StandardPlay = 0xF2,
     /// Usage ID `0xF3`: "Long Play"
-    LongPlay,
+    LongPlay = 0xF3,
     /// Usage ID `0xF4`: "Extended Play"
-    ExtendedPlay,
+    ExtendedPlay = 0xF4,
     /// Usage ID `0xF5`: "Slow"
-    Slow,
+    Slow = 0xF5,
     /// Usage ID `0x100`: "Fan Enable"
-    FanEnable,
+    FanEnable = 0x100,
     /// Usage ID `0x101`: "Fan Speed"
-    FanSpeed,
+    FanSpeed = 0x101,
     /// Usage ID `0x102`: "Light Enable"
-    LightEnable,
+    LightEnable = 0x102,
     /// Usage ID `0x103`: "Light Illumination Level"
-    LightIlluminationLevel,
+    LightIlluminationLevel = 0x103,
     /// Usage ID `0x104`: "Climate Control Enable"
-    ClimateControlEnable,
+    ClimateControlEnable = 0x104,
     /// Usage ID `0x105`: "Room Temperature"
-    RoomTemperature,
+    RoomTemperature = 0x105,
     /// Usage ID `0x106`: "Security Enable"
-    SecurityEnable,
+    SecurityEnable = 0x106,
     /// Usage ID `0x107`: "Fire Alarm"
-    FireAlarm,
+    FireAlarm = 0x107,
     /// Usage ID `0x108`: "Police Alarm"
-    PoliceAlarm,
+    PoliceAlarm = 0x108,
     /// Usage ID `0x109`: "Proximity"
-    Proximity,
+    Proximity = 0x109,
     /// Usage ID `0x10A`: "Motion"
-    Motion,
+    Motion = 0x10A,
     /// Usage ID `0x10B`: "Duress Alarm"
-    DuressAlarm,
+    DuressAlarm = 0x10B,
     /// Usage ID `0x10C`: "Holdup Alarm"
-    HoldupAlarm,
+    HoldupAlarm = 0x10C,
     /// Usage ID `0x10D`: "Medical Alarm"
-    MedicalAlarm,
+    MedicalAlarm = 0x10D,
     /// Usage ID `0x150`: "Balance Right"
-    BalanceRight,
+    BalanceRight = 0x150,
     /// Usage ID `0x151`: "Balance Left"
-    BalanceLeft,
+    BalanceLeft = 0x151,
     /// Usage ID `0x152`: "Bass Increment"
-    BassIncrement,
+    BassIncrement = 0x152,
     /// Usage ID `0x153`: "Bass Decrement"
-    BassDecrement,
+    BassDecrement = 0x153,
     /// Usage ID `0x154`: "Treble Increment"
-    TrebleIncrement,
+    TrebleIncrement = 0x154,
     /// Usage ID `0x155`: "Treble Decrement"
-    TrebleDecrement,
+    TrebleDecrement = 0x155,
     /// Usage ID `0x160`: "Speaker System"
-    SpeakerSystem,
+    SpeakerSystem = 0x160,
     /// Usage ID `0x161`: "Channel Left"
-    ChannelLeft,
+    ChannelLeft = 0x161,
     /// Usage ID `0x162`: "Channel Right"
-    ChannelRight,
+    ChannelRight = 0x162,
     /// Usage ID `0x163`: "Channel Center"
-    ChannelCenter,
+    ChannelCenter = 0x163,
     /// Usage ID `0x164`: "Channel Front"
-    ChannelFront,
+    ChannelFront = 0x164,
     /// Usage ID `0x165`: "Channel Center Front"
-    ChannelCenterFront,
+    ChannelCenterFront = 0x165,
     /// Usage ID `0x166`: "Channel Side"
-    ChannelSide,
+    ChannelSide = 0x166,
     /// Usage ID `0x167`: "Channel Surround"
-    ChannelSurround,
+    ChannelSurround = 0x167,
     /// Usage ID `0x168`: "Channel Low Frequency Enhancement"
-    ChannelLowFrequencyEnhancement,
+    ChannelLowFrequencyEnhancement = 0x168,
     /// Usage ID `0x169`: "Channel Top"
-    ChannelTop,
+    ChannelTop = 0x169,
     /// Usage ID `0x16A`: "Channel Unknown"
-    ChannelUnknown,
+    ChannelUnknown = 0x16A,
     /// Usage ID `0x170`: "Sub-channel"
-    Subchannel,
+    Subchannel = 0x170,
     /// Usage ID `0x171`: "Sub-channel Increment"
-    SubchannelIncrement,
+    SubchannelIncrement = 0x171,
     /// Usage ID `0x172`: "Sub-channel Decrement"
-    SubchannelDecrement,
+    SubchannelDecrement = 0x172,
     /// Usage ID `0x173`: "Alternate Audio Increment"
-    AlternateAudioIncrement,
+    AlternateAudioIncrement = 0x173,
     /// Usage ID `0x174`: "Alternate Audio Decrement"
-    AlternateAudioDecrement,
+    AlternateAudioDecrement = 0x174,
     /// Usage ID `0x180`: "Application Launch Buttons"
-    ApplicationLaunchButtons,
+    ApplicationLaunchButtons = 0x180,
     /// Usage ID `0x181`: "AL Launch Button Configuration Tool"
-    ALLaunchButtonConfigurationTool,
+    ALLaunchButtonConfigurationTool = 0x181,
     /// Usage ID `0x182`: "AL Programmable Button Configuration"
-    ALProgrammableButtonConfiguration,
+    ALProgrammableButtonConfiguration = 0x182,
     /// Usage ID `0x183`: "AL Consumer Control Configuration"
-    ALConsumerControlConfiguration,
+    ALConsumerControlConfiguration = 0x183,
     /// Usage ID `0x184`: "AL Word Processor"
-    ALWordProcessor,
+    ALWordProcessor = 0x184,
     /// Usage ID `0x185`: "AL Text Editor"
-    ALTextEditor,
+    ALTextEditor = 0x185,
     /// Usage ID `0x186`: "AL Spreadsheet"
-    ALSpreadsheet,
+    ALSpreadsheet = 0x186,
     /// Usage ID `0x187`: "AL Graphics Editor"
-    ALGraphicsEditor,
+    ALGraphicsEditor = 0x187,
     /// Usage ID `0x188`: "AL Presentation App"
-    ALPresentationApp,
+    ALPresentationApp = 0x188,
     /// Usage ID `0x189`: "AL Database App"
-    ALDatabaseApp,
+    ALDatabaseApp = 0x189,
     /// Usage ID `0x18A`: "AL Email Reader"
-    ALEmailReader,
+    ALEmailReader = 0x18A,
     /// Usage ID `0x18B`: "AL Newsreader"
-    ALNewsreader,
+    ALNewsreader = 0x18B,
     /// Usage ID `0x18C`: "AL Voicemail"
-    ALVoicemail,
+    ALVoicemail = 0x18C,
     /// Usage ID `0x18D`: "AL Contacts/Address Book"
-    ALContactsAddressBook,
+    ALContactsAddressBook = 0x18D,
     /// Usage ID `0x18E`: "AL Calendar/Schedule"
-    ALCalendarSchedule,
+    ALCalendarSchedule = 0x18E,
     /// Usage ID `0x18F`: "AL Task/Project Manager"
-    ALTaskProjectManager,
+    ALTaskProjectManager = 0x18F,
     /// Usage ID `0x190`: "AL Log/Journal/Timecard"
-    ALLogJournalTimecard,
+    ALLogJournalTimecard = 0x190,
     /// Usage ID `0x191`: "AL Checkbook/Finance"
-    ALCheckbookFinance,
+    ALCheckbookFinance = 0x191,
     /// Usage ID `0x192`: "AL Calculator"
-    ALCalculator,
+    ALCalculator = 0x192,
     /// Usage ID `0x193`: "AL A/V Capture/Playback"
-    ALAVCapturePlayback,
+    ALAVCapturePlayback = 0x193,
     /// Usage ID `0x194`: "AL Local Machine Browser"
-    ALLocalMachineBrowser,
+    ALLocalMachineBrowser = 0x194,
     /// Usage ID `0x195`: "AL LAN/WAN Browser"
-    ALLANWANBrowser,
+    ALLANWANBrowser = 0x195,
     /// Usage ID `0x196`: "AL Internet Browser"
-    ALInternetBrowser,
+    ALInternetBrowser = 0x196,
     /// Usage ID `0x197`: "AL Remote Networking/ISP Connect"
-    ALRemoteNetworkingISPConnect,
+    ALRemoteNetworkingISPConnect = 0x197,
     /// Usage ID `0x198`: "AL Network Conference"
-    ALNetworkConference,
+    ALNetworkConference = 0x198,
     /// Usage ID `0x199`: "AL Network Chat"
-    ALNetworkChat,
+    ALNetworkChat = 0x199,
     /// Usage ID `0x19A`: "AL Telephony/Dialer"
-    ALTelephonyDialer,
+    ALTelephonyDialer = 0x19A,
     /// Usage ID `0x19B`: "AL Logon"
-    ALLogon,
+    ALLogon = 0x19B,
     /// Usage ID `0x19C`: "AL Logoff"
-    ALLogoff,
+    ALLogoff = 0x19C,
     /// Usage ID `0x19D`: "AL Logon/Logoff"
-    ALLogonLogoff,
+    ALLogonLogoff = 0x19D,
     /// Usage ID `0x19E`: "AL Terminal Lock/Screensaver"
-    ALTerminalLockScreensaver,
+    ALTerminalLockScreensaver = 0x19E,
     /// Usage ID `0x19F`: "AL Control Panel"
-    ALControlPanel,
+    ALControlPanel = 0x19F,
     /// Usage ID `0x1A0`: "AL Command Line Processor/Run"
-    ALCommandLineProcessorRun,
+    ALCommandLineProcessorRun = 0x1A0,
     /// Usage ID `0x1A1`: "AL Process/Task Manager"
-    ALProcessTaskManager,
+    ALProcessTaskManager = 0x1A1,
     /// Usage ID `0x1A2`: "AL Select Task/Application"
-    ALSelectTaskApplication,
+    ALSelectTaskApplication = 0x1A2,
     /// Usage ID `0x1A3`: "AL Next Task/Application"
-    ALNextTaskApplication,
+    ALNextTaskApplication = 0x1A3,
     /// Usage ID `0x1A4`: "AL Previous Task/Application"
-    ALPreviousTaskApplication,
+    ALPreviousTaskApplication = 0x1A4,
     /// Usage ID `0x1A5`: "AL Preemptive Halt Task/Application"
-    ALPreemptiveHaltTaskApplication,
+    ALPreemptiveHaltTaskApplication = 0x1A5,
     /// Usage ID `0x1A6`: "AL Integrated Help Center"
-    ALIntegratedHelpCenter,
+    ALIntegratedHelpCenter = 0x1A6,
     /// Usage ID `0x1A7`: "AL Documents"
-    ALDocuments,
+    ALDocuments = 0x1A7,
     /// Usage ID `0x1A8`: "AL Thesaurus"
-    ALThesaurus,
+    ALThesaurus = 0x1A8,
     /// Usage ID `0x1A9`: "AL Dictionary"
-    ALDictionary,
+    ALDictionary = 0x1A9,
     /// Usage ID `0x1AA`: "AL Desktop"
-    ALDesktop,
+    ALDesktop = 0x1AA,
     /// Usage ID `0x1AB`: "AL Spell Check"
-    ALSpellCheck,
+    ALSpellCheck = 0x1AB,
     /// Usage ID `0x1AC`: "AL Grammar Check"
-    ALGrammarCheck,
+    ALGrammarCheck = 0x1AC,
     /// Usage ID `0x1AD`: "AL Wireless Status"
-    ALWirelessStatus,
+    ALWirelessStatus = 0x1AD,
     /// Usage ID `0x1AE`: "AL Keyboard Layout"
-    ALKeyboardLayout,
+    ALKeyboardLayout = 0x1AE,
     /// Usage ID `0x1AF`: "AL Virus Protection"
-    ALVirusProtection,
+    ALVirusProtection = 0x1AF,
     /// Usage ID `0x1B0`: "AL Encryption"
-    ALEncryption,
+    ALEncryption = 0x1B0,
     /// Usage ID `0x1B1`: "AL Screen Saver"
-    ALScreenSaver,
+    ALScreenSaver = 0x1B1,
     /// Usage ID `0x1B2`: "AL Alarms"
-    ALAlarms,
+    ALAlarms = 0x1B2,
     /// Usage ID `0x1B3`: "AL Clock"
-    ALClock,
+    ALClock = 0x1B3,
     /// Usage ID `0x1B4`: "AL File Browser"
-    ALFileBrowser,
+    ALFileBrowser = 0x1B4,
     /// Usage ID `0x1B5`: "AL Power Status"
-    ALPowerStatus,
+    ALPowerStatus = 0x1B5,
     /// Usage ID `0x1B6`: "AL Image Browser"
-    ALImageBrowser,
+    ALImageBrowser = 0x1B6,
     /// Usage ID `0x1B7`: "AL Audio Browser"
-    ALAudioBrowser,
+    ALAudioBrowser = 0x1B7,
     /// Usage ID `0x1B8`: "AL Movie Browser"
-    ALMovieBrowser,
+    ALMovieBrowser = 0x1B8,
     /// Usage ID `0x1B9`: "AL Digital Rights Manager"
-    ALDigitalRightsManager,
+    ALDigitalRightsManager = 0x1B9,
     /// Usage ID `0x1BA`: "AL Digital Wallet"
-    ALDigitalWallet,
+    ALDigitalWallet = 0x1BA,
     /// Usage ID `0x1BC`: "AL Instant Messaging"
-    ALInstantMessaging,
+    ALInstantMessaging = 0x1BC,
     /// Usage ID `0x1BD`: "AL OEM Features/ Tips/Tutorial Browser"
-    ALOEMFeaturesTipsTutorialBrowser,
+    ALOEMFeaturesTipsTutorialBrowser = 0x1BD,
     /// Usage ID `0x1BE`: "AL OEM Help"
-    ALOEMHelp,
+    ALOEMHelp = 0x1BE,
     /// Usage ID `0x1BF`: "AL Online Community"
-    ALOnlineCommunity,
+    ALOnlineCommunity = 0x1BF,
     /// Usage ID `0x1C0`: "AL Entertainment Content Browser"
-    ALEntertainmentContentBrowser,
+    ALEntertainmentContentBrowser = 0x1C0,
     /// Usage ID `0x1C1`: "AL Online Shopping Browser"
-    ALOnlineShoppingBrowser,
+    ALOnlineShoppingBrowser = 0x1C1,
     /// Usage ID `0x1C2`: "AL SmartCard Information/Help"
-    ALSmartCardInformationHelp,
+    ALSmartCardInformationHelp = 0x1C2,
     /// Usage ID `0x1C3`: "AL Market Monitor/Finance Browser"
-    ALMarketMonitorFinanceBrowser,
+    ALMarketMonitorFinanceBrowser = 0x1C3,
     /// Usage ID `0x1C4`: "AL Customized Corporate News Browser"
-    ALCustomizedCorporateNewsBrowser,
+    ALCustomizedCorporateNewsBrowser = 0x1C4,
     /// Usage ID `0x1C5`: "AL Online Activity Browser"
-    ALOnlineActivityBrowser,
+    ALOnlineActivityBrowser = 0x1C5,
     /// Usage ID `0x1C6`: "AL Research/Search Browser"
-    ALResearchSearchBrowser,
+    ALResearchSearchBrowser = 0x1C6,
     /// Usage ID `0x1C7`: "AL Audio Player"
-    ALAudioPlayer,
+    ALAudioPlayer = 0x1C7,
     /// Usage ID `0x1C8`: "AL Message Status"
-    ALMessageStatus,
+    ALMessageStatus = 0x1C8,
     /// Usage ID `0x1C9`: "AL Contact Sync"
-    ALContactSync,
+    ALContactSync = 0x1C9,
     /// Usage ID `0x1CA`: "AL Navigation"
-    ALNavigation,
+    ALNavigation = 0x1CA,
     /// Usage ID `0x1CB`: "AL Context‐aware Desktop Assistant"
-    ALContextawareDesktopAssistant,
+    ALContextawareDesktopAssistant = 0x1CB,
     /// Usage ID `0x200`: "Generic GUI Application Controls"
-    GenericGUIApplicationControls,
+    GenericGUIApplicationControls = 0x200,
     /// Usage ID `0x201`: "AC New"
-    ACNew,
+    ACNew = 0x201,
     /// Usage ID `0x202`: "AC Open"
-    ACOpen,
+    ACOpen = 0x202,
     /// Usage ID `0x203`: "AC Close"
-    ACClose,
+    ACClose = 0x203,
     /// Usage ID `0x204`: "AC Exit"
-    ACExit,
+    ACExit = 0x204,
     /// Usage ID `0x205`: "AC Maximize"
-    ACMaximize,
+    ACMaximize = 0x205,
     /// Usage ID `0x206`: "AC Minimize"
-    ACMinimize,
+    ACMinimize = 0x206,
     /// Usage ID `0x207`: "AC Save"
-    ACSave,
+    ACSave = 0x207,
     /// Usage ID `0x208`: "AC Print"
-    ACPrint,
+    ACPrint = 0x208,
     /// Usage ID `0x209`: "AC Properties"
-    ACProperties,
+    ACProperties = 0x209,
     /// Usage ID `0x21A`: "AC Undo"
-    ACUndo,
+    ACUndo = 0x21A,
     /// Usage ID `0x21B`: "AC Copy"
-    ACCopy,
+    ACCopy = 0x21B,
     /// Usage ID `0x21C`: "AC Cut"
-    ACCut,
+    ACCut = 0x21C,
     /// Usage ID `0x21D`: "AC Paste"
-    ACPaste,
+    ACPaste = 0x21D,
     /// Usage ID `0x21E`: "AC Select All"
-    ACSelectAll,
+    ACSelectAll = 0x21E,
     /// Usage ID `0x21F`: "AC Find"
-    ACFind,
+    ACFind = 0x21F,
     /// Usage ID `0x220`: "AC Find and Replace"
-    ACFindandReplace,
+    ACFindandReplace = 0x220,
     /// Usage ID `0x221`: "AC Search"
-    ACSearch,
+    ACSearch = 0x221,
     /// Usage ID `0x222`: "AC Go To"
-    ACGoTo,
+    ACGoTo = 0x222,
     /// Usage ID `0x223`: "AC Home"
-    ACHome,
+    ACHome = 0x223,
     /// Usage ID `0x224`: "AC Back"
-    ACBack,
+    ACBack = 0x224,
     /// Usage ID `0x225`: "AC Forward"
-    ACForward,
+    ACForward = 0x225,
     /// Usage ID `0x226`: "AC Stop"
-    ACStop,
+    ACStop = 0x226,
     /// Usage ID `0x227`: "AC Refresh"
-    ACRefresh,
+    ACRefresh = 0x227,
     /// Usage ID `0x228`: "AC Previous Link"
-    ACPreviousLink,
+    ACPreviousLink = 0x228,
     /// Usage ID `0x229`: "AC Next Link"
-    ACNextLink,
+    ACNextLink = 0x229,
     /// Usage ID `0x22A`: "AC Bookmarks"
-    ACBookmarks,
+    ACBookmarks = 0x22A,
     /// Usage ID `0x22B`: "AC History"
-    ACHistory,
+    ACHistory = 0x22B,
     /// Usage ID `0x22C`: "AC Subscriptions"
-    ACSubscriptions,
+    ACSubscriptions = 0x22C,
     /// Usage ID `0x22D`: "AC Zoom In"
-    ACZoomIn,
+    ACZoomIn = 0x22D,
     /// Usage ID `0x22E`: "AC Zoom Out"
-    ACZoomOut,
+    ACZoomOut = 0x22E,
     /// Usage ID `0x22F`: "AC Zoom"
-    ACZoom,
+    ACZoom = 0x22F,
     /// Usage ID `0x230`: "AC Full Screen View"
-    ACFullScreenView,
+    ACFullScreenView = 0x230,
     /// Usage ID `0x231`: "AC Normal View"
-    ACNormalView,
+    ACNormalView = 0x231,
     /// Usage ID `0x232`: "AC View Toggle"
-    ACViewToggle,
+    ACViewToggle = 0x232,
     /// Usage ID `0x233`: "AC Scroll Up"
-    ACScrollUp,
+    ACScrollUp = 0x233,
     /// Usage ID `0x234`: "AC Scroll Down"
-    ACScrollDown,
+    ACScrollDown = 0x234,
     /// Usage ID `0x235`: "AC Scroll"
-    ACScroll,
+    ACScroll = 0x235,
     /// Usage ID `0x236`: "AC Pan Left"
-    ACPanLeft,
+    ACPanLeft = 0x236,
     /// Usage ID `0x237`: "AC Pan Right"
-    ACPanRight,
+    ACPanRight = 0x237,
     /// Usage ID `0x238`: "AC Pan"
-    ACPan,
+    ACPan = 0x238,
     /// Usage ID `0x239`: "AC New Window"
-    ACNewWindow,
+    ACNewWindow = 0x239,
     /// Usage ID `0x23A`: "AC Tile Horizontally"
-    ACTileHorizontally,
+    ACTileHorizontally = 0x23A,
     /// Usage ID `0x23B`: "AC Tile Vertically"
-    ACTileVertically,
+    ACTileVertically = 0x23B,
     /// Usage ID `0x23C`: "AC Format"
-    ACFormat,
+    ACFormat = 0x23C,
     /// Usage ID `0x23D`: "AC Edit"
-    ACEdit,
+    ACEdit = 0x23D,
     /// Usage ID `0x23E`: "AC Bold"
-    ACBold,
+    ACBold = 0x23E,
     /// Usage ID `0x23F`: "AC Italics"
-    ACItalics,
+    ACItalics = 0x23F,
     /// Usage ID `0x240`: "AC Underline"
-    ACUnderline,
+    ACUnderline = 0x240,
     /// Usage ID `0x241`: "AC Strikethrough"
-    ACStrikethrough,
+    ACStrikethrough = 0x241,
     /// Usage ID `0x242`: "AC Subscript"
-    ACSubscript,
+    ACSubscript = 0x242,
     /// Usage ID `0x243`: "AC Superscript"
-    ACSuperscript,
+    ACSuperscript = 0x243,
     /// Usage ID `0x244`: "AC All Caps"
-    ACAllCaps,
+    ACAllCaps = 0x244,
     /// Usage ID `0x245`: "AC Rotate"
-    ACRotate,
+    ACRotate = 0x245,
     /// Usage ID `0x246`: "AC Resize"
-    ACResize,
+    ACResize = 0x246,
     /// Usage ID `0x247`: "AC Flip Horizontal"
-    ACFlipHorizontal,
+    ACFlipHorizontal = 0x247,
     /// Usage ID `0x248`: "AC Flip Vertical"
-    ACFlipVertical,
+    ACFlipVertical = 0x248,
     /// Usage ID `0x249`: "AC Mirror Horizontal"
-    ACMirrorHorizontal,
+    ACMirrorHorizontal = 0x249,
     /// Usage ID `0x24A`: "AC Mirror Vertical"
-    ACMirrorVertical,
+    ACMirrorVertical = 0x24A,
     /// Usage ID `0x24B`: "AC Font Select"
-    ACFontSelect,
+    ACFontSelect = 0x24B,
     /// Usage ID `0x24C`: "AC Font Color"
-    ACFontColor,
+    ACFontColor = 0x24C,
     /// Usage ID `0x24D`: "AC Font Size"
-    ACFontSize,
+    ACFontSize = 0x24D,
     /// Usage ID `0x24E`: "AC Justify Left"
-    ACJustifyLeft,
+    ACJustifyLeft = 0x24E,
     /// Usage ID `0x24F`: "AC Justify Center H"
-    ACJustifyCenterH,
+    ACJustifyCenterH = 0x24F,
     /// Usage ID `0x250`: "AC Justify Right"
-    ACJustifyRight,
+    ACJustifyRight = 0x250,
     /// Usage ID `0x251`: "AC Justify Block H"
-    ACJustifyBlockH,
+    ACJustifyBlockH = 0x251,
     /// Usage ID `0x252`: "AC Justify Top"
-    ACJustifyTop,
+    ACJustifyTop = 0x252,
     /// Usage ID `0x253`: "AC Justify Center V"
-    ACJustifyCenterV,
+    ACJustifyCenterV = 0x253,
     /// Usage ID `0x254`: "AC Justify Bottom"
-    ACJustifyBottom,
+    ACJustifyBottom = 0x254,
     /// Usage ID `0x255`: "AC Justify Block V"
-    ACJustifyBlockV,
+    ACJustifyBlockV = 0x255,
     /// Usage ID `0x256`: "AC Indent Decrease"
-    ACIndentDecrease,
+    ACIndentDecrease = 0x256,
     /// Usage ID `0x257`: "AC Indent Increase"
-    ACIndentIncrease,
+    ACIndentIncrease = 0x257,
     /// Usage ID `0x258`: "AC Numbered List"
-    ACNumberedList,
+    ACNumberedList = 0x258,
     /// Usage ID `0x259`: "AC Restart Numbering"
-    ACRestartNumbering,
+    ACRestartNumbering = 0x259,
     /// Usage ID `0x25A`: "AC Bulleted List"
-    ACBulletedList,
+    ACBulletedList = 0x25A,
     /// Usage ID `0x25B`: "AC Promote"
-    ACPromote,
+    ACPromote = 0x25B,
     /// Usage ID `0x25C`: "AC Demote"
-    ACDemote,
+    ACDemote = 0x25C,
     /// Usage ID `0x25D`: "AC Yes"
-    ACYes,
+    ACYes = 0x25D,
     /// Usage ID `0x25E`: "AC No"
-    ACNo,
+    ACNo = 0x25E,
     /// Usage ID `0x25F`: "AC Cancel"
-    ACCancel,
+    ACCancel = 0x25F,
     /// Usage ID `0x260`: "AC Catalog"
-    ACCatalog,
+    ACCatalog = 0x260,
     /// Usage ID `0x261`: "AC Buy/Checkout"
-    ACBuyCheckout,
+    ACBuyCheckout = 0x261,
     /// Usage ID `0x262`: "AC Add to Cart"
-    ACAddtoCart,
+    ACAddtoCart = 0x262,
     /// Usage ID `0x263`: "AC Expand"
-    ACExpand,
+    ACExpand = 0x263,
     /// Usage ID `0x264`: "AC Expand All"
-    ACExpandAll,
+    ACExpandAll = 0x264,
     /// Usage ID `0x265`: "AC Collapse"
-    ACCollapse,
+    ACCollapse = 0x265,
     /// Usage ID `0x266`: "AC Collapse All"
-    ACCollapseAll,
+    ACCollapseAll = 0x266,
     /// Usage ID `0x267`: "AC Print Preview"
-    ACPrintPreview,
+    ACPrintPreview = 0x267,
     /// Usage ID `0x268`: "AC Paste Special"
-    ACPasteSpecial,
+    ACPasteSpecial = 0x268,
     /// Usage ID `0x269`: "AC Insert Mode"
-    ACInsertMode,
+    ACInsertMode = 0x269,
     /// Usage ID `0x26A`: "AC Delete"
-    ACDelete,
+    ACDelete = 0x26A,
     /// Usage ID `0x26B`: "AC Lock"
-    ACLock,
+    ACLock = 0x26B,
     /// Usage ID `0x26C`: "AC Unlock"
-    ACUnlock,
+    ACUnlock = 0x26C,
     /// Usage ID `0x26D`: "AC Protect"
-    ACProtect,
+    ACProtect = 0x26D,
     /// Usage ID `0x26E`: "AC Unprotect"
-    ACUnprotect,
+    ACUnprotect = 0x26E,
     /// Usage ID `0x26F`: "AC Attach Comment"
-    ACAttachComment,
+    ACAttachComment = 0x26F,
     /// Usage ID `0x270`: "AC Delete Comment"
-    ACDeleteComment,
+    ACDeleteComment = 0x270,
     /// Usage ID `0x271`: "AC View Comment"
-    ACViewComment,
+    ACViewComment = 0x271,
     /// Usage ID `0x272`: "AC Select Word"
-    ACSelectWord,
+    ACSelectWord = 0x272,
     /// Usage ID `0x273`: "AC Select Sentence"
-    ACSelectSentence,
+    ACSelectSentence = 0x273,
     /// Usage ID `0x274`: "AC Select Paragraph"
-    ACSelectParagraph,
+    ACSelectParagraph = 0x274,
     /// Usage ID `0x275`: "AC Select Column"
-    ACSelectColumn,
+    ACSelectColumn = 0x275,
     /// Usage ID `0x276`: "AC Select Row"
-    ACSelectRow,
+    ACSelectRow = 0x276,
     /// Usage ID `0x277`: "AC Select Table"
-    ACSelectTable,
+    ACSelectTable = 0x277,
     /// Usage ID `0x278`: "AC Select Object"
-    ACSelectObject,
+    ACSelectObject = 0x278,
     /// Usage ID `0x279`: "AC Redo/Repeat"
-    ACRedoRepeat,
+    ACRedoRepeat = 0x279,
     /// Usage ID `0x27A`: "AC Sort"
-    ACSort,
+    ACSort = 0x27A,
     /// Usage ID `0x27B`: "AC Sort Ascending"
-    ACSortAscending,
+    ACSortAscending = 0x27B,
     /// Usage ID `0x27C`: "AC Sort Descending"
-    ACSortDescending,
+    ACSortDescending = 0x27C,
     /// Usage ID `0x27D`: "AC Filter"
-    ACFilter,
+    ACFilter = 0x27D,
     /// Usage ID `0x27E`: "AC Set Clock"
-    ACSetClock,
+    ACSetClock = 0x27E,
     /// Usage ID `0x27F`: "AC View Clock"
-    ACViewClock,
+    ACViewClock = 0x27F,
     /// Usage ID `0x280`: "AC Select Time Zone"
-    ACSelectTimeZone,
+    ACSelectTimeZone = 0x280,
     /// Usage ID `0x281`: "AC Edit Time Zones"
-    ACEditTimeZones,
+    ACEditTimeZones = 0x281,
     /// Usage ID `0x282`: "AC Set Alarm"
-    ACSetAlarm,
+    ACSetAlarm = 0x282,
     /// Usage ID `0x283`: "AC Clear Alarm"
-    ACClearAlarm,
+    ACClearAlarm = 0x283,
     /// Usage ID `0x284`: "AC Snooze Alarm"
-    ACSnoozeAlarm,
+    ACSnoozeAlarm = 0x284,
     /// Usage ID `0x285`: "AC Reset Alarm"
-    ACResetAlarm,
+    ACResetAlarm = 0x285,
     /// Usage ID `0x286`: "AC Synchronize"
-    ACSynchronize,
+    ACSynchronize = 0x286,
     /// Usage ID `0x287`: "AC Send/Receive"
-    ACSendReceive,
+    ACSendReceive = 0x287,
     /// Usage ID `0x288`: "AC Send To"
-    ACSendTo,
+    ACSendTo = 0x288,
     /// Usage ID `0x289`: "AC Reply"
-    ACReply,
+    ACReply = 0x289,
     /// Usage ID `0x28A`: "AC Reply All"
-    ACReplyAll,
+    ACReplyAll = 0x28A,
     /// Usage ID `0x28B`: "AC Forward Msg"
-    ACForwardMsg,
+    ACForwardMsg = 0x28B,
     /// Usage ID `0x28C`: "AC Send"
-    ACSend,
+    ACSend = 0x28C,
     /// Usage ID `0x28D`: "AC Attach File"
-    ACAttachFile,
+    ACAttachFile = 0x28D,
     /// Usage ID `0x28E`: "AC Upload"
-    ACUpload,
+    ACUpload = 0x28E,
     /// Usage ID `0x28F`: "AC Download (Save Target As)"
-    ACDownloadSaveTargetAs,
+    ACDownloadSaveTargetAs = 0x28F,
     /// Usage ID `0x290`: "AC Set Borders"
-    ACSetBorders,
+    ACSetBorders = 0x290,
     /// Usage ID `0x291`: "AC Insert Row"
-    ACInsertRow,
+    ACInsertRow = 0x291,
     /// Usage ID `0x292`: "AC Insert Column"
-    ACInsertColumn,
+    ACInsertColumn = 0x292,
     /// Usage ID `0x293`: "AC Insert File"
-    ACInsertFile,
+    ACInsertFile = 0x293,
     /// Usage ID `0x294`: "AC Insert Picture"
-    ACInsertPicture,
+    ACInsertPicture = 0x294,
     /// Usage ID `0x295`: "AC Insert Object"
-    ACInsertObject,
+    ACInsertObject = 0x295,
     /// Usage ID `0x296`: "AC Insert Symbol"
-    ACInsertSymbol,
+    ACInsertSymbol = 0x296,
     /// Usage ID `0x297`: "AC Save and Close"
-    ACSaveandClose,
+    ACSaveandClose = 0x297,
     /// Usage ID `0x298`: "AC Rename"
-    ACRename,
+    ACRename = 0x298,
     /// Usage ID `0x299`: "AC Merge"
-    ACMerge,
+    ACMerge = 0x299,
     /// Usage ID `0x29A`: "AC Split"
-    ACSplit,
+    ACSplit = 0x29A,
     /// Usage ID `0x29B`: "AC Disribute Horizontally"
-    ACDisributeHorizontally,
+    ACDisributeHorizontally = 0x29B,
     /// Usage ID `0x29C`: "AC Distribute Vertically"
-    ACDistributeVertically,
+    ACDistributeVertically = 0x29C,
     /// Usage ID `0x29D`: "AC Next Keyboard Layout Select"
-    ACNextKeyboardLayoutSelect,
+    ACNextKeyboardLayoutSelect = 0x29D,
     /// Usage ID `0x29E`: "AC Navigation Guidance"
-    ACNavigationGuidance,
+    ACNavigationGuidance = 0x29E,
     /// Usage ID `0x29F`: "AC Desktop Show All Windows"
-    ACDesktopShowAllWindows,
+    ACDesktopShowAllWindows = 0x29F,
     /// Usage ID `0x2A0`: "AC Soft Key Left"
-    ACSoftKeyLeft,
+    ACSoftKeyLeft = 0x2A0,
     /// Usage ID `0x2A1`: "AC Soft Key Right"
-    ACSoftKeyRight,
+    ACSoftKeyRight = 0x2A1,
     /// Usage ID `0x2A2`: "AC Desktop Show All Applications"
-    ACDesktopShowAllApplications,
+    ACDesktopShowAllApplications = 0x2A2,
     /// Usage ID `0x2B0`: "AC Idle Keep Alive"
-    ACIdleKeepAlive,
+    ACIdleKeepAlive = 0x2B0,
     /// Usage ID `0x2C0`: "Extended Keyboard Attributes Collection"
-    ExtendedKeyboardAttributesCollection,
+    ExtendedKeyboardAttributesCollection = 0x2C0,
     /// Usage ID `0x2C1`: "Keyboard Form Factor"
-    KeyboardFormFactor,
+    KeyboardFormFactor = 0x2C1,
     /// Usage ID `0x2C2`: "Keyboard Key Type"
-    KeyboardKeyType,
+    KeyboardKeyType = 0x2C2,
     /// Usage ID `0x2C3`: "Keyboard Physical Layout"
-    KeyboardPhysicalLayout,
+    KeyboardPhysicalLayout = 0x2C3,
     /// Usage ID `0x2C4`: "Vendor‐Specific Keyboard Physical Layout"
-    VendorSpecificKeyboardPhysicalLayout,
+    VendorSpecificKeyboardPhysicalLayout = 0x2C4,
     /// Usage ID `0x2C5`: "Keyboard IETF Language Tag Index"
-    KeyboardIETFLanguageTagIndex,
+    KeyboardIETFLanguageTagIndex = 0x2C5,
     /// Usage ID `0x2C6`: "Implemented Keyboard Input Assist Controls"
-    ImplementedKeyboardInputAssistControls,
+    ImplementedKeyboardInputAssistControls = 0x2C6,
     /// Usage ID `0x2C7`: "Keyboard Input Assist Previous"
-    KeyboardInputAssistPrevious,
+    KeyboardInputAssistPrevious = 0x2C7,
     /// Usage ID `0x2C8`: "Keyboard Input Assist Next"
-    KeyboardInputAssistNext,
+    KeyboardInputAssistNext = 0x2C8,
     /// Usage ID `0x2C9`: "Keyboard Input Assist Previous Group"
-    KeyboardInputAssistPreviousGroup,
+    KeyboardInputAssistPreviousGroup = 0x2C9,
     /// Usage ID `0x2CA`: "Keyboard Input Assist Next Group"
-    KeyboardInputAssistNextGroup,
+    KeyboardInputAssistNextGroup = 0x2CA,
     /// Usage ID `0x2CB`: "Keyboard Input Assist Accept"
-    KeyboardInputAssistAccept,
+    KeyboardInputAssistAccept = 0x2CB,
     /// Usage ID `0x2CC`: "Keyboard Input Assist Cancel"
-    KeyboardInputAssistCancel,
+    KeyboardInputAssistCancel = 0x2CC,
     /// Usage ID `0x2D0`: "Privacy Screen Toggle"
-    PrivacyScreenToggle,
+    PrivacyScreenToggle = 0x2D0,
     /// Usage ID `0x2D1`: "Privacy Screen Level Decrement"
-    PrivacyScreenLevelDecrement,
+    PrivacyScreenLevelDecrement = 0x2D1,
     /// Usage ID `0x2D2`: "Privacy Screen Level Increment"
-    PrivacyScreenLevelIncrement,
+    PrivacyScreenLevelIncrement = 0x2D2,
     /// Usage ID `0x2D3`: "Privacy Screen Level Minimum"
-    PrivacyScreenLevelMinimum,
+    PrivacyScreenLevelMinimum = 0x2D3,
     /// Usage ID `0x2D4`: "Privacy Screen Level Maximum"
-    PrivacyScreenLevelMaximum,
+    PrivacyScreenLevelMaximum = 0x2D4,
     /// Usage ID `0x500`: "Contact Edited"
-    ContactEdited,
+    ContactEdited = 0x500,
     /// Usage ID `0x501`: "Contact Added"
-    ContactAdded,
+    ContactAdded = 0x501,
     /// Usage ID `0x502`: "Contact Record Active"
-    ContactRecordActive,
+    ContactRecordActive = 0x502,
     /// Usage ID `0x503`: "Contact Index"
-    ContactIndex,
+    ContactIndex = 0x503,
     /// Usage ID `0x504`: "Contact Nickname"
-    ContactNickname,
+    ContactNickname = 0x504,
     /// Usage ID `0x505`: "Contact First Name"
-    ContactFirstName,
+    ContactFirstName = 0x505,
     /// Usage ID `0x506`: "Contact Last Name"
-    ContactLastName,
+    ContactLastName = 0x506,
     /// Usage ID `0x507`: "Contact Full Name"
-    ContactFullName,
+    ContactFullName = 0x507,
     /// Usage ID `0x508`: "Contact Phone Number Personal"
-    ContactPhoneNumberPersonal,
+    ContactPhoneNumberPersonal = 0x508,
     /// Usage ID `0x509`: "Contact Phone Number Business"
-    ContactPhoneNumberBusiness,
+    ContactPhoneNumberBusiness = 0x509,
     /// Usage ID `0x50A`: "Contact Phone Number Mobile"
-    ContactPhoneNumberMobile,
+    ContactPhoneNumberMobile = 0x50A,
     /// Usage ID `0x50B`: "Contact Phone Number Pager"
-    ContactPhoneNumberPager,
+    ContactPhoneNumberPager = 0x50B,
     /// Usage ID `0x50C`: "Contact Phone Number Fax"
-    ContactPhoneNumberFax,
+    ContactPhoneNumberFax = 0x50C,
     /// Usage ID `0x50D`: "Contact Phone Number Other"
-    ContactPhoneNumberOther,
+    ContactPhoneNumberOther = 0x50D,
     /// Usage ID `0x50E`: "Contact Email Personal"
-    ContactEmailPersonal,
+    ContactEmailPersonal = 0x50E,
     /// Usage ID `0x50F`: "Contact Email Business"
-    ContactEmailBusiness,
+    ContactEmailBusiness = 0x50F,
     /// Usage ID `0x510`: "Contact Email Other"
-    ContactEmailOther,
+    ContactEmailOther = 0x510,
     /// Usage ID `0x511`: "Contact Email Main"
-    ContactEmailMain,
+    ContactEmailMain = 0x511,
     /// Usage ID `0x512`: "Contact Speed Dial Number"
-    ContactSpeedDialNumber,
+    ContactSpeedDialNumber = 0x512,
     /// Usage ID `0x513`: "Contact Status Flag"
-    ContactStatusFlag,
+    ContactStatusFlag = 0x513,
     /// Usage ID `0x514`: "Contact Misc."
-    ContactMisc,
+    ContactMisc = 0x514,
 }
 
 impl Consumer {
@@ -7321,458 +6644,7 @@ impl AsUsagePage for Consumer {
 
 impl From<&Consumer> for u16 {
     fn from(consumer: &Consumer) -> u16 {
-        match *consumer {
-            Consumer::ConsumerControl => 1,
-            Consumer::NumericKeyPad => 2,
-            Consumer::ProgrammableButtons => 3,
-            Consumer::Microphone => 4,
-            Consumer::Headphone => 5,
-            Consumer::GraphicEqualizer => 6,
-            Consumer::Plus10 => 32,
-            Consumer::Plus100 => 33,
-            Consumer::AMPM => 34,
-            Consumer::Power => 48,
-            Consumer::Reset => 49,
-            Consumer::Sleep => 50,
-            Consumer::SleepAfter => 51,
-            Consumer::SleepMode => 52,
-            Consumer::Illumination => 53,
-            Consumer::FunctionButtons => 54,
-            Consumer::Menu => 64,
-            Consumer::MenuPick => 65,
-            Consumer::MenuUp => 66,
-            Consumer::MenuDown => 67,
-            Consumer::MenuLeft => 68,
-            Consumer::MenuRight => 69,
-            Consumer::MenuEscape => 70,
-            Consumer::MenuValueIncrease => 71,
-            Consumer::MenuValueDecrease => 72,
-            Consumer::DataOnScreen => 96,
-            Consumer::ClosedCaption => 97,
-            Consumer::ClosedCaptionSelect => 98,
-            Consumer::VCRTV => 99,
-            Consumer::BroadcastMode => 100,
-            Consumer::Snapshot => 101,
-            Consumer::Still => 102,
-            Consumer::PictureinPictureToggle => 103,
-            Consumer::PictureinPictureSwap => 104,
-            Consumer::RedMenuButton => 105,
-            Consumer::GreenMenuButton => 106,
-            Consumer::BlueMenuButton => 107,
-            Consumer::YellowMenuButton => 108,
-            Consumer::Aspect => 109,
-            Consumer::ThreeDModeSelect => 110,
-            Consumer::DisplayBrightnessIncrement => 111,
-            Consumer::DisplayBrightnessDecrement => 112,
-            Consumer::DisplayBrightness => 113,
-            Consumer::DisplayBacklightToggle => 114,
-            Consumer::DisplaySetBrightnesstoMinimum => 115,
-            Consumer::DisplaySetBrightnesstoMaximum => 116,
-            Consumer::DisplaySetAutoBrightness => 117,
-            Consumer::CameraAccessEnabled => 118,
-            Consumer::CameraAccessDisabled => 119,
-            Consumer::CameraAccessToggle => 120,
-            Consumer::KeyboardBrightnessIncrement => 121,
-            Consumer::KeyboardBrightnessDecrement => 122,
-            Consumer::KeyboardBacklightSetLevel => 123,
-            Consumer::KeyboardBacklightOOC => 124,
-            Consumer::KeyboardBacklightSetMinimum => 125,
-            Consumer::KeyboardBacklightSetMaximum => 126,
-            Consumer::KeyboardBacklightAuto => 127,
-            Consumer::Selection => 128,
-            Consumer::AssignSelection => 129,
-            Consumer::ModeStep => 130,
-            Consumer::RecallLast => 131,
-            Consumer::EnterChannel => 132,
-            Consumer::OrderMovie => 133,
-            Consumer::Channel => 134,
-            Consumer::MediaSelection => 135,
-            Consumer::MediaSelectComputer => 136,
-            Consumer::MediaSelectTV => 137,
-            Consumer::MediaSelectWWW => 138,
-            Consumer::MediaSelectDVD => 139,
-            Consumer::MediaSelectTelephone => 140,
-            Consumer::MediaSelectProgramGuide => 141,
-            Consumer::MediaSelectVideoPhone => 142,
-            Consumer::MediaSelectGames => 143,
-            Consumer::MediaSelectMessages => 144,
-            Consumer::MediaSelectCD => 145,
-            Consumer::MediaSelectVCR => 146,
-            Consumer::MediaSelectTuner => 147,
-            Consumer::Quit => 148,
-            Consumer::Help => 149,
-            Consumer::MediaSelectTape => 150,
-            Consumer::MediaSelectCable => 151,
-            Consumer::MediaSelectSatellite => 152,
-            Consumer::MediaSelectSecurity => 153,
-            Consumer::MediaSelectHome => 154,
-            Consumer::MediaSelectCall => 155,
-            Consumer::ChannelIncrement => 156,
-            Consumer::ChannelDecrement => 157,
-            Consumer::MediaSelectSAP => 158,
-            Consumer::VCRPlus => 160,
-            Consumer::Once => 161,
-            Consumer::Daily => 162,
-            Consumer::Weekly => 163,
-            Consumer::Monthly => 164,
-            Consumer::Play => 176,
-            Consumer::Pause => 177,
-            Consumer::Record => 178,
-            Consumer::FastForward => 179,
-            Consumer::Rewind => 180,
-            Consumer::ScanNextTrack => 181,
-            Consumer::ScanPreviousTrack => 182,
-            Consumer::Stop => 183,
-            Consumer::Eject => 184,
-            Consumer::RandomPlay => 185,
-            Consumer::SelectDisc => 186,
-            Consumer::EnterDisc => 187,
-            Consumer::Repeat => 188,
-            Consumer::Tracking => 189,
-            Consumer::TrackNormal => 190,
-            Consumer::SlowTracking => 191,
-            Consumer::FrameForward => 192,
-            Consumer::FrameBack => 193,
-            Consumer::Mark => 194,
-            Consumer::ClearMark => 195,
-            Consumer::RepeatFromMark => 196,
-            Consumer::ReturnToMark => 197,
-            Consumer::SearchMarkForward => 198,
-            Consumer::SearchMarkBackwards => 199,
-            Consumer::CounterReset => 200,
-            Consumer::ShowCounter => 201,
-            Consumer::TrackingIncrement => 202,
-            Consumer::TrackingDecrement => 203,
-            Consumer::StopEject => 204,
-            Consumer::PlayPause => 205,
-            Consumer::PlaySkip => 206,
-            Consumer::VoiceCommand => 207,
-            Consumer::InvokeCaptureInterface => 208,
-            Consumer::StartorStopGameRecording => 209,
-            Consumer::HistoricalGameCapture => 210,
-            Consumer::CaptureGameScreenshot => 211,
-            Consumer::ShoworHideRecordingIndicator => 212,
-            Consumer::StartorStopMicrophoneCapture => 213,
-            Consumer::StartorStopCameraCapture => 214,
-            Consumer::StartorStopGameBroadcast => 215,
-            Consumer::StartorStopVoiceDictationSession => 216,
-            Consumer::InvokeDismissEmojiPicker => 217,
-            Consumer::Volume => 224,
-            Consumer::Balance => 225,
-            Consumer::Mute => 226,
-            Consumer::Bass => 227,
-            Consumer::Treble => 228,
-            Consumer::BassBoost => 229,
-            Consumer::SurroundMode => 230,
-            Consumer::Loudness => 231,
-            Consumer::MPX => 232,
-            Consumer::VolumeIncrement => 233,
-            Consumer::VolumeDecrement => 234,
-            Consumer::SpeedSelect => 240,
-            Consumer::PlaybackSpeed => 241,
-            Consumer::StandardPlay => 242,
-            Consumer::LongPlay => 243,
-            Consumer::ExtendedPlay => 244,
-            Consumer::Slow => 245,
-            Consumer::FanEnable => 256,
-            Consumer::FanSpeed => 257,
-            Consumer::LightEnable => 258,
-            Consumer::LightIlluminationLevel => 259,
-            Consumer::ClimateControlEnable => 260,
-            Consumer::RoomTemperature => 261,
-            Consumer::SecurityEnable => 262,
-            Consumer::FireAlarm => 263,
-            Consumer::PoliceAlarm => 264,
-            Consumer::Proximity => 265,
-            Consumer::Motion => 266,
-            Consumer::DuressAlarm => 267,
-            Consumer::HoldupAlarm => 268,
-            Consumer::MedicalAlarm => 269,
-            Consumer::BalanceRight => 336,
-            Consumer::BalanceLeft => 337,
-            Consumer::BassIncrement => 338,
-            Consumer::BassDecrement => 339,
-            Consumer::TrebleIncrement => 340,
-            Consumer::TrebleDecrement => 341,
-            Consumer::SpeakerSystem => 352,
-            Consumer::ChannelLeft => 353,
-            Consumer::ChannelRight => 354,
-            Consumer::ChannelCenter => 355,
-            Consumer::ChannelFront => 356,
-            Consumer::ChannelCenterFront => 357,
-            Consumer::ChannelSide => 358,
-            Consumer::ChannelSurround => 359,
-            Consumer::ChannelLowFrequencyEnhancement => 360,
-            Consumer::ChannelTop => 361,
-            Consumer::ChannelUnknown => 362,
-            Consumer::Subchannel => 368,
-            Consumer::SubchannelIncrement => 369,
-            Consumer::SubchannelDecrement => 370,
-            Consumer::AlternateAudioIncrement => 371,
-            Consumer::AlternateAudioDecrement => 372,
-            Consumer::ApplicationLaunchButtons => 384,
-            Consumer::ALLaunchButtonConfigurationTool => 385,
-            Consumer::ALProgrammableButtonConfiguration => 386,
-            Consumer::ALConsumerControlConfiguration => 387,
-            Consumer::ALWordProcessor => 388,
-            Consumer::ALTextEditor => 389,
-            Consumer::ALSpreadsheet => 390,
-            Consumer::ALGraphicsEditor => 391,
-            Consumer::ALPresentationApp => 392,
-            Consumer::ALDatabaseApp => 393,
-            Consumer::ALEmailReader => 394,
-            Consumer::ALNewsreader => 395,
-            Consumer::ALVoicemail => 396,
-            Consumer::ALContactsAddressBook => 397,
-            Consumer::ALCalendarSchedule => 398,
-            Consumer::ALTaskProjectManager => 399,
-            Consumer::ALLogJournalTimecard => 400,
-            Consumer::ALCheckbookFinance => 401,
-            Consumer::ALCalculator => 402,
-            Consumer::ALAVCapturePlayback => 403,
-            Consumer::ALLocalMachineBrowser => 404,
-            Consumer::ALLANWANBrowser => 405,
-            Consumer::ALInternetBrowser => 406,
-            Consumer::ALRemoteNetworkingISPConnect => 407,
-            Consumer::ALNetworkConference => 408,
-            Consumer::ALNetworkChat => 409,
-            Consumer::ALTelephonyDialer => 410,
-            Consumer::ALLogon => 411,
-            Consumer::ALLogoff => 412,
-            Consumer::ALLogonLogoff => 413,
-            Consumer::ALTerminalLockScreensaver => 414,
-            Consumer::ALControlPanel => 415,
-            Consumer::ALCommandLineProcessorRun => 416,
-            Consumer::ALProcessTaskManager => 417,
-            Consumer::ALSelectTaskApplication => 418,
-            Consumer::ALNextTaskApplication => 419,
-            Consumer::ALPreviousTaskApplication => 420,
-            Consumer::ALPreemptiveHaltTaskApplication => 421,
-            Consumer::ALIntegratedHelpCenter => 422,
-            Consumer::ALDocuments => 423,
-            Consumer::ALThesaurus => 424,
-            Consumer::ALDictionary => 425,
-            Consumer::ALDesktop => 426,
-            Consumer::ALSpellCheck => 427,
-            Consumer::ALGrammarCheck => 428,
-            Consumer::ALWirelessStatus => 429,
-            Consumer::ALKeyboardLayout => 430,
-            Consumer::ALVirusProtection => 431,
-            Consumer::ALEncryption => 432,
-            Consumer::ALScreenSaver => 433,
-            Consumer::ALAlarms => 434,
-            Consumer::ALClock => 435,
-            Consumer::ALFileBrowser => 436,
-            Consumer::ALPowerStatus => 437,
-            Consumer::ALImageBrowser => 438,
-            Consumer::ALAudioBrowser => 439,
-            Consumer::ALMovieBrowser => 440,
-            Consumer::ALDigitalRightsManager => 441,
-            Consumer::ALDigitalWallet => 442,
-            Consumer::ALInstantMessaging => 444,
-            Consumer::ALOEMFeaturesTipsTutorialBrowser => 445,
-            Consumer::ALOEMHelp => 446,
-            Consumer::ALOnlineCommunity => 447,
-            Consumer::ALEntertainmentContentBrowser => 448,
-            Consumer::ALOnlineShoppingBrowser => 449,
-            Consumer::ALSmartCardInformationHelp => 450,
-            Consumer::ALMarketMonitorFinanceBrowser => 451,
-            Consumer::ALCustomizedCorporateNewsBrowser => 452,
-            Consumer::ALOnlineActivityBrowser => 453,
-            Consumer::ALResearchSearchBrowser => 454,
-            Consumer::ALAudioPlayer => 455,
-            Consumer::ALMessageStatus => 456,
-            Consumer::ALContactSync => 457,
-            Consumer::ALNavigation => 458,
-            Consumer::ALContextawareDesktopAssistant => 459,
-            Consumer::GenericGUIApplicationControls => 512,
-            Consumer::ACNew => 513,
-            Consumer::ACOpen => 514,
-            Consumer::ACClose => 515,
-            Consumer::ACExit => 516,
-            Consumer::ACMaximize => 517,
-            Consumer::ACMinimize => 518,
-            Consumer::ACSave => 519,
-            Consumer::ACPrint => 520,
-            Consumer::ACProperties => 521,
-            Consumer::ACUndo => 538,
-            Consumer::ACCopy => 539,
-            Consumer::ACCut => 540,
-            Consumer::ACPaste => 541,
-            Consumer::ACSelectAll => 542,
-            Consumer::ACFind => 543,
-            Consumer::ACFindandReplace => 544,
-            Consumer::ACSearch => 545,
-            Consumer::ACGoTo => 546,
-            Consumer::ACHome => 547,
-            Consumer::ACBack => 548,
-            Consumer::ACForward => 549,
-            Consumer::ACStop => 550,
-            Consumer::ACRefresh => 551,
-            Consumer::ACPreviousLink => 552,
-            Consumer::ACNextLink => 553,
-            Consumer::ACBookmarks => 554,
-            Consumer::ACHistory => 555,
-            Consumer::ACSubscriptions => 556,
-            Consumer::ACZoomIn => 557,
-            Consumer::ACZoomOut => 558,
-            Consumer::ACZoom => 559,
-            Consumer::ACFullScreenView => 560,
-            Consumer::ACNormalView => 561,
-            Consumer::ACViewToggle => 562,
-            Consumer::ACScrollUp => 563,
-            Consumer::ACScrollDown => 564,
-            Consumer::ACScroll => 565,
-            Consumer::ACPanLeft => 566,
-            Consumer::ACPanRight => 567,
-            Consumer::ACPan => 568,
-            Consumer::ACNewWindow => 569,
-            Consumer::ACTileHorizontally => 570,
-            Consumer::ACTileVertically => 571,
-            Consumer::ACFormat => 572,
-            Consumer::ACEdit => 573,
-            Consumer::ACBold => 574,
-            Consumer::ACItalics => 575,
-            Consumer::ACUnderline => 576,
-            Consumer::ACStrikethrough => 577,
-            Consumer::ACSubscript => 578,
-            Consumer::ACSuperscript => 579,
-            Consumer::ACAllCaps => 580,
-            Consumer::ACRotate => 581,
-            Consumer::ACResize => 582,
-            Consumer::ACFlipHorizontal => 583,
-            Consumer::ACFlipVertical => 584,
-            Consumer::ACMirrorHorizontal => 585,
-            Consumer::ACMirrorVertical => 586,
-            Consumer::ACFontSelect => 587,
-            Consumer::ACFontColor => 588,
-            Consumer::ACFontSize => 589,
-            Consumer::ACJustifyLeft => 590,
-            Consumer::ACJustifyCenterH => 591,
-            Consumer::ACJustifyRight => 592,
-            Consumer::ACJustifyBlockH => 593,
-            Consumer::ACJustifyTop => 594,
-            Consumer::ACJustifyCenterV => 595,
-            Consumer::ACJustifyBottom => 596,
-            Consumer::ACJustifyBlockV => 597,
-            Consumer::ACIndentDecrease => 598,
-            Consumer::ACIndentIncrease => 599,
-            Consumer::ACNumberedList => 600,
-            Consumer::ACRestartNumbering => 601,
-            Consumer::ACBulletedList => 602,
-            Consumer::ACPromote => 603,
-            Consumer::ACDemote => 604,
-            Consumer::ACYes => 605,
-            Consumer::ACNo => 606,
-            Consumer::ACCancel => 607,
-            Consumer::ACCatalog => 608,
-            Consumer::ACBuyCheckout => 609,
-            Consumer::ACAddtoCart => 610,
-            Consumer::ACExpand => 611,
-            Consumer::ACExpandAll => 612,
-            Consumer::ACCollapse => 613,
-            Consumer::ACCollapseAll => 614,
-            Consumer::ACPrintPreview => 615,
-            Consumer::ACPasteSpecial => 616,
-            Consumer::ACInsertMode => 617,
-            Consumer::ACDelete => 618,
-            Consumer::ACLock => 619,
-            Consumer::ACUnlock => 620,
-            Consumer::ACProtect => 621,
-            Consumer::ACUnprotect => 622,
-            Consumer::ACAttachComment => 623,
-            Consumer::ACDeleteComment => 624,
-            Consumer::ACViewComment => 625,
-            Consumer::ACSelectWord => 626,
-            Consumer::ACSelectSentence => 627,
-            Consumer::ACSelectParagraph => 628,
-            Consumer::ACSelectColumn => 629,
-            Consumer::ACSelectRow => 630,
-            Consumer::ACSelectTable => 631,
-            Consumer::ACSelectObject => 632,
-            Consumer::ACRedoRepeat => 633,
-            Consumer::ACSort => 634,
-            Consumer::ACSortAscending => 635,
-            Consumer::ACSortDescending => 636,
-            Consumer::ACFilter => 637,
-            Consumer::ACSetClock => 638,
-            Consumer::ACViewClock => 639,
-            Consumer::ACSelectTimeZone => 640,
-            Consumer::ACEditTimeZones => 641,
-            Consumer::ACSetAlarm => 642,
-            Consumer::ACClearAlarm => 643,
-            Consumer::ACSnoozeAlarm => 644,
-            Consumer::ACResetAlarm => 645,
-            Consumer::ACSynchronize => 646,
-            Consumer::ACSendReceive => 647,
-            Consumer::ACSendTo => 648,
-            Consumer::ACReply => 649,
-            Consumer::ACReplyAll => 650,
-            Consumer::ACForwardMsg => 651,
-            Consumer::ACSend => 652,
-            Consumer::ACAttachFile => 653,
-            Consumer::ACUpload => 654,
-            Consumer::ACDownloadSaveTargetAs => 655,
-            Consumer::ACSetBorders => 656,
-            Consumer::ACInsertRow => 657,
-            Consumer::ACInsertColumn => 658,
-            Consumer::ACInsertFile => 659,
-            Consumer::ACInsertPicture => 660,
-            Consumer::ACInsertObject => 661,
-            Consumer::ACInsertSymbol => 662,
-            Consumer::ACSaveandClose => 663,
-            Consumer::ACRename => 664,
-            Consumer::ACMerge => 665,
-            Consumer::ACSplit => 666,
-            Consumer::ACDisributeHorizontally => 667,
-            Consumer::ACDistributeVertically => 668,
-            Consumer::ACNextKeyboardLayoutSelect => 669,
-            Consumer::ACNavigationGuidance => 670,
-            Consumer::ACDesktopShowAllWindows => 671,
-            Consumer::ACSoftKeyLeft => 672,
-            Consumer::ACSoftKeyRight => 673,
-            Consumer::ACDesktopShowAllApplications => 674,
-            Consumer::ACIdleKeepAlive => 688,
-            Consumer::ExtendedKeyboardAttributesCollection => 704,
-            Consumer::KeyboardFormFactor => 705,
-            Consumer::KeyboardKeyType => 706,
-            Consumer::KeyboardPhysicalLayout => 707,
-            Consumer::VendorSpecificKeyboardPhysicalLayout => 708,
-            Consumer::KeyboardIETFLanguageTagIndex => 709,
-            Consumer::ImplementedKeyboardInputAssistControls => 710,
-            Consumer::KeyboardInputAssistPrevious => 711,
-            Consumer::KeyboardInputAssistNext => 712,
-            Consumer::KeyboardInputAssistPreviousGroup => 713,
-            Consumer::KeyboardInputAssistNextGroup => 714,
-            Consumer::KeyboardInputAssistAccept => 715,
-            Consumer::KeyboardInputAssistCancel => 716,
-            Consumer::PrivacyScreenToggle => 720,
-            Consumer::PrivacyScreenLevelDecrement => 721,
-            Consumer::PrivacyScreenLevelIncrement => 722,
-            Consumer::PrivacyScreenLevelMinimum => 723,
-            Consumer::PrivacyScreenLevelMaximum => 724,
-            Consumer::ContactEdited => 1280,
-            Consumer::ContactAdded => 1281,
-            Consumer::ContactRecordActive => 1282,
-            Consumer::ContactIndex => 1283,
-            Consumer::ContactNickname => 1284,
-            Consumer::ContactFirstName => 1285,
-            Consumer::ContactLastName => 1286,
-            Consumer::ContactFullName => 1287,
-            Consumer::ContactPhoneNumberPersonal => 1288,
-            Consumer::ContactPhoneNumberBusiness => 1289,
-            Consumer::ContactPhoneNumberMobile => 1290,
-            Consumer::ContactPhoneNumberPager => 1291,
-            Consumer::ContactPhoneNumberFax => 1292,
-            Consumer::ContactPhoneNumberOther => 1293,
-            Consumer::ContactEmailPersonal => 1294,
-            Consumer::ContactEmailBusiness => 1295,
-            Consumer::ContactEmailOther => 1296,
-            Consumer::ContactEmailMain => 1297,
-            Consumer::ContactSpeedDialNumber => 1298,
-            Consumer::ContactStatusFlag => 1299,
-            Consumer::ContactMisc => 1300,
-        }
+        *consumer as u16
     }
 }
 
@@ -8320,225 +7192,226 @@ impl BitOr<u16> for Consumer {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum Digitizers {
     /// Usage ID `0x1`: "Digitizer"
-    Digitizer,
+    Digitizer = 0x1,
     /// Usage ID `0x2`: "Pen"
-    Pen,
+    Pen = 0x2,
     /// Usage ID `0x3`: "Light Pen"
-    LightPen,
+    LightPen = 0x3,
     /// Usage ID `0x4`: "Touch Screen"
-    TouchScreen,
+    TouchScreen = 0x4,
     /// Usage ID `0x5`: "Touch Pad"
-    TouchPad,
+    TouchPad = 0x5,
     /// Usage ID `0x6`: "Whiteboard"
-    Whiteboard,
+    Whiteboard = 0x6,
     /// Usage ID `0x7`: "Coordinate Measuring Machine"
-    CoordinateMeasuringMachine,
+    CoordinateMeasuringMachine = 0x7,
     /// Usage ID `0x8`: "3D Digitizer"
-    ThreeDDigitizer,
+    ThreeDDigitizer = 0x8,
     /// Usage ID `0x9`: "Stereo Plotter"
-    StereoPlotter,
+    StereoPlotter = 0x9,
     /// Usage ID `0xA`: "Articulated Arm"
-    ArticulatedArm,
+    ArticulatedArm = 0xA,
     /// Usage ID `0xB`: "Armature"
-    Armature,
+    Armature = 0xB,
     /// Usage ID `0xC`: "Multiple Point Digitizer"
-    MultiplePointDigitizer,
+    MultiplePointDigitizer = 0xC,
     /// Usage ID `0xD`: "Free Space Wand"
-    FreeSpaceWand,
+    FreeSpaceWand = 0xD,
     /// Usage ID `0xE`: "Device Configuration"
-    DeviceConfiguration,
+    DeviceConfiguration = 0xE,
     /// Usage ID `0xF`: "Capacitive Heat Map Digitizer"
-    CapacitiveHeatMapDigitizer,
+    CapacitiveHeatMapDigitizer = 0xF,
     /// Usage ID `0x20`: "Stylus"
-    Stylus,
+    Stylus = 0x20,
     /// Usage ID `0x21`: "Puck"
-    Puck,
+    Puck = 0x21,
     /// Usage ID `0x22`: "Finger"
-    Finger,
+    Finger = 0x22,
     /// Usage ID `0x23`: "Device settings"
-    Devicesettings,
+    Devicesettings = 0x23,
     /// Usage ID `0x24`: "Character Gesture"
-    CharacterGesture,
+    CharacterGesture = 0x24,
     /// Usage ID `0x30`: "Tip Pressure"
-    TipPressure,
+    TipPressure = 0x30,
     /// Usage ID `0x31`: "Barrel Pressure"
-    BarrelPressure,
+    BarrelPressure = 0x31,
     /// Usage ID `0x32`: "In Range"
-    InRange,
+    InRange = 0x32,
     /// Usage ID `0x33`: "Touch"
-    Touch,
+    Touch = 0x33,
     /// Usage ID `0x34`: "Untouch"
-    Untouch,
+    Untouch = 0x34,
     /// Usage ID `0x35`: "Tap"
-    Tap,
+    Tap = 0x35,
     /// Usage ID `0x36`: "Quality"
-    Quality,
+    Quality = 0x36,
     /// Usage ID `0x37`: "Data Valid"
-    DataValid,
+    DataValid = 0x37,
     /// Usage ID `0x38`: "Transducer Index"
-    TransducerIndex,
+    TransducerIndex = 0x38,
     /// Usage ID `0x39`: "Tablet Function Keys"
-    TabletFunctionKeys,
+    TabletFunctionKeys = 0x39,
     /// Usage ID `0x3A`: "Program Change Keys"
-    ProgramChangeKeys,
+    ProgramChangeKeys = 0x3A,
     /// Usage ID `0x3B`: "Battery Strength"
-    BatteryStrength,
+    BatteryStrength = 0x3B,
     /// Usage ID `0x3C`: "Invert"
-    Invert,
+    Invert = 0x3C,
     /// Usage ID `0x3D`: "X Tilt"
-    XTilt,
+    XTilt = 0x3D,
     /// Usage ID `0x3E`: "Y Tilt"
-    YTilt,
+    YTilt = 0x3E,
     /// Usage ID `0x3F`: "Azimuth"
-    Azimuth,
+    Azimuth = 0x3F,
     /// Usage ID `0x40`: "Altitude"
-    Altitude,
+    Altitude = 0x40,
     /// Usage ID `0x41`: "Twist"
-    Twist,
+    Twist = 0x41,
     /// Usage ID `0x42`: "Tip Switch"
-    TipSwitch,
+    TipSwitch = 0x42,
     /// Usage ID `0x43`: "Secondary Tip Switch"
-    SecondaryTipSwitch,
+    SecondaryTipSwitch = 0x43,
     /// Usage ID `0x44`: "Barrel Switch"
-    BarrelSwitch,
+    BarrelSwitch = 0x44,
     /// Usage ID `0x45`: "Eraser"
-    Eraser,
+    Eraser = 0x45,
     /// Usage ID `0x46`: "Tablet Pick"
-    TabletPick,
+    TabletPick = 0x46,
     /// Usage ID `0x47`: "Touch Valid"
-    TouchValid,
+    TouchValid = 0x47,
     /// Usage ID `0x48`: "Width"
-    Width,
+    Width = 0x48,
     /// Usage ID `0x49`: "Height"
-    Height,
+    Height = 0x49,
     /// Usage ID `0x51`: "Contact Identifier"
-    ContactIdentifier,
+    ContactIdentifier = 0x51,
     /// Usage ID `0x52`: "Device Mode"
-    DeviceMode,
+    DeviceMode = 0x52,
     /// Usage ID `0x53`: "Device Identifier"
-    DeviceIdentifier,
+    DeviceIdentifier = 0x53,
     /// Usage ID `0x54`: "Contact Count"
-    ContactCount,
+    ContactCount = 0x54,
     /// Usage ID `0x55`: "Contact Count Maximum"
-    ContactCountMaximum,
+    ContactCountMaximum = 0x55,
     /// Usage ID `0x56`: "Scan Time"
-    ScanTime,
+    ScanTime = 0x56,
     /// Usage ID `0x57`: "Surface Switch"
-    SurfaceSwitch,
+    SurfaceSwitch = 0x57,
     /// Usage ID `0x58`: "Button Switch"
-    ButtonSwitch,
+    ButtonSwitch = 0x58,
     /// Usage ID `0x59`: "Pad Type"
-    PadType,
+    PadType = 0x59,
     /// Usage ID `0x5A`: "Secondary Barrel Switch"
-    SecondaryBarrelSwitch,
+    SecondaryBarrelSwitch = 0x5A,
     /// Usage ID `0x5B`: "Transducer Serial Number"
-    TransducerSerialNumber,
+    TransducerSerialNumber = 0x5B,
     /// Usage ID `0x5C`: "Preferred Color"
-    PreferredColor,
+    PreferredColor = 0x5C,
     /// Usage ID `0x5D`: "Preferred Color is Locked"
-    PreferredColorisLocked,
+    PreferredColorisLocked = 0x5D,
     /// Usage ID `0x5E`: "Preferred Line Width"
-    PreferredLineWidth,
+    PreferredLineWidth = 0x5E,
     /// Usage ID `0x5F`: "Preferred Line Width is Locked"
-    PreferredLineWidthisLocked,
+    PreferredLineWidthisLocked = 0x5F,
     /// Usage ID `0x60`: "Latency Mode"
-    LatencyMode,
+    LatencyMode = 0x60,
     /// Usage ID `0x61`: "Gesture Character Quality"
-    GestureCharacterQuality,
+    GestureCharacterQuality = 0x61,
     /// Usage ID `0x62`: "Character Gesture Data Length"
-    CharacterGestureDataLength,
+    CharacterGestureDataLength = 0x62,
     /// Usage ID `0x63`: "Character Gesture Data"
-    CharacterGestureData,
+    CharacterGestureData = 0x63,
     /// Usage ID `0x64`: "Gesture Character Encoding"
-    GestureCharacterEncoding,
+    GestureCharacterEncoding = 0x64,
     /// Usage ID `0x65`: "UTF8 Character Gesture Encoding"
-    UTF8CharacterGestureEncoding,
+    UTF8CharacterGestureEncoding = 0x65,
     /// Usage ID `0x66`: "UTF16 Little Endian Character Gesture Encoding"
-    UTF16LittleEndianCharacterGestureEncoding,
+    UTF16LittleEndianCharacterGestureEncoding = 0x66,
     /// Usage ID `0x67`: "UTF16 Big Endian Character Gesture Encoding"
-    UTF16BigEndianCharacterGestureEncoding,
+    UTF16BigEndianCharacterGestureEncoding = 0x67,
     /// Usage ID `0x68`: "UTF32 Little Endian Character Gesture Encoding"
-    UTF32LittleEndianCharacterGestureEncoding,
+    UTF32LittleEndianCharacterGestureEncoding = 0x68,
     /// Usage ID `0x69`: "UTF32 Big Endian Character Gesture Encoding"
-    UTF32BigEndianCharacterGestureEncoding,
+    UTF32BigEndianCharacterGestureEncoding = 0x69,
     /// Usage ID `0x6A`: "Capacitive Heat Map Protocol Vendor ID"
-    CapacitiveHeatMapProtocolVendorID,
+    CapacitiveHeatMapProtocolVendorID = 0x6A,
     /// Usage ID `0x6B`: "Capacitive Heat Map Protocol Version"
-    CapacitiveHeatMapProtocolVersion,
+    CapacitiveHeatMapProtocolVersion = 0x6B,
     /// Usage ID `0x6C`: "Capacitive Heat Map Frame Data"
-    CapacitiveHeatMapFrameData,
+    CapacitiveHeatMapFrameData = 0x6C,
     /// Usage ID `0x6D`: "Gesture Character Enable"
-    GestureCharacterEnable,
+    GestureCharacterEnable = 0x6D,
     /// Usage ID `0x6E`: "Transducer Serial Number Part 2"
-    TransducerSerialNumberPart2,
+    TransducerSerialNumberPart2 = 0x6E,
     /// Usage ID `0x6F`: "No Preferred Color"
-    NoPreferredColor,
+    NoPreferredColor = 0x6F,
     /// Usage ID `0x70`: "Preferred Line Style"
-    PreferredLineStyle,
+    PreferredLineStyle = 0x70,
     /// Usage ID `0x71`: "Preferred Line Style is Locked"
-    PreferredLineStyleisLocked,
+    PreferredLineStyleisLocked = 0x71,
     /// Usage ID `0x72`: "Ink"
-    Ink,
+    Ink = 0x72,
     /// Usage ID `0x73`: "Pencil"
-    Pencil,
+    Pencil = 0x73,
     /// Usage ID `0x74`: "Highlighter"
-    Highlighter,
+    Highlighter = 0x74,
     /// Usage ID `0x75`: "Chisel Marker"
-    ChiselMarker,
+    ChiselMarker = 0x75,
     /// Usage ID `0x76`: "Brush"
-    Brush,
+    Brush = 0x76,
     /// Usage ID `0x77`: "No Preference"
-    NoPreference,
+    NoPreference = 0x77,
     /// Usage ID `0x80`: "Digitizer Diagnostic"
-    DigitizerDiagnostic,
+    DigitizerDiagnostic = 0x80,
     /// Usage ID `0x81`: "Digitizer Error"
-    DigitizerError,
+    DigitizerError = 0x81,
     /// Usage ID `0x82`: "Err Normal Status"
-    ErrNormalStatus,
+    ErrNormalStatus = 0x82,
     /// Usage ID `0x83`: "Err Transducers Exceeded"
-    ErrTransducersExceeded,
+    ErrTransducersExceeded = 0x83,
     /// Usage ID `0x84`: "Err Full Trans Features Unavailable"
-    ErrFullTransFeaturesUnavailable,
+    ErrFullTransFeaturesUnavailable = 0x84,
     /// Usage ID `0x85`: "Err Charge Low"
-    ErrChargeLow,
+    ErrChargeLow = 0x85,
     /// Usage ID `0x90`: "Transducer Software Info"
-    TransducerSoftwareInfo,
+    TransducerSoftwareInfo = 0x90,
     /// Usage ID `0x91`: "Transducer Vendor Id"
-    TransducerVendorId,
+    TransducerVendorId = 0x91,
     /// Usage ID `0x92`: "Transducer Product Id"
-    TransducerProductId,
+    TransducerProductId = 0x92,
     /// Usage ID `0x93`: "Device Supported Protocols"
-    DeviceSupportedProtocols,
+    DeviceSupportedProtocols = 0x93,
     /// Usage ID `0x94`: "Transducer Supported Protocols"
-    TransducerSupportedProtocols,
+    TransducerSupportedProtocols = 0x94,
     /// Usage ID `0x95`: "No Protocol"
-    NoProtocol,
+    NoProtocol = 0x95,
     /// Usage ID `0x96`: "Wacom AES Protocol"
-    WacomAESProtocol,
+    WacomAESProtocol = 0x96,
     /// Usage ID `0x97`: "USI Protocol"
-    USIProtocol,
+    USIProtocol = 0x97,
     /// Usage ID `0x98`: "Microsoft Pen Protocol"
-    MicrosoftPenProtocol,
+    MicrosoftPenProtocol = 0x98,
     /// Usage ID `0xA0`: "Supported Report Rates"
-    SupportedReportRates,
+    SupportedReportRates = 0xA0,
     /// Usage ID `0xA1`: "Report Rate"
-    ReportRate,
+    ReportRate = 0xA1,
     /// Usage ID `0xA2`: "Transducer Connected"
-    TransducerConnected,
+    TransducerConnected = 0xA2,
     /// Usage ID `0xA3`: "Switch Disabled"
-    SwitchDisabled,
+    SwitchDisabled = 0xA3,
     /// Usage ID `0xA4`: "Switch Unimplemented"
-    SwitchUnimplemented,
+    SwitchUnimplemented = 0xA4,
     /// Usage ID `0xA5`: "Transducer Switches"
-    TransducerSwitches,
+    TransducerSwitches = 0xA5,
     /// Usage ID `0xA6`: "Transducer Index Selector"
-    TransducerIndexSelector,
+    TransducerIndexSelector = 0xA6,
     /// Usage ID `0xB0`: "Button Press Threshold"
-    ButtonPressThreshold,
+    ButtonPressThreshold = 0xB0,
 }
 
 impl Digitizers {
@@ -8718,116 +7591,7 @@ impl AsUsagePage for Digitizers {
 
 impl From<&Digitizers> for u16 {
     fn from(digitizers: &Digitizers) -> u16 {
-        match *digitizers {
-            Digitizers::Digitizer => 1,
-            Digitizers::Pen => 2,
-            Digitizers::LightPen => 3,
-            Digitizers::TouchScreen => 4,
-            Digitizers::TouchPad => 5,
-            Digitizers::Whiteboard => 6,
-            Digitizers::CoordinateMeasuringMachine => 7,
-            Digitizers::ThreeDDigitizer => 8,
-            Digitizers::StereoPlotter => 9,
-            Digitizers::ArticulatedArm => 10,
-            Digitizers::Armature => 11,
-            Digitizers::MultiplePointDigitizer => 12,
-            Digitizers::FreeSpaceWand => 13,
-            Digitizers::DeviceConfiguration => 14,
-            Digitizers::CapacitiveHeatMapDigitizer => 15,
-            Digitizers::Stylus => 32,
-            Digitizers::Puck => 33,
-            Digitizers::Finger => 34,
-            Digitizers::Devicesettings => 35,
-            Digitizers::CharacterGesture => 36,
-            Digitizers::TipPressure => 48,
-            Digitizers::BarrelPressure => 49,
-            Digitizers::InRange => 50,
-            Digitizers::Touch => 51,
-            Digitizers::Untouch => 52,
-            Digitizers::Tap => 53,
-            Digitizers::Quality => 54,
-            Digitizers::DataValid => 55,
-            Digitizers::TransducerIndex => 56,
-            Digitizers::TabletFunctionKeys => 57,
-            Digitizers::ProgramChangeKeys => 58,
-            Digitizers::BatteryStrength => 59,
-            Digitizers::Invert => 60,
-            Digitizers::XTilt => 61,
-            Digitizers::YTilt => 62,
-            Digitizers::Azimuth => 63,
-            Digitizers::Altitude => 64,
-            Digitizers::Twist => 65,
-            Digitizers::TipSwitch => 66,
-            Digitizers::SecondaryTipSwitch => 67,
-            Digitizers::BarrelSwitch => 68,
-            Digitizers::Eraser => 69,
-            Digitizers::TabletPick => 70,
-            Digitizers::TouchValid => 71,
-            Digitizers::Width => 72,
-            Digitizers::Height => 73,
-            Digitizers::ContactIdentifier => 81,
-            Digitizers::DeviceMode => 82,
-            Digitizers::DeviceIdentifier => 83,
-            Digitizers::ContactCount => 84,
-            Digitizers::ContactCountMaximum => 85,
-            Digitizers::ScanTime => 86,
-            Digitizers::SurfaceSwitch => 87,
-            Digitizers::ButtonSwitch => 88,
-            Digitizers::PadType => 89,
-            Digitizers::SecondaryBarrelSwitch => 90,
-            Digitizers::TransducerSerialNumber => 91,
-            Digitizers::PreferredColor => 92,
-            Digitizers::PreferredColorisLocked => 93,
-            Digitizers::PreferredLineWidth => 94,
-            Digitizers::PreferredLineWidthisLocked => 95,
-            Digitizers::LatencyMode => 96,
-            Digitizers::GestureCharacterQuality => 97,
-            Digitizers::CharacterGestureDataLength => 98,
-            Digitizers::CharacterGestureData => 99,
-            Digitizers::GestureCharacterEncoding => 100,
-            Digitizers::UTF8CharacterGestureEncoding => 101,
-            Digitizers::UTF16LittleEndianCharacterGestureEncoding => 102,
-            Digitizers::UTF16BigEndianCharacterGestureEncoding => 103,
-            Digitizers::UTF32LittleEndianCharacterGestureEncoding => 104,
-            Digitizers::UTF32BigEndianCharacterGestureEncoding => 105,
-            Digitizers::CapacitiveHeatMapProtocolVendorID => 106,
-            Digitizers::CapacitiveHeatMapProtocolVersion => 107,
-            Digitizers::CapacitiveHeatMapFrameData => 108,
-            Digitizers::GestureCharacterEnable => 109,
-            Digitizers::TransducerSerialNumberPart2 => 110,
-            Digitizers::NoPreferredColor => 111,
-            Digitizers::PreferredLineStyle => 112,
-            Digitizers::PreferredLineStyleisLocked => 113,
-            Digitizers::Ink => 114,
-            Digitizers::Pencil => 115,
-            Digitizers::Highlighter => 116,
-            Digitizers::ChiselMarker => 117,
-            Digitizers::Brush => 118,
-            Digitizers::NoPreference => 119,
-            Digitizers::DigitizerDiagnostic => 128,
-            Digitizers::DigitizerError => 129,
-            Digitizers::ErrNormalStatus => 130,
-            Digitizers::ErrTransducersExceeded => 131,
-            Digitizers::ErrFullTransFeaturesUnavailable => 132,
-            Digitizers::ErrChargeLow => 133,
-            Digitizers::TransducerSoftwareInfo => 144,
-            Digitizers::TransducerVendorId => 145,
-            Digitizers::TransducerProductId => 146,
-            Digitizers::DeviceSupportedProtocols => 147,
-            Digitizers::TransducerSupportedProtocols => 148,
-            Digitizers::NoProtocol => 149,
-            Digitizers::WacomAESProtocol => 150,
-            Digitizers::USIProtocol => 151,
-            Digitizers::MicrosoftPenProtocol => 152,
-            Digitizers::SupportedReportRates => 160,
-            Digitizers::ReportRate => 161,
-            Digitizers::TransducerConnected => 162,
-            Digitizers::SwitchDisabled => 163,
-            Digitizers::SwitchUnimplemented => 164,
-            Digitizers::TransducerSwitches => 165,
-            Digitizers::TransducerIndexSelector => 166,
-            Digitizers::ButtonPressThreshold => 176,
-        }
+        *digitizers as u16
     }
 }
 
@@ -9033,67 +7797,68 @@ impl BitOr<u16> for Digitizers {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum Haptics {
     /// Usage ID `0x1`: "Simple Haptic Controller"
-    SimpleHapticController,
+    SimpleHapticController = 0x1,
     /// Usage ID `0x10`: "Waveform List"
-    WaveformList,
+    WaveformList = 0x10,
     /// Usage ID `0x11`: "Duration List"
-    DurationList,
+    DurationList = 0x11,
     /// Usage ID `0x20`: "Auto Trigger"
-    AutoTrigger,
+    AutoTrigger = 0x20,
     /// Usage ID `0x21`: "Manual Trigger"
-    ManualTrigger,
+    ManualTrigger = 0x21,
     /// Usage ID `0x22`: "Auto Trigger Associated Control"
-    AutoTriggerAssociatedControl,
+    AutoTriggerAssociatedControl = 0x22,
     /// Usage ID `0x23`: "Intensity"
-    Intensity,
+    Intensity = 0x23,
     /// Usage ID `0x24`: "Repeat Count"
-    RepeatCount,
+    RepeatCount = 0x24,
     /// Usage ID `0x25`: "Retrigger Period"
-    RetriggerPeriod,
+    RetriggerPeriod = 0x25,
     /// Usage ID `0x26`: "Waveform Vendor Page"
-    WaveformVendorPage,
+    WaveformVendorPage = 0x26,
     /// Usage ID `0x27`: "Waveform Vendor ID"
-    WaveformVendorID,
+    WaveformVendorID = 0x27,
     /// Usage ID `0x28`: "Waveform Cutoff Time"
-    WaveformCutoffTime,
+    WaveformCutoffTime = 0x28,
     /// Usage ID `0x1001`: "Waveform None"
-    WaveformNone,
+    WaveformNone = 0x1001,
     /// Usage ID `0x1002`: "Waveform Stop"
-    WaveformStop,
+    WaveformStop = 0x1002,
     /// Usage ID `0x1003`: "Waveform Click"
-    WaveformClick,
+    WaveformClick = 0x1003,
     /// Usage ID `0x1004`: "Waveform Buzz Continuous"
-    WaveformBuzzContinuous,
+    WaveformBuzzContinuous = 0x1004,
     /// Usage ID `0x1005`: "Waveform Rumble Continuous"
-    WaveformRumbleContinuous,
+    WaveformRumbleContinuous = 0x1005,
     /// Usage ID `0x1006`: "Waveform Press"
-    WaveformPress,
+    WaveformPress = 0x1006,
     /// Usage ID `0x1007`: "Waveform Release"
-    WaveformRelease,
+    WaveformRelease = 0x1007,
     /// Usage ID `0x1008`: "Waveform Hover"
-    WaveformHover,
+    WaveformHover = 0x1008,
     /// Usage ID `0x1009`: "Waveform Success"
-    WaveformSuccess,
+    WaveformSuccess = 0x1009,
     /// Usage ID `0x100A`: "Waveform Error"
-    WaveformError,
+    WaveformError = 0x100A,
     /// Usage ID `0x100B`: "Waveform Ink Continuous"
-    WaveformInkContinuous,
+    WaveformInkContinuous = 0x100B,
     /// Usage ID `0x100C`: "Waveform Pencil Continuous"
-    WaveformPencilContinuous,
+    WaveformPencilContinuous = 0x100C,
     /// Usage ID `0x100D`: "Waveform Marker Continuous"
-    WaveformMarkerContinuous,
+    WaveformMarkerContinuous = 0x100D,
     /// Usage ID `0x100E`: "Waveform Chisel Marker Continuous"
-    WaveformChiselMarkerContinuous,
+    WaveformChiselMarkerContinuous = 0x100E,
     /// Usage ID `0x100F`: "Waveform Brush Continuous"
-    WaveformBrushContinuous,
+    WaveformBrushContinuous = 0x100F,
     /// Usage ID `0x1010`: "Waveform Eraser Continuous"
-    WaveformEraserContinuous,
+    WaveformEraserContinuous = 0x1010,
     /// Usage ID `0x1011`: "Waveform Sparkle Continuous"
-    WaveformSparkleContinuous,
+    WaveformSparkleContinuous = 0x1011,
 }
 
 impl Haptics {
@@ -9184,37 +7949,7 @@ impl AsUsagePage for Haptics {
 
 impl From<&Haptics> for u16 {
     fn from(haptics: &Haptics) -> u16 {
-        match *haptics {
-            Haptics::SimpleHapticController => 1,
-            Haptics::WaveformList => 16,
-            Haptics::DurationList => 17,
-            Haptics::AutoTrigger => 32,
-            Haptics::ManualTrigger => 33,
-            Haptics::AutoTriggerAssociatedControl => 34,
-            Haptics::Intensity => 35,
-            Haptics::RepeatCount => 36,
-            Haptics::RetriggerPeriod => 37,
-            Haptics::WaveformVendorPage => 38,
-            Haptics::WaveformVendorID => 39,
-            Haptics::WaveformCutoffTime => 40,
-            Haptics::WaveformNone => 4097,
-            Haptics::WaveformStop => 4098,
-            Haptics::WaveformClick => 4099,
-            Haptics::WaveformBuzzContinuous => 4100,
-            Haptics::WaveformRumbleContinuous => 4101,
-            Haptics::WaveformPress => 4102,
-            Haptics::WaveformRelease => 4103,
-            Haptics::WaveformHover => 4104,
-            Haptics::WaveformSuccess => 4105,
-            Haptics::WaveformError => 4106,
-            Haptics::WaveformInkContinuous => 4107,
-            Haptics::WaveformPencilContinuous => 4108,
-            Haptics::WaveformMarkerContinuous => 4109,
-            Haptics::WaveformChiselMarkerContinuous => 4110,
-            Haptics::WaveformBrushContinuous => 4111,
-            Haptics::WaveformEraserContinuous => 4112,
-            Haptics::WaveformSparkleContinuous => 4113,
-        }
+        *haptics as u16
     }
 }
 
@@ -9341,219 +8076,220 @@ impl BitOr<u16> for Haptics {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum PhysicalInputDevice {
     /// Usage ID `0x1`: "Physical Input Device"
-    PhysicalInputDevice,
+    PhysicalInputDevice = 0x1,
     /// Usage ID `0x20`: "Normal"
-    Normal,
+    Normal = 0x20,
     /// Usage ID `0x21`: "Set Effect Report"
-    SetEffectReport,
+    SetEffectReport = 0x21,
     /// Usage ID `0x22`: "Effect Parameter Block Index"
-    EffectParameterBlockIndex,
+    EffectParameterBlockIndex = 0x22,
     /// Usage ID `0x23`: "Parameter Block Offset"
-    ParameterBlockOffset,
+    ParameterBlockOffset = 0x23,
     /// Usage ID `0x24`: "ROM Flag"
-    ROMFlag,
+    ROMFlag = 0x24,
     /// Usage ID `0x25`: "Effect Type"
-    EffectType,
+    EffectType = 0x25,
     /// Usage ID `0x26`: "ET Constant-Force"
-    ETConstantForce,
+    ETConstantForce = 0x26,
     /// Usage ID `0x27`: "ET Ramp"
-    ETRamp,
+    ETRamp = 0x27,
     /// Usage ID `0x28`: "ET Custom-Force"
-    ETCustomForce,
+    ETCustomForce = 0x28,
     /// Usage ID `0x30`: "ET Square"
-    ETSquare,
+    ETSquare = 0x30,
     /// Usage ID `0x31`: "ET Sine"
-    ETSine,
+    ETSine = 0x31,
     /// Usage ID `0x32`: "ET Triangle"
-    ETTriangle,
+    ETTriangle = 0x32,
     /// Usage ID `0x33`: "ET Sawtooth Up"
-    ETSawtoothUp,
+    ETSawtoothUp = 0x33,
     /// Usage ID `0x34`: "ET Sawtooth Down"
-    ETSawtoothDown,
+    ETSawtoothDown = 0x34,
     /// Usage ID `0x40`: "ET Spring"
-    ETSpring,
+    ETSpring = 0x40,
     /// Usage ID `0x41`: "ET Damper"
-    ETDamper,
+    ETDamper = 0x41,
     /// Usage ID `0x42`: "ET Inertia"
-    ETInertia,
+    ETInertia = 0x42,
     /// Usage ID `0x43`: "ET Friction"
-    ETFriction,
+    ETFriction = 0x43,
     /// Usage ID `0x50`: "Duration"
-    Duration,
+    Duration = 0x50,
     /// Usage ID `0x51`: "Sample Period"
-    SamplePeriod,
+    SamplePeriod = 0x51,
     /// Usage ID `0x52`: "Gain"
-    Gain,
+    Gain = 0x52,
     /// Usage ID `0x53`: "Trigger Button"
-    TriggerButton,
+    TriggerButton = 0x53,
     /// Usage ID `0x54`: "Trigger Repeat Interval"
-    TriggerRepeatInterval,
+    TriggerRepeatInterval = 0x54,
     /// Usage ID `0x55`: "Axes Enable"
-    AxesEnable,
+    AxesEnable = 0x55,
     /// Usage ID `0x56`: "Direction Enable"
-    DirectionEnable,
+    DirectionEnable = 0x56,
     /// Usage ID `0x57`: "Direction"
-    Direction,
+    Direction = 0x57,
     /// Usage ID `0x58`: "Type Specific Block Offset"
-    TypeSpecificBlockOffset,
+    TypeSpecificBlockOffset = 0x58,
     /// Usage ID `0x59`: "Block Type"
-    BlockType,
+    BlockType = 0x59,
     /// Usage ID `0x5A`: "Set Envelope Report"
-    SetEnvelopeReport,
+    SetEnvelopeReport = 0x5A,
     /// Usage ID `0x5B`: "Attack Level"
-    AttackLevel,
+    AttackLevel = 0x5B,
     /// Usage ID `0x5C`: "Attack Time"
-    AttackTime,
+    AttackTime = 0x5C,
     /// Usage ID `0x5D`: "Fade Level"
-    FadeLevel,
+    FadeLevel = 0x5D,
     /// Usage ID `0x5E`: "Fade Time"
-    FadeTime,
+    FadeTime = 0x5E,
     /// Usage ID `0x5F`: "Set Condition Report"
-    SetConditionReport,
+    SetConditionReport = 0x5F,
     /// Usage ID `0x60`: "Center-Point Offset"
-    CenterPointOffset,
+    CenterPointOffset = 0x60,
     /// Usage ID `0x61`: "Positive Coefficient"
-    PositiveCoefficient,
+    PositiveCoefficient = 0x61,
     /// Usage ID `0x62`: "Negative Coefficient"
-    NegativeCoefficient,
+    NegativeCoefficient = 0x62,
     /// Usage ID `0x63`: "Positive Saturation"
-    PositiveSaturation,
+    PositiveSaturation = 0x63,
     /// Usage ID `0x64`: "Negative Saturation"
-    NegativeSaturation,
+    NegativeSaturation = 0x64,
     /// Usage ID `0x65`: "Dead Band"
-    DeadBand,
+    DeadBand = 0x65,
     /// Usage ID `0x66`: "Download Force Sample"
-    DownloadForceSample,
+    DownloadForceSample = 0x66,
     /// Usage ID `0x67`: "Isoch Custom-Force Enable"
-    IsochCustomForceEnable,
+    IsochCustomForceEnable = 0x67,
     /// Usage ID `0x68`: "Custom-Force Data Report"
-    CustomForceDataReport,
+    CustomForceDataReport = 0x68,
     /// Usage ID `0x69`: "Custom-Force Data"
-    CustomForceData,
+    CustomForceData = 0x69,
     /// Usage ID `0x6A`: "Custom-Force Vendor Defined Data"
-    CustomForceVendorDefinedData,
+    CustomForceVendorDefinedData = 0x6A,
     /// Usage ID `0x6B`: "Set Custom-Force Report"
-    SetCustomForceReport,
+    SetCustomForceReport = 0x6B,
     /// Usage ID `0x6C`: "Custom-Force Data Offset"
-    CustomForceDataOffset,
+    CustomForceDataOffset = 0x6C,
     /// Usage ID `0x6D`: "Sample Count"
-    SampleCount,
+    SampleCount = 0x6D,
     /// Usage ID `0x6E`: "Set Periodic Report"
-    SetPeriodicReport,
+    SetPeriodicReport = 0x6E,
     /// Usage ID `0x6F`: "Offset"
-    Offset,
+    Offset = 0x6F,
     /// Usage ID `0x70`: "Magnitude"
-    Magnitude,
+    Magnitude = 0x70,
     /// Usage ID `0x71`: "Phase"
-    Phase,
+    Phase = 0x71,
     /// Usage ID `0x72`: "Period"
-    Period,
+    Period = 0x72,
     /// Usage ID `0x73`: "Set Constant-Force Report"
-    SetConstantForceReport,
+    SetConstantForceReport = 0x73,
     /// Usage ID `0x74`: "Set Ramp-Force Report"
-    SetRampForceReport,
+    SetRampForceReport = 0x74,
     /// Usage ID `0x75`: "Ramp Start"
-    RampStart,
+    RampStart = 0x75,
     /// Usage ID `0x76`: "Ramp End"
-    RampEnd,
+    RampEnd = 0x76,
     /// Usage ID `0x77`: "Effect Operation Report"
-    EffectOperationReport,
+    EffectOperationReport = 0x77,
     /// Usage ID `0x78`: "Effect Operation"
-    EffectOperation,
+    EffectOperation = 0x78,
     /// Usage ID `0x79`: "Op Effect Start"
-    OpEffectStart,
+    OpEffectStart = 0x79,
     /// Usage ID `0x7A`: "Op Effect Start Solo"
-    OpEffectStartSolo,
+    OpEffectStartSolo = 0x7A,
     /// Usage ID `0x7B`: "Op Effect Stop"
-    OpEffectStop,
+    OpEffectStop = 0x7B,
     /// Usage ID `0x7C`: "Loop Count"
-    LoopCount,
+    LoopCount = 0x7C,
     /// Usage ID `0x7D`: "Device Gain Report"
-    DeviceGainReport,
+    DeviceGainReport = 0x7D,
     /// Usage ID `0x7E`: "Device Gain"
-    DeviceGain,
+    DeviceGain = 0x7E,
     /// Usage ID `0x7F`: "Parameter Block Pools Report"
-    ParameterBlockPoolsReport,
+    ParameterBlockPoolsReport = 0x7F,
     /// Usage ID `0x80`: "RAM Pool Size"
-    RAMPoolSize,
+    RAMPoolSize = 0x80,
     /// Usage ID `0x81`: "ROM Pool Size"
-    ROMPoolSize,
+    ROMPoolSize = 0x81,
     /// Usage ID `0x82`: "ROM Effect Block Count"
-    ROMEffectBlockCount,
+    ROMEffectBlockCount = 0x82,
     /// Usage ID `0x83`: "Simultaneous Effects Max"
-    SimultaneousEffectsMax,
+    SimultaneousEffectsMax = 0x83,
     /// Usage ID `0x84`: "Pool Alignment"
-    PoolAlignment,
+    PoolAlignment = 0x84,
     /// Usage ID `0x85`: "Parameter Block Move Report"
-    ParameterBlockMoveReport,
+    ParameterBlockMoveReport = 0x85,
     /// Usage ID `0x86`: "Move Source"
-    MoveSource,
+    MoveSource = 0x86,
     /// Usage ID `0x87`: "Move Destination"
-    MoveDestination,
+    MoveDestination = 0x87,
     /// Usage ID `0x88`: "Move Length"
-    MoveLength,
+    MoveLength = 0x88,
     /// Usage ID `0x89`: "Effect Parameter Block Load Report"
-    EffectParameterBlockLoadReport,
+    EffectParameterBlockLoadReport = 0x89,
     /// Usage ID `0x8B`: "Effect Parameter Block Load Status"
-    EffectParameterBlockLoadStatus,
+    EffectParameterBlockLoadStatus = 0x8B,
     /// Usage ID `0x8C`: "Block Load Success"
-    BlockLoadSuccess,
+    BlockLoadSuccess = 0x8C,
     /// Usage ID `0x8D`: "Block Load Full"
-    BlockLoadFull,
+    BlockLoadFull = 0x8D,
     /// Usage ID `0x8E`: "Block Load Error"
-    BlockLoadError,
+    BlockLoadError = 0x8E,
     /// Usage ID `0x8F`: "Block Handle"
-    BlockHandle,
+    BlockHandle = 0x8F,
     /// Usage ID `0x90`: "Effect Parameter Block Free Report"
-    EffectParameterBlockFreeReport,
+    EffectParameterBlockFreeReport = 0x90,
     /// Usage ID `0x91`: "Type Specific Block Handle"
-    TypeSpecificBlockHandle,
+    TypeSpecificBlockHandle = 0x91,
     /// Usage ID `0x92`: "PID State Report"
-    PIDStateReport,
+    PIDStateReport = 0x92,
     /// Usage ID `0x94`: "Effect Playing"
-    EffectPlaying,
+    EffectPlaying = 0x94,
     /// Usage ID `0x95`: "PID Device Control Report"
-    PIDDeviceControlReport,
+    PIDDeviceControlReport = 0x95,
     /// Usage ID `0x96`: "PID Device Control"
-    PIDDeviceControl,
+    PIDDeviceControl = 0x96,
     /// Usage ID `0x97`: "DC Enable Actuators"
-    DCEnableActuators,
+    DCEnableActuators = 0x97,
     /// Usage ID `0x98`: "DC Disable Actuators"
-    DCDisableActuators,
+    DCDisableActuators = 0x98,
     /// Usage ID `0x99`: "DC Stop All Effects"
-    DCStopAllEffects,
+    DCStopAllEffects = 0x99,
     /// Usage ID `0x9A`: "DC Reset"
-    DCReset,
+    DCReset = 0x9A,
     /// Usage ID `0x9B`: "DC Pause"
-    DCPause,
+    DCPause = 0x9B,
     /// Usage ID `0x9C`: "DC Continue"
-    DCContinue,
+    DCContinue = 0x9C,
     /// Usage ID `0x9F`: "Device Paused"
-    DevicePaused,
+    DevicePaused = 0x9F,
     /// Usage ID `0xA0`: "Actuators Enabled"
-    ActuatorsEnabled,
+    ActuatorsEnabled = 0xA0,
     /// Usage ID `0xA4`: "Safety Switch"
-    SafetySwitch,
+    SafetySwitch = 0xA4,
     /// Usage ID `0xA5`: "Actuator Override Switch"
-    ActuatorOverrideSwitch,
+    ActuatorOverrideSwitch = 0xA5,
     /// Usage ID `0xA6`: "Actuator Power"
-    ActuatorPower,
+    ActuatorPower = 0xA6,
     /// Usage ID `0xA7`: "Start Delay"
-    StartDelay,
+    StartDelay = 0xA7,
     /// Usage ID `0xA8`: "Parameter Block Size"
-    ParameterBlockSize,
+    ParameterBlockSize = 0xA8,
     /// Usage ID `0xA9`: "Device-Managed Pool"
-    DeviceManagedPool,
+    DeviceManagedPool = 0xA9,
     /// Usage ID `0xAA`: "Shared Parameter Blocks"
-    SharedParameterBlocks,
+    SharedParameterBlocks = 0xAA,
     /// Usage ID `0xAB`: "Create New Effect Parameter Block Report"
-    CreateNewEffectParameterBlockReport,
+    CreateNewEffectParameterBlockReport = 0xAB,
     /// Usage ID `0xAC`: "RAM Pool Available"
-    RAMPoolAvailable,
+    RAMPoolAvailable = 0xAC,
 }
 
 impl PhysicalInputDevice {
@@ -9728,113 +8464,7 @@ impl AsUsagePage for PhysicalInputDevice {
 
 impl From<&PhysicalInputDevice> for u16 {
     fn from(physicalinputdevice: &PhysicalInputDevice) -> u16 {
-        match *physicalinputdevice {
-            PhysicalInputDevice::PhysicalInputDevice => 1,
-            PhysicalInputDevice::Normal => 32,
-            PhysicalInputDevice::SetEffectReport => 33,
-            PhysicalInputDevice::EffectParameterBlockIndex => 34,
-            PhysicalInputDevice::ParameterBlockOffset => 35,
-            PhysicalInputDevice::ROMFlag => 36,
-            PhysicalInputDevice::EffectType => 37,
-            PhysicalInputDevice::ETConstantForce => 38,
-            PhysicalInputDevice::ETRamp => 39,
-            PhysicalInputDevice::ETCustomForce => 40,
-            PhysicalInputDevice::ETSquare => 48,
-            PhysicalInputDevice::ETSine => 49,
-            PhysicalInputDevice::ETTriangle => 50,
-            PhysicalInputDevice::ETSawtoothUp => 51,
-            PhysicalInputDevice::ETSawtoothDown => 52,
-            PhysicalInputDevice::ETSpring => 64,
-            PhysicalInputDevice::ETDamper => 65,
-            PhysicalInputDevice::ETInertia => 66,
-            PhysicalInputDevice::ETFriction => 67,
-            PhysicalInputDevice::Duration => 80,
-            PhysicalInputDevice::SamplePeriod => 81,
-            PhysicalInputDevice::Gain => 82,
-            PhysicalInputDevice::TriggerButton => 83,
-            PhysicalInputDevice::TriggerRepeatInterval => 84,
-            PhysicalInputDevice::AxesEnable => 85,
-            PhysicalInputDevice::DirectionEnable => 86,
-            PhysicalInputDevice::Direction => 87,
-            PhysicalInputDevice::TypeSpecificBlockOffset => 88,
-            PhysicalInputDevice::BlockType => 89,
-            PhysicalInputDevice::SetEnvelopeReport => 90,
-            PhysicalInputDevice::AttackLevel => 91,
-            PhysicalInputDevice::AttackTime => 92,
-            PhysicalInputDevice::FadeLevel => 93,
-            PhysicalInputDevice::FadeTime => 94,
-            PhysicalInputDevice::SetConditionReport => 95,
-            PhysicalInputDevice::CenterPointOffset => 96,
-            PhysicalInputDevice::PositiveCoefficient => 97,
-            PhysicalInputDevice::NegativeCoefficient => 98,
-            PhysicalInputDevice::PositiveSaturation => 99,
-            PhysicalInputDevice::NegativeSaturation => 100,
-            PhysicalInputDevice::DeadBand => 101,
-            PhysicalInputDevice::DownloadForceSample => 102,
-            PhysicalInputDevice::IsochCustomForceEnable => 103,
-            PhysicalInputDevice::CustomForceDataReport => 104,
-            PhysicalInputDevice::CustomForceData => 105,
-            PhysicalInputDevice::CustomForceVendorDefinedData => 106,
-            PhysicalInputDevice::SetCustomForceReport => 107,
-            PhysicalInputDevice::CustomForceDataOffset => 108,
-            PhysicalInputDevice::SampleCount => 109,
-            PhysicalInputDevice::SetPeriodicReport => 110,
-            PhysicalInputDevice::Offset => 111,
-            PhysicalInputDevice::Magnitude => 112,
-            PhysicalInputDevice::Phase => 113,
-            PhysicalInputDevice::Period => 114,
-            PhysicalInputDevice::SetConstantForceReport => 115,
-            PhysicalInputDevice::SetRampForceReport => 116,
-            PhysicalInputDevice::RampStart => 117,
-            PhysicalInputDevice::RampEnd => 118,
-            PhysicalInputDevice::EffectOperationReport => 119,
-            PhysicalInputDevice::EffectOperation => 120,
-            PhysicalInputDevice::OpEffectStart => 121,
-            PhysicalInputDevice::OpEffectStartSolo => 122,
-            PhysicalInputDevice::OpEffectStop => 123,
-            PhysicalInputDevice::LoopCount => 124,
-            PhysicalInputDevice::DeviceGainReport => 125,
-            PhysicalInputDevice::DeviceGain => 126,
-            PhysicalInputDevice::ParameterBlockPoolsReport => 127,
-            PhysicalInputDevice::RAMPoolSize => 128,
-            PhysicalInputDevice::ROMPoolSize => 129,
-            PhysicalInputDevice::ROMEffectBlockCount => 130,
-            PhysicalInputDevice::SimultaneousEffectsMax => 131,
-            PhysicalInputDevice::PoolAlignment => 132,
-            PhysicalInputDevice::ParameterBlockMoveReport => 133,
-            PhysicalInputDevice::MoveSource => 134,
-            PhysicalInputDevice::MoveDestination => 135,
-            PhysicalInputDevice::MoveLength => 136,
-            PhysicalInputDevice::EffectParameterBlockLoadReport => 137,
-            PhysicalInputDevice::EffectParameterBlockLoadStatus => 139,
-            PhysicalInputDevice::BlockLoadSuccess => 140,
-            PhysicalInputDevice::BlockLoadFull => 141,
-            PhysicalInputDevice::BlockLoadError => 142,
-            PhysicalInputDevice::BlockHandle => 143,
-            PhysicalInputDevice::EffectParameterBlockFreeReport => 144,
-            PhysicalInputDevice::TypeSpecificBlockHandle => 145,
-            PhysicalInputDevice::PIDStateReport => 146,
-            PhysicalInputDevice::EffectPlaying => 148,
-            PhysicalInputDevice::PIDDeviceControlReport => 149,
-            PhysicalInputDevice::PIDDeviceControl => 150,
-            PhysicalInputDevice::DCEnableActuators => 151,
-            PhysicalInputDevice::DCDisableActuators => 152,
-            PhysicalInputDevice::DCStopAllEffects => 153,
-            PhysicalInputDevice::DCReset => 154,
-            PhysicalInputDevice::DCPause => 155,
-            PhysicalInputDevice::DCContinue => 156,
-            PhysicalInputDevice::DevicePaused => 159,
-            PhysicalInputDevice::ActuatorsEnabled => 160,
-            PhysicalInputDevice::SafetySwitch => 164,
-            PhysicalInputDevice::ActuatorOverrideSwitch => 165,
-            PhysicalInputDevice::ActuatorPower => 166,
-            PhysicalInputDevice::StartDelay => 167,
-            PhysicalInputDevice::ParameterBlockSize => 168,
-            PhysicalInputDevice::DeviceManagedPool => 169,
-            PhysicalInputDevice::SharedParameterBlocks => 170,
-            PhysicalInputDevice::CreateNewEffectParameterBlockReport => 171,
-            PhysicalInputDevice::RAMPoolAvailable => 172,
-        }
+        *physicalinputdevice as u16
     }
 }
 
@@ -10205,29 +8835,30 @@ impl BitOr<u16> for Unicode {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum SoC {
     /// Usage ID `0x1`: "SocControl"
-    SocControl,
+    SocControl = 0x1,
     /// Usage ID `0x2`: "FirmwareTransfer"
-    FirmwareTransfer,
+    FirmwareTransfer = 0x2,
     /// Usage ID `0x3`: "FirmwareFileId"
-    FirmwareFileId,
+    FirmwareFileId = 0x3,
     /// Usage ID `0x4`: "FileOffsetInBytes"
-    FileOffsetInBytes,
+    FileOffsetInBytes = 0x4,
     /// Usage ID `0x5`: "FileTransferSizeMaxInBytes"
-    FileTransferSizeMaxInBytes,
+    FileTransferSizeMaxInBytes = 0x5,
     /// Usage ID `0x6`: "FilePayload"
-    FilePayload,
+    FilePayload = 0x6,
     /// Usage ID `0x7`: "FilePayloadSizeInBytes"
-    FilePayloadSizeInBytes,
+    FilePayloadSizeInBytes = 0x7,
     /// Usage ID `0x8`: "FilePayloadContainsLastBytes"
-    FilePayloadContainsLastBytes,
+    FilePayloadContainsLastBytes = 0x8,
     /// Usage ID `0x9`: "FileTransferStop"
-    FileTransferStop,
+    FileTransferStop = 0x9,
     /// Usage ID `0xA`: "FileTransferTillEnd"
-    FileTransferTillEnd,
+    FileTransferTillEnd = 0xA,
 }
 
 impl SoC {
@@ -10299,18 +8930,7 @@ impl AsUsagePage for SoC {
 
 impl From<&SoC> for u16 {
     fn from(soc: &SoC) -> u16 {
-        match *soc {
-            SoC::SocControl => 1,
-            SoC::FirmwareTransfer => 2,
-            SoC::FirmwareFileId => 3,
-            SoC::FileOffsetInBytes => 4,
-            SoC::FileTransferSizeMaxInBytes => 5,
-            SoC::FilePayload => 6,
-            SoC::FilePayloadSizeInBytes => 7,
-            SoC::FilePayloadContainsLastBytes => 8,
-            SoC::FileTransferStop => 9,
-            SoC::FileTransferTillEnd => 10,
-        }
+        *soc as u16
     }
 }
 
@@ -10418,77 +9038,78 @@ impl BitOr<u16> for SoC {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum EyeandHeadTrackers {
     /// Usage ID `0x1`: "Eye Tracker"
-    EyeTracker,
+    EyeTracker = 0x1,
     /// Usage ID `0x2`: "Head Tracker"
-    HeadTracker,
+    HeadTracker = 0x2,
     /// Usage ID `0x10`: "Tracking Data"
-    TrackingData,
+    TrackingData = 0x10,
     /// Usage ID `0x11`: "Capabilities"
-    Capabilities,
+    Capabilities = 0x11,
     /// Usage ID `0x12`: "Configuration"
-    Configuration,
+    Configuration = 0x12,
     /// Usage ID `0x13`: "Status"
-    Status,
+    Status = 0x13,
     /// Usage ID `0x14`: "Control"
-    Control,
+    Control = 0x14,
     /// Usage ID `0x20`: "Sensor Timestamp"
-    SensorTimestamp,
+    SensorTimestamp = 0x20,
     /// Usage ID `0x21`: "Position X"
-    PositionX,
+    PositionX = 0x21,
     /// Usage ID `0x22`: "Position Y"
-    PositionY,
+    PositionY = 0x22,
     /// Usage ID `0x23`: "Position Z"
-    PositionZ,
+    PositionZ = 0x23,
     /// Usage ID `0x24`: "Gaze Point"
-    GazePoint,
+    GazePoint = 0x24,
     /// Usage ID `0x25`: "Left Eye Position"
-    LeftEyePosition,
+    LeftEyePosition = 0x25,
     /// Usage ID `0x26`: "Right Eye Position"
-    RightEyePosition,
+    RightEyePosition = 0x26,
     /// Usage ID `0x27`: "Head Position"
-    HeadPosition,
+    HeadPosition = 0x27,
     /// Usage ID `0x28`: "Head Direction Point"
-    HeadDirectionPoint,
+    HeadDirectionPoint = 0x28,
     /// Usage ID `0x29`: "Rotation about X axis"
-    RotationaboutXaxis,
+    RotationaboutXaxis = 0x29,
     /// Usage ID `0x2A`: "Rotation about Y axis"
-    RotationaboutYaxis,
+    RotationaboutYaxis = 0x2A,
     /// Usage ID `0x2B`: "Rotation about Z axis"
-    RotationaboutZaxis,
+    RotationaboutZaxis = 0x2B,
     /// Usage ID `0x100`: "Tracker Quality"
-    TrackerQuality,
+    TrackerQuality = 0x100,
     /// Usage ID `0x101`: "Minimum Tracking Distance"
-    MinimumTrackingDistance,
+    MinimumTrackingDistance = 0x101,
     /// Usage ID `0x102`: "Optimum Tracking Distance"
-    OptimumTrackingDistance,
+    OptimumTrackingDistance = 0x102,
     /// Usage ID `0x103`: "Maximum Tracking Distance"
-    MaximumTrackingDistance,
+    MaximumTrackingDistance = 0x103,
     /// Usage ID `0x104`: "Maximum Screen Plane Width"
-    MaximumScreenPlaneWidth,
+    MaximumScreenPlaneWidth = 0x104,
     /// Usage ID `0x105`: "Maximum Screen Plane Height"
-    MaximumScreenPlaneHeight,
+    MaximumScreenPlaneHeight = 0x105,
     /// Usage ID `0x200`: "Display Manufacturer ID"
-    DisplayManufacturerID,
+    DisplayManufacturerID = 0x200,
     /// Usage ID `0x201`: "Display Product ID"
-    DisplayProductID,
+    DisplayProductID = 0x201,
     /// Usage ID `0x202`: "Display Serial Number"
-    DisplaySerialNumber,
+    DisplaySerialNumber = 0x202,
     /// Usage ID `0x203`: "Display Manufacturer Date"
-    DisplayManufacturerDate,
+    DisplayManufacturerDate = 0x203,
     /// Usage ID `0x204`: "Calibrated Screen Width"
-    CalibratedScreenWidth,
+    CalibratedScreenWidth = 0x204,
     /// Usage ID `0x205`: "Calibrated Screen Height"
-    CalibratedScreenHeight,
+    CalibratedScreenHeight = 0x205,
     /// Usage ID `0x300`: "Sampling Frequency"
-    SamplingFrequency,
+    SamplingFrequency = 0x300,
     /// Usage ID `0x301`: "Configuration Status"
-    ConfigurationStatus,
+    ConfigurationStatus = 0x301,
     /// Usage ID `0x400`: "Device Mode Request"
-    DeviceModeRequest,
+    DeviceModeRequest = 0x400,
 }
 
 impl EyeandHeadTrackers {
@@ -10584,42 +9205,7 @@ impl AsUsagePage for EyeandHeadTrackers {
 
 impl From<&EyeandHeadTrackers> for u16 {
     fn from(eyeandheadtrackers: &EyeandHeadTrackers) -> u16 {
-        match *eyeandheadtrackers {
-            EyeandHeadTrackers::EyeTracker => 1,
-            EyeandHeadTrackers::HeadTracker => 2,
-            EyeandHeadTrackers::TrackingData => 16,
-            EyeandHeadTrackers::Capabilities => 17,
-            EyeandHeadTrackers::Configuration => 18,
-            EyeandHeadTrackers::Status => 19,
-            EyeandHeadTrackers::Control => 20,
-            EyeandHeadTrackers::SensorTimestamp => 32,
-            EyeandHeadTrackers::PositionX => 33,
-            EyeandHeadTrackers::PositionY => 34,
-            EyeandHeadTrackers::PositionZ => 35,
-            EyeandHeadTrackers::GazePoint => 36,
-            EyeandHeadTrackers::LeftEyePosition => 37,
-            EyeandHeadTrackers::RightEyePosition => 38,
-            EyeandHeadTrackers::HeadPosition => 39,
-            EyeandHeadTrackers::HeadDirectionPoint => 40,
-            EyeandHeadTrackers::RotationaboutXaxis => 41,
-            EyeandHeadTrackers::RotationaboutYaxis => 42,
-            EyeandHeadTrackers::RotationaboutZaxis => 43,
-            EyeandHeadTrackers::TrackerQuality => 256,
-            EyeandHeadTrackers::MinimumTrackingDistance => 257,
-            EyeandHeadTrackers::OptimumTrackingDistance => 258,
-            EyeandHeadTrackers::MaximumTrackingDistance => 259,
-            EyeandHeadTrackers::MaximumScreenPlaneWidth => 260,
-            EyeandHeadTrackers::MaximumScreenPlaneHeight => 261,
-            EyeandHeadTrackers::DisplayManufacturerID => 512,
-            EyeandHeadTrackers::DisplayProductID => 513,
-            EyeandHeadTrackers::DisplaySerialNumber => 514,
-            EyeandHeadTrackers::DisplayManufacturerDate => 515,
-            EyeandHeadTrackers::CalibratedScreenWidth => 516,
-            EyeandHeadTrackers::CalibratedScreenHeight => 517,
-            EyeandHeadTrackers::SamplingFrequency => 768,
-            EyeandHeadTrackers::ConfigurationStatus => 769,
-            EyeandHeadTrackers::DeviceModeRequest => 1024,
-        }
+        *eyeandheadtrackers as u16
     }
 }
 
@@ -10751,159 +9337,160 @@ impl BitOr<u16> for EyeandHeadTrackers {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum AuxiliaryDisplay {
     /// Usage ID `0x1`: "Alphanumeric Display"
-    AlphanumericDisplay,
+    AlphanumericDisplay = 0x1,
     /// Usage ID `0x2`: "Auxiliary Display"
-    AuxiliaryDisplay,
+    AuxiliaryDisplay = 0x2,
     /// Usage ID `0x20`: "Display Attributes Report"
-    DisplayAttributesReport,
+    DisplayAttributesReport = 0x20,
     /// Usage ID `0x21`: "ASCII Character Set"
-    ASCIICharacterSet,
+    ASCIICharacterSet = 0x21,
     /// Usage ID `0x22`: "Data Read Back"
-    DataReadBack,
+    DataReadBack = 0x22,
     /// Usage ID `0x23`: "Font Read Back"
-    FontReadBack,
+    FontReadBack = 0x23,
     /// Usage ID `0x24`: "Display Control Report"
-    DisplayControlReport,
+    DisplayControlReport = 0x24,
     /// Usage ID `0x25`: "Clear Display"
-    ClearDisplay,
+    ClearDisplay = 0x25,
     /// Usage ID `0x26`: "Display Enable"
-    DisplayEnable,
+    DisplayEnable = 0x26,
     /// Usage ID `0x27`: "Screen Saver Delay"
-    ScreenSaverDelay,
+    ScreenSaverDelay = 0x27,
     /// Usage ID `0x28`: "Screen Saver Enable"
-    ScreenSaverEnable,
+    ScreenSaverEnable = 0x28,
     /// Usage ID `0x29`: "Vertical Scroll"
-    VerticalScroll,
+    VerticalScroll = 0x29,
     /// Usage ID `0x2A`: "Horizontal Scroll"
-    HorizontalScroll,
+    HorizontalScroll = 0x2A,
     /// Usage ID `0x2B`: "Character Report"
-    CharacterReport,
+    CharacterReport = 0x2B,
     /// Usage ID `0x2C`: "Display Data"
-    DisplayData,
+    DisplayData = 0x2C,
     /// Usage ID `0x2D`: "Display Status"
-    DisplayStatus,
+    DisplayStatus = 0x2D,
     /// Usage ID `0x2E`: "Stat Not Ready"
-    StatNotReady,
+    StatNotReady = 0x2E,
     /// Usage ID `0x2F`: "Stat Ready"
-    StatReady,
+    StatReady = 0x2F,
     /// Usage ID `0x30`: "Err Not a loadable character"
-    ErrNotaloadablecharacter,
+    ErrNotaloadablecharacter = 0x30,
     /// Usage ID `0x31`: "Err Font data cannot be read"
-    ErrFontdatacannotberead,
+    ErrFontdatacannotberead = 0x31,
     /// Usage ID `0x32`: "Cursor Position Report"
-    CursorPositionReport,
+    CursorPositionReport = 0x32,
     /// Usage ID `0x33`: "Row"
-    Row,
+    Row = 0x33,
     /// Usage ID `0x34`: "Column"
-    Column,
+    Column = 0x34,
     /// Usage ID `0x35`: "Rows"
-    Rows,
+    Rows = 0x35,
     /// Usage ID `0x36`: "Columns"
-    Columns,
+    Columns = 0x36,
     /// Usage ID `0x37`: "Cursor Pixel Positioning"
-    CursorPixelPositioning,
+    CursorPixelPositioning = 0x37,
     /// Usage ID `0x38`: "Cursor Mode"
-    CursorMode,
+    CursorMode = 0x38,
     /// Usage ID `0x39`: "Cursor Enable"
-    CursorEnable,
+    CursorEnable = 0x39,
     /// Usage ID `0x3A`: "Cursor Blink"
-    CursorBlink,
+    CursorBlink = 0x3A,
     /// Usage ID `0x3B`: "Font Report"
-    FontReport,
+    FontReport = 0x3B,
     /// Usage ID `0x3C`: "Font Data"
-    FontData,
+    FontData = 0x3C,
     /// Usage ID `0x3D`: "Character Width"
-    CharacterWidth,
+    CharacterWidth = 0x3D,
     /// Usage ID `0x3E`: "Character Height"
-    CharacterHeight,
+    CharacterHeight = 0x3E,
     /// Usage ID `0x3F`: "Character Spacing Horizontal"
-    CharacterSpacingHorizontal,
+    CharacterSpacingHorizontal = 0x3F,
     /// Usage ID `0x40`: "Character Spacing Vertical"
-    CharacterSpacingVertical,
+    CharacterSpacingVertical = 0x40,
     /// Usage ID `0x41`: "Unicode Character Set"
-    UnicodeCharacterSet,
+    UnicodeCharacterSet = 0x41,
     /// Usage ID `0x42`: "Font 7-Segment"
-    Font7Segment,
+    Font7Segment = 0x42,
     /// Usage ID `0x43`: "7-Segment Direct Map"
-    SevenSegmentDirectMap,
+    SevenSegmentDirectMap = 0x43,
     /// Usage ID `0x44`: "Font 14-Segment"
-    Font14Segment,
+    Font14Segment = 0x44,
     /// Usage ID `0x45`: "14-Segment Direct Map"
-    One4SegmentDirectMap,
+    One4SegmentDirectMap = 0x45,
     /// Usage ID `0x46`: "Display Brightness"
-    DisplayBrightness,
+    DisplayBrightness = 0x46,
     /// Usage ID `0x47`: "Display Contrast"
-    DisplayContrast,
+    DisplayContrast = 0x47,
     /// Usage ID `0x48`: "Character Attribute"
-    CharacterAttribute,
+    CharacterAttribute = 0x48,
     /// Usage ID `0x49`: "Attribute Readback"
-    AttributeReadback,
+    AttributeReadback = 0x49,
     /// Usage ID `0x4A`: "Attribute Data"
-    AttributeData,
+    AttributeData = 0x4A,
     /// Usage ID `0x4B`: "Char Attr Enhance"
-    CharAttrEnhance,
+    CharAttrEnhance = 0x4B,
     /// Usage ID `0x4C`: "Char Attr Underline"
-    CharAttrUnderline,
+    CharAttrUnderline = 0x4C,
     /// Usage ID `0x4D`: "Char Attr Blink"
-    CharAttrBlink,
+    CharAttrBlink = 0x4D,
     /// Usage ID `0x80`: "Bitmap Size X"
-    BitmapSizeX,
+    BitmapSizeX = 0x80,
     /// Usage ID `0x81`: "Bitmap Size Y"
-    BitmapSizeY,
+    BitmapSizeY = 0x81,
     /// Usage ID `0x82`: "Max Blit Size"
-    MaxBlitSize,
+    MaxBlitSize = 0x82,
     /// Usage ID `0x83`: "Bit Depth Format"
-    BitDepthFormat,
+    BitDepthFormat = 0x83,
     /// Usage ID `0x84`: "Display Orientation"
-    DisplayOrientation,
+    DisplayOrientation = 0x84,
     /// Usage ID `0x85`: "Palette Report"
-    PaletteReport,
+    PaletteReport = 0x85,
     /// Usage ID `0x86`: "Palette Data Size"
-    PaletteDataSize,
+    PaletteDataSize = 0x86,
     /// Usage ID `0x87`: "Palette Data Offset"
-    PaletteDataOffset,
+    PaletteDataOffset = 0x87,
     /// Usage ID `0x88`: "Palette Data"
-    PaletteData,
+    PaletteData = 0x88,
     /// Usage ID `0x8A`: "Blit Report"
-    BlitReport,
+    BlitReport = 0x8A,
     /// Usage ID `0x8B`: "Blit Rectangle X1"
-    BlitRectangleX1,
+    BlitRectangleX1 = 0x8B,
     /// Usage ID `0x8C`: "Blit Rectangle Y1"
-    BlitRectangleY1,
+    BlitRectangleY1 = 0x8C,
     /// Usage ID `0x8D`: "Blit Rectangle X2"
-    BlitRectangleX2,
+    BlitRectangleX2 = 0x8D,
     /// Usage ID `0x8E`: "Blit Rectangle Y2"
-    BlitRectangleY2,
+    BlitRectangleY2 = 0x8E,
     /// Usage ID `0x8F`: "Blit Data"
-    BlitData,
+    BlitData = 0x8F,
     /// Usage ID `0x90`: "Soft Button"
-    SoftButton,
+    SoftButton = 0x90,
     /// Usage ID `0x91`: "Soft Button ID"
-    SoftButtonID,
+    SoftButtonID = 0x91,
     /// Usage ID `0x92`: "Soft Button Side"
-    SoftButtonSide,
+    SoftButtonSide = 0x92,
     /// Usage ID `0x93`: "Soft Button Offset 1"
-    SoftButtonOffset1,
+    SoftButtonOffset1 = 0x93,
     /// Usage ID `0x94`: "Soft Button Offset 2"
-    SoftButtonOffset2,
+    SoftButtonOffset2 = 0x94,
     /// Usage ID `0x95`: "Soft Button Report"
-    SoftButtonReport,
+    SoftButtonReport = 0x95,
     /// Usage ID `0xC2`: "Soft Keys"
-    SoftKeys,
+    SoftKeys = 0xC2,
     /// Usage ID `0xCC`: "Display Data Extensions"
-    DisplayDataExtensions,
+    DisplayDataExtensions = 0xCC,
     /// Usage ID `0xCF`: "Character Mapping"
-    CharacterMapping,
+    CharacterMapping = 0xCF,
     /// Usage ID `0xDD`: "Unicode Equivalent"
-    UnicodeEquivalent,
+    UnicodeEquivalent = 0xDD,
     /// Usage ID `0xDF`: "Character Page Mapping"
-    CharacterPageMapping,
+    CharacterPageMapping = 0xDF,
     /// Usage ID `0xFF`: "Request Report"
-    RequestReport,
+    RequestReport = 0xFF,
 }
 
 impl AuxiliaryDisplay {
@@ -11040,83 +9627,7 @@ impl AsUsagePage for AuxiliaryDisplay {
 
 impl From<&AuxiliaryDisplay> for u16 {
     fn from(auxiliarydisplay: &AuxiliaryDisplay) -> u16 {
-        match *auxiliarydisplay {
-            AuxiliaryDisplay::AlphanumericDisplay => 1,
-            AuxiliaryDisplay::AuxiliaryDisplay => 2,
-            AuxiliaryDisplay::DisplayAttributesReport => 32,
-            AuxiliaryDisplay::ASCIICharacterSet => 33,
-            AuxiliaryDisplay::DataReadBack => 34,
-            AuxiliaryDisplay::FontReadBack => 35,
-            AuxiliaryDisplay::DisplayControlReport => 36,
-            AuxiliaryDisplay::ClearDisplay => 37,
-            AuxiliaryDisplay::DisplayEnable => 38,
-            AuxiliaryDisplay::ScreenSaverDelay => 39,
-            AuxiliaryDisplay::ScreenSaverEnable => 40,
-            AuxiliaryDisplay::VerticalScroll => 41,
-            AuxiliaryDisplay::HorizontalScroll => 42,
-            AuxiliaryDisplay::CharacterReport => 43,
-            AuxiliaryDisplay::DisplayData => 44,
-            AuxiliaryDisplay::DisplayStatus => 45,
-            AuxiliaryDisplay::StatNotReady => 46,
-            AuxiliaryDisplay::StatReady => 47,
-            AuxiliaryDisplay::ErrNotaloadablecharacter => 48,
-            AuxiliaryDisplay::ErrFontdatacannotberead => 49,
-            AuxiliaryDisplay::CursorPositionReport => 50,
-            AuxiliaryDisplay::Row => 51,
-            AuxiliaryDisplay::Column => 52,
-            AuxiliaryDisplay::Rows => 53,
-            AuxiliaryDisplay::Columns => 54,
-            AuxiliaryDisplay::CursorPixelPositioning => 55,
-            AuxiliaryDisplay::CursorMode => 56,
-            AuxiliaryDisplay::CursorEnable => 57,
-            AuxiliaryDisplay::CursorBlink => 58,
-            AuxiliaryDisplay::FontReport => 59,
-            AuxiliaryDisplay::FontData => 60,
-            AuxiliaryDisplay::CharacterWidth => 61,
-            AuxiliaryDisplay::CharacterHeight => 62,
-            AuxiliaryDisplay::CharacterSpacingHorizontal => 63,
-            AuxiliaryDisplay::CharacterSpacingVertical => 64,
-            AuxiliaryDisplay::UnicodeCharacterSet => 65,
-            AuxiliaryDisplay::Font7Segment => 66,
-            AuxiliaryDisplay::SevenSegmentDirectMap => 67,
-            AuxiliaryDisplay::Font14Segment => 68,
-            AuxiliaryDisplay::One4SegmentDirectMap => 69,
-            AuxiliaryDisplay::DisplayBrightness => 70,
-            AuxiliaryDisplay::DisplayContrast => 71,
-            AuxiliaryDisplay::CharacterAttribute => 72,
-            AuxiliaryDisplay::AttributeReadback => 73,
-            AuxiliaryDisplay::AttributeData => 74,
-            AuxiliaryDisplay::CharAttrEnhance => 75,
-            AuxiliaryDisplay::CharAttrUnderline => 76,
-            AuxiliaryDisplay::CharAttrBlink => 77,
-            AuxiliaryDisplay::BitmapSizeX => 128,
-            AuxiliaryDisplay::BitmapSizeY => 129,
-            AuxiliaryDisplay::MaxBlitSize => 130,
-            AuxiliaryDisplay::BitDepthFormat => 131,
-            AuxiliaryDisplay::DisplayOrientation => 132,
-            AuxiliaryDisplay::PaletteReport => 133,
-            AuxiliaryDisplay::PaletteDataSize => 134,
-            AuxiliaryDisplay::PaletteDataOffset => 135,
-            AuxiliaryDisplay::PaletteData => 136,
-            AuxiliaryDisplay::BlitReport => 138,
-            AuxiliaryDisplay::BlitRectangleX1 => 139,
-            AuxiliaryDisplay::BlitRectangleY1 => 140,
-            AuxiliaryDisplay::BlitRectangleX2 => 141,
-            AuxiliaryDisplay::BlitRectangleY2 => 142,
-            AuxiliaryDisplay::BlitData => 143,
-            AuxiliaryDisplay::SoftButton => 144,
-            AuxiliaryDisplay::SoftButtonID => 145,
-            AuxiliaryDisplay::SoftButtonSide => 146,
-            AuxiliaryDisplay::SoftButtonOffset1 => 147,
-            AuxiliaryDisplay::SoftButtonOffset2 => 148,
-            AuxiliaryDisplay::SoftButtonReport => 149,
-            AuxiliaryDisplay::SoftKeys => 194,
-            AuxiliaryDisplay::DisplayDataExtensions => 204,
-            AuxiliaryDisplay::CharacterMapping => 207,
-            AuxiliaryDisplay::UnicodeEquivalent => 221,
-            AuxiliaryDisplay::CharacterPageMapping => 223,
-            AuxiliaryDisplay::RequestReport => 255,
-        }
+        *auxiliarydisplay as u16
     }
 }
 
@@ -11289,1355 +9800,1356 @@ impl BitOr<u16> for AuxiliaryDisplay {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum Sensors {
     /// Usage ID `0x1`: "Sensor"
-    Sensor,
+    Sensor = 0x1,
     /// Usage ID `0x10`: "Biometric"
-    Biometric,
+    Biometric = 0x10,
     /// Usage ID `0x11`: "Biometric: Human Presence"
-    BiometricHumanPresence,
+    BiometricHumanPresence = 0x11,
     /// Usage ID `0x12`: "Biometric: Human Proximity"
-    BiometricHumanProximity,
+    BiometricHumanProximity = 0x12,
     /// Usage ID `0x13`: "Biometric: Human Touch"
-    BiometricHumanTouch,
+    BiometricHumanTouch = 0x13,
     /// Usage ID `0x14`: "Biometric: Blood Pressure"
-    BiometricBloodPressure,
+    BiometricBloodPressure = 0x14,
     /// Usage ID `0x15`: "Biometric: Body Temperature"
-    BiometricBodyTemperature,
+    BiometricBodyTemperature = 0x15,
     /// Usage ID `0x16`: "Biometric: Heart Rate"
-    BiometricHeartRate,
+    BiometricHeartRate = 0x16,
     /// Usage ID `0x17`: "Biometric: Heart Rate Variability"
-    BiometricHeartRateVariability,
+    BiometricHeartRateVariability = 0x17,
     /// Usage ID `0x18`: "Biometric: Peripheral Oxygen Saturation"
-    BiometricPeripheralOxygenSaturation,
+    BiometricPeripheralOxygenSaturation = 0x18,
     /// Usage ID `0x19`: "Biometric: Respiratory Rate"
-    BiometricRespiratoryRate,
+    BiometricRespiratoryRate = 0x19,
     /// Usage ID `0x20`: "Electrical"
-    Electrical,
+    Electrical = 0x20,
     /// Usage ID `0x21`: "Electrical: Capacitance"
-    ElectricalCapacitance,
+    ElectricalCapacitance = 0x21,
     /// Usage ID `0x22`: "Electrical: Current"
-    ElectricalCurrent,
+    ElectricalCurrent = 0x22,
     /// Usage ID `0x23`: "Electrical: Power"
-    ElectricalPower,
+    ElectricalPower = 0x23,
     /// Usage ID `0x24`: "Electrical: Inductance"
-    ElectricalInductance,
+    ElectricalInductance = 0x24,
     /// Usage ID `0x25`: "Electrical: Resistance"
-    ElectricalResistance,
+    ElectricalResistance = 0x25,
     /// Usage ID `0x26`: "Electrical: Voltage"
-    ElectricalVoltage,
+    ElectricalVoltage = 0x26,
     /// Usage ID `0x27`: "Electrical: Potentiometer"
-    ElectricalPotentiometer,
+    ElectricalPotentiometer = 0x27,
     /// Usage ID `0x28`: "Electrical: Frequency"
-    ElectricalFrequency,
+    ElectricalFrequency = 0x28,
     /// Usage ID `0x29`: "Electrical: Period"
-    ElectricalPeriod,
+    ElectricalPeriod = 0x29,
     /// Usage ID `0x30`: "Environmental"
-    Environmental,
+    Environmental = 0x30,
     /// Usage ID `0x31`: "Environmental: Atmospheric Pressure"
-    EnvironmentalAtmosphericPressure,
+    EnvironmentalAtmosphericPressure = 0x31,
     /// Usage ID `0x32`: "Environmental: Humidity"
-    EnvironmentalHumidity,
+    EnvironmentalHumidity = 0x32,
     /// Usage ID `0x33`: "Environmental: Temperature"
-    EnvironmentalTemperature,
+    EnvironmentalTemperature = 0x33,
     /// Usage ID `0x34`: "Environmental: Wind Direction"
-    EnvironmentalWindDirection,
+    EnvironmentalWindDirection = 0x34,
     /// Usage ID `0x35`: "Environmental: Wind Speed"
-    EnvironmentalWindSpeed,
+    EnvironmentalWindSpeed = 0x35,
     /// Usage ID `0x36`: "Environmental: Air Quality"
-    EnvironmentalAirQuality,
+    EnvironmentalAirQuality = 0x36,
     /// Usage ID `0x37`: "Environmental: Heat Index"
-    EnvironmentalHeatIndex,
+    EnvironmentalHeatIndex = 0x37,
     /// Usage ID `0x38`: "Environmental: Surface Temperature"
-    EnvironmentalSurfaceTemperature,
+    EnvironmentalSurfaceTemperature = 0x38,
     /// Usage ID `0x39`: "Environmental: Volatile Organic Compounds"
-    EnvironmentalVolatileOrganicCompounds,
+    EnvironmentalVolatileOrganicCompounds = 0x39,
     /// Usage ID `0x3A`: "Environmental: Object Presence"
-    EnvironmentalObjectPresence,
+    EnvironmentalObjectPresence = 0x3A,
     /// Usage ID `0x3B`: "Environmental: Object Proximity"
-    EnvironmentalObjectProximity,
+    EnvironmentalObjectProximity = 0x3B,
     /// Usage ID `0x40`: "Light"
-    Light,
+    Light = 0x40,
     /// Usage ID `0x41`: "Light: Ambient Light"
-    LightAmbientLight,
+    LightAmbientLight = 0x41,
     /// Usage ID `0x42`: "Light: Consumer Infrared"
-    LightConsumerInfrared,
+    LightConsumerInfrared = 0x42,
     /// Usage ID `0x43`: "Light: Infrared Light"
-    LightInfraredLight,
+    LightInfraredLight = 0x43,
     /// Usage ID `0x44`: "Light: Visible Light"
-    LightVisibleLight,
+    LightVisibleLight = 0x44,
     /// Usage ID `0x45`: "Light: Ultraviolet Light"
-    LightUltravioletLight,
+    LightUltravioletLight = 0x45,
     /// Usage ID `0x50`: "Location"
-    Location,
+    Location = 0x50,
     /// Usage ID `0x51`: "Location: Broadcast"
-    LocationBroadcast,
+    LocationBroadcast = 0x51,
     /// Usage ID `0x52`: "Location: Dead Reckoning"
-    LocationDeadReckoning,
+    LocationDeadReckoning = 0x52,
     /// Usage ID `0x53`: "Location: GPS (Global Positioning System)"
-    LocationGPSGlobalPositioningSystem,
+    LocationGPSGlobalPositioningSystem = 0x53,
     /// Usage ID `0x54`: "Location: Lookup"
-    LocationLookup,
+    LocationLookup = 0x54,
     /// Usage ID `0x55`: "Location: Other"
-    LocationOther,
+    LocationOther = 0x55,
     /// Usage ID `0x56`: "Location: Static"
-    LocationStatic,
+    LocationStatic = 0x56,
     /// Usage ID `0x57`: "Location: Triangulation"
-    LocationTriangulation,
+    LocationTriangulation = 0x57,
     /// Usage ID `0x60`: "Mechanical"
-    Mechanical,
+    Mechanical = 0x60,
     /// Usage ID `0x61`: "Mechanical: Boolean Switch"
-    MechanicalBooleanSwitch,
+    MechanicalBooleanSwitch = 0x61,
     /// Usage ID `0x62`: "Mechanical: Boolean Switch Array"
-    MechanicalBooleanSwitchArray,
+    MechanicalBooleanSwitchArray = 0x62,
     /// Usage ID `0x63`: "Mechanical: Multivalue Switch"
-    MechanicalMultivalueSwitch,
+    MechanicalMultivalueSwitch = 0x63,
     /// Usage ID `0x64`: "Mechanical: Force"
-    MechanicalForce,
+    MechanicalForce = 0x64,
     /// Usage ID `0x65`: "Mechanical: Pressure"
-    MechanicalPressure,
+    MechanicalPressure = 0x65,
     /// Usage ID `0x66`: "Mechanical: Strain"
-    MechanicalStrain,
+    MechanicalStrain = 0x66,
     /// Usage ID `0x67`: "Mechanical: Weight"
-    MechanicalWeight,
+    MechanicalWeight = 0x67,
     /// Usage ID `0x68`: "Mechanical: Haptic Vibrator"
-    MechanicalHapticVibrator,
+    MechanicalHapticVibrator = 0x68,
     /// Usage ID `0x69`: "Mechanical: Hall Effect Switch"
-    MechanicalHallEffectSwitch,
+    MechanicalHallEffectSwitch = 0x69,
     /// Usage ID `0x70`: "Motion"
-    Motion,
+    Motion = 0x70,
     /// Usage ID `0x71`: "Motion: Accelerometer 1D"
-    MotionAccelerometer1D,
+    MotionAccelerometer1D = 0x71,
     /// Usage ID `0x72`: "Motion: Accelerometer 2D"
-    MotionAccelerometer2D,
+    MotionAccelerometer2D = 0x72,
     /// Usage ID `0x73`: "Motion: Accelerometer 3D"
-    MotionAccelerometer3D,
+    MotionAccelerometer3D = 0x73,
     /// Usage ID `0x74`: "Motion: Gyrometer 1D"
-    MotionGyrometer1D,
+    MotionGyrometer1D = 0x74,
     /// Usage ID `0x75`: "Motion: Gyrometer 2D"
-    MotionGyrometer2D,
+    MotionGyrometer2D = 0x75,
     /// Usage ID `0x76`: "Motion: Gyrometer 3D"
-    MotionGyrometer3D,
+    MotionGyrometer3D = 0x76,
     /// Usage ID `0x77`: "Motion: Motion Detector"
-    MotionMotionDetector,
+    MotionMotionDetector = 0x77,
     /// Usage ID `0x78`: "Motion: Speedometer"
-    MotionSpeedometer,
+    MotionSpeedometer = 0x78,
     /// Usage ID `0x79`: "Motion: Accelerometer"
-    MotionAccelerometer,
+    MotionAccelerometer = 0x79,
     /// Usage ID `0x7A`: "Motion: Gyrometer"
-    MotionGyrometer,
+    MotionGyrometer = 0x7A,
     /// Usage ID `0x7B`: "Motion: Gravity Vector"
-    MotionGravityVector,
+    MotionGravityVector = 0x7B,
     /// Usage ID `0x7C`: "Motion: Linear Accelerometer"
-    MotionLinearAccelerometer,
+    MotionLinearAccelerometer = 0x7C,
     /// Usage ID `0x80`: "Orientation"
-    Orientation,
+    Orientation = 0x80,
     /// Usage ID `0x81`: "Orientation: Compass 1D"
-    OrientationCompass1D,
+    OrientationCompass1D = 0x81,
     /// Usage ID `0x82`: "Orientation: Compass 2D"
-    OrientationCompass2D,
+    OrientationCompass2D = 0x82,
     /// Usage ID `0x83`: "Orientation: Compass 3D"
-    OrientationCompass3D,
+    OrientationCompass3D = 0x83,
     /// Usage ID `0x84`: "Orientation: Inclinometer 1D"
-    OrientationInclinometer1D,
+    OrientationInclinometer1D = 0x84,
     /// Usage ID `0x85`: "Orientation: Inclinometer 2D"
-    OrientationInclinometer2D,
+    OrientationInclinometer2D = 0x85,
     /// Usage ID `0x86`: "Orientation: Inclinometer 3D"
-    OrientationInclinometer3D,
+    OrientationInclinometer3D = 0x86,
     /// Usage ID `0x87`: "Orientation: Distance 1D"
-    OrientationDistance1D,
+    OrientationDistance1D = 0x87,
     /// Usage ID `0x88`: "Orientation: Distance 2D"
-    OrientationDistance2D,
+    OrientationDistance2D = 0x88,
     /// Usage ID `0x89`: "Orientation: Distance 3D"
-    OrientationDistance3D,
+    OrientationDistance3D = 0x89,
     /// Usage ID `0x8A`: "Orientation: Device Orientation"
-    OrientationDeviceOrientation,
+    OrientationDeviceOrientation = 0x8A,
     /// Usage ID `0x8B`: "Orientation: Compass"
-    OrientationCompass,
+    OrientationCompass = 0x8B,
     /// Usage ID `0x8C`: "Orientation: Inclinometer"
-    OrientationInclinometer,
+    OrientationInclinometer = 0x8C,
     /// Usage ID `0x8D`: "Orientation: Distance"
-    OrientationDistance,
+    OrientationDistance = 0x8D,
     /// Usage ID `0x8E`: "Orientation: Relative Orientation"
-    OrientationRelativeOrientation,
+    OrientationRelativeOrientation = 0x8E,
     /// Usage ID `0x8F`: "Orientation: Simple Orientation"
-    OrientationSimpleOrientation,
+    OrientationSimpleOrientation = 0x8F,
     /// Usage ID `0x90`: "Scanner"
-    Scanner,
+    Scanner = 0x90,
     /// Usage ID `0x91`: "Scanner: Barcode"
-    ScannerBarcode,
+    ScannerBarcode = 0x91,
     /// Usage ID `0x92`: "Scanner: RFID"
-    ScannerRFID,
+    ScannerRFID = 0x92,
     /// Usage ID `0x93`: "Scanner: NFC"
-    ScannerNFC,
+    ScannerNFC = 0x93,
     /// Usage ID `0xA0`: "Time"
-    Time,
+    Time = 0xA0,
     /// Usage ID `0xA1`: "Time: Alarm Timer"
-    TimeAlarmTimer,
+    TimeAlarmTimer = 0xA1,
     /// Usage ID `0xA2`: "Time: Real Time Clock"
-    TimeRealTimeClock,
+    TimeRealTimeClock = 0xA2,
     /// Usage ID `0xB0`: "Personal Activity"
-    PersonalActivity,
+    PersonalActivity = 0xB0,
     /// Usage ID `0xB1`: "Personal Activity: Activity Detection"
-    PersonalActivityActivityDetection,
+    PersonalActivityActivityDetection = 0xB1,
     /// Usage ID `0xB2`: "Personal Activity: Device Position"
-    PersonalActivityDevicePosition,
+    PersonalActivityDevicePosition = 0xB2,
     /// Usage ID `0xB3`: "Personal Activity: Floor Tracker"
-    PersonalActivityFloorTracker,
+    PersonalActivityFloorTracker = 0xB3,
     /// Usage ID `0xB4`: "Personal Activity: Pedometer"
-    PersonalActivityPedometer,
+    PersonalActivityPedometer = 0xB4,
     /// Usage ID `0xB5`: "Personal Activity: Step Detection"
-    PersonalActivityStepDetection,
+    PersonalActivityStepDetection = 0xB5,
     /// Usage ID `0xC0`: "Orientation Extended"
-    OrientationExtended,
+    OrientationExtended = 0xC0,
     /// Usage ID `0xC1`: "Orientation Extended: Geomagnetic Orientation"
-    OrientationExtendedGeomagneticOrientation,
+    OrientationExtendedGeomagneticOrientation = 0xC1,
     /// Usage ID `0xC2`: "Orientation Extended: Magnetometer"
-    OrientationExtendedMagnetometer,
+    OrientationExtendedMagnetometer = 0xC2,
     /// Usage ID `0xD0`: "Gesture"
-    Gesture,
+    Gesture = 0xD0,
     /// Usage ID `0xD1`: "Gesture: Chassis Flip Gesture"
-    GestureChassisFlipGesture,
+    GestureChassisFlipGesture = 0xD1,
     /// Usage ID `0xD2`: "Gesture: Hinge Fold Gesture"
-    GestureHingeFoldGesture,
+    GestureHingeFoldGesture = 0xD2,
     /// Usage ID `0xE0`: "Other"
-    Other,
+    Other = 0xE0,
     /// Usage ID `0xE1`: "Other: Custom"
-    OtherCustom,
+    OtherCustom = 0xE1,
     /// Usage ID `0xE2`: "Other: Generic"
-    OtherGeneric,
+    OtherGeneric = 0xE2,
     /// Usage ID `0xE3`: "Other: Generic Enumerator"
-    OtherGenericEnumerator,
+    OtherGenericEnumerator = 0xE3,
     /// Usage ID `0xE4`: "Other: Hinge Angle"
-    OtherHingeAngle,
+    OtherHingeAngle = 0xE4,
     /// Usage ID `0xF0`: "Vendor Reserved 1"
-    VendorReserved1,
+    VendorReserved1 = 0xF0,
     /// Usage ID `0xF1`: "Vendor Reserved 2"
-    VendorReserved2,
+    VendorReserved2 = 0xF1,
     /// Usage ID `0xF2`: "Vendor Reserved 3"
-    VendorReserved3,
+    VendorReserved3 = 0xF2,
     /// Usage ID `0xF3`: "Vendor Reserved 4"
-    VendorReserved4,
+    VendorReserved4 = 0xF3,
     /// Usage ID `0xF4`: "Vendor Reserved 5"
-    VendorReserved5,
+    VendorReserved5 = 0xF4,
     /// Usage ID `0xF5`: "Vendor Reserved 6"
-    VendorReserved6,
+    VendorReserved6 = 0xF5,
     /// Usage ID `0xF6`: "Vendor Reserved 7"
-    VendorReserved7,
+    VendorReserved7 = 0xF6,
     /// Usage ID `0xF7`: "Vendor Reserved 8"
-    VendorReserved8,
+    VendorReserved8 = 0xF7,
     /// Usage ID `0xF8`: "Vendor Reserved 9"
-    VendorReserved9,
+    VendorReserved9 = 0xF8,
     /// Usage ID `0xF9`: "Vendor Reserved 10"
-    VendorReserved10,
+    VendorReserved10 = 0xF9,
     /// Usage ID `0xFA`: "Vendor Reserved 11"
-    VendorReserved11,
+    VendorReserved11 = 0xFA,
     /// Usage ID `0xFB`: "Vendor Reserved 12"
-    VendorReserved12,
+    VendorReserved12 = 0xFB,
     /// Usage ID `0xFC`: "Vendor Reserved 13"
-    VendorReserved13,
+    VendorReserved13 = 0xFC,
     /// Usage ID `0xFD`: "Vendor Reserved 14"
-    VendorReserved14,
+    VendorReserved14 = 0xFD,
     /// Usage ID `0xFE`: "Vendor Reserved 15"
-    VendorReserved15,
+    VendorReserved15 = 0xFE,
     /// Usage ID `0xFF`: "Vendor Reserved 16"
-    VendorReserved16,
+    VendorReserved16 = 0xFF,
     /// Usage ID `0x200`: "Event"
-    Event,
+    Event = 0x200,
     /// Usage ID `0x201`: "Event: Sensor State"
-    EventSensorState,
+    EventSensorState = 0x201,
     /// Usage ID `0x202`: "Event: Sensor Event"
-    EventSensorEvent,
+    EventSensorEvent = 0x202,
     /// Usage ID `0x300`: "Property"
-    Property,
+    Property = 0x300,
     /// Usage ID `0x301`: "Property: Friendly Name"
-    PropertyFriendlyName,
+    PropertyFriendlyName = 0x301,
     /// Usage ID `0x302`: "Property: Persistent Unique ID"
-    PropertyPersistentUniqueID,
+    PropertyPersistentUniqueID = 0x302,
     /// Usage ID `0x303`: "Property: Sensor Status"
-    PropertySensorStatus,
+    PropertySensorStatus = 0x303,
     /// Usage ID `0x304`: "Property: Minimum Report Interval"
-    PropertyMinimumReportInterval,
+    PropertyMinimumReportInterval = 0x304,
     /// Usage ID `0x305`: "Property: Sensor Manufacturer"
-    PropertySensorManufacturer,
+    PropertySensorManufacturer = 0x305,
     /// Usage ID `0x306`: "Property: Sensor Model"
-    PropertySensorModel,
+    PropertySensorModel = 0x306,
     /// Usage ID `0x307`: "Property: Sensor Serial Number"
-    PropertySensorSerialNumber,
+    PropertySensorSerialNumber = 0x307,
     /// Usage ID `0x308`: "Property: Sensor Description"
-    PropertySensorDescription,
+    PropertySensorDescription = 0x308,
     /// Usage ID `0x309`: "Property: Sensor Connection Type"
-    PropertySensorConnectionType,
+    PropertySensorConnectionType = 0x309,
     /// Usage ID `0x30A`: "Property: Sensor Device Path"
-    PropertySensorDevicePath,
+    PropertySensorDevicePath = 0x30A,
     /// Usage ID `0x30B`: "Property: Hardware Revision"
-    PropertyHardwareRevision,
+    PropertyHardwareRevision = 0x30B,
     /// Usage ID `0x30C`: "Property: Firmware Version"
-    PropertyFirmwareVersion,
+    PropertyFirmwareVersion = 0x30C,
     /// Usage ID `0x30D`: "Property: Release Date"
-    PropertyReleaseDate,
+    PropertyReleaseDate = 0x30D,
     /// Usage ID `0x30E`: "Property: Report Interval"
-    PropertyReportInterval,
+    PropertyReportInterval = 0x30E,
     /// Usage ID `0x30F`: "Property: Change Sensitivity Absolute"
-    PropertyChangeSensitivityAbsolute,
+    PropertyChangeSensitivityAbsolute = 0x30F,
     /// Usage ID `0x310`: "Property: Change Sensitivity Percent of Range"
-    PropertyChangeSensitivityPercentofRange,
+    PropertyChangeSensitivityPercentofRange = 0x310,
     /// Usage ID `0x311`: "Property: Change Sensitivity Percent Relative"
-    PropertyChangeSensitivityPercentRelative,
+    PropertyChangeSensitivityPercentRelative = 0x311,
     /// Usage ID `0x312`: "Property: Accuracy"
-    PropertyAccuracy,
+    PropertyAccuracy = 0x312,
     /// Usage ID `0x313`: "Property: Resolution"
-    PropertyResolution,
+    PropertyResolution = 0x313,
     /// Usage ID `0x314`: "Property: Maximum"
-    PropertyMaximum,
+    PropertyMaximum = 0x314,
     /// Usage ID `0x315`: "Property: Minimum"
-    PropertyMinimum,
+    PropertyMinimum = 0x315,
     /// Usage ID `0x316`: "Property: Reporting State"
-    PropertyReportingState,
+    PropertyReportingState = 0x316,
     /// Usage ID `0x317`: "Property: Sampling Rate"
-    PropertySamplingRate,
+    PropertySamplingRate = 0x317,
     /// Usage ID `0x318`: "Property: Response Curve"
-    PropertyResponseCurve,
+    PropertyResponseCurve = 0x318,
     /// Usage ID `0x319`: "Property: Power State"
-    PropertyPowerState,
+    PropertyPowerState = 0x319,
     /// Usage ID `0x31A`: "Property: Maximum FIFO Events"
-    PropertyMaximumFIFOEvents,
+    PropertyMaximumFIFOEvents = 0x31A,
     /// Usage ID `0x31B`: "Property: Report Latency"
-    PropertyReportLatency,
+    PropertyReportLatency = 0x31B,
     /// Usage ID `0x31C`: "Property: Flush FIFO Events"
-    PropertyFlushFIFOEvents,
+    PropertyFlushFIFOEvents = 0x31C,
     /// Usage ID `0x31D`: "Property: Maximum Power Consumption"
-    PropertyMaximumPowerConsumption,
+    PropertyMaximumPowerConsumption = 0x31D,
     /// Usage ID `0x31E`: "Property: Is Primary"
-    PropertyIsPrimary,
+    PropertyIsPrimary = 0x31E,
     /// Usage ID `0x31F`: "Property: Human Presence Detection Type"
-    PropertyHumanPresenceDetectionType,
+    PropertyHumanPresenceDetectionType = 0x31F,
     /// Usage ID `0x400`: "Data Field: Location"
-    DataFieldLocation,
+    DataFieldLocation = 0x400,
     /// Usage ID `0x402`: "Data Field: Altitude Antenna Sea Level"
-    DataFieldAltitudeAntennaSeaLevel,
+    DataFieldAltitudeAntennaSeaLevel = 0x402,
     /// Usage ID `0x403`: "Data Field: Differential Reference Station ID"
-    DataFieldDifferentialReferenceStationID,
+    DataFieldDifferentialReferenceStationID = 0x403,
     /// Usage ID `0x404`: "Data Field: Altitude Ellipsoid Error"
-    DataFieldAltitudeEllipsoidError,
+    DataFieldAltitudeEllipsoidError = 0x404,
     /// Usage ID `0x405`: "Data Field: Altitude Ellipsoid"
-    DataFieldAltitudeEllipsoid,
+    DataFieldAltitudeEllipsoid = 0x405,
     /// Usage ID `0x406`: "Data Field: Altitude Sea Level Error"
-    DataFieldAltitudeSeaLevelError,
+    DataFieldAltitudeSeaLevelError = 0x406,
     /// Usage ID `0x407`: "Data Field: Altitude Sea Level"
-    DataFieldAltitudeSeaLevel,
+    DataFieldAltitudeSeaLevel = 0x407,
     /// Usage ID `0x408`: "Data Field: Differential GPS Data Age"
-    DataFieldDifferentialGPSDataAge,
+    DataFieldDifferentialGPSDataAge = 0x408,
     /// Usage ID `0x409`: "Data Field: Error Radius"
-    DataFieldErrorRadius,
+    DataFieldErrorRadius = 0x409,
     /// Usage ID `0x40A`: "Data Field: Fix Quality"
-    DataFieldFixQuality,
+    DataFieldFixQuality = 0x40A,
     /// Usage ID `0x40B`: "Data Field: Fix Type"
-    DataFieldFixType,
+    DataFieldFixType = 0x40B,
     /// Usage ID `0x40C`: "Data Field: Geoidal Separation"
-    DataFieldGeoidalSeparation,
+    DataFieldGeoidalSeparation = 0x40C,
     /// Usage ID `0x40D`: "Data Field: GPS Operation Mode"
-    DataFieldGPSOperationMode,
+    DataFieldGPSOperationMode = 0x40D,
     /// Usage ID `0x40E`: "Data Field: GPS Selection Mode"
-    DataFieldGPSSelectionMode,
+    DataFieldGPSSelectionMode = 0x40E,
     /// Usage ID `0x40F`: "Data Field: GPS Status"
-    DataFieldGPSStatus,
+    DataFieldGPSStatus = 0x40F,
     /// Usage ID `0x410`: "Data Field: Position Dilution of Precision"
-    DataFieldPositionDilutionofPrecision,
+    DataFieldPositionDilutionofPrecision = 0x410,
     /// Usage ID `0x411`: "Data Field: Horizontal Dilution of Precision"
-    DataFieldHorizontalDilutionofPrecision,
+    DataFieldHorizontalDilutionofPrecision = 0x411,
     /// Usage ID `0x412`: "Data Field: Vertical Dilution of Precision"
-    DataFieldVerticalDilutionofPrecision,
+    DataFieldVerticalDilutionofPrecision = 0x412,
     /// Usage ID `0x413`: "Data Field: Latitude"
-    DataFieldLatitude,
+    DataFieldLatitude = 0x413,
     /// Usage ID `0x414`: "Data Field: Longitude"
-    DataFieldLongitude,
+    DataFieldLongitude = 0x414,
     /// Usage ID `0x415`: "Data Field: True Heading"
-    DataFieldTrueHeading,
+    DataFieldTrueHeading = 0x415,
     /// Usage ID `0x416`: "Data Field: Magnetic Heading"
-    DataFieldMagneticHeading,
+    DataFieldMagneticHeading = 0x416,
     /// Usage ID `0x417`: "Data Field: Magnetic Variation"
-    DataFieldMagneticVariation,
+    DataFieldMagneticVariation = 0x417,
     /// Usage ID `0x418`: "Data Field: Speed"
-    DataFieldSpeed,
+    DataFieldSpeed = 0x418,
     /// Usage ID `0x419`: "Data Field: Satellites in View"
-    DataFieldSatellitesinView,
+    DataFieldSatellitesinView = 0x419,
     /// Usage ID `0x41A`: "Data Field: Satellites in View Azimuth"
-    DataFieldSatellitesinViewAzimuth,
+    DataFieldSatellitesinViewAzimuth = 0x41A,
     /// Usage ID `0x41B`: "Data Field: Satellites in View Elevation"
-    DataFieldSatellitesinViewElevation,
+    DataFieldSatellitesinViewElevation = 0x41B,
     /// Usage ID `0x41C`: "Data Field: Satellites in View IDs"
-    DataFieldSatellitesinViewIDs,
+    DataFieldSatellitesinViewIDs = 0x41C,
     /// Usage ID `0x41D`: "Data Field: Satellites in View PRNs"
-    DataFieldSatellitesinViewPRNs,
+    DataFieldSatellitesinViewPRNs = 0x41D,
     /// Usage ID `0x41E`: "Data Field: Satellites in View S/N Ratios"
-    DataFieldSatellitesinViewSNRatios,
+    DataFieldSatellitesinViewSNRatios = 0x41E,
     /// Usage ID `0x41F`: "Data Field: Satellites Used Count"
-    DataFieldSatellitesUsedCount,
+    DataFieldSatellitesUsedCount = 0x41F,
     /// Usage ID `0x420`: "Data Field: Satellites Used PRNs"
-    DataFieldSatellitesUsedPRNs,
+    DataFieldSatellitesUsedPRNs = 0x420,
     /// Usage ID `0x421`: "Data Field: NMEA Sentence"
-    DataFieldNMEASentence,
+    DataFieldNMEASentence = 0x421,
     /// Usage ID `0x422`: "Data Field: Address Line 1"
-    DataFieldAddressLine1,
+    DataFieldAddressLine1 = 0x422,
     /// Usage ID `0x423`: "Data Field: Address Line 2"
-    DataFieldAddressLine2,
+    DataFieldAddressLine2 = 0x423,
     /// Usage ID `0x424`: "Data Field: City"
-    DataFieldCity,
+    DataFieldCity = 0x424,
     /// Usage ID `0x425`: "Data Field: State or Province"
-    DataFieldStateorProvince,
+    DataFieldStateorProvince = 0x425,
     /// Usage ID `0x426`: "Data Field: Country or Region"
-    DataFieldCountryorRegion,
+    DataFieldCountryorRegion = 0x426,
     /// Usage ID `0x427`: "Data Field: Postal Code"
-    DataFieldPostalCode,
+    DataFieldPostalCode = 0x427,
     /// Usage ID `0x42A`: "Property: Location"
-    PropertyLocation,
+    PropertyLocation = 0x42A,
     /// Usage ID `0x42B`: "Property: Location Desired Accuracy"
-    PropertyLocationDesiredAccuracy,
+    PropertyLocationDesiredAccuracy = 0x42B,
     /// Usage ID `0x430`: "Data Field: Environmental"
-    DataFieldEnvironmental,
+    DataFieldEnvironmental = 0x430,
     /// Usage ID `0x431`: "Data Field: Atmospheric Pressure"
-    DataFieldAtmosphericPressure,
+    DataFieldAtmosphericPressure = 0x431,
     /// Usage ID `0x433`: "Data Field: Relative Humidity"
-    DataFieldRelativeHumidity,
+    DataFieldRelativeHumidity = 0x433,
     /// Usage ID `0x434`: "Data Field: Temperature"
-    DataFieldTemperature,
+    DataFieldTemperature = 0x434,
     /// Usage ID `0x435`: "Data Field: Wind Direction"
-    DataFieldWindDirection,
+    DataFieldWindDirection = 0x435,
     /// Usage ID `0x436`: "Data Field: Wind Speed"
-    DataFieldWindSpeed,
+    DataFieldWindSpeed = 0x436,
     /// Usage ID `0x437`: "Data Field: Air Quality Index"
-    DataFieldAirQualityIndex,
+    DataFieldAirQualityIndex = 0x437,
     /// Usage ID `0x438`: "Data Field: Equivalent CO2"
-    DataFieldEquivalentCO2,
+    DataFieldEquivalentCO2 = 0x438,
     /// Usage ID `0x439`: "Data Field: Volatile Organic Compound Concentration"
-    DataFieldVolatileOrganicCompoundConcentration,
+    DataFieldVolatileOrganicCompoundConcentration = 0x439,
     /// Usage ID `0x43A`: "Data Field: Object Presence"
-    DataFieldObjectPresence,
+    DataFieldObjectPresence = 0x43A,
     /// Usage ID `0x43B`: "Data Field: Object Proximity Range"
-    DataFieldObjectProximityRange,
+    DataFieldObjectProximityRange = 0x43B,
     /// Usage ID `0x43C`: "Data Field: Object Proximity Out of Range"
-    DataFieldObjectProximityOutofRange,
+    DataFieldObjectProximityOutofRange = 0x43C,
     /// Usage ID `0x440`: "Property: Environmental"
-    PropertyEnvironmental,
+    PropertyEnvironmental = 0x440,
     /// Usage ID `0x441`: "Property: Reference Pressure"
-    PropertyReferencePressure,
+    PropertyReferencePressure = 0x441,
     /// Usage ID `0x450`: "Data Field: Motion"
-    DataFieldMotion,
+    DataFieldMotion = 0x450,
     /// Usage ID `0x451`: "Data Field: Motion State"
-    DataFieldMotionState,
+    DataFieldMotionState = 0x451,
     /// Usage ID `0x452`: "Data Field: Acceleration"
-    DataFieldAcceleration,
+    DataFieldAcceleration = 0x452,
     /// Usage ID `0x453`: "Data Field: Acceleration Axis X"
-    DataFieldAccelerationAxisX,
+    DataFieldAccelerationAxisX = 0x453,
     /// Usage ID `0x454`: "Data Field: Acceleration Axis Y"
-    DataFieldAccelerationAxisY,
+    DataFieldAccelerationAxisY = 0x454,
     /// Usage ID `0x455`: "Data Field: Acceleration Axis Z"
-    DataFieldAccelerationAxisZ,
+    DataFieldAccelerationAxisZ = 0x455,
     /// Usage ID `0x456`: "Data Field: Angular Velocity"
-    DataFieldAngularVelocity,
+    DataFieldAngularVelocity = 0x456,
     /// Usage ID `0x457`: "Data Field: Angular Velocity about X Axis"
-    DataFieldAngularVelocityaboutXAxis,
+    DataFieldAngularVelocityaboutXAxis = 0x457,
     /// Usage ID `0x458`: "Data Field: Angular Velocity about Y Axis"
-    DataFieldAngularVelocityaboutYAxis,
+    DataFieldAngularVelocityaboutYAxis = 0x458,
     /// Usage ID `0x459`: "Data Field: Angular Velocity about Z Axis"
-    DataFieldAngularVelocityaboutZAxis,
+    DataFieldAngularVelocityaboutZAxis = 0x459,
     /// Usage ID `0x45A`: "Data Field: Angular Position"
-    DataFieldAngularPosition,
+    DataFieldAngularPosition = 0x45A,
     /// Usage ID `0x45B`: "Data Field: Angular Position about X Axis"
-    DataFieldAngularPositionaboutXAxis,
+    DataFieldAngularPositionaboutXAxis = 0x45B,
     /// Usage ID `0x45C`: "Data Field: Angular Position about Y Axis"
-    DataFieldAngularPositionaboutYAxis,
+    DataFieldAngularPositionaboutYAxis = 0x45C,
     /// Usage ID `0x45D`: "Data Field: Angular Position about Z Axis"
-    DataFieldAngularPositionaboutZAxis,
+    DataFieldAngularPositionaboutZAxis = 0x45D,
     /// Usage ID `0x45E`: "Data Field: Motion Speed"
-    DataFieldMotionSpeed,
+    DataFieldMotionSpeed = 0x45E,
     /// Usage ID `0x45F`: "Data Field: Motion Intensity"
-    DataFieldMotionIntensity,
+    DataFieldMotionIntensity = 0x45F,
     /// Usage ID `0x470`: "Data Field: Orientation"
-    DataFieldOrientation,
+    DataFieldOrientation = 0x470,
     /// Usage ID `0x471`: "Data Field: Heading"
-    DataFieldHeading,
+    DataFieldHeading = 0x471,
     /// Usage ID `0x472`: "Data Field: Heading X Axis"
-    DataFieldHeadingXAxis,
+    DataFieldHeadingXAxis = 0x472,
     /// Usage ID `0x473`: "Data Field: Heading Y Axis"
-    DataFieldHeadingYAxis,
+    DataFieldHeadingYAxis = 0x473,
     /// Usage ID `0x474`: "Data Field: Heading Z Axis"
-    DataFieldHeadingZAxis,
+    DataFieldHeadingZAxis = 0x474,
     /// Usage ID `0x475`: "Data Field: Heading Compensated Magnetic North"
-    DataFieldHeadingCompensatedMagneticNorth,
+    DataFieldHeadingCompensatedMagneticNorth = 0x475,
     /// Usage ID `0x476`: "Data Field: Heading Compensated True North"
-    DataFieldHeadingCompensatedTrueNorth,
+    DataFieldHeadingCompensatedTrueNorth = 0x476,
     /// Usage ID `0x477`: "Data Field: Heading Magnetic North"
-    DataFieldHeadingMagneticNorth,
+    DataFieldHeadingMagneticNorth = 0x477,
     /// Usage ID `0x478`: "Data Field: Heading True North"
-    DataFieldHeadingTrueNorth,
+    DataFieldHeadingTrueNorth = 0x478,
     /// Usage ID `0x479`: "Data Field: Distance"
-    DataFieldDistance,
+    DataFieldDistance = 0x479,
     /// Usage ID `0x47A`: "Data Field: Distance X Axis"
-    DataFieldDistanceXAxis,
+    DataFieldDistanceXAxis = 0x47A,
     /// Usage ID `0x47B`: "Data Field: Distance Y Axis"
-    DataFieldDistanceYAxis,
+    DataFieldDistanceYAxis = 0x47B,
     /// Usage ID `0x47C`: "Data Field: Distance Z Axis"
-    DataFieldDistanceZAxis,
+    DataFieldDistanceZAxis = 0x47C,
     /// Usage ID `0x47D`: "Data Field: Distance Out-of-Range"
-    DataFieldDistanceOutofRange,
+    DataFieldDistanceOutofRange = 0x47D,
     /// Usage ID `0x47E`: "Data Field: Tilt"
-    DataFieldTilt,
+    DataFieldTilt = 0x47E,
     /// Usage ID `0x47F`: "Data Field: Tilt X Axis"
-    DataFieldTiltXAxis,
+    DataFieldTiltXAxis = 0x47F,
     /// Usage ID `0x480`: "Data Field: Tilt Y Axis"
-    DataFieldTiltYAxis,
+    DataFieldTiltYAxis = 0x480,
     /// Usage ID `0x481`: "Data Field: Tilt Z Axis"
-    DataFieldTiltZAxis,
+    DataFieldTiltZAxis = 0x481,
     /// Usage ID `0x482`: "Data Field: Rotation Matrix"
-    DataFieldRotationMatrix,
+    DataFieldRotationMatrix = 0x482,
     /// Usage ID `0x483`: "Data Field: Quaternion"
-    DataFieldQuaternion,
+    DataFieldQuaternion = 0x483,
     /// Usage ID `0x484`: "Data Field: Magnetic Flux"
-    DataFieldMagneticFlux,
+    DataFieldMagneticFlux = 0x484,
     /// Usage ID `0x485`: "Data Field: Magnetic Flux X Axis"
-    DataFieldMagneticFluxXAxis,
+    DataFieldMagneticFluxXAxis = 0x485,
     /// Usage ID `0x486`: "Data Field: Magnetic Flux Y Axis"
-    DataFieldMagneticFluxYAxis,
+    DataFieldMagneticFluxYAxis = 0x486,
     /// Usage ID `0x487`: "Data Field: Magnetic Flux Z Axis"
-    DataFieldMagneticFluxZAxis,
+    DataFieldMagneticFluxZAxis = 0x487,
     /// Usage ID `0x488`: "Data Field: Magnetometer Accuracy"
-    DataFieldMagnetometerAccuracy,
+    DataFieldMagnetometerAccuracy = 0x488,
     /// Usage ID `0x489`: "Data Field: Simple Orientation Direction"
-    DataFieldSimpleOrientationDirection,
+    DataFieldSimpleOrientationDirection = 0x489,
     /// Usage ID `0x490`: "Data Field: Mechanical"
-    DataFieldMechanical,
+    DataFieldMechanical = 0x490,
     /// Usage ID `0x491`: "Data Field: Boolean Switch State"
-    DataFieldBooleanSwitchState,
+    DataFieldBooleanSwitchState = 0x491,
     /// Usage ID `0x492`: "Data Field: Boolean Switch Array States"
-    DataFieldBooleanSwitchArrayStates,
+    DataFieldBooleanSwitchArrayStates = 0x492,
     /// Usage ID `0x493`: "Data Field: Multivalue Switch Value"
-    DataFieldMultivalueSwitchValue,
+    DataFieldMultivalueSwitchValue = 0x493,
     /// Usage ID `0x494`: "Data Field: Force"
-    DataFieldForce,
+    DataFieldForce = 0x494,
     /// Usage ID `0x495`: "Data Field: Absolute Pressure"
-    DataFieldAbsolutePressure,
+    DataFieldAbsolutePressure = 0x495,
     /// Usage ID `0x496`: "Data Field: Gauge Pressure"
-    DataFieldGaugePressure,
+    DataFieldGaugePressure = 0x496,
     /// Usage ID `0x497`: "Data Field: Strain"
-    DataFieldStrain,
+    DataFieldStrain = 0x497,
     /// Usage ID `0x498`: "Data Field: Weight"
-    DataFieldWeight,
+    DataFieldWeight = 0x498,
     /// Usage ID `0x4A0`: "Property: Mechanical"
-    PropertyMechanical,
+    PropertyMechanical = 0x4A0,
     /// Usage ID `0x4A1`: "Property: Vibration State"
-    PropertyVibrationState,
+    PropertyVibrationState = 0x4A1,
     /// Usage ID `0x4A2`: "Property: Forward Vibration Speed"
-    PropertyForwardVibrationSpeed,
+    PropertyForwardVibrationSpeed = 0x4A2,
     /// Usage ID `0x4A3`: "Property: Backward Vibration Speed"
-    PropertyBackwardVibrationSpeed,
+    PropertyBackwardVibrationSpeed = 0x4A3,
     /// Usage ID `0x4B0`: "Data Field: Biometric"
-    DataFieldBiometric,
+    DataFieldBiometric = 0x4B0,
     /// Usage ID `0x4B1`: "Data Field: Human Presence"
-    DataFieldHumanPresence,
+    DataFieldHumanPresence = 0x4B1,
     /// Usage ID `0x4B2`: "Data Field: Human Proximity Range"
-    DataFieldHumanProximityRange,
+    DataFieldHumanProximityRange = 0x4B2,
     /// Usage ID `0x4B3`: "Data Field: Human Proximity Out of Range"
-    DataFieldHumanProximityOutofRange,
+    DataFieldHumanProximityOutofRange = 0x4B3,
     /// Usage ID `0x4B4`: "Data Field: Human Touch State"
-    DataFieldHumanTouchState,
+    DataFieldHumanTouchState = 0x4B4,
     /// Usage ID `0x4B5`: "Data Field: Blood Pressure"
-    DataFieldBloodPressure,
+    DataFieldBloodPressure = 0x4B5,
     /// Usage ID `0x4B6`: "Data Field: Blood Pressure Diastolic"
-    DataFieldBloodPressureDiastolic,
+    DataFieldBloodPressureDiastolic = 0x4B6,
     /// Usage ID `0x4B7`: "Data Field: Blood Pressure Systolic"
-    DataFieldBloodPressureSystolic,
+    DataFieldBloodPressureSystolic = 0x4B7,
     /// Usage ID `0x4B8`: "Data Field: Heart Rate"
-    DataFieldHeartRate,
+    DataFieldHeartRate = 0x4B8,
     /// Usage ID `0x4B9`: "Data Field: Resting Heart Rate"
-    DataFieldRestingHeartRate,
+    DataFieldRestingHeartRate = 0x4B9,
     /// Usage ID `0x4BA`: "Data Field: Heartbeat Interval"
-    DataFieldHeartbeatInterval,
+    DataFieldHeartbeatInterval = 0x4BA,
     /// Usage ID `0x4BB`: "Data Field: Respiratory Rate"
-    DataFieldRespiratoryRate,
+    DataFieldRespiratoryRate = 0x4BB,
     /// Usage ID `0x4BC`: "Data Field: SpO2"
-    DataFieldSpO2,
+    DataFieldSpO2 = 0x4BC,
     /// Usage ID `0x4BD`: "Data Field: Human Attention Detected"
-    DataFieldHumanAttentionDetected,
+    DataFieldHumanAttentionDetected = 0x4BD,
     /// Usage ID `0x4BE`: "Data Field: Human Head Azimuth"
-    DataFieldHumanHeadAzimuth,
+    DataFieldHumanHeadAzimuth = 0x4BE,
     /// Usage ID `0x4BF`: "Data Field: Human Head Altitude"
-    DataFieldHumanHeadAltitude,
+    DataFieldHumanHeadAltitude = 0x4BF,
     /// Usage ID `0x4C0`: "Data Field: Human Head Roll"
-    DataFieldHumanHeadRoll,
+    DataFieldHumanHeadRoll = 0x4C0,
     /// Usage ID `0x4C1`: "Data Field: Human Head Pitch"
-    DataFieldHumanHeadPitch,
+    DataFieldHumanHeadPitch = 0x4C1,
     /// Usage ID `0x4C2`: "Data Field: Human Head Yaw"
-    DataFieldHumanHeadYaw,
+    DataFieldHumanHeadYaw = 0x4C2,
     /// Usage ID `0x4C3`: "Data Field: Human Correlation Id"
-    DataFieldHumanCorrelationId,
+    DataFieldHumanCorrelationId = 0x4C3,
     /// Usage ID `0x4D0`: "Data Field: Light"
-    DataFieldLight,
+    DataFieldLight = 0x4D0,
     /// Usage ID `0x4D1`: "Data Field: Illuminance"
-    DataFieldIlluminance,
+    DataFieldIlluminance = 0x4D1,
     /// Usage ID `0x4D2`: "Data Field: Color Temperature"
-    DataFieldColorTemperature,
+    DataFieldColorTemperature = 0x4D2,
     /// Usage ID `0x4D3`: "Data Field: Chromaticity"
-    DataFieldChromaticity,
+    DataFieldChromaticity = 0x4D3,
     /// Usage ID `0x4D4`: "Data Field: Chromaticity X"
-    DataFieldChromaticityX,
+    DataFieldChromaticityX = 0x4D4,
     /// Usage ID `0x4D5`: "Data Field: Chromaticity Y"
-    DataFieldChromaticityY,
+    DataFieldChromaticityY = 0x4D5,
     /// Usage ID `0x4D6`: "Data Field: Consumer IR Sentence Receive"
-    DataFieldConsumerIRSentenceReceive,
+    DataFieldConsumerIRSentenceReceive = 0x4D6,
     /// Usage ID `0x4D7`: "Data Field: Infrared Light"
-    DataFieldInfraredLight,
+    DataFieldInfraredLight = 0x4D7,
     /// Usage ID `0x4D8`: "Data Field: Red Light"
-    DataFieldRedLight,
+    DataFieldRedLight = 0x4D8,
     /// Usage ID `0x4D9`: "Data Field: Green Light"
-    DataFieldGreenLight,
+    DataFieldGreenLight = 0x4D9,
     /// Usage ID `0x4DA`: "Data Field: Blue Light"
-    DataFieldBlueLight,
+    DataFieldBlueLight = 0x4DA,
     /// Usage ID `0x4DB`: "Data Field: Ultraviolet A Light"
-    DataFieldUltravioletALight,
+    DataFieldUltravioletALight = 0x4DB,
     /// Usage ID `0x4DC`: "Data Field: Ultraviolet B Light"
-    DataFieldUltravioletBLight,
+    DataFieldUltravioletBLight = 0x4DC,
     /// Usage ID `0x4DD`: "Data Field: Ultraviolet Index"
-    DataFieldUltravioletIndex,
+    DataFieldUltravioletIndex = 0x4DD,
     /// Usage ID `0x4DE`: "Data Field: Near Infrared Light"
-    DataFieldNearInfraredLight,
+    DataFieldNearInfraredLight = 0x4DE,
     /// Usage ID `0x4DF`: "Property: Light"
-    PropertyLight,
+    PropertyLight = 0x4DF,
     /// Usage ID `0x4E0`: "Property: Consumer IR Sentence Send"
-    PropertyConsumerIRSentenceSend,
+    PropertyConsumerIRSentenceSend = 0x4E0,
     /// Usage ID `0x4E2`: "Property: Auto Brightness Preferred"
-    PropertyAutoBrightnessPreferred,
+    PropertyAutoBrightnessPreferred = 0x4E2,
     /// Usage ID `0x4E3`: "Property: Auto Color Preferred"
-    PropertyAutoColorPreferred,
+    PropertyAutoColorPreferred = 0x4E3,
     /// Usage ID `0x4F0`: "Data Field: Scanner"
-    DataFieldScanner,
+    DataFieldScanner = 0x4F0,
     /// Usage ID `0x4F1`: "Data Field: RFID Tag 40 Bit"
-    DataFieldRFIDTag40Bit,
+    DataFieldRFIDTag40Bit = 0x4F1,
     /// Usage ID `0x4F2`: "Data Field: NFC Sentence Receive"
-    DataFieldNFCSentenceReceive,
+    DataFieldNFCSentenceReceive = 0x4F2,
     /// Usage ID `0x4F8`: "Property: Scanner"
-    PropertyScanner,
+    PropertyScanner = 0x4F8,
     /// Usage ID `0x4F9`: "Property: NFC Sentence Send"
-    PropertyNFCSentenceSend,
+    PropertyNFCSentenceSend = 0x4F9,
     /// Usage ID `0x500`: "Data Field: Electrical"
-    DataFieldElectrical,
+    DataFieldElectrical = 0x500,
     /// Usage ID `0x501`: "Data Field: Capacitance"
-    DataFieldCapacitance,
+    DataFieldCapacitance = 0x501,
     /// Usage ID `0x502`: "Data Field: Current"
-    DataFieldCurrent,
+    DataFieldCurrent = 0x502,
     /// Usage ID `0x503`: "Data Field: Electrical Power"
-    DataFieldElectricalPower,
+    DataFieldElectricalPower = 0x503,
     /// Usage ID `0x504`: "Data Field: Inductance"
-    DataFieldInductance,
+    DataFieldInductance = 0x504,
     /// Usage ID `0x505`: "Data Field: Resistance"
-    DataFieldResistance,
+    DataFieldResistance = 0x505,
     /// Usage ID `0x506`: "Data Field: Voltage"
-    DataFieldVoltage,
+    DataFieldVoltage = 0x506,
     /// Usage ID `0x507`: "Data Field: Frequency"
-    DataFieldFrequency,
+    DataFieldFrequency = 0x507,
     /// Usage ID `0x508`: "Data Field: Period"
-    DataFieldPeriod,
+    DataFieldPeriod = 0x508,
     /// Usage ID `0x509`: "Data Field: Percent of Range"
-    DataFieldPercentofRange,
+    DataFieldPercentofRange = 0x509,
     /// Usage ID `0x520`: "Data Field: Time"
-    DataFieldTime,
+    DataFieldTime = 0x520,
     /// Usage ID `0x521`: "Data Field: Year"
-    DataFieldYear,
+    DataFieldYear = 0x521,
     /// Usage ID `0x522`: "Data Field: Month"
-    DataFieldMonth,
+    DataFieldMonth = 0x522,
     /// Usage ID `0x523`: "Data Field: Day"
-    DataFieldDay,
+    DataFieldDay = 0x523,
     /// Usage ID `0x524`: "Data Field: Day of Week"
-    DataFieldDayofWeek,
+    DataFieldDayofWeek = 0x524,
     /// Usage ID `0x525`: "Data Field: Hour"
-    DataFieldHour,
+    DataFieldHour = 0x525,
     /// Usage ID `0x526`: "Data Field: Minute"
-    DataFieldMinute,
+    DataFieldMinute = 0x526,
     /// Usage ID `0x527`: "Data Field: Second"
-    DataFieldSecond,
+    DataFieldSecond = 0x527,
     /// Usage ID `0x528`: "Data Field: Millisecond"
-    DataFieldMillisecond,
+    DataFieldMillisecond = 0x528,
     /// Usage ID `0x529`: "Data Field: Timestamp"
-    DataFieldTimestamp,
+    DataFieldTimestamp = 0x529,
     /// Usage ID `0x52A`: "Data Field: Julian Day of Year"
-    DataFieldJulianDayofYear,
+    DataFieldJulianDayofYear = 0x52A,
     /// Usage ID `0x52B`: "Data Field: Time Since System Boot"
-    DataFieldTimeSinceSystemBoot,
+    DataFieldTimeSinceSystemBoot = 0x52B,
     /// Usage ID `0x530`: "Property: Time"
-    PropertyTime,
+    PropertyTime = 0x530,
     /// Usage ID `0x531`: "Property: Time Zone Offset from UTC"
-    PropertyTimeZoneOffsetfromUTC,
+    PropertyTimeZoneOffsetfromUTC = 0x531,
     /// Usage ID `0x532`: "Property: Time Zone Name"
-    PropertyTimeZoneName,
+    PropertyTimeZoneName = 0x532,
     /// Usage ID `0x533`: "Property: Daylight Savings Time Observed"
-    PropertyDaylightSavingsTimeObserved,
+    PropertyDaylightSavingsTimeObserved = 0x533,
     /// Usage ID `0x534`: "Property: Time Trim Adjustment"
-    PropertyTimeTrimAdjustment,
+    PropertyTimeTrimAdjustment = 0x534,
     /// Usage ID `0x535`: "Property: Arm Alarm"
-    PropertyArmAlarm,
+    PropertyArmAlarm = 0x535,
     /// Usage ID `0x540`: "Data Field: Custom"
-    DataFieldCustom,
+    DataFieldCustom = 0x540,
     /// Usage ID `0x541`: "Data Field: Custom Usage"
-    DataFieldCustomUsage,
+    DataFieldCustomUsage = 0x541,
     /// Usage ID `0x542`: "Data Field: Custom Boolean Array"
-    DataFieldCustomBooleanArray,
+    DataFieldCustomBooleanArray = 0x542,
     /// Usage ID `0x543`: "Data Field: Custom Value"
-    DataFieldCustomValue,
+    DataFieldCustomValue = 0x543,
     /// Usage ID `0x544`: "Data Field: Custom Value 1"
-    DataFieldCustomValue1,
+    DataFieldCustomValue1 = 0x544,
     /// Usage ID `0x545`: "Data Field: Custom Value 2"
-    DataFieldCustomValue2,
+    DataFieldCustomValue2 = 0x545,
     /// Usage ID `0x546`: "Data Field: Custom Value 3"
-    DataFieldCustomValue3,
+    DataFieldCustomValue3 = 0x546,
     /// Usage ID `0x547`: "Data Field: Custom Value 4"
-    DataFieldCustomValue4,
+    DataFieldCustomValue4 = 0x547,
     /// Usage ID `0x548`: "Data Field: Custom Value 5"
-    DataFieldCustomValue5,
+    DataFieldCustomValue5 = 0x548,
     /// Usage ID `0x549`: "Data Field: Custom Value 6"
-    DataFieldCustomValue6,
+    DataFieldCustomValue6 = 0x549,
     /// Usage ID `0x54A`: "Data Field: Custom Value 7"
-    DataFieldCustomValue7,
+    DataFieldCustomValue7 = 0x54A,
     /// Usage ID `0x54B`: "Data Field: Custom Value 8"
-    DataFieldCustomValue8,
+    DataFieldCustomValue8 = 0x54B,
     /// Usage ID `0x54C`: "Data Field: Custom Value 9"
-    DataFieldCustomValue9,
+    DataFieldCustomValue9 = 0x54C,
     /// Usage ID `0x54D`: "Data Field: Custom Value 10"
-    DataFieldCustomValue10,
+    DataFieldCustomValue10 = 0x54D,
     /// Usage ID `0x54E`: "Data Field: Custom Value 11"
-    DataFieldCustomValue11,
+    DataFieldCustomValue11 = 0x54E,
     /// Usage ID `0x54F`: "Data Field: Custom Value 12"
-    DataFieldCustomValue12,
+    DataFieldCustomValue12 = 0x54F,
     /// Usage ID `0x550`: "Data Field: Custom Value 13"
-    DataFieldCustomValue13,
+    DataFieldCustomValue13 = 0x550,
     /// Usage ID `0x551`: "Data Field: Custom Value 14"
-    DataFieldCustomValue14,
+    DataFieldCustomValue14 = 0x551,
     /// Usage ID `0x552`: "Data Field: Custom Value 15"
-    DataFieldCustomValue15,
+    DataFieldCustomValue15 = 0x552,
     /// Usage ID `0x553`: "Data Field: Custom Value 16"
-    DataFieldCustomValue16,
+    DataFieldCustomValue16 = 0x553,
     /// Usage ID `0x554`: "Data Field: Custom Value 17"
-    DataFieldCustomValue17,
+    DataFieldCustomValue17 = 0x554,
     /// Usage ID `0x555`: "Data Field: Custom Value 18"
-    DataFieldCustomValue18,
+    DataFieldCustomValue18 = 0x555,
     /// Usage ID `0x556`: "Data Field: Custom Value 19"
-    DataFieldCustomValue19,
+    DataFieldCustomValue19 = 0x556,
     /// Usage ID `0x557`: "Data Field: Custom Value 20"
-    DataFieldCustomValue20,
+    DataFieldCustomValue20 = 0x557,
     /// Usage ID `0x558`: "Data Field: Custom Value 21"
-    DataFieldCustomValue21,
+    DataFieldCustomValue21 = 0x558,
     /// Usage ID `0x559`: "Data Field: Custom Value 22"
-    DataFieldCustomValue22,
+    DataFieldCustomValue22 = 0x559,
     /// Usage ID `0x55A`: "Data Field: Custom Value 23"
-    DataFieldCustomValue23,
+    DataFieldCustomValue23 = 0x55A,
     /// Usage ID `0x55B`: "Data Field: Custom Value 24"
-    DataFieldCustomValue24,
+    DataFieldCustomValue24 = 0x55B,
     /// Usage ID `0x55C`: "Data Field: Custom Value 25"
-    DataFieldCustomValue25,
+    DataFieldCustomValue25 = 0x55C,
     /// Usage ID `0x55D`: "Data Field: Custom Value 26"
-    DataFieldCustomValue26,
+    DataFieldCustomValue26 = 0x55D,
     /// Usage ID `0x55E`: "Data Field: Custom Value 27"
-    DataFieldCustomValue27,
+    DataFieldCustomValue27 = 0x55E,
     /// Usage ID `0x55F`: "Data Field: Custom Value 28"
-    DataFieldCustomValue28,
+    DataFieldCustomValue28 = 0x55F,
     /// Usage ID `0x560`: "Data Field: Generic"
-    DataFieldGeneric,
+    DataFieldGeneric = 0x560,
     /// Usage ID `0x561`: "Data Field: Generic GUID or PROPERTYKEY"
-    DataFieldGenericGUIDorPROPERTYKEY,
+    DataFieldGenericGUIDorPROPERTYKEY = 0x561,
     /// Usage ID `0x562`: "Data Field: Generic Category GUID"
-    DataFieldGenericCategoryGUID,
+    DataFieldGenericCategoryGUID = 0x562,
     /// Usage ID `0x563`: "Data Field: Generic Type GUID"
-    DataFieldGenericTypeGUID,
+    DataFieldGenericTypeGUID = 0x563,
     /// Usage ID `0x564`: "Data Field: Generic Event PROPERTYKEY"
-    DataFieldGenericEventPROPERTYKEY,
+    DataFieldGenericEventPROPERTYKEY = 0x564,
     /// Usage ID `0x565`: "Data Field: Generic Property PROPERTYKEY"
-    DataFieldGenericPropertyPROPERTYKEY,
+    DataFieldGenericPropertyPROPERTYKEY = 0x565,
     /// Usage ID `0x566`: "Data Field: Generic Data Field PROPERTYKEY"
-    DataFieldGenericDataFieldPROPERTYKEY,
+    DataFieldGenericDataFieldPROPERTYKEY = 0x566,
     /// Usage ID `0x567`: "Data Field: Generic Event"
-    DataFieldGenericEvent,
+    DataFieldGenericEvent = 0x567,
     /// Usage ID `0x568`: "Data Field: Generic Property"
-    DataFieldGenericProperty,
+    DataFieldGenericProperty = 0x568,
     /// Usage ID `0x569`: "Data Field: Generic Data Field"
-    DataFieldGenericDataField,
+    DataFieldGenericDataField = 0x569,
     /// Usage ID `0x56A`: "Data Field: Enumerator Table Row Index"
-    DataFieldEnumeratorTableRowIndex,
+    DataFieldEnumeratorTableRowIndex = 0x56A,
     /// Usage ID `0x56B`: "Data Field: Enumerator Table Row Count"
-    DataFieldEnumeratorTableRowCount,
+    DataFieldEnumeratorTableRowCount = 0x56B,
     /// Usage ID `0x56C`: "Data Field: Generic GUID or PROPERTYKEY kind"
-    DataFieldGenericGUIDorPROPERTYKEYkind,
+    DataFieldGenericGUIDorPROPERTYKEYkind = 0x56C,
     /// Usage ID `0x56D`: "Data Field: Generic GUID"
-    DataFieldGenericGUID,
+    DataFieldGenericGUID = 0x56D,
     /// Usage ID `0x56E`: "Data Field: Generic PROPERTYKEY"
-    DataFieldGenericPROPERTYKEY,
+    DataFieldGenericPROPERTYKEY = 0x56E,
     /// Usage ID `0x56F`: "Data Field: Generic Top Level Collection ID"
-    DataFieldGenericTopLevelCollectionID,
+    DataFieldGenericTopLevelCollectionID = 0x56F,
     /// Usage ID `0x570`: "Data Field: Generic Report ID"
-    DataFieldGenericReportID,
+    DataFieldGenericReportID = 0x570,
     /// Usage ID `0x571`: "Data Field: Generic Report Item Position Index"
-    DataFieldGenericReportItemPositionIndex,
+    DataFieldGenericReportItemPositionIndex = 0x571,
     /// Usage ID `0x572`: "Data Field: Generic Firmware VARTYPE"
-    DataFieldGenericFirmwareVARTYPE,
+    DataFieldGenericFirmwareVARTYPE = 0x572,
     /// Usage ID `0x573`: "Data Field: Generic Unit of Measure"
-    DataFieldGenericUnitofMeasure,
+    DataFieldGenericUnitofMeasure = 0x573,
     /// Usage ID `0x574`: "Data Field: Generic Unit Exponent"
-    DataFieldGenericUnitExponent,
+    DataFieldGenericUnitExponent = 0x574,
     /// Usage ID `0x575`: "Data Field: Generic Report Size"
-    DataFieldGenericReportSize,
+    DataFieldGenericReportSize = 0x575,
     /// Usage ID `0x576`: "Data Field: Generic Report Count"
-    DataFieldGenericReportCount,
+    DataFieldGenericReportCount = 0x576,
     /// Usage ID `0x580`: "Property: Generic"
-    PropertyGeneric,
+    PropertyGeneric = 0x580,
     /// Usage ID `0x581`: "Property: Enumerator Table Row Index"
-    PropertyEnumeratorTableRowIndex,
+    PropertyEnumeratorTableRowIndex = 0x581,
     /// Usage ID `0x582`: "Property: Enumerator Table Row Count"
-    PropertyEnumeratorTableRowCount,
+    PropertyEnumeratorTableRowCount = 0x582,
     /// Usage ID `0x590`: "Data Field: Personal Activity"
-    DataFieldPersonalActivity,
+    DataFieldPersonalActivity = 0x590,
     /// Usage ID `0x591`: "Data Field: Activity Type"
-    DataFieldActivityType,
+    DataFieldActivityType = 0x591,
     /// Usage ID `0x592`: "Data Field: Activity State"
-    DataFieldActivityState,
+    DataFieldActivityState = 0x592,
     /// Usage ID `0x593`: "Data Field: Device Position"
-    DataFieldDevicePosition,
+    DataFieldDevicePosition = 0x593,
     /// Usage ID `0x594`: "Data Field: Step Count"
-    DataFieldStepCount,
+    DataFieldStepCount = 0x594,
     /// Usage ID `0x595`: "Data Field: Step Count Reset"
-    DataFieldStepCountReset,
+    DataFieldStepCountReset = 0x595,
     /// Usage ID `0x596`: "Data Field: Step Duration"
-    DataFieldStepDuration,
+    DataFieldStepDuration = 0x596,
     /// Usage ID `0x597`: "Data Field: Step Type"
-    DataFieldStepType,
+    DataFieldStepType = 0x597,
     /// Usage ID `0x5A0`: "Property: Minimum Activity Detection Interval"
-    PropertyMinimumActivityDetectionInterval,
+    PropertyMinimumActivityDetectionInterval = 0x5A0,
     /// Usage ID `0x5A1`: "Property: Supported Activity Types"
-    PropertySupportedActivityTypes,
+    PropertySupportedActivityTypes = 0x5A1,
     /// Usage ID `0x5A2`: "Property: Subscribed Activity Types"
-    PropertySubscribedActivityTypes,
+    PropertySubscribedActivityTypes = 0x5A2,
     /// Usage ID `0x5A3`: "Property: Supported Step Types"
-    PropertySupportedStepTypes,
+    PropertySupportedStepTypes = 0x5A3,
     /// Usage ID `0x5A4`: "Property: Subscribed Step Types"
-    PropertySubscribedStepTypes,
+    PropertySubscribedStepTypes = 0x5A4,
     /// Usage ID `0x5A5`: "Property: Floor Height"
-    PropertyFloorHeight,
+    PropertyFloorHeight = 0x5A5,
     /// Usage ID `0x5B0`: "Data Field: Custom Type ID"
-    DataFieldCustomTypeID,
+    DataFieldCustomTypeID = 0x5B0,
     /// Usage ID `0x5C0`: "Property: Custom"
-    PropertyCustom,
+    PropertyCustom = 0x5C0,
     /// Usage ID `0x5C1`: "Property: Custom Value 1"
-    PropertyCustomValue1,
+    PropertyCustomValue1 = 0x5C1,
     /// Usage ID `0x5C2`: "Property: Custom Value 2"
-    PropertyCustomValue2,
+    PropertyCustomValue2 = 0x5C2,
     /// Usage ID `0x5C3`: "Property: Custom Value 3"
-    PropertyCustomValue3,
+    PropertyCustomValue3 = 0x5C3,
     /// Usage ID `0x5C4`: "Property: Custom Value 4"
-    PropertyCustomValue4,
+    PropertyCustomValue4 = 0x5C4,
     /// Usage ID `0x5C5`: "Property: Custom Value 5"
-    PropertyCustomValue5,
+    PropertyCustomValue5 = 0x5C5,
     /// Usage ID `0x5C6`: "Property: Custom Value 6"
-    PropertyCustomValue6,
+    PropertyCustomValue6 = 0x5C6,
     /// Usage ID `0x5C7`: "Property: Custom Value 7"
-    PropertyCustomValue7,
+    PropertyCustomValue7 = 0x5C7,
     /// Usage ID `0x5C8`: "Property: Custom Value 8"
-    PropertyCustomValue8,
+    PropertyCustomValue8 = 0x5C8,
     /// Usage ID `0x5C9`: "Property: Custom Value 9"
-    PropertyCustomValue9,
+    PropertyCustomValue9 = 0x5C9,
     /// Usage ID `0x5CA`: "Property: Custom Value 10"
-    PropertyCustomValue10,
+    PropertyCustomValue10 = 0x5CA,
     /// Usage ID `0x5CB`: "Property: Custom Value 11"
-    PropertyCustomValue11,
+    PropertyCustomValue11 = 0x5CB,
     /// Usage ID `0x5CC`: "Property: Custom Value 12"
-    PropertyCustomValue12,
+    PropertyCustomValue12 = 0x5CC,
     /// Usage ID `0x5CD`: "Property: Custom Value 13"
-    PropertyCustomValue13,
+    PropertyCustomValue13 = 0x5CD,
     /// Usage ID `0x5CE`: "Property: Custom Value 14"
-    PropertyCustomValue14,
+    PropertyCustomValue14 = 0x5CE,
     /// Usage ID `0x5CF`: "Property: Custom Value 15"
-    PropertyCustomValue15,
+    PropertyCustomValue15 = 0x5CF,
     /// Usage ID `0x5D0`: "Property: Custom Value 16"
-    PropertyCustomValue16,
+    PropertyCustomValue16 = 0x5D0,
     /// Usage ID `0x5E0`: "Data Field: Hinge"
-    DataFieldHinge,
+    DataFieldHinge = 0x5E0,
     /// Usage ID `0x5E1`: "Data Field: Hinge Angle"
-    DataFieldHingeAngle,
+    DataFieldHingeAngle = 0x5E1,
     /// Usage ID `0x5F0`: "Data Field: Gesture Sensor"
-    DataFieldGestureSensor,
+    DataFieldGestureSensor = 0x5F0,
     /// Usage ID `0x5F1`: "Data Field: Gesture State"
-    DataFieldGestureState,
+    DataFieldGestureState = 0x5F1,
     /// Usage ID `0x5F2`: "Data Field: Hinge Fold Initial Angle"
-    DataFieldHingeFoldInitialAngle,
+    DataFieldHingeFoldInitialAngle = 0x5F2,
     /// Usage ID `0x5F3`: "Data Field: Hinge Fold Final Angle"
-    DataFieldHingeFoldFinalAngle,
+    DataFieldHingeFoldFinalAngle = 0x5F3,
     /// Usage ID `0x5F4`: "Data Field: Hinge Fold Contributing Panel"
-    DataFieldHingeFoldContributingPanel,
+    DataFieldHingeFoldContributingPanel = 0x5F4,
     /// Usage ID `0x5F5`: "Data Field: Hinge Fold Type"
-    DataFieldHingeFoldType,
+    DataFieldHingeFoldType = 0x5F5,
     /// Usage ID `0x800`: "Sensor State: Undefined"
-    SensorStateUndefined,
+    SensorStateUndefined = 0x800,
     /// Usage ID `0x801`: "Sensor State: Ready"
-    SensorStateReady,
+    SensorStateReady = 0x801,
     /// Usage ID `0x802`: "Sensor State: Not Available"
-    SensorStateNotAvailable,
+    SensorStateNotAvailable = 0x802,
     /// Usage ID `0x803`: "Sensor State: No Data"
-    SensorStateNoData,
+    SensorStateNoData = 0x803,
     /// Usage ID `0x804`: "Sensor State: Initializing"
-    SensorStateInitializing,
+    SensorStateInitializing = 0x804,
     /// Usage ID `0x805`: "Sensor State: Access Denied"
-    SensorStateAccessDenied,
+    SensorStateAccessDenied = 0x805,
     /// Usage ID `0x806`: "Sensor State: Error"
-    SensorStateError,
+    SensorStateError = 0x806,
     /// Usage ID `0x810`: "Sensor Event: Unknown"
-    SensorEventUnknown,
+    SensorEventUnknown = 0x810,
     /// Usage ID `0x811`: "Sensor Event: State Changed"
-    SensorEventStateChanged,
+    SensorEventStateChanged = 0x811,
     /// Usage ID `0x812`: "Sensor Event: Property Changed"
-    SensorEventPropertyChanged,
+    SensorEventPropertyChanged = 0x812,
     /// Usage ID `0x813`: "Sensor Event: Data Updated"
-    SensorEventDataUpdated,
+    SensorEventDataUpdated = 0x813,
     /// Usage ID `0x814`: "Sensor Event: Poll Response"
-    SensorEventPollResponse,
+    SensorEventPollResponse = 0x814,
     /// Usage ID `0x815`: "Sensor Event: Change Sensitivity"
-    SensorEventChangeSensitivity,
+    SensorEventChangeSensitivity = 0x815,
     /// Usage ID `0x816`: "Sensor Event: Range Maximum Reached"
-    SensorEventRangeMaximumReached,
+    SensorEventRangeMaximumReached = 0x816,
     /// Usage ID `0x817`: "Sensor Event: Range Minimum Reached"
-    SensorEventRangeMinimumReached,
+    SensorEventRangeMinimumReached = 0x817,
     /// Usage ID `0x818`: "Sensor Event: High Threshold Cross Upward"
-    SensorEventHighThresholdCrossUpward,
+    SensorEventHighThresholdCrossUpward = 0x818,
     /// Usage ID `0x819`: "Sensor Event: High Threshold Cross Downward"
-    SensorEventHighThresholdCrossDownward,
+    SensorEventHighThresholdCrossDownward = 0x819,
     /// Usage ID `0x81A`: "Sensor Event: Low Threshold Cross Upward"
-    SensorEventLowThresholdCrossUpward,
+    SensorEventLowThresholdCrossUpward = 0x81A,
     /// Usage ID `0x81B`: "Sensor Event: Low Threshold Cross Downward"
-    SensorEventLowThresholdCrossDownward,
+    SensorEventLowThresholdCrossDownward = 0x81B,
     /// Usage ID `0x81C`: "Sensor Event: Zero Threshold Cross Upward"
-    SensorEventZeroThresholdCrossUpward,
+    SensorEventZeroThresholdCrossUpward = 0x81C,
     /// Usage ID `0x81D`: "Sensor Event: Zero Threshold Cross Downward"
-    SensorEventZeroThresholdCrossDownward,
+    SensorEventZeroThresholdCrossDownward = 0x81D,
     /// Usage ID `0x81E`: "Sensor Event: Period Exceeded"
-    SensorEventPeriodExceeded,
+    SensorEventPeriodExceeded = 0x81E,
     /// Usage ID `0x81F`: "Sensor Event: Frequency Exceeded"
-    SensorEventFrequencyExceeded,
+    SensorEventFrequencyExceeded = 0x81F,
     /// Usage ID `0x820`: "Sensor Event: Complex Trigger"
-    SensorEventComplexTrigger,
+    SensorEventComplexTrigger = 0x820,
     /// Usage ID `0x830`: "Connection Type: PC Integrated"
-    ConnectionTypePCIntegrated,
+    ConnectionTypePCIntegrated = 0x830,
     /// Usage ID `0x831`: "Connection Type: PC Attached"
-    ConnectionTypePCAttached,
+    ConnectionTypePCAttached = 0x831,
     /// Usage ID `0x832`: "Connection Type: PC External"
-    ConnectionTypePCExternal,
+    ConnectionTypePCExternal = 0x832,
     /// Usage ID `0x840`: "Reporting State: Report No Events"
-    ReportingStateReportNoEvents,
+    ReportingStateReportNoEvents = 0x840,
     /// Usage ID `0x841`: "Reporting State: Report All Events"
-    ReportingStateReportAllEvents,
+    ReportingStateReportAllEvents = 0x841,
     /// Usage ID `0x842`: "Reporting State: Report Threshold Events"
-    ReportingStateReportThresholdEvents,
+    ReportingStateReportThresholdEvents = 0x842,
     /// Usage ID `0x843`: "Reporting State: Wake On No Events"
-    ReportingStateWakeOnNoEvents,
+    ReportingStateWakeOnNoEvents = 0x843,
     /// Usage ID `0x844`: "Reporting State: Wake On All Events"
-    ReportingStateWakeOnAllEvents,
+    ReportingStateWakeOnAllEvents = 0x844,
     /// Usage ID `0x845`: "Reporting State: Wake On Threshold Events"
-    ReportingStateWakeOnThresholdEvents,
+    ReportingStateWakeOnThresholdEvents = 0x845,
     /// Usage ID `0x846`: "Reporting State: Anytime"
-    ReportingStateAnytime,
+    ReportingStateAnytime = 0x846,
     /// Usage ID `0x850`: "Power State: Undefined"
-    PowerStateUndefined,
+    PowerStateUndefined = 0x850,
     /// Usage ID `0x851`: "Power State: D0 Full Power"
-    PowerStateD0FullPower,
+    PowerStateD0FullPower = 0x851,
     /// Usage ID `0x852`: "Power State: D1 Low Power"
-    PowerStateD1LowPower,
+    PowerStateD1LowPower = 0x852,
     /// Usage ID `0x853`: "Power State: D2 Standby Power with Wakeup"
-    PowerStateD2StandbyPowerwithWakeup,
+    PowerStateD2StandbyPowerwithWakeup = 0x853,
     /// Usage ID `0x854`: "Power State: D3 Sleep with Wakeup"
-    PowerStateD3SleepwithWakeup,
+    PowerStateD3SleepwithWakeup = 0x854,
     /// Usage ID `0x855`: "Power State: D4 Power Off"
-    PowerStateD4PowerOff,
+    PowerStateD4PowerOff = 0x855,
     /// Usage ID `0x860`: "Accuracy: Default"
-    AccuracyDefault,
+    AccuracyDefault = 0x860,
     /// Usage ID `0x861`: "Accuracy: High"
-    AccuracyHigh,
+    AccuracyHigh = 0x861,
     /// Usage ID `0x862`: "Accuracy: Medium"
-    AccuracyMedium,
+    AccuracyMedium = 0x862,
     /// Usage ID `0x863`: "Accuracy: Low"
-    AccuracyLow,
+    AccuracyLow = 0x863,
     /// Usage ID `0x870`: "Fix Quality: No Fix"
-    FixQualityNoFix,
+    FixQualityNoFix = 0x870,
     /// Usage ID `0x871`: "Fix Quality: GPS"
-    FixQualityGPS,
+    FixQualityGPS = 0x871,
     /// Usage ID `0x872`: "Fix Quality: DGPS"
-    FixQualityDGPS,
+    FixQualityDGPS = 0x872,
     /// Usage ID `0x880`: "Fix Type: No Fix"
-    FixTypeNoFix,
+    FixTypeNoFix = 0x880,
     /// Usage ID `0x881`: "Fix Type: GPS SPS Mode, Fix Valid"
-    FixTypeGPSSPSModeFixValid,
+    FixTypeGPSSPSModeFixValid = 0x881,
     /// Usage ID `0x882`: "Fix Type: DGPS SPS Mode, Fix Valid"
-    FixTypeDGPSSPSModeFixValid,
+    FixTypeDGPSSPSModeFixValid = 0x882,
     /// Usage ID `0x883`: "Fix Type: GPS PPS Mode, Fix Valid"
-    FixTypeGPSPPSModeFixValid,
+    FixTypeGPSPPSModeFixValid = 0x883,
     /// Usage ID `0x884`: "Fix Type: Real Time Kinematic"
-    FixTypeRealTimeKinematic,
+    FixTypeRealTimeKinematic = 0x884,
     /// Usage ID `0x885`: "Fix Type: Float RTK"
-    FixTypeFloatRTK,
+    FixTypeFloatRTK = 0x885,
     /// Usage ID `0x886`: "Fix Type: Estimated (dead reckoned)"
-    FixTypeEstimateddeadreckoned,
+    FixTypeEstimateddeadreckoned = 0x886,
     /// Usage ID `0x887`: "Fix Type: Manual Input Mode"
-    FixTypeManualInputMode,
+    FixTypeManualInputMode = 0x887,
     /// Usage ID `0x888`: "Fix Type: Simulator Mode"
-    FixTypeSimulatorMode,
+    FixTypeSimulatorMode = 0x888,
     /// Usage ID `0x890`: "GPS Operation Mode: Manual"
-    GPSOperationModeManual,
+    GPSOperationModeManual = 0x890,
     /// Usage ID `0x891`: "GPS Operation Mode: Automatic"
-    GPSOperationModeAutomatic,
+    GPSOperationModeAutomatic = 0x891,
     /// Usage ID `0x8A0`: "GPS Selection Mode: Autonomous"
-    GPSSelectionModeAutonomous,
+    GPSSelectionModeAutonomous = 0x8A0,
     /// Usage ID `0x8A1`: "GPS Selection Mode: DGPS"
-    GPSSelectionModeDGPS,
+    GPSSelectionModeDGPS = 0x8A1,
     /// Usage ID `0x8A2`: "GPS Selection Mode: Estimated (dead reckoned)"
-    GPSSelectionModeEstimateddeadreckoned,
+    GPSSelectionModeEstimateddeadreckoned = 0x8A2,
     /// Usage ID `0x8A3`: "GPS Selection Mode: Manual Input"
-    GPSSelectionModeManualInput,
+    GPSSelectionModeManualInput = 0x8A3,
     /// Usage ID `0x8A4`: "GPS Selection Mode: Simulator"
-    GPSSelectionModeSimulator,
+    GPSSelectionModeSimulator = 0x8A4,
     /// Usage ID `0x8A5`: "GPS Selection Mode: Data Not Valid"
-    GPSSelectionModeDataNotValid,
+    GPSSelectionModeDataNotValid = 0x8A5,
     /// Usage ID `0x8B0`: "GPS Status Data: Valid"
-    GPSStatusDataValid,
+    GPSStatusDataValid = 0x8B0,
     /// Usage ID `0x8B1`: "GPS Status Data: Not Valid"
-    GPSStatusDataNotValid,
+    GPSStatusDataNotValid = 0x8B1,
     /// Usage ID `0x8C0`: "Day of Week: Sunday"
-    DayofWeekSunday,
+    DayofWeekSunday = 0x8C0,
     /// Usage ID `0x8C1`: "Day of Week: Monday"
-    DayofWeekMonday,
+    DayofWeekMonday = 0x8C1,
     /// Usage ID `0x8C2`: "Day of Week: Tuesday"
-    DayofWeekTuesday,
+    DayofWeekTuesday = 0x8C2,
     /// Usage ID `0x8C3`: "Day of Week: Wednesday"
-    DayofWeekWednesday,
+    DayofWeekWednesday = 0x8C3,
     /// Usage ID `0x8C4`: "Day of Week: Thursday"
-    DayofWeekThursday,
+    DayofWeekThursday = 0x8C4,
     /// Usage ID `0x8C5`: "Day of Week: Friday"
-    DayofWeekFriday,
+    DayofWeekFriday = 0x8C5,
     /// Usage ID `0x8C6`: "Day of Week: Saturday"
-    DayofWeekSaturday,
+    DayofWeekSaturday = 0x8C6,
     /// Usage ID `0x8D0`: "Kind: Category"
-    KindCategory,
+    KindCategory = 0x8D0,
     /// Usage ID `0x8D1`: "Kind: Type"
-    KindType,
+    KindType = 0x8D1,
     /// Usage ID `0x8D2`: "Kind: Event"
-    KindEvent,
+    KindEvent = 0x8D2,
     /// Usage ID `0x8D3`: "Kind: Property"
-    KindProperty,
+    KindProperty = 0x8D3,
     /// Usage ID `0x8D4`: "Kind: Data Field"
-    KindDataField,
+    KindDataField = 0x8D4,
     /// Usage ID `0x8E0`: "Magnetometer Accuracy: Low"
-    MagnetometerAccuracyLow,
+    MagnetometerAccuracyLow = 0x8E0,
     /// Usage ID `0x8E1`: "Magnetometer Accuracy: Medium"
-    MagnetometerAccuracyMedium,
+    MagnetometerAccuracyMedium = 0x8E1,
     /// Usage ID `0x8E2`: "Magnetometer Accuracy: High"
-    MagnetometerAccuracyHigh,
+    MagnetometerAccuracyHigh = 0x8E2,
     /// Usage ID `0x8F0`: "Simple Orientation Direction: Not Rotated"
-    SimpleOrientationDirectionNotRotated,
+    SimpleOrientationDirectionNotRotated = 0x8F0,
     /// Usage ID `0x8F1`: "Simple Orientation Direction: Rotated 90 Degrees CCW"
-    SimpleOrientationDirectionRotated90DegreesCCW,
+    SimpleOrientationDirectionRotated90DegreesCCW = 0x8F1,
     /// Usage ID `0x8F2`: "Simple Orientation Direction: Rotated 180 Degrees CCW"
-    SimpleOrientationDirectionRotated180DegreesCCW,
+    SimpleOrientationDirectionRotated180DegreesCCW = 0x8F2,
     /// Usage ID `0x8F3`: "Simple Orientation Direction: Rotated 270 Degrees CCW"
-    SimpleOrientationDirectionRotated270DegreesCCW,
+    SimpleOrientationDirectionRotated270DegreesCCW = 0x8F3,
     /// Usage ID `0x8F4`: "Simple Orientation Direction: Face Up"
-    SimpleOrientationDirectionFaceUp,
+    SimpleOrientationDirectionFaceUp = 0x8F4,
     /// Usage ID `0x8F5`: "Simple Orientation Direction: Face Down"
-    SimpleOrientationDirectionFaceDown,
+    SimpleOrientationDirectionFaceDown = 0x8F5,
     /// Usage ID `0x900`: "VT_NULL"
-    VT_NULL,
+    VT_NULL = 0x900,
     /// Usage ID `0x901`: "VT_BOOL"
-    VT_BOOL,
+    VT_BOOL = 0x901,
     /// Usage ID `0x902`: "VT_UI1"
-    VT_UI1,
+    VT_UI1 = 0x902,
     /// Usage ID `0x903`: "VT_I1"
-    VT_I1,
+    VT_I1 = 0x903,
     /// Usage ID `0x904`: "VT_UI2"
-    VT_UI2,
+    VT_UI2 = 0x904,
     /// Usage ID `0x905`: "VT_I2"
-    VT_I2,
+    VT_I2 = 0x905,
     /// Usage ID `0x906`: "VT_UI4"
-    VT_UI4,
+    VT_UI4 = 0x906,
     /// Usage ID `0x907`: "VT_I4"
-    VT_I4,
+    VT_I4 = 0x907,
     /// Usage ID `0x908`: "VT_UI8"
-    VT_UI8,
+    VT_UI8 = 0x908,
     /// Usage ID `0x909`: "VT_I8"
-    VT_I8,
+    VT_I8 = 0x909,
     /// Usage ID `0x90A`: "VT_R4"
-    VT_R4,
+    VT_R4 = 0x90A,
     /// Usage ID `0x90B`: "VT_R8"
-    VT_R8,
+    VT_R8 = 0x90B,
     /// Usage ID `0x90C`: "VT_WSTR"
-    VT_WSTR,
+    VT_WSTR = 0x90C,
     /// Usage ID `0x90D`: "VT_STR"
-    VT_STR,
+    VT_STR = 0x90D,
     /// Usage ID `0x90E`: "VT_CLSID"
-    VT_CLSID,
+    VT_CLSID = 0x90E,
     /// Usage ID `0x90F`: "VT_VECTOR VT_UI1"
-    VT_VECTORVT_UI1,
+    VT_VECTORVT_UI1 = 0x90F,
     /// Usage ID `0x910`: "VT_F16E0"
-    VT_F16E0,
+    VT_F16E0 = 0x910,
     /// Usage ID `0x911`: "VT_F16E1"
-    VT_F16E1,
+    VT_F16E1 = 0x911,
     /// Usage ID `0x912`: "VT_F16E2"
-    VT_F16E2,
+    VT_F16E2 = 0x912,
     /// Usage ID `0x913`: "VT_F16E3"
-    VT_F16E3,
+    VT_F16E3 = 0x913,
     /// Usage ID `0x914`: "VT_F16E4"
-    VT_F16E4,
+    VT_F16E4 = 0x914,
     /// Usage ID `0x915`: "VT_F16E5"
-    VT_F16E5,
+    VT_F16E5 = 0x915,
     /// Usage ID `0x916`: "VT_F16E6"
-    VT_F16E6,
+    VT_F16E6 = 0x916,
     /// Usage ID `0x917`: "VT_F16E7"
-    VT_F16E7,
+    VT_F16E7 = 0x917,
     /// Usage ID `0x918`: "VT_F16E8"
-    VT_F16E8,
+    VT_F16E8 = 0x918,
     /// Usage ID `0x919`: "VT_F16E9"
-    VT_F16E9,
+    VT_F16E9 = 0x919,
     /// Usage ID `0x91A`: "VT_F16EA"
-    VT_F16EA,
+    VT_F16EA = 0x91A,
     /// Usage ID `0x91B`: "VT_F16EB"
-    VT_F16EB,
+    VT_F16EB = 0x91B,
     /// Usage ID `0x91C`: "VT_F16EC"
-    VT_F16EC,
+    VT_F16EC = 0x91C,
     /// Usage ID `0x91D`: "VT_F16ED"
-    VT_F16ED,
+    VT_F16ED = 0x91D,
     /// Usage ID `0x91E`: "VT_F16EE"
-    VT_F16EE,
+    VT_F16EE = 0x91E,
     /// Usage ID `0x91F`: "VT_F16EF"
-    VT_F16EF,
+    VT_F16EF = 0x91F,
     /// Usage ID `0x920`: "VT_F32E0"
-    VT_F32E0,
+    VT_F32E0 = 0x920,
     /// Usage ID `0x921`: "VT_F32E1"
-    VT_F32E1,
+    VT_F32E1 = 0x921,
     /// Usage ID `0x922`: "VT_F32E2"
-    VT_F32E2,
+    VT_F32E2 = 0x922,
     /// Usage ID `0x923`: "VT_F32E3"
-    VT_F32E3,
+    VT_F32E3 = 0x923,
     /// Usage ID `0x924`: "VT_F32E4"
-    VT_F32E4,
+    VT_F32E4 = 0x924,
     /// Usage ID `0x925`: "VT_F32E5"
-    VT_F32E5,
+    VT_F32E5 = 0x925,
     /// Usage ID `0x926`: "VT_F32E6"
-    VT_F32E6,
+    VT_F32E6 = 0x926,
     /// Usage ID `0x927`: "VT_F32E7"
-    VT_F32E7,
+    VT_F32E7 = 0x927,
     /// Usage ID `0x928`: "VT_F32E8"
-    VT_F32E8,
+    VT_F32E8 = 0x928,
     /// Usage ID `0x929`: "VT_F32E9"
-    VT_F32E9,
+    VT_F32E9 = 0x929,
     /// Usage ID `0x92A`: "VT_F32EA"
-    VT_F32EA,
+    VT_F32EA = 0x92A,
     /// Usage ID `0x92B`: "VT_F32EB"
-    VT_F32EB,
+    VT_F32EB = 0x92B,
     /// Usage ID `0x92C`: "VT_F32EC"
-    VT_F32EC,
+    VT_F32EC = 0x92C,
     /// Usage ID `0x92D`: "VT_F32ED"
-    VT_F32ED,
+    VT_F32ED = 0x92D,
     /// Usage ID `0x92E`: "VT_F32EE"
-    VT_F32EE,
+    VT_F32EE = 0x92E,
     /// Usage ID `0x92F`: "VT_F32EF"
-    VT_F32EF,
+    VT_F32EF = 0x92F,
     /// Usage ID `0x930`: "Activity Type: Unknown"
-    ActivityTypeUnknown,
+    ActivityTypeUnknown = 0x930,
     /// Usage ID `0x931`: "Activity Type: Stationary"
-    ActivityTypeStationary,
+    ActivityTypeStationary = 0x931,
     /// Usage ID `0x932`: "Activity Type: Fidgeting"
-    ActivityTypeFidgeting,
+    ActivityTypeFidgeting = 0x932,
     /// Usage ID `0x933`: "Activity Type: Walking"
-    ActivityTypeWalking,
+    ActivityTypeWalking = 0x933,
     /// Usage ID `0x934`: "Activity Type: Running"
-    ActivityTypeRunning,
+    ActivityTypeRunning = 0x934,
     /// Usage ID `0x935`: "Activity Type: In Vehicle"
-    ActivityTypeInVehicle,
+    ActivityTypeInVehicle = 0x935,
     /// Usage ID `0x936`: "Activity Type: Biking"
-    ActivityTypeBiking,
+    ActivityTypeBiking = 0x936,
     /// Usage ID `0x937`: "Activity Type: Idle"
-    ActivityTypeIdle,
+    ActivityTypeIdle = 0x937,
     /// Usage ID `0x940`: "Unit: Not Specified"
-    UnitNotSpecified,
+    UnitNotSpecified = 0x940,
     /// Usage ID `0x941`: "Unit: Lux"
-    UnitLux,
+    UnitLux = 0x941,
     /// Usage ID `0x942`: "Unit: Degrees Kelvin"
-    UnitDegreesKelvin,
+    UnitDegreesKelvin = 0x942,
     /// Usage ID `0x943`: "Unit: Degrees Celsius"
-    UnitDegreesCelsius,
+    UnitDegreesCelsius = 0x943,
     /// Usage ID `0x944`: "Unit: Pascal"
-    UnitPascal,
+    UnitPascal = 0x944,
     /// Usage ID `0x945`: "Unit: Newton"
-    UnitNewton,
+    UnitNewton = 0x945,
     /// Usage ID `0x946`: "Unit: Meters/Second"
-    UnitMetersSecond,
+    UnitMetersSecond = 0x946,
     /// Usage ID `0x947`: "Unit: Kilogram"
-    UnitKilogram,
+    UnitKilogram = 0x947,
     /// Usage ID `0x948`: "Unit: Meter"
-    UnitMeter,
+    UnitMeter = 0x948,
     /// Usage ID `0x949`: "Unit: Meters/Second/Second"
-    UnitMetersSecondSecond,
+    UnitMetersSecondSecond = 0x949,
     /// Usage ID `0x94A`: "Unit: Farad"
-    UnitFarad,
+    UnitFarad = 0x94A,
     /// Usage ID `0x94B`: "Unit: Ampere"
-    UnitAmpere,
+    UnitAmpere = 0x94B,
     /// Usage ID `0x94C`: "Unit: Watt"
-    UnitWatt,
+    UnitWatt = 0x94C,
     /// Usage ID `0x94D`: "Unit: Henry"
-    UnitHenry,
+    UnitHenry = 0x94D,
     /// Usage ID `0x94E`: "Unit: Ohm"
-    UnitOhm,
+    UnitOhm = 0x94E,
     /// Usage ID `0x94F`: "Unit: Volt"
-    UnitVolt,
+    UnitVolt = 0x94F,
     /// Usage ID `0x950`: "Unit: Hertz"
-    UnitHertz,
+    UnitHertz = 0x950,
     /// Usage ID `0x951`: "Unit: Bar"
-    UnitBar,
+    UnitBar = 0x951,
     /// Usage ID `0x952`: "Unit: Degrees Anti-clockwise"
-    UnitDegreesAnticlockwise,
+    UnitDegreesAnticlockwise = 0x952,
     /// Usage ID `0x953`: "Unit: Degrees Clockwise"
-    UnitDegreesClockwise,
+    UnitDegreesClockwise = 0x953,
     /// Usage ID `0x954`: "Unit: Degrees"
-    UnitDegrees,
+    UnitDegrees = 0x954,
     /// Usage ID `0x955`: "Unit: Degrees/Second"
-    UnitDegreesSecond,
+    UnitDegreesSecond = 0x955,
     /// Usage ID `0x956`: "Unit: Degrees/Second/Second"
-    UnitDegreesSecondSecond,
+    UnitDegreesSecondSecond = 0x956,
     /// Usage ID `0x957`: "Unit: Knot"
-    UnitKnot,
+    UnitKnot = 0x957,
     /// Usage ID `0x958`: "Unit: Percent"
-    UnitPercent,
+    UnitPercent = 0x958,
     /// Usage ID `0x959`: "Unit: Second"
-    UnitSecond,
+    UnitSecond = 0x959,
     /// Usage ID `0x95A`: "Unit: Millisecond"
-    UnitMillisecond,
+    UnitMillisecond = 0x95A,
     /// Usage ID `0x95B`: "Unit: G"
-    UnitG,
+    UnitG = 0x95B,
     /// Usage ID `0x95C`: "Unit: Bytes"
-    UnitBytes,
+    UnitBytes = 0x95C,
     /// Usage ID `0x95D`: "Unit: Milligauss"
-    UnitMilligauss,
+    UnitMilligauss = 0x95D,
     /// Usage ID `0x95E`: "Unit: Bits"
-    UnitBits,
+    UnitBits = 0x95E,
     /// Usage ID `0x960`: "Activity State: No State Change"
-    ActivityStateNoStateChange,
+    ActivityStateNoStateChange = 0x960,
     /// Usage ID `0x961`: "Activity State: Start Activity"
-    ActivityStateStartActivity,
+    ActivityStateStartActivity = 0x961,
     /// Usage ID `0x962`: "Activity State: End Activity"
-    ActivityStateEndActivity,
+    ActivityStateEndActivity = 0x962,
     /// Usage ID `0x970`: "Exponent 0"
-    Exponent0,
+    Exponent0 = 0x970,
     /// Usage ID `0x971`: "Exponent 1"
-    Exponent1,
+    Exponent1 = 0x971,
     /// Usage ID `0x972`: "Exponent 2"
-    Exponent2,
+    Exponent2 = 0x972,
     /// Usage ID `0x973`: "Exponent 3"
-    Exponent3,
+    Exponent3 = 0x973,
     /// Usage ID `0x974`: "Exponent 4"
-    Exponent4,
+    Exponent4 = 0x974,
     /// Usage ID `0x975`: "Exponent 5"
-    Exponent5,
+    Exponent5 = 0x975,
     /// Usage ID `0x976`: "Exponent 6"
-    Exponent6,
+    Exponent6 = 0x976,
     /// Usage ID `0x977`: "Exponent 7"
-    Exponent7,
+    Exponent7 = 0x977,
     /// Usage ID `0x978`: "Exponent 8"
-    Exponent8,
+    Exponent8 = 0x978,
     /// Usage ID `0x979`: "Exponent 9"
-    Exponent9,
+    Exponent9 = 0x979,
     /// Usage ID `0x97A`: "Exponent A"
-    ExponentA,
+    ExponentA = 0x97A,
     /// Usage ID `0x97B`: "Exponent B"
-    ExponentB,
+    ExponentB = 0x97B,
     /// Usage ID `0x97C`: "Exponent C"
-    ExponentC,
+    ExponentC = 0x97C,
     /// Usage ID `0x97D`: "Exponent D"
-    ExponentD,
+    ExponentD = 0x97D,
     /// Usage ID `0x97E`: "Exponent E"
-    ExponentE,
+    ExponentE = 0x97E,
     /// Usage ID `0x97F`: "Exponent F"
-    ExponentF,
+    ExponentF = 0x97F,
     /// Usage ID `0x980`: "Device Position: Unknown"
-    DevicePositionUnknown,
+    DevicePositionUnknown = 0x980,
     /// Usage ID `0x981`: "Device Position: Unchanged"
-    DevicePositionUnchanged,
+    DevicePositionUnchanged = 0x981,
     /// Usage ID `0x982`: "Device Position: On Desk"
-    DevicePositionOnDesk,
+    DevicePositionOnDesk = 0x982,
     /// Usage ID `0x983`: "Device Position: In Hand"
-    DevicePositionInHand,
+    DevicePositionInHand = 0x983,
     /// Usage ID `0x984`: "Device Position: Moving in Bag"
-    DevicePositionMovinginBag,
+    DevicePositionMovinginBag = 0x984,
     /// Usage ID `0x985`: "Device Position: Stationary in Bag"
-    DevicePositionStationaryinBag,
+    DevicePositionStationaryinBag = 0x985,
     /// Usage ID `0x990`: "Step Type: Unknown"
-    StepTypeUnknown,
+    StepTypeUnknown = 0x990,
     /// Usage ID `0x991`: "Step Type: Walking"
-    StepTypeWalking,
+    StepTypeWalking = 0x991,
     /// Usage ID `0x992`: "Step Type: Running"
-    StepTypeRunning,
+    StepTypeRunning = 0x992,
     /// Usage ID `0x9A0`: "Gesture State: Unknown"
-    GestureStateUnknown,
+    GestureStateUnknown = 0x9A0,
     /// Usage ID `0x9A1`: "Gesture State: Started"
-    GestureStateStarted,
+    GestureStateStarted = 0x9A1,
     /// Usage ID `0x9A2`: "Gesture State: Completed"
-    GestureStateCompleted,
+    GestureStateCompleted = 0x9A2,
     /// Usage ID `0x9A3`: "Gesture State: Cancelled"
-    GestureStateCancelled,
+    GestureStateCancelled = 0x9A3,
     /// Usage ID `0x9B0`: "Hinge Fold Contributing Panel: Unknown"
-    HingeFoldContributingPanelUnknown,
+    HingeFoldContributingPanelUnknown = 0x9B0,
     /// Usage ID `0x9B1`: "Hinge Fold Contributing Panel: Panel 1"
-    HingeFoldContributingPanelPanel1,
+    HingeFoldContributingPanelPanel1 = 0x9B1,
     /// Usage ID `0x9B2`: "Hinge Fold Contributing Panel: Panel 2"
-    HingeFoldContributingPanelPanel2,
+    HingeFoldContributingPanelPanel2 = 0x9B2,
     /// Usage ID `0x9B3`: "Hinge Fold Contributing Panel: Both"
-    HingeFoldContributingPanelBoth,
+    HingeFoldContributingPanelBoth = 0x9B3,
     /// Usage ID `0x9B4`: "Hinge Fold Type: Unknown"
-    HingeFoldTypeUnknown,
+    HingeFoldTypeUnknown = 0x9B4,
     /// Usage ID `0x9B5`: "Hinge Fold Type: Increasing"
-    HingeFoldTypeIncreasing,
+    HingeFoldTypeIncreasing = 0x9B5,
     /// Usage ID `0x9B6`: "Hinge Fold Type: Decreasing"
-    HingeFoldTypeDecreasing,
+    HingeFoldTypeDecreasing = 0x9B6,
     /// Usage ID `0x9C0`: "Human Presence Detection Type: Vendor-Defined Non-Biometric"
-    HumanPresenceDetectionTypeVendorDefinedNonBiometric,
+    HumanPresenceDetectionTypeVendorDefinedNonBiometric = 0x9C0,
     /// Usage ID `0x9C1`: "Human Presence Detection Type: Vendor-Defined Biometric"
-    HumanPresenceDetectionTypeVendorDefinedBiometric,
+    HumanPresenceDetectionTypeVendorDefinedBiometric = 0x9C1,
     /// Usage ID `0x9C2`: "Human Presence Detection Type: Facial Biometric"
-    HumanPresenceDetectionTypeFacialBiometric,
+    HumanPresenceDetectionTypeFacialBiometric = 0x9C2,
     /// Usage ID `0x9C3`: "Human Presence Detection Type: Audio Biometric"
-    HumanPresenceDetectionTypeAudioBiometric,
+    HumanPresenceDetectionTypeAudioBiometric = 0x9C3,
     /// Usage ID `0x1000`: "Modifier: Change Sensitivity Absolute"
-    ModifierChangeSensitivityAbsolute,
+    ModifierChangeSensitivityAbsolute = 0x1000,
     /// Usage ID `0x2000`: "Modifier: Maximum"
-    ModifierMaximum,
+    ModifierMaximum = 0x2000,
     /// Usage ID `0x3000`: "Modifier: Minimum"
-    ModifierMinimum,
+    ModifierMinimum = 0x3000,
     /// Usage ID `0x4000`: "Modifier: Accuracy"
-    ModifierAccuracy,
+    ModifierAccuracy = 0x4000,
     /// Usage ID `0x5000`: "Modifier: Resolution"
-    ModifierResolution,
+    ModifierResolution = 0x5000,
     /// Usage ID `0x6000`: "Modifier: Threshold High"
-    ModifierThresholdHigh,
+    ModifierThresholdHigh = 0x6000,
     /// Usage ID `0x7000`: "Modifier: Threshold Low"
-    ModifierThresholdLow,
+    ModifierThresholdLow = 0x7000,
     /// Usage ID `0x8000`: "Modifier: Calibration Offset"
-    ModifierCalibrationOffset,
+    ModifierCalibrationOffset = 0x8000,
     /// Usage ID `0x9000`: "Modifier: Calibration Multiplier"
-    ModifierCalibrationMultiplier,
+    ModifierCalibrationMultiplier = 0x9000,
     /// Usage ID `0xA000`: "Modifier: Report Interval"
-    ModifierReportInterval,
+    ModifierReportInterval = 0xA000,
     /// Usage ID `0xB000`: "Modifier: Frequency Max"
-    ModifierFrequencyMax,
+    ModifierFrequencyMax = 0xB000,
     /// Usage ID `0xC000`: "Modifier: Period Max"
-    ModifierPeriodMax,
+    ModifierPeriodMax = 0xC000,
     /// Usage ID `0xD000`: "Modifier: Change Sensitivity Percent of Range"
-    ModifierChangeSensitivityPercentofRange,
+    ModifierChangeSensitivityPercentofRange = 0xD000,
     /// Usage ID `0xE000`: "Modifier: Change Sensitivity Percent Relative"
-    ModifierChangeSensitivityPercentRelative,
+    ModifierChangeSensitivityPercentRelative = 0xE000,
     /// Usage ID `0xF000`: "Modifier: Vendor Reserved"
-    ModifierVendorReserved,
+    ModifierVendorReserved = 0xF000,
 }
 
 impl Sensors {
@@ -13482,681 +11994,7 @@ impl AsUsagePage for Sensors {
 
 impl From<&Sensors> for u16 {
     fn from(sensors: &Sensors) -> u16 {
-        match *sensors {
-            Sensors::Sensor => 1,
-            Sensors::Biometric => 16,
-            Sensors::BiometricHumanPresence => 17,
-            Sensors::BiometricHumanProximity => 18,
-            Sensors::BiometricHumanTouch => 19,
-            Sensors::BiometricBloodPressure => 20,
-            Sensors::BiometricBodyTemperature => 21,
-            Sensors::BiometricHeartRate => 22,
-            Sensors::BiometricHeartRateVariability => 23,
-            Sensors::BiometricPeripheralOxygenSaturation => 24,
-            Sensors::BiometricRespiratoryRate => 25,
-            Sensors::Electrical => 32,
-            Sensors::ElectricalCapacitance => 33,
-            Sensors::ElectricalCurrent => 34,
-            Sensors::ElectricalPower => 35,
-            Sensors::ElectricalInductance => 36,
-            Sensors::ElectricalResistance => 37,
-            Sensors::ElectricalVoltage => 38,
-            Sensors::ElectricalPotentiometer => 39,
-            Sensors::ElectricalFrequency => 40,
-            Sensors::ElectricalPeriod => 41,
-            Sensors::Environmental => 48,
-            Sensors::EnvironmentalAtmosphericPressure => 49,
-            Sensors::EnvironmentalHumidity => 50,
-            Sensors::EnvironmentalTemperature => 51,
-            Sensors::EnvironmentalWindDirection => 52,
-            Sensors::EnvironmentalWindSpeed => 53,
-            Sensors::EnvironmentalAirQuality => 54,
-            Sensors::EnvironmentalHeatIndex => 55,
-            Sensors::EnvironmentalSurfaceTemperature => 56,
-            Sensors::EnvironmentalVolatileOrganicCompounds => 57,
-            Sensors::EnvironmentalObjectPresence => 58,
-            Sensors::EnvironmentalObjectProximity => 59,
-            Sensors::Light => 64,
-            Sensors::LightAmbientLight => 65,
-            Sensors::LightConsumerInfrared => 66,
-            Sensors::LightInfraredLight => 67,
-            Sensors::LightVisibleLight => 68,
-            Sensors::LightUltravioletLight => 69,
-            Sensors::Location => 80,
-            Sensors::LocationBroadcast => 81,
-            Sensors::LocationDeadReckoning => 82,
-            Sensors::LocationGPSGlobalPositioningSystem => 83,
-            Sensors::LocationLookup => 84,
-            Sensors::LocationOther => 85,
-            Sensors::LocationStatic => 86,
-            Sensors::LocationTriangulation => 87,
-            Sensors::Mechanical => 96,
-            Sensors::MechanicalBooleanSwitch => 97,
-            Sensors::MechanicalBooleanSwitchArray => 98,
-            Sensors::MechanicalMultivalueSwitch => 99,
-            Sensors::MechanicalForce => 100,
-            Sensors::MechanicalPressure => 101,
-            Sensors::MechanicalStrain => 102,
-            Sensors::MechanicalWeight => 103,
-            Sensors::MechanicalHapticVibrator => 104,
-            Sensors::MechanicalHallEffectSwitch => 105,
-            Sensors::Motion => 112,
-            Sensors::MotionAccelerometer1D => 113,
-            Sensors::MotionAccelerometer2D => 114,
-            Sensors::MotionAccelerometer3D => 115,
-            Sensors::MotionGyrometer1D => 116,
-            Sensors::MotionGyrometer2D => 117,
-            Sensors::MotionGyrometer3D => 118,
-            Sensors::MotionMotionDetector => 119,
-            Sensors::MotionSpeedometer => 120,
-            Sensors::MotionAccelerometer => 121,
-            Sensors::MotionGyrometer => 122,
-            Sensors::MotionGravityVector => 123,
-            Sensors::MotionLinearAccelerometer => 124,
-            Sensors::Orientation => 128,
-            Sensors::OrientationCompass1D => 129,
-            Sensors::OrientationCompass2D => 130,
-            Sensors::OrientationCompass3D => 131,
-            Sensors::OrientationInclinometer1D => 132,
-            Sensors::OrientationInclinometer2D => 133,
-            Sensors::OrientationInclinometer3D => 134,
-            Sensors::OrientationDistance1D => 135,
-            Sensors::OrientationDistance2D => 136,
-            Sensors::OrientationDistance3D => 137,
-            Sensors::OrientationDeviceOrientation => 138,
-            Sensors::OrientationCompass => 139,
-            Sensors::OrientationInclinometer => 140,
-            Sensors::OrientationDistance => 141,
-            Sensors::OrientationRelativeOrientation => 142,
-            Sensors::OrientationSimpleOrientation => 143,
-            Sensors::Scanner => 144,
-            Sensors::ScannerBarcode => 145,
-            Sensors::ScannerRFID => 146,
-            Sensors::ScannerNFC => 147,
-            Sensors::Time => 160,
-            Sensors::TimeAlarmTimer => 161,
-            Sensors::TimeRealTimeClock => 162,
-            Sensors::PersonalActivity => 176,
-            Sensors::PersonalActivityActivityDetection => 177,
-            Sensors::PersonalActivityDevicePosition => 178,
-            Sensors::PersonalActivityFloorTracker => 179,
-            Sensors::PersonalActivityPedometer => 180,
-            Sensors::PersonalActivityStepDetection => 181,
-            Sensors::OrientationExtended => 192,
-            Sensors::OrientationExtendedGeomagneticOrientation => 193,
-            Sensors::OrientationExtendedMagnetometer => 194,
-            Sensors::Gesture => 208,
-            Sensors::GestureChassisFlipGesture => 209,
-            Sensors::GestureHingeFoldGesture => 210,
-            Sensors::Other => 224,
-            Sensors::OtherCustom => 225,
-            Sensors::OtherGeneric => 226,
-            Sensors::OtherGenericEnumerator => 227,
-            Sensors::OtherHingeAngle => 228,
-            Sensors::VendorReserved1 => 240,
-            Sensors::VendorReserved2 => 241,
-            Sensors::VendorReserved3 => 242,
-            Sensors::VendorReserved4 => 243,
-            Sensors::VendorReserved5 => 244,
-            Sensors::VendorReserved6 => 245,
-            Sensors::VendorReserved7 => 246,
-            Sensors::VendorReserved8 => 247,
-            Sensors::VendorReserved9 => 248,
-            Sensors::VendorReserved10 => 249,
-            Sensors::VendorReserved11 => 250,
-            Sensors::VendorReserved12 => 251,
-            Sensors::VendorReserved13 => 252,
-            Sensors::VendorReserved14 => 253,
-            Sensors::VendorReserved15 => 254,
-            Sensors::VendorReserved16 => 255,
-            Sensors::Event => 512,
-            Sensors::EventSensorState => 513,
-            Sensors::EventSensorEvent => 514,
-            Sensors::Property => 768,
-            Sensors::PropertyFriendlyName => 769,
-            Sensors::PropertyPersistentUniqueID => 770,
-            Sensors::PropertySensorStatus => 771,
-            Sensors::PropertyMinimumReportInterval => 772,
-            Sensors::PropertySensorManufacturer => 773,
-            Sensors::PropertySensorModel => 774,
-            Sensors::PropertySensorSerialNumber => 775,
-            Sensors::PropertySensorDescription => 776,
-            Sensors::PropertySensorConnectionType => 777,
-            Sensors::PropertySensorDevicePath => 778,
-            Sensors::PropertyHardwareRevision => 779,
-            Sensors::PropertyFirmwareVersion => 780,
-            Sensors::PropertyReleaseDate => 781,
-            Sensors::PropertyReportInterval => 782,
-            Sensors::PropertyChangeSensitivityAbsolute => 783,
-            Sensors::PropertyChangeSensitivityPercentofRange => 784,
-            Sensors::PropertyChangeSensitivityPercentRelative => 785,
-            Sensors::PropertyAccuracy => 786,
-            Sensors::PropertyResolution => 787,
-            Sensors::PropertyMaximum => 788,
-            Sensors::PropertyMinimum => 789,
-            Sensors::PropertyReportingState => 790,
-            Sensors::PropertySamplingRate => 791,
-            Sensors::PropertyResponseCurve => 792,
-            Sensors::PropertyPowerState => 793,
-            Sensors::PropertyMaximumFIFOEvents => 794,
-            Sensors::PropertyReportLatency => 795,
-            Sensors::PropertyFlushFIFOEvents => 796,
-            Sensors::PropertyMaximumPowerConsumption => 797,
-            Sensors::PropertyIsPrimary => 798,
-            Sensors::PropertyHumanPresenceDetectionType => 799,
-            Sensors::DataFieldLocation => 1024,
-            Sensors::DataFieldAltitudeAntennaSeaLevel => 1026,
-            Sensors::DataFieldDifferentialReferenceStationID => 1027,
-            Sensors::DataFieldAltitudeEllipsoidError => 1028,
-            Sensors::DataFieldAltitudeEllipsoid => 1029,
-            Sensors::DataFieldAltitudeSeaLevelError => 1030,
-            Sensors::DataFieldAltitudeSeaLevel => 1031,
-            Sensors::DataFieldDifferentialGPSDataAge => 1032,
-            Sensors::DataFieldErrorRadius => 1033,
-            Sensors::DataFieldFixQuality => 1034,
-            Sensors::DataFieldFixType => 1035,
-            Sensors::DataFieldGeoidalSeparation => 1036,
-            Sensors::DataFieldGPSOperationMode => 1037,
-            Sensors::DataFieldGPSSelectionMode => 1038,
-            Sensors::DataFieldGPSStatus => 1039,
-            Sensors::DataFieldPositionDilutionofPrecision => 1040,
-            Sensors::DataFieldHorizontalDilutionofPrecision => 1041,
-            Sensors::DataFieldVerticalDilutionofPrecision => 1042,
-            Sensors::DataFieldLatitude => 1043,
-            Sensors::DataFieldLongitude => 1044,
-            Sensors::DataFieldTrueHeading => 1045,
-            Sensors::DataFieldMagneticHeading => 1046,
-            Sensors::DataFieldMagneticVariation => 1047,
-            Sensors::DataFieldSpeed => 1048,
-            Sensors::DataFieldSatellitesinView => 1049,
-            Sensors::DataFieldSatellitesinViewAzimuth => 1050,
-            Sensors::DataFieldSatellitesinViewElevation => 1051,
-            Sensors::DataFieldSatellitesinViewIDs => 1052,
-            Sensors::DataFieldSatellitesinViewPRNs => 1053,
-            Sensors::DataFieldSatellitesinViewSNRatios => 1054,
-            Sensors::DataFieldSatellitesUsedCount => 1055,
-            Sensors::DataFieldSatellitesUsedPRNs => 1056,
-            Sensors::DataFieldNMEASentence => 1057,
-            Sensors::DataFieldAddressLine1 => 1058,
-            Sensors::DataFieldAddressLine2 => 1059,
-            Sensors::DataFieldCity => 1060,
-            Sensors::DataFieldStateorProvince => 1061,
-            Sensors::DataFieldCountryorRegion => 1062,
-            Sensors::DataFieldPostalCode => 1063,
-            Sensors::PropertyLocation => 1066,
-            Sensors::PropertyLocationDesiredAccuracy => 1067,
-            Sensors::DataFieldEnvironmental => 1072,
-            Sensors::DataFieldAtmosphericPressure => 1073,
-            Sensors::DataFieldRelativeHumidity => 1075,
-            Sensors::DataFieldTemperature => 1076,
-            Sensors::DataFieldWindDirection => 1077,
-            Sensors::DataFieldWindSpeed => 1078,
-            Sensors::DataFieldAirQualityIndex => 1079,
-            Sensors::DataFieldEquivalentCO2 => 1080,
-            Sensors::DataFieldVolatileOrganicCompoundConcentration => 1081,
-            Sensors::DataFieldObjectPresence => 1082,
-            Sensors::DataFieldObjectProximityRange => 1083,
-            Sensors::DataFieldObjectProximityOutofRange => 1084,
-            Sensors::PropertyEnvironmental => 1088,
-            Sensors::PropertyReferencePressure => 1089,
-            Sensors::DataFieldMotion => 1104,
-            Sensors::DataFieldMotionState => 1105,
-            Sensors::DataFieldAcceleration => 1106,
-            Sensors::DataFieldAccelerationAxisX => 1107,
-            Sensors::DataFieldAccelerationAxisY => 1108,
-            Sensors::DataFieldAccelerationAxisZ => 1109,
-            Sensors::DataFieldAngularVelocity => 1110,
-            Sensors::DataFieldAngularVelocityaboutXAxis => 1111,
-            Sensors::DataFieldAngularVelocityaboutYAxis => 1112,
-            Sensors::DataFieldAngularVelocityaboutZAxis => 1113,
-            Sensors::DataFieldAngularPosition => 1114,
-            Sensors::DataFieldAngularPositionaboutXAxis => 1115,
-            Sensors::DataFieldAngularPositionaboutYAxis => 1116,
-            Sensors::DataFieldAngularPositionaboutZAxis => 1117,
-            Sensors::DataFieldMotionSpeed => 1118,
-            Sensors::DataFieldMotionIntensity => 1119,
-            Sensors::DataFieldOrientation => 1136,
-            Sensors::DataFieldHeading => 1137,
-            Sensors::DataFieldHeadingXAxis => 1138,
-            Sensors::DataFieldHeadingYAxis => 1139,
-            Sensors::DataFieldHeadingZAxis => 1140,
-            Sensors::DataFieldHeadingCompensatedMagneticNorth => 1141,
-            Sensors::DataFieldHeadingCompensatedTrueNorth => 1142,
-            Sensors::DataFieldHeadingMagneticNorth => 1143,
-            Sensors::DataFieldHeadingTrueNorth => 1144,
-            Sensors::DataFieldDistance => 1145,
-            Sensors::DataFieldDistanceXAxis => 1146,
-            Sensors::DataFieldDistanceYAxis => 1147,
-            Sensors::DataFieldDistanceZAxis => 1148,
-            Sensors::DataFieldDistanceOutofRange => 1149,
-            Sensors::DataFieldTilt => 1150,
-            Sensors::DataFieldTiltXAxis => 1151,
-            Sensors::DataFieldTiltYAxis => 1152,
-            Sensors::DataFieldTiltZAxis => 1153,
-            Sensors::DataFieldRotationMatrix => 1154,
-            Sensors::DataFieldQuaternion => 1155,
-            Sensors::DataFieldMagneticFlux => 1156,
-            Sensors::DataFieldMagneticFluxXAxis => 1157,
-            Sensors::DataFieldMagneticFluxYAxis => 1158,
-            Sensors::DataFieldMagneticFluxZAxis => 1159,
-            Sensors::DataFieldMagnetometerAccuracy => 1160,
-            Sensors::DataFieldSimpleOrientationDirection => 1161,
-            Sensors::DataFieldMechanical => 1168,
-            Sensors::DataFieldBooleanSwitchState => 1169,
-            Sensors::DataFieldBooleanSwitchArrayStates => 1170,
-            Sensors::DataFieldMultivalueSwitchValue => 1171,
-            Sensors::DataFieldForce => 1172,
-            Sensors::DataFieldAbsolutePressure => 1173,
-            Sensors::DataFieldGaugePressure => 1174,
-            Sensors::DataFieldStrain => 1175,
-            Sensors::DataFieldWeight => 1176,
-            Sensors::PropertyMechanical => 1184,
-            Sensors::PropertyVibrationState => 1185,
-            Sensors::PropertyForwardVibrationSpeed => 1186,
-            Sensors::PropertyBackwardVibrationSpeed => 1187,
-            Sensors::DataFieldBiometric => 1200,
-            Sensors::DataFieldHumanPresence => 1201,
-            Sensors::DataFieldHumanProximityRange => 1202,
-            Sensors::DataFieldHumanProximityOutofRange => 1203,
-            Sensors::DataFieldHumanTouchState => 1204,
-            Sensors::DataFieldBloodPressure => 1205,
-            Sensors::DataFieldBloodPressureDiastolic => 1206,
-            Sensors::DataFieldBloodPressureSystolic => 1207,
-            Sensors::DataFieldHeartRate => 1208,
-            Sensors::DataFieldRestingHeartRate => 1209,
-            Sensors::DataFieldHeartbeatInterval => 1210,
-            Sensors::DataFieldRespiratoryRate => 1211,
-            Sensors::DataFieldSpO2 => 1212,
-            Sensors::DataFieldHumanAttentionDetected => 1213,
-            Sensors::DataFieldHumanHeadAzimuth => 1214,
-            Sensors::DataFieldHumanHeadAltitude => 1215,
-            Sensors::DataFieldHumanHeadRoll => 1216,
-            Sensors::DataFieldHumanHeadPitch => 1217,
-            Sensors::DataFieldHumanHeadYaw => 1218,
-            Sensors::DataFieldHumanCorrelationId => 1219,
-            Sensors::DataFieldLight => 1232,
-            Sensors::DataFieldIlluminance => 1233,
-            Sensors::DataFieldColorTemperature => 1234,
-            Sensors::DataFieldChromaticity => 1235,
-            Sensors::DataFieldChromaticityX => 1236,
-            Sensors::DataFieldChromaticityY => 1237,
-            Sensors::DataFieldConsumerIRSentenceReceive => 1238,
-            Sensors::DataFieldInfraredLight => 1239,
-            Sensors::DataFieldRedLight => 1240,
-            Sensors::DataFieldGreenLight => 1241,
-            Sensors::DataFieldBlueLight => 1242,
-            Sensors::DataFieldUltravioletALight => 1243,
-            Sensors::DataFieldUltravioletBLight => 1244,
-            Sensors::DataFieldUltravioletIndex => 1245,
-            Sensors::DataFieldNearInfraredLight => 1246,
-            Sensors::PropertyLight => 1247,
-            Sensors::PropertyConsumerIRSentenceSend => 1248,
-            Sensors::PropertyAutoBrightnessPreferred => 1250,
-            Sensors::PropertyAutoColorPreferred => 1251,
-            Sensors::DataFieldScanner => 1264,
-            Sensors::DataFieldRFIDTag40Bit => 1265,
-            Sensors::DataFieldNFCSentenceReceive => 1266,
-            Sensors::PropertyScanner => 1272,
-            Sensors::PropertyNFCSentenceSend => 1273,
-            Sensors::DataFieldElectrical => 1280,
-            Sensors::DataFieldCapacitance => 1281,
-            Sensors::DataFieldCurrent => 1282,
-            Sensors::DataFieldElectricalPower => 1283,
-            Sensors::DataFieldInductance => 1284,
-            Sensors::DataFieldResistance => 1285,
-            Sensors::DataFieldVoltage => 1286,
-            Sensors::DataFieldFrequency => 1287,
-            Sensors::DataFieldPeriod => 1288,
-            Sensors::DataFieldPercentofRange => 1289,
-            Sensors::DataFieldTime => 1312,
-            Sensors::DataFieldYear => 1313,
-            Sensors::DataFieldMonth => 1314,
-            Sensors::DataFieldDay => 1315,
-            Sensors::DataFieldDayofWeek => 1316,
-            Sensors::DataFieldHour => 1317,
-            Sensors::DataFieldMinute => 1318,
-            Sensors::DataFieldSecond => 1319,
-            Sensors::DataFieldMillisecond => 1320,
-            Sensors::DataFieldTimestamp => 1321,
-            Sensors::DataFieldJulianDayofYear => 1322,
-            Sensors::DataFieldTimeSinceSystemBoot => 1323,
-            Sensors::PropertyTime => 1328,
-            Sensors::PropertyTimeZoneOffsetfromUTC => 1329,
-            Sensors::PropertyTimeZoneName => 1330,
-            Sensors::PropertyDaylightSavingsTimeObserved => 1331,
-            Sensors::PropertyTimeTrimAdjustment => 1332,
-            Sensors::PropertyArmAlarm => 1333,
-            Sensors::DataFieldCustom => 1344,
-            Sensors::DataFieldCustomUsage => 1345,
-            Sensors::DataFieldCustomBooleanArray => 1346,
-            Sensors::DataFieldCustomValue => 1347,
-            Sensors::DataFieldCustomValue1 => 1348,
-            Sensors::DataFieldCustomValue2 => 1349,
-            Sensors::DataFieldCustomValue3 => 1350,
-            Sensors::DataFieldCustomValue4 => 1351,
-            Sensors::DataFieldCustomValue5 => 1352,
-            Sensors::DataFieldCustomValue6 => 1353,
-            Sensors::DataFieldCustomValue7 => 1354,
-            Sensors::DataFieldCustomValue8 => 1355,
-            Sensors::DataFieldCustomValue9 => 1356,
-            Sensors::DataFieldCustomValue10 => 1357,
-            Sensors::DataFieldCustomValue11 => 1358,
-            Sensors::DataFieldCustomValue12 => 1359,
-            Sensors::DataFieldCustomValue13 => 1360,
-            Sensors::DataFieldCustomValue14 => 1361,
-            Sensors::DataFieldCustomValue15 => 1362,
-            Sensors::DataFieldCustomValue16 => 1363,
-            Sensors::DataFieldCustomValue17 => 1364,
-            Sensors::DataFieldCustomValue18 => 1365,
-            Sensors::DataFieldCustomValue19 => 1366,
-            Sensors::DataFieldCustomValue20 => 1367,
-            Sensors::DataFieldCustomValue21 => 1368,
-            Sensors::DataFieldCustomValue22 => 1369,
-            Sensors::DataFieldCustomValue23 => 1370,
-            Sensors::DataFieldCustomValue24 => 1371,
-            Sensors::DataFieldCustomValue25 => 1372,
-            Sensors::DataFieldCustomValue26 => 1373,
-            Sensors::DataFieldCustomValue27 => 1374,
-            Sensors::DataFieldCustomValue28 => 1375,
-            Sensors::DataFieldGeneric => 1376,
-            Sensors::DataFieldGenericGUIDorPROPERTYKEY => 1377,
-            Sensors::DataFieldGenericCategoryGUID => 1378,
-            Sensors::DataFieldGenericTypeGUID => 1379,
-            Sensors::DataFieldGenericEventPROPERTYKEY => 1380,
-            Sensors::DataFieldGenericPropertyPROPERTYKEY => 1381,
-            Sensors::DataFieldGenericDataFieldPROPERTYKEY => 1382,
-            Sensors::DataFieldGenericEvent => 1383,
-            Sensors::DataFieldGenericProperty => 1384,
-            Sensors::DataFieldGenericDataField => 1385,
-            Sensors::DataFieldEnumeratorTableRowIndex => 1386,
-            Sensors::DataFieldEnumeratorTableRowCount => 1387,
-            Sensors::DataFieldGenericGUIDorPROPERTYKEYkind => 1388,
-            Sensors::DataFieldGenericGUID => 1389,
-            Sensors::DataFieldGenericPROPERTYKEY => 1390,
-            Sensors::DataFieldGenericTopLevelCollectionID => 1391,
-            Sensors::DataFieldGenericReportID => 1392,
-            Sensors::DataFieldGenericReportItemPositionIndex => 1393,
-            Sensors::DataFieldGenericFirmwareVARTYPE => 1394,
-            Sensors::DataFieldGenericUnitofMeasure => 1395,
-            Sensors::DataFieldGenericUnitExponent => 1396,
-            Sensors::DataFieldGenericReportSize => 1397,
-            Sensors::DataFieldGenericReportCount => 1398,
-            Sensors::PropertyGeneric => 1408,
-            Sensors::PropertyEnumeratorTableRowIndex => 1409,
-            Sensors::PropertyEnumeratorTableRowCount => 1410,
-            Sensors::DataFieldPersonalActivity => 1424,
-            Sensors::DataFieldActivityType => 1425,
-            Sensors::DataFieldActivityState => 1426,
-            Sensors::DataFieldDevicePosition => 1427,
-            Sensors::DataFieldStepCount => 1428,
-            Sensors::DataFieldStepCountReset => 1429,
-            Sensors::DataFieldStepDuration => 1430,
-            Sensors::DataFieldStepType => 1431,
-            Sensors::PropertyMinimumActivityDetectionInterval => 1440,
-            Sensors::PropertySupportedActivityTypes => 1441,
-            Sensors::PropertySubscribedActivityTypes => 1442,
-            Sensors::PropertySupportedStepTypes => 1443,
-            Sensors::PropertySubscribedStepTypes => 1444,
-            Sensors::PropertyFloorHeight => 1445,
-            Sensors::DataFieldCustomTypeID => 1456,
-            Sensors::PropertyCustom => 1472,
-            Sensors::PropertyCustomValue1 => 1473,
-            Sensors::PropertyCustomValue2 => 1474,
-            Sensors::PropertyCustomValue3 => 1475,
-            Sensors::PropertyCustomValue4 => 1476,
-            Sensors::PropertyCustomValue5 => 1477,
-            Sensors::PropertyCustomValue6 => 1478,
-            Sensors::PropertyCustomValue7 => 1479,
-            Sensors::PropertyCustomValue8 => 1480,
-            Sensors::PropertyCustomValue9 => 1481,
-            Sensors::PropertyCustomValue10 => 1482,
-            Sensors::PropertyCustomValue11 => 1483,
-            Sensors::PropertyCustomValue12 => 1484,
-            Sensors::PropertyCustomValue13 => 1485,
-            Sensors::PropertyCustomValue14 => 1486,
-            Sensors::PropertyCustomValue15 => 1487,
-            Sensors::PropertyCustomValue16 => 1488,
-            Sensors::DataFieldHinge => 1504,
-            Sensors::DataFieldHingeAngle => 1505,
-            Sensors::DataFieldGestureSensor => 1520,
-            Sensors::DataFieldGestureState => 1521,
-            Sensors::DataFieldHingeFoldInitialAngle => 1522,
-            Sensors::DataFieldHingeFoldFinalAngle => 1523,
-            Sensors::DataFieldHingeFoldContributingPanel => 1524,
-            Sensors::DataFieldHingeFoldType => 1525,
-            Sensors::SensorStateUndefined => 2048,
-            Sensors::SensorStateReady => 2049,
-            Sensors::SensorStateNotAvailable => 2050,
-            Sensors::SensorStateNoData => 2051,
-            Sensors::SensorStateInitializing => 2052,
-            Sensors::SensorStateAccessDenied => 2053,
-            Sensors::SensorStateError => 2054,
-            Sensors::SensorEventUnknown => 2064,
-            Sensors::SensorEventStateChanged => 2065,
-            Sensors::SensorEventPropertyChanged => 2066,
-            Sensors::SensorEventDataUpdated => 2067,
-            Sensors::SensorEventPollResponse => 2068,
-            Sensors::SensorEventChangeSensitivity => 2069,
-            Sensors::SensorEventRangeMaximumReached => 2070,
-            Sensors::SensorEventRangeMinimumReached => 2071,
-            Sensors::SensorEventHighThresholdCrossUpward => 2072,
-            Sensors::SensorEventHighThresholdCrossDownward => 2073,
-            Sensors::SensorEventLowThresholdCrossUpward => 2074,
-            Sensors::SensorEventLowThresholdCrossDownward => 2075,
-            Sensors::SensorEventZeroThresholdCrossUpward => 2076,
-            Sensors::SensorEventZeroThresholdCrossDownward => 2077,
-            Sensors::SensorEventPeriodExceeded => 2078,
-            Sensors::SensorEventFrequencyExceeded => 2079,
-            Sensors::SensorEventComplexTrigger => 2080,
-            Sensors::ConnectionTypePCIntegrated => 2096,
-            Sensors::ConnectionTypePCAttached => 2097,
-            Sensors::ConnectionTypePCExternal => 2098,
-            Sensors::ReportingStateReportNoEvents => 2112,
-            Sensors::ReportingStateReportAllEvents => 2113,
-            Sensors::ReportingStateReportThresholdEvents => 2114,
-            Sensors::ReportingStateWakeOnNoEvents => 2115,
-            Sensors::ReportingStateWakeOnAllEvents => 2116,
-            Sensors::ReportingStateWakeOnThresholdEvents => 2117,
-            Sensors::ReportingStateAnytime => 2118,
-            Sensors::PowerStateUndefined => 2128,
-            Sensors::PowerStateD0FullPower => 2129,
-            Sensors::PowerStateD1LowPower => 2130,
-            Sensors::PowerStateD2StandbyPowerwithWakeup => 2131,
-            Sensors::PowerStateD3SleepwithWakeup => 2132,
-            Sensors::PowerStateD4PowerOff => 2133,
-            Sensors::AccuracyDefault => 2144,
-            Sensors::AccuracyHigh => 2145,
-            Sensors::AccuracyMedium => 2146,
-            Sensors::AccuracyLow => 2147,
-            Sensors::FixQualityNoFix => 2160,
-            Sensors::FixQualityGPS => 2161,
-            Sensors::FixQualityDGPS => 2162,
-            Sensors::FixTypeNoFix => 2176,
-            Sensors::FixTypeGPSSPSModeFixValid => 2177,
-            Sensors::FixTypeDGPSSPSModeFixValid => 2178,
-            Sensors::FixTypeGPSPPSModeFixValid => 2179,
-            Sensors::FixTypeRealTimeKinematic => 2180,
-            Sensors::FixTypeFloatRTK => 2181,
-            Sensors::FixTypeEstimateddeadreckoned => 2182,
-            Sensors::FixTypeManualInputMode => 2183,
-            Sensors::FixTypeSimulatorMode => 2184,
-            Sensors::GPSOperationModeManual => 2192,
-            Sensors::GPSOperationModeAutomatic => 2193,
-            Sensors::GPSSelectionModeAutonomous => 2208,
-            Sensors::GPSSelectionModeDGPS => 2209,
-            Sensors::GPSSelectionModeEstimateddeadreckoned => 2210,
-            Sensors::GPSSelectionModeManualInput => 2211,
-            Sensors::GPSSelectionModeSimulator => 2212,
-            Sensors::GPSSelectionModeDataNotValid => 2213,
-            Sensors::GPSStatusDataValid => 2224,
-            Sensors::GPSStatusDataNotValid => 2225,
-            Sensors::DayofWeekSunday => 2240,
-            Sensors::DayofWeekMonday => 2241,
-            Sensors::DayofWeekTuesday => 2242,
-            Sensors::DayofWeekWednesday => 2243,
-            Sensors::DayofWeekThursday => 2244,
-            Sensors::DayofWeekFriday => 2245,
-            Sensors::DayofWeekSaturday => 2246,
-            Sensors::KindCategory => 2256,
-            Sensors::KindType => 2257,
-            Sensors::KindEvent => 2258,
-            Sensors::KindProperty => 2259,
-            Sensors::KindDataField => 2260,
-            Sensors::MagnetometerAccuracyLow => 2272,
-            Sensors::MagnetometerAccuracyMedium => 2273,
-            Sensors::MagnetometerAccuracyHigh => 2274,
-            Sensors::SimpleOrientationDirectionNotRotated => 2288,
-            Sensors::SimpleOrientationDirectionRotated90DegreesCCW => 2289,
-            Sensors::SimpleOrientationDirectionRotated180DegreesCCW => 2290,
-            Sensors::SimpleOrientationDirectionRotated270DegreesCCW => 2291,
-            Sensors::SimpleOrientationDirectionFaceUp => 2292,
-            Sensors::SimpleOrientationDirectionFaceDown => 2293,
-            Sensors::VT_NULL => 2304,
-            Sensors::VT_BOOL => 2305,
-            Sensors::VT_UI1 => 2306,
-            Sensors::VT_I1 => 2307,
-            Sensors::VT_UI2 => 2308,
-            Sensors::VT_I2 => 2309,
-            Sensors::VT_UI4 => 2310,
-            Sensors::VT_I4 => 2311,
-            Sensors::VT_UI8 => 2312,
-            Sensors::VT_I8 => 2313,
-            Sensors::VT_R4 => 2314,
-            Sensors::VT_R8 => 2315,
-            Sensors::VT_WSTR => 2316,
-            Sensors::VT_STR => 2317,
-            Sensors::VT_CLSID => 2318,
-            Sensors::VT_VECTORVT_UI1 => 2319,
-            Sensors::VT_F16E0 => 2320,
-            Sensors::VT_F16E1 => 2321,
-            Sensors::VT_F16E2 => 2322,
-            Sensors::VT_F16E3 => 2323,
-            Sensors::VT_F16E4 => 2324,
-            Sensors::VT_F16E5 => 2325,
-            Sensors::VT_F16E6 => 2326,
-            Sensors::VT_F16E7 => 2327,
-            Sensors::VT_F16E8 => 2328,
-            Sensors::VT_F16E9 => 2329,
-            Sensors::VT_F16EA => 2330,
-            Sensors::VT_F16EB => 2331,
-            Sensors::VT_F16EC => 2332,
-            Sensors::VT_F16ED => 2333,
-            Sensors::VT_F16EE => 2334,
-            Sensors::VT_F16EF => 2335,
-            Sensors::VT_F32E0 => 2336,
-            Sensors::VT_F32E1 => 2337,
-            Sensors::VT_F32E2 => 2338,
-            Sensors::VT_F32E3 => 2339,
-            Sensors::VT_F32E4 => 2340,
-            Sensors::VT_F32E5 => 2341,
-            Sensors::VT_F32E6 => 2342,
-            Sensors::VT_F32E7 => 2343,
-            Sensors::VT_F32E8 => 2344,
-            Sensors::VT_F32E9 => 2345,
-            Sensors::VT_F32EA => 2346,
-            Sensors::VT_F32EB => 2347,
-            Sensors::VT_F32EC => 2348,
-            Sensors::VT_F32ED => 2349,
-            Sensors::VT_F32EE => 2350,
-            Sensors::VT_F32EF => 2351,
-            Sensors::ActivityTypeUnknown => 2352,
-            Sensors::ActivityTypeStationary => 2353,
-            Sensors::ActivityTypeFidgeting => 2354,
-            Sensors::ActivityTypeWalking => 2355,
-            Sensors::ActivityTypeRunning => 2356,
-            Sensors::ActivityTypeInVehicle => 2357,
-            Sensors::ActivityTypeBiking => 2358,
-            Sensors::ActivityTypeIdle => 2359,
-            Sensors::UnitNotSpecified => 2368,
-            Sensors::UnitLux => 2369,
-            Sensors::UnitDegreesKelvin => 2370,
-            Sensors::UnitDegreesCelsius => 2371,
-            Sensors::UnitPascal => 2372,
-            Sensors::UnitNewton => 2373,
-            Sensors::UnitMetersSecond => 2374,
-            Sensors::UnitKilogram => 2375,
-            Sensors::UnitMeter => 2376,
-            Sensors::UnitMetersSecondSecond => 2377,
-            Sensors::UnitFarad => 2378,
-            Sensors::UnitAmpere => 2379,
-            Sensors::UnitWatt => 2380,
-            Sensors::UnitHenry => 2381,
-            Sensors::UnitOhm => 2382,
-            Sensors::UnitVolt => 2383,
-            Sensors::UnitHertz => 2384,
-            Sensors::UnitBar => 2385,
-            Sensors::UnitDegreesAnticlockwise => 2386,
-            Sensors::UnitDegreesClockwise => 2387,
-            Sensors::UnitDegrees => 2388,
-            Sensors::UnitDegreesSecond => 2389,
-            Sensors::UnitDegreesSecondSecond => 2390,
-            Sensors::UnitKnot => 2391,
-            Sensors::UnitPercent => 2392,
-            Sensors::UnitSecond => 2393,
-            Sensors::UnitMillisecond => 2394,
-            Sensors::UnitG => 2395,
-            Sensors::UnitBytes => 2396,
-            Sensors::UnitMilligauss => 2397,
-            Sensors::UnitBits => 2398,
-            Sensors::ActivityStateNoStateChange => 2400,
-            Sensors::ActivityStateStartActivity => 2401,
-            Sensors::ActivityStateEndActivity => 2402,
-            Sensors::Exponent0 => 2416,
-            Sensors::Exponent1 => 2417,
-            Sensors::Exponent2 => 2418,
-            Sensors::Exponent3 => 2419,
-            Sensors::Exponent4 => 2420,
-            Sensors::Exponent5 => 2421,
-            Sensors::Exponent6 => 2422,
-            Sensors::Exponent7 => 2423,
-            Sensors::Exponent8 => 2424,
-            Sensors::Exponent9 => 2425,
-            Sensors::ExponentA => 2426,
-            Sensors::ExponentB => 2427,
-            Sensors::ExponentC => 2428,
-            Sensors::ExponentD => 2429,
-            Sensors::ExponentE => 2430,
-            Sensors::ExponentF => 2431,
-            Sensors::DevicePositionUnknown => 2432,
-            Sensors::DevicePositionUnchanged => 2433,
-            Sensors::DevicePositionOnDesk => 2434,
-            Sensors::DevicePositionInHand => 2435,
-            Sensors::DevicePositionMovinginBag => 2436,
-            Sensors::DevicePositionStationaryinBag => 2437,
-            Sensors::StepTypeUnknown => 2448,
-            Sensors::StepTypeWalking => 2449,
-            Sensors::StepTypeRunning => 2450,
-            Sensors::GestureStateUnknown => 2464,
-            Sensors::GestureStateStarted => 2465,
-            Sensors::GestureStateCompleted => 2466,
-            Sensors::GestureStateCancelled => 2467,
-            Sensors::HingeFoldContributingPanelUnknown => 2480,
-            Sensors::HingeFoldContributingPanelPanel1 => 2481,
-            Sensors::HingeFoldContributingPanelPanel2 => 2482,
-            Sensors::HingeFoldContributingPanelBoth => 2483,
-            Sensors::HingeFoldTypeUnknown => 2484,
-            Sensors::HingeFoldTypeIncreasing => 2485,
-            Sensors::HingeFoldTypeDecreasing => 2486,
-            Sensors::HumanPresenceDetectionTypeVendorDefinedNonBiometric => 2496,
-            Sensors::HumanPresenceDetectionTypeVendorDefinedBiometric => 2497,
-            Sensors::HumanPresenceDetectionTypeFacialBiometric => 2498,
-            Sensors::HumanPresenceDetectionTypeAudioBiometric => 2499,
-            Sensors::ModifierChangeSensitivityAbsolute => 4096,
-            Sensors::ModifierMaximum => 8192,
-            Sensors::ModifierMinimum => 12288,
-            Sensors::ModifierAccuracy => 16384,
-            Sensors::ModifierResolution => 20480,
-            Sensors::ModifierThresholdHigh => 24576,
-            Sensors::ModifierThresholdLow => 28672,
-            Sensors::ModifierCalibrationOffset => 32768,
-            Sensors::ModifierCalibrationMultiplier => 36864,
-            Sensors::ModifierReportInterval => 40960,
-            Sensors::ModifierFrequencyMax => 45056,
-            Sensors::ModifierPeriodMax => 49152,
-            Sensors::ModifierChangeSensitivityPercentofRange => 53248,
-            Sensors::ModifierChangeSensitivityPercentRelative => 57344,
-            Sensors::ModifierVendorReserved => 61440,
-        }
+        *sensors as u16
     }
 }
 
@@ -14927,67 +12765,68 @@ impl BitOr<u16> for Sensors {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum MedicalInstrument {
     /// Usage ID `0x1`: "Medical Ultrasound"
-    MedicalUltrasound,
+    MedicalUltrasound = 0x1,
     /// Usage ID `0x20`: "VCR/Acquisition"
-    VCRAcquisition,
+    VCRAcquisition = 0x20,
     /// Usage ID `0x21`: "Freeze/Thaw"
-    FreezeThaw,
+    FreezeThaw = 0x21,
     /// Usage ID `0x22`: "Clip Store"
-    ClipStore,
+    ClipStore = 0x22,
     /// Usage ID `0x23`: "Update"
-    Update,
+    Update = 0x23,
     /// Usage ID `0x24`: "Next"
-    Next,
+    Next = 0x24,
     /// Usage ID `0x25`: "Save"
-    Save,
+    Save = 0x25,
     /// Usage ID `0x26`: "Print"
-    Print,
+    Print = 0x26,
     /// Usage ID `0x27`: "Microphone Enable"
-    MicrophoneEnable,
+    MicrophoneEnable = 0x27,
     /// Usage ID `0x40`: "Cine"
-    Cine,
+    Cine = 0x40,
     /// Usage ID `0x41`: "Transmit Power"
-    TransmitPower,
+    TransmitPower = 0x41,
     /// Usage ID `0x42`: "Volume"
-    Volume,
+    Volume = 0x42,
     /// Usage ID `0x43`: "Focus"
-    Focus,
+    Focus = 0x43,
     /// Usage ID `0x44`: "Depth"
-    Depth,
+    Depth = 0x44,
     /// Usage ID `0x60`: "Soft Step - Primary"
-    SoftStepPrimary,
+    SoftStepPrimary = 0x60,
     /// Usage ID `0x61`: "Soft Step - Secondary"
-    SoftStepSecondary,
+    SoftStepSecondary = 0x61,
     /// Usage ID `0x70`: "Depth Gain Compensation"
-    DepthGainCompensation,
+    DepthGainCompensation = 0x70,
     /// Usage ID `0x80`: "Zoom Select"
-    ZoomSelect,
+    ZoomSelect = 0x80,
     /// Usage ID `0x81`: "Zoom Adjust"
-    ZoomAdjust,
+    ZoomAdjust = 0x81,
     /// Usage ID `0x82`: "Spectral Doppler Mode Select"
-    SpectralDopplerModeSelect,
+    SpectralDopplerModeSelect = 0x82,
     /// Usage ID `0x83`: "Spectral Doppler Adjust"
-    SpectralDopplerAdjust,
+    SpectralDopplerAdjust = 0x83,
     /// Usage ID `0x84`: "Color Doppler Mode Select"
-    ColorDopplerModeSelect,
+    ColorDopplerModeSelect = 0x84,
     /// Usage ID `0x85`: "Color Doppler Adjust"
-    ColorDopplerAdjust,
+    ColorDopplerAdjust = 0x85,
     /// Usage ID `0x86`: "Motion Mode Select"
-    MotionModeSelect,
+    MotionModeSelect = 0x86,
     /// Usage ID `0x87`: "Motion Mode Adjust"
-    MotionModeAdjust,
+    MotionModeAdjust = 0x87,
     /// Usage ID `0x88`: "2-D Mode Select"
-    TwoDModeSelect,
+    TwoDModeSelect = 0x88,
     /// Usage ID `0x89`: "2-D Mode Adjust"
-    TwoDModeAdjust,
+    TwoDModeAdjust = 0x89,
     /// Usage ID `0xA0`: "Soft Control Select"
-    SoftControlSelect,
+    SoftControlSelect = 0xA0,
     /// Usage ID `0xA1`: "Soft Control Adjust"
-    SoftControlAdjust,
+    SoftControlAdjust = 0xA1,
 }
 
 impl MedicalInstrument {
@@ -15078,37 +12917,7 @@ impl AsUsagePage for MedicalInstrument {
 
 impl From<&MedicalInstrument> for u16 {
     fn from(medicalinstrument: &MedicalInstrument) -> u16 {
-        match *medicalinstrument {
-            MedicalInstrument::MedicalUltrasound => 1,
-            MedicalInstrument::VCRAcquisition => 32,
-            MedicalInstrument::FreezeThaw => 33,
-            MedicalInstrument::ClipStore => 34,
-            MedicalInstrument::Update => 35,
-            MedicalInstrument::Next => 36,
-            MedicalInstrument::Save => 37,
-            MedicalInstrument::Print => 38,
-            MedicalInstrument::MicrophoneEnable => 39,
-            MedicalInstrument::Cine => 64,
-            MedicalInstrument::TransmitPower => 65,
-            MedicalInstrument::Volume => 66,
-            MedicalInstrument::Focus => 67,
-            MedicalInstrument::Depth => 68,
-            MedicalInstrument::SoftStepPrimary => 96,
-            MedicalInstrument::SoftStepSecondary => 97,
-            MedicalInstrument::DepthGainCompensation => 112,
-            MedicalInstrument::ZoomSelect => 128,
-            MedicalInstrument::ZoomAdjust => 129,
-            MedicalInstrument::SpectralDopplerModeSelect => 130,
-            MedicalInstrument::SpectralDopplerAdjust => 131,
-            MedicalInstrument::ColorDopplerModeSelect => 132,
-            MedicalInstrument::ColorDopplerAdjust => 133,
-            MedicalInstrument::MotionModeSelect => 134,
-            MedicalInstrument::MotionModeAdjust => 135,
-            MedicalInstrument::TwoDModeSelect => 136,
-            MedicalInstrument::TwoDModeAdjust => 137,
-            MedicalInstrument::SoftControlSelect => 160,
-            MedicalInstrument::SoftControlAdjust => 161,
-        }
+        *medicalinstrument as u16
     }
 }
 
@@ -15235,95 +13044,96 @@ impl BitOr<u16> for MedicalInstrument {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum BrailleDisplay {
     /// Usage ID `0x1`: "Braille Display"
-    BrailleDisplay,
+    BrailleDisplay = 0x1,
     /// Usage ID `0x2`: "Braille Row"
-    BrailleRow,
+    BrailleRow = 0x2,
     /// Usage ID `0x3`: "8 Dot Braille Cell"
-    EightDotBrailleCell,
+    EightDotBrailleCell = 0x3,
     /// Usage ID `0x4`: "6 Dot Braille Cell"
-    SixDotBrailleCell,
+    SixDotBrailleCell = 0x4,
     /// Usage ID `0x5`: "Number of Braille Cells"
-    NumberofBrailleCells,
+    NumberofBrailleCells = 0x5,
     /// Usage ID `0x6`: "Screen Reader Control"
-    ScreenReaderControl,
+    ScreenReaderControl = 0x6,
     /// Usage ID `0x7`: "Screen Reader Identifier"
-    ScreenReaderIdentifier,
+    ScreenReaderIdentifier = 0x7,
     /// Usage ID `0xFA`: "Router Set 1"
-    RouterSet1,
+    RouterSet1 = 0xFA,
     /// Usage ID `0xFB`: "Router Set 2"
-    RouterSet2,
+    RouterSet2 = 0xFB,
     /// Usage ID `0xFC`: "Router Set 3"
-    RouterSet3,
+    RouterSet3 = 0xFC,
     /// Usage ID `0x100`: "Router Key"
-    RouterKey,
+    RouterKey = 0x100,
     /// Usage ID `0x101`: "Row Router Key"
-    RowRouterKey,
+    RowRouterKey = 0x101,
     /// Usage ID `0x200`: "Braille Buttons"
-    BrailleButtons,
+    BrailleButtons = 0x200,
     /// Usage ID `0x201`: "Braille Keyboard Dot 1"
-    BrailleKeyboardDot1,
+    BrailleKeyboardDot1 = 0x201,
     /// Usage ID `0x202`: "Braille Keyboard Dot 2"
-    BrailleKeyboardDot2,
+    BrailleKeyboardDot2 = 0x202,
     /// Usage ID `0x203`: "Braille Keyboard Dot 3"
-    BrailleKeyboardDot3,
+    BrailleKeyboardDot3 = 0x203,
     /// Usage ID `0x204`: "Braille Keyboard Dot 4"
-    BrailleKeyboardDot4,
+    BrailleKeyboardDot4 = 0x204,
     /// Usage ID `0x205`: "Braille Keyboard Dot 5"
-    BrailleKeyboardDot5,
+    BrailleKeyboardDot5 = 0x205,
     /// Usage ID `0x206`: "Braille Keyboard Dot 6"
-    BrailleKeyboardDot6,
+    BrailleKeyboardDot6 = 0x206,
     /// Usage ID `0x207`: "Braille Keyboard Dot 7"
-    BrailleKeyboardDot7,
+    BrailleKeyboardDot7 = 0x207,
     /// Usage ID `0x208`: "Braille Keyboard Dot 8"
-    BrailleKeyboardDot8,
+    BrailleKeyboardDot8 = 0x208,
     /// Usage ID `0x209`: "Braille Keyboard Space"
-    BrailleKeyboardSpace,
+    BrailleKeyboardSpace = 0x209,
     /// Usage ID `0x20A`: "Braille Keyboard Left Space"
-    BrailleKeyboardLeftSpace,
+    BrailleKeyboardLeftSpace = 0x20A,
     /// Usage ID `0x20B`: "Braille Keyboard Right Space"
-    BrailleKeyboardRightSpace,
+    BrailleKeyboardRightSpace = 0x20B,
     /// Usage ID `0x20C`: "Braille Face Controls"
-    BrailleFaceControls,
+    BrailleFaceControls = 0x20C,
     /// Usage ID `0x20D`: "Braille Left Controls"
-    BrailleLeftControls,
+    BrailleLeftControls = 0x20D,
     /// Usage ID `0x20E`: "Braille Right Controls"
-    BrailleRightControls,
+    BrailleRightControls = 0x20E,
     /// Usage ID `0x20F`: "Braille Top Controls"
-    BrailleTopControls,
+    BrailleTopControls = 0x20F,
     /// Usage ID `0x210`: "Braille Joystick Center"
-    BrailleJoystickCenter,
+    BrailleJoystickCenter = 0x210,
     /// Usage ID `0x211`: "Braille Joystick Up"
-    BrailleJoystickUp,
+    BrailleJoystickUp = 0x211,
     /// Usage ID `0x212`: "Braille Joystick Down"
-    BrailleJoystickDown,
+    BrailleJoystickDown = 0x212,
     /// Usage ID `0x213`: "Braille Joystick Left"
-    BrailleJoystickLeft,
+    BrailleJoystickLeft = 0x213,
     /// Usage ID `0x214`: "Braille Joystick Right"
-    BrailleJoystickRight,
+    BrailleJoystickRight = 0x214,
     /// Usage ID `0x215`: "Braille D-Pad Center"
-    BrailleDPadCenter,
+    BrailleDPadCenter = 0x215,
     /// Usage ID `0x216`: "Braille D-Pad Up"
-    BrailleDPadUp,
+    BrailleDPadUp = 0x216,
     /// Usage ID `0x217`: "Braille D-Pad Down"
-    BrailleDPadDown,
+    BrailleDPadDown = 0x217,
     /// Usage ID `0x218`: "Braille D-Pad Left"
-    BrailleDPadLeft,
+    BrailleDPadLeft = 0x218,
     /// Usage ID `0x219`: "Braille D-Pad Right"
-    BrailleDPadRight,
+    BrailleDPadRight = 0x219,
     /// Usage ID `0x21A`: "Braille Pan Left"
-    BraillePanLeft,
+    BraillePanLeft = 0x21A,
     /// Usage ID `0x21B`: "Braille Pan Right"
-    BraillePanRight,
+    BraillePanRight = 0x21B,
     /// Usage ID `0x21C`: "Braille Rocker Up"
-    BrailleRockerUp,
+    BrailleRockerUp = 0x21C,
     /// Usage ID `0x21D`: "Braille Rocker Down"
-    BrailleRockerDown,
+    BrailleRockerDown = 0x21D,
     /// Usage ID `0x21E`: "Braille Rocker Press"
-    BrailleRockerPress,
+    BrailleRockerPress = 0x21E,
 }
 
 impl BrailleDisplay {
@@ -15428,51 +13238,7 @@ impl AsUsagePage for BrailleDisplay {
 
 impl From<&BrailleDisplay> for u16 {
     fn from(brailledisplay: &BrailleDisplay) -> u16 {
-        match *brailledisplay {
-            BrailleDisplay::BrailleDisplay => 1,
-            BrailleDisplay::BrailleRow => 2,
-            BrailleDisplay::EightDotBrailleCell => 3,
-            BrailleDisplay::SixDotBrailleCell => 4,
-            BrailleDisplay::NumberofBrailleCells => 5,
-            BrailleDisplay::ScreenReaderControl => 6,
-            BrailleDisplay::ScreenReaderIdentifier => 7,
-            BrailleDisplay::RouterSet1 => 250,
-            BrailleDisplay::RouterSet2 => 251,
-            BrailleDisplay::RouterSet3 => 252,
-            BrailleDisplay::RouterKey => 256,
-            BrailleDisplay::RowRouterKey => 257,
-            BrailleDisplay::BrailleButtons => 512,
-            BrailleDisplay::BrailleKeyboardDot1 => 513,
-            BrailleDisplay::BrailleKeyboardDot2 => 514,
-            BrailleDisplay::BrailleKeyboardDot3 => 515,
-            BrailleDisplay::BrailleKeyboardDot4 => 516,
-            BrailleDisplay::BrailleKeyboardDot5 => 517,
-            BrailleDisplay::BrailleKeyboardDot6 => 518,
-            BrailleDisplay::BrailleKeyboardDot7 => 519,
-            BrailleDisplay::BrailleKeyboardDot8 => 520,
-            BrailleDisplay::BrailleKeyboardSpace => 521,
-            BrailleDisplay::BrailleKeyboardLeftSpace => 522,
-            BrailleDisplay::BrailleKeyboardRightSpace => 523,
-            BrailleDisplay::BrailleFaceControls => 524,
-            BrailleDisplay::BrailleLeftControls => 525,
-            BrailleDisplay::BrailleRightControls => 526,
-            BrailleDisplay::BrailleTopControls => 527,
-            BrailleDisplay::BrailleJoystickCenter => 528,
-            BrailleDisplay::BrailleJoystickUp => 529,
-            BrailleDisplay::BrailleJoystickDown => 530,
-            BrailleDisplay::BrailleJoystickLeft => 531,
-            BrailleDisplay::BrailleJoystickRight => 532,
-            BrailleDisplay::BrailleDPadCenter => 533,
-            BrailleDisplay::BrailleDPadUp => 534,
-            BrailleDisplay::BrailleDPadDown => 535,
-            BrailleDisplay::BrailleDPadLeft => 536,
-            BrailleDisplay::BrailleDPadRight => 537,
-            BrailleDisplay::BraillePanLeft => 538,
-            BrailleDisplay::BraillePanRight => 539,
-            BrailleDisplay::BrailleRockerUp => 540,
-            BrailleDisplay::BrailleRockerDown => 541,
-            BrailleDisplay::BrailleRockerPress => 542,
-        }
+        *brailledisplay as u16
     }
 }
 
@@ -15613,75 +13379,76 @@ impl BitOr<u16> for BrailleDisplay {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum LightingAndIllumination {
     /// Usage ID `0x1`: "LampArray"
-    LampArray,
+    LampArray = 0x1,
     /// Usage ID `0x2`: "LampArrayAttributesReport"
-    LampArrayAttributesReport,
+    LampArrayAttributesReport = 0x2,
     /// Usage ID `0x3`: "LampCount"
-    LampCount,
+    LampCount = 0x3,
     /// Usage ID `0x4`: "BoundingBoxWidthInMicrometers"
-    BoundingBoxWidthInMicrometers,
+    BoundingBoxWidthInMicrometers = 0x4,
     /// Usage ID `0x5`: "BoundingBoxHeightInMicrometers"
-    BoundingBoxHeightInMicrometers,
+    BoundingBoxHeightInMicrometers = 0x5,
     /// Usage ID `0x6`: "BoundingBoxDepthInMicrometers"
-    BoundingBoxDepthInMicrometers,
+    BoundingBoxDepthInMicrometers = 0x6,
     /// Usage ID `0x7`: "LampArrayKind"
-    LampArrayKind,
+    LampArrayKind = 0x7,
     /// Usage ID `0x8`: "MinUpdateIntervalInMicroseconds"
-    MinUpdateIntervalInMicroseconds,
+    MinUpdateIntervalInMicroseconds = 0x8,
     /// Usage ID `0x20`: "LampAttributesRequestReport"
-    LampAttributesRequestReport,
+    LampAttributesRequestReport = 0x20,
     /// Usage ID `0x21`: "LampId"
-    LampId,
+    LampId = 0x21,
     /// Usage ID `0x22`: "LampAttributesResponseReport"
-    LampAttributesResponseReport,
+    LampAttributesResponseReport = 0x22,
     /// Usage ID `0x23`: "PositionXInMicrometers"
-    PositionXInMicrometers,
+    PositionXInMicrometers = 0x23,
     /// Usage ID `0x24`: "PositionYInMicrometers"
-    PositionYInMicrometers,
+    PositionYInMicrometers = 0x24,
     /// Usage ID `0x25`: "PositionZInMicrometers"
-    PositionZInMicrometers,
+    PositionZInMicrometers = 0x25,
     /// Usage ID `0x26`: "LampPurposes"
-    LampPurposes,
+    LampPurposes = 0x26,
     /// Usage ID `0x27`: "UpdateLatencyInMicroseconds"
-    UpdateLatencyInMicroseconds,
+    UpdateLatencyInMicroseconds = 0x27,
     /// Usage ID `0x28`: "RedLevelCount"
-    RedLevelCount,
+    RedLevelCount = 0x28,
     /// Usage ID `0x29`: "GreenLevelCount"
-    GreenLevelCount,
+    GreenLevelCount = 0x29,
     /// Usage ID `0x2A`: "BlueLevelCount"
-    BlueLevelCount,
+    BlueLevelCount = 0x2A,
     /// Usage ID `0x2B`: "IntensityLevelCount"
-    IntensityLevelCount,
+    IntensityLevelCount = 0x2B,
     /// Usage ID `0x2C`: "IsProgrammable"
-    IsProgrammable,
+    IsProgrammable = 0x2C,
     /// Usage ID `0x2D`: "InputBinding"
-    InputBinding,
+    InputBinding = 0x2D,
     /// Usage ID `0x50`: "LampMultiUpdateReport"
-    LampMultiUpdateReport,
+    LampMultiUpdateReport = 0x50,
     /// Usage ID `0x51`: "RedUpdateChannel"
-    RedUpdateChannel,
+    RedUpdateChannel = 0x51,
     /// Usage ID `0x52`: "GreenUpdateChannel"
-    GreenUpdateChannel,
+    GreenUpdateChannel = 0x52,
     /// Usage ID `0x53`: "BlueUpdateChannel"
-    BlueUpdateChannel,
+    BlueUpdateChannel = 0x53,
     /// Usage ID `0x54`: "IntensityUpdateChannel"
-    IntensityUpdateChannel,
+    IntensityUpdateChannel = 0x54,
     /// Usage ID `0x55`: "LampUpdateFlags"
-    LampUpdateFlags,
+    LampUpdateFlags = 0x55,
     /// Usage ID `0x60`: "LampRangeUpdateReport"
-    LampRangeUpdateReport,
+    LampRangeUpdateReport = 0x60,
     /// Usage ID `0x61`: "LampIdStart"
-    LampIdStart,
+    LampIdStart = 0x61,
     /// Usage ID `0x62`: "LampIdEnd"
-    LampIdEnd,
+    LampIdEnd = 0x62,
     /// Usage ID `0x70`: "LampArrayControlReport"
-    LampArrayControlReport,
+    LampArrayControlReport = 0x70,
     /// Usage ID `0x71`: "AutonomousMode"
-    AutonomousMode,
+    AutonomousMode = 0x71,
 }
 
 impl LightingAndIllumination {
@@ -15784,41 +13551,7 @@ impl AsUsagePage for LightingAndIllumination {
 
 impl From<&LightingAndIllumination> for u16 {
     fn from(lightingandillumination: &LightingAndIllumination) -> u16 {
-        match *lightingandillumination {
-            LightingAndIllumination::LampArray => 1,
-            LightingAndIllumination::LampArrayAttributesReport => 2,
-            LightingAndIllumination::LampCount => 3,
-            LightingAndIllumination::BoundingBoxWidthInMicrometers => 4,
-            LightingAndIllumination::BoundingBoxHeightInMicrometers => 5,
-            LightingAndIllumination::BoundingBoxDepthInMicrometers => 6,
-            LightingAndIllumination::LampArrayKind => 7,
-            LightingAndIllumination::MinUpdateIntervalInMicroseconds => 8,
-            LightingAndIllumination::LampAttributesRequestReport => 32,
-            LightingAndIllumination::LampId => 33,
-            LightingAndIllumination::LampAttributesResponseReport => 34,
-            LightingAndIllumination::PositionXInMicrometers => 35,
-            LightingAndIllumination::PositionYInMicrometers => 36,
-            LightingAndIllumination::PositionZInMicrometers => 37,
-            LightingAndIllumination::LampPurposes => 38,
-            LightingAndIllumination::UpdateLatencyInMicroseconds => 39,
-            LightingAndIllumination::RedLevelCount => 40,
-            LightingAndIllumination::GreenLevelCount => 41,
-            LightingAndIllumination::BlueLevelCount => 42,
-            LightingAndIllumination::IntensityLevelCount => 43,
-            LightingAndIllumination::IsProgrammable => 44,
-            LightingAndIllumination::InputBinding => 45,
-            LightingAndIllumination::LampMultiUpdateReport => 80,
-            LightingAndIllumination::RedUpdateChannel => 81,
-            LightingAndIllumination::GreenUpdateChannel => 82,
-            LightingAndIllumination::BlueUpdateChannel => 83,
-            LightingAndIllumination::IntensityUpdateChannel => 84,
-            LightingAndIllumination::LampUpdateFlags => 85,
-            LightingAndIllumination::LampRangeUpdateReport => 96,
-            LightingAndIllumination::LampIdStart => 97,
-            LightingAndIllumination::LampIdEnd => 98,
-            LightingAndIllumination::LampArrayControlReport => 112,
-            LightingAndIllumination::AutonomousMode => 113,
-        }
+        *lightingandillumination as u16
     }
 }
 
@@ -15949,17 +13682,18 @@ impl BitOr<u16> for LightingAndIllumination {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum Monitor {
     /// Usage ID `0x1`: "Monitor Control"
-    MonitorControl,
+    MonitorControl = 0x1,
     /// Usage ID `0x2`: "EDID Information"
-    EDIDInformation,
+    EDIDInformation = 0x2,
     /// Usage ID `0x3`: "VDIF Information"
-    VDIFInformation,
+    VDIFInformation = 0x3,
     /// Usage ID `0x4`: "VESA Version"
-    VESAVersion,
+    VESAVersion = 0x4,
 }
 
 impl Monitor {
@@ -16025,12 +13759,7 @@ impl AsUsagePage for Monitor {
 
 impl From<&Monitor> for u16 {
     fn from(monitor: &Monitor) -> u16 {
-        match *monitor {
-            Monitor::MonitorControl => 1,
-            Monitor::EDIDInformation => 2,
-            Monitor::VDIFInformation => 3,
-            Monitor::VESAVersion => 4,
-        }
+        *monitor as u16
     }
 }
 
@@ -16300,99 +14029,100 @@ impl BitOr<u16> for MonitorEnumerated {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum VESAVirtualControls {
     /// Usage ID `0x1`: "Degauss"
-    Degauss,
+    Degauss = 0x1,
     /// Usage ID `0x10`: "Brightness"
-    Brightness,
+    Brightness = 0x10,
     /// Usage ID `0x12`: "Contrast"
-    Contrast,
+    Contrast = 0x12,
     /// Usage ID `0x16`: "Red Video Gain"
-    RedVideoGain,
+    RedVideoGain = 0x16,
     /// Usage ID `0x18`: "Green Video Gain"
-    GreenVideoGain,
+    GreenVideoGain = 0x18,
     /// Usage ID `0x1A`: "Blue Video Gain"
-    BlueVideoGain,
+    BlueVideoGain = 0x1A,
     /// Usage ID `0x1C`: "Focus"
-    Focus,
+    Focus = 0x1C,
     /// Usage ID `0x20`: "Horizontal Position"
-    HorizontalPosition,
+    HorizontalPosition = 0x20,
     /// Usage ID `0x22`: "Horizontal Size"
-    HorizontalSize,
+    HorizontalSize = 0x22,
     /// Usage ID `0x24`: "Horizontal Pincushion"
-    HorizontalPincushion,
+    HorizontalPincushion = 0x24,
     /// Usage ID `0x26`: "Horizontal Pincushion Balance"
-    HorizontalPincushionBalance,
+    HorizontalPincushionBalance = 0x26,
     /// Usage ID `0x28`: "Horizontal Misconvergence"
-    HorizontalMisconvergence,
+    HorizontalMisconvergence = 0x28,
     /// Usage ID `0x2A`: "Horizontal Linearity"
-    HorizontalLinearity,
+    HorizontalLinearity = 0x2A,
     /// Usage ID `0x2C`: "Horizontal Linearity Balance"
-    HorizontalLinearityBalance,
+    HorizontalLinearityBalance = 0x2C,
     /// Usage ID `0x30`: "Vertical Position"
-    VerticalPosition,
+    VerticalPosition = 0x30,
     /// Usage ID `0x32`: "Vertical Size"
-    VerticalSize,
+    VerticalSize = 0x32,
     /// Usage ID `0x34`: "Vertical Pincushion"
-    VerticalPincushion,
+    VerticalPincushion = 0x34,
     /// Usage ID `0x36`: "Vertical Pincushion Balance"
-    VerticalPincushionBalance,
+    VerticalPincushionBalance = 0x36,
     /// Usage ID `0x38`: "Vertical Misconvergence"
-    VerticalMisconvergence,
+    VerticalMisconvergence = 0x38,
     /// Usage ID `0x3A`: "Vertical Linearity"
-    VerticalLinearity,
+    VerticalLinearity = 0x3A,
     /// Usage ID `0x3C`: "Vertical Linearity Balance"
-    VerticalLinearityBalance,
+    VerticalLinearityBalance = 0x3C,
     /// Usage ID `0x40`: "Parallelogram Distortion (Key Balance)"
-    ParallelogramDistortionKeyBalance,
+    ParallelogramDistortionKeyBalance = 0x40,
     /// Usage ID `0x42`: "Trapezoidal Distortion (Key)"
-    TrapezoidalDistortionKey,
+    TrapezoidalDistortionKey = 0x42,
     /// Usage ID `0x44`: "Tilt (Rotation)"
-    TiltRotation,
+    TiltRotation = 0x44,
     /// Usage ID `0x46`: "Top Corner Distortion Control"
-    TopCornerDistortionControl,
+    TopCornerDistortionControl = 0x46,
     /// Usage ID `0x48`: "Top Corner Distortion Balance"
-    TopCornerDistortionBalance,
+    TopCornerDistortionBalance = 0x48,
     /// Usage ID `0x4A`: "Bottom Corner Distortion Control"
-    BottomCornerDistortionControl,
+    BottomCornerDistortionControl = 0x4A,
     /// Usage ID `0x4C`: "Bottom Corner Distortion Balance"
-    BottomCornerDistortionBalance,
+    BottomCornerDistortionBalance = 0x4C,
     /// Usage ID `0x56`: "Horizontal Moiré"
-    HorizontalMoiré,
+    HorizontalMoiré = 0x56,
     /// Usage ID `0x58`: "Vertical Moiré"
-    VerticalMoiré,
+    VerticalMoiré = 0x58,
     /// Usage ID `0x5E`: "Input Level Select"
-    InputLevelSelect,
+    InputLevelSelect = 0x5E,
     /// Usage ID `0x60`: "Input Source Select"
-    InputSourceSelect,
+    InputSourceSelect = 0x60,
     /// Usage ID `0x6C`: "Red Video Black Level"
-    RedVideoBlackLevel,
+    RedVideoBlackLevel = 0x6C,
     /// Usage ID `0x6E`: "Green Video Black Level"
-    GreenVideoBlackLevel,
+    GreenVideoBlackLevel = 0x6E,
     /// Usage ID `0x70`: "Blue Video Black Level"
-    BlueVideoBlackLevel,
+    BlueVideoBlackLevel = 0x70,
     /// Usage ID `0xA2`: "Auto Size Center"
-    AutoSizeCenter,
+    AutoSizeCenter = 0xA2,
     /// Usage ID `0xA4`: "Polarity Horizontal Synchronization"
-    PolarityHorizontalSynchronization,
+    PolarityHorizontalSynchronization = 0xA4,
     /// Usage ID `0xA6`: "Polarity Vertical Synchronization"
-    PolarityVerticalSynchronization,
+    PolarityVerticalSynchronization = 0xA6,
     /// Usage ID `0xA8`: "Synchronization Type"
-    SynchronizationType,
+    SynchronizationType = 0xA8,
     /// Usage ID `0xAA`: "Screen Orientation"
-    ScreenOrientation,
+    ScreenOrientation = 0xAA,
     /// Usage ID `0xAC`: "Horizontal Frequency"
-    HorizontalFrequency,
+    HorizontalFrequency = 0xAC,
     /// Usage ID `0xAE`: "Vertical Frequency"
-    VerticalFrequency,
+    VerticalFrequency = 0xAE,
     /// Usage ID `0xB0`: "Settings"
-    Settings,
+    Settings = 0xB0,
     /// Usage ID `0xCA`: "On Screen Display"
-    OnScreenDisplay,
+    OnScreenDisplay = 0xCA,
     /// Usage ID `0xD4`: "Stereo Mode"
-    StereoMode,
+    StereoMode = 0xD4,
 }
 
 impl VESAVirtualControls {
@@ -16509,53 +14239,7 @@ impl AsUsagePage for VESAVirtualControls {
 
 impl From<&VESAVirtualControls> for u16 {
     fn from(vesavirtualcontrols: &VESAVirtualControls) -> u16 {
-        match *vesavirtualcontrols {
-            VESAVirtualControls::Degauss => 1,
-            VESAVirtualControls::Brightness => 16,
-            VESAVirtualControls::Contrast => 18,
-            VESAVirtualControls::RedVideoGain => 22,
-            VESAVirtualControls::GreenVideoGain => 24,
-            VESAVirtualControls::BlueVideoGain => 26,
-            VESAVirtualControls::Focus => 28,
-            VESAVirtualControls::HorizontalPosition => 32,
-            VESAVirtualControls::HorizontalSize => 34,
-            VESAVirtualControls::HorizontalPincushion => 36,
-            VESAVirtualControls::HorizontalPincushionBalance => 38,
-            VESAVirtualControls::HorizontalMisconvergence => 40,
-            VESAVirtualControls::HorizontalLinearity => 42,
-            VESAVirtualControls::HorizontalLinearityBalance => 44,
-            VESAVirtualControls::VerticalPosition => 48,
-            VESAVirtualControls::VerticalSize => 50,
-            VESAVirtualControls::VerticalPincushion => 52,
-            VESAVirtualControls::VerticalPincushionBalance => 54,
-            VESAVirtualControls::VerticalMisconvergence => 56,
-            VESAVirtualControls::VerticalLinearity => 58,
-            VESAVirtualControls::VerticalLinearityBalance => 60,
-            VESAVirtualControls::ParallelogramDistortionKeyBalance => 64,
-            VESAVirtualControls::TrapezoidalDistortionKey => 66,
-            VESAVirtualControls::TiltRotation => 68,
-            VESAVirtualControls::TopCornerDistortionControl => 70,
-            VESAVirtualControls::TopCornerDistortionBalance => 72,
-            VESAVirtualControls::BottomCornerDistortionControl => 74,
-            VESAVirtualControls::BottomCornerDistortionBalance => 76,
-            VESAVirtualControls::HorizontalMoiré => 86,
-            VESAVirtualControls::VerticalMoiré => 88,
-            VESAVirtualControls::InputLevelSelect => 94,
-            VESAVirtualControls::InputSourceSelect => 96,
-            VESAVirtualControls::RedVideoBlackLevel => 108,
-            VESAVirtualControls::GreenVideoBlackLevel => 110,
-            VESAVirtualControls::BlueVideoBlackLevel => 112,
-            VESAVirtualControls::AutoSizeCenter => 162,
-            VESAVirtualControls::PolarityHorizontalSynchronization => 164,
-            VESAVirtualControls::PolarityVerticalSynchronization => 166,
-            VESAVirtualControls::SynchronizationType => 168,
-            VESAVirtualControls::ScreenOrientation => 170,
-            VESAVirtualControls::HorizontalFrequency => 172,
-            VESAVirtualControls::VerticalFrequency => 174,
-            VESAVirtualControls::Settings => 176,
-            VESAVirtualControls::OnScreenDisplay => 202,
-            VESAVirtualControls::StereoMode => 212,
-        }
+        *vesavirtualcontrols as u16
     }
 }
 
@@ -16698,163 +14382,164 @@ impl BitOr<u16> for VESAVirtualControls {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum Power {
     /// Usage ID `0x1`: "iName"
-    iName,
+    iName = 0x1,
     /// Usage ID `0x2`: "Present Status"
-    PresentStatus,
+    PresentStatus = 0x2,
     /// Usage ID `0x3`: "Changed Status"
-    ChangedStatus,
+    ChangedStatus = 0x3,
     /// Usage ID `0x4`: "UPS"
-    UPS,
+    UPS = 0x4,
     /// Usage ID `0x5`: "Power Supply"
-    PowerSupply,
+    PowerSupply = 0x5,
     /// Usage ID `0x10`: "Battery System"
-    BatterySystem,
+    BatterySystem = 0x10,
     /// Usage ID `0x11`: "Battery System Id"
-    BatterySystemId,
+    BatterySystemId = 0x11,
     /// Usage ID `0x12`: "Battery"
-    Battery,
+    Battery = 0x12,
     /// Usage ID `0x13`: "Battery Id"
-    BatteryId,
+    BatteryId = 0x13,
     /// Usage ID `0x14`: "Charger"
-    Charger,
+    Charger = 0x14,
     /// Usage ID `0x15`: "Charger Id"
-    ChargerId,
+    ChargerId = 0x15,
     /// Usage ID `0x16`: "Power Converter"
-    PowerConverter,
+    PowerConverter = 0x16,
     /// Usage ID `0x17`: "Power Converter Id"
-    PowerConverterId,
+    PowerConverterId = 0x17,
     /// Usage ID `0x18`: "Outlet System"
-    OutletSystem,
+    OutletSystem = 0x18,
     /// Usage ID `0x19`: "Outlet System Id"
-    OutletSystemId,
+    OutletSystemId = 0x19,
     /// Usage ID `0x1A`: "Input"
-    Input,
+    Input = 0x1A,
     /// Usage ID `0x1B`: "Input Id"
-    InputId,
+    InputId = 0x1B,
     /// Usage ID `0x1C`: "Output"
-    Output,
+    Output = 0x1C,
     /// Usage ID `0x1D`: "Output Id"
-    OutputId,
+    OutputId = 0x1D,
     /// Usage ID `0x1E`: "Flow"
-    Flow,
+    Flow = 0x1E,
     /// Usage ID `0x1F`: "Flow Id"
-    FlowId,
+    FlowId = 0x1F,
     /// Usage ID `0x20`: "Outlet"
-    Outlet,
+    Outlet = 0x20,
     /// Usage ID `0x21`: "Outlet Id"
-    OutletId,
+    OutletId = 0x21,
     /// Usage ID `0x22`: "Gang"
-    Gang,
+    Gang = 0x22,
     /// Usage ID `0x23`: "Gang Id"
-    GangId,
+    GangId = 0x23,
     /// Usage ID `0x24`: "Power Summary"
-    PowerSummary,
+    PowerSummary = 0x24,
     /// Usage ID `0x25`: "Power Summary Id"
-    PowerSummaryId,
+    PowerSummaryId = 0x25,
     /// Usage ID `0x30`: "Voltage"
-    Voltage,
+    Voltage = 0x30,
     /// Usage ID `0x31`: "Current"
-    Current,
+    Current = 0x31,
     /// Usage ID `0x32`: "Frequency"
-    Frequency,
+    Frequency = 0x32,
     /// Usage ID `0x33`: "Apparent Power"
-    ApparentPower,
+    ApparentPower = 0x33,
     /// Usage ID `0x34`: "Active Power"
-    ActivePower,
+    ActivePower = 0x34,
     /// Usage ID `0x35`: "Percent Load"
-    PercentLoad,
+    PercentLoad = 0x35,
     /// Usage ID `0x36`: "Temperature"
-    Temperature,
+    Temperature = 0x36,
     /// Usage ID `0x37`: "Humidity"
-    Humidity,
+    Humidity = 0x37,
     /// Usage ID `0x38`: "Bad Count"
-    BadCount,
+    BadCount = 0x38,
     /// Usage ID `0x40`: "Config Voltage"
-    ConfigVoltage,
+    ConfigVoltage = 0x40,
     /// Usage ID `0x41`: "Config Current"
-    ConfigCurrent,
+    ConfigCurrent = 0x41,
     /// Usage ID `0x42`: "Config Frequency"
-    ConfigFrequency,
+    ConfigFrequency = 0x42,
     /// Usage ID `0x43`: "Config Apparent Power"
-    ConfigApparentPower,
+    ConfigApparentPower = 0x43,
     /// Usage ID `0x44`: "Config Active Power"
-    ConfigActivePower,
+    ConfigActivePower = 0x44,
     /// Usage ID `0x45`: "Config Percent Load"
-    ConfigPercentLoad,
+    ConfigPercentLoad = 0x45,
     /// Usage ID `0x46`: "Config Temperature"
-    ConfigTemperature,
+    ConfigTemperature = 0x46,
     /// Usage ID `0x47`: "Config Humidity"
-    ConfigHumidity,
+    ConfigHumidity = 0x47,
     /// Usage ID `0x50`: "Switch On Control"
-    SwitchOnControl,
+    SwitchOnControl = 0x50,
     /// Usage ID `0x51`: "Switch Off Control"
-    SwitchOffControl,
+    SwitchOffControl = 0x51,
     /// Usage ID `0x52`: "Toggle Control"
-    ToggleControl,
+    ToggleControl = 0x52,
     /// Usage ID `0x53`: "Low Voltage Transfer"
-    LowVoltageTransfer,
+    LowVoltageTransfer = 0x53,
     /// Usage ID `0x54`: "High Voltage Transfer"
-    HighVoltageTransfer,
+    HighVoltageTransfer = 0x54,
     /// Usage ID `0x55`: "Delay Before Reboot"
-    DelayBeforeReboot,
+    DelayBeforeReboot = 0x55,
     /// Usage ID `0x56`: "Delay Before Startup"
-    DelayBeforeStartup,
+    DelayBeforeStartup = 0x56,
     /// Usage ID `0x57`: "Delay Before Shutdown"
-    DelayBeforeShutdown,
+    DelayBeforeShutdown = 0x57,
     /// Usage ID `0x58`: "Test"
-    Test,
+    Test = 0x58,
     /// Usage ID `0x59`: "Module Reset"
-    ModuleReset,
+    ModuleReset = 0x59,
     /// Usage ID `0x5A`: "Audible Alarm Control"
-    AudibleAlarmControl,
+    AudibleAlarmControl = 0x5A,
     /// Usage ID `0x60`: "Present"
-    Present,
+    Present = 0x60,
     /// Usage ID `0x61`: "Good"
-    Good,
+    Good = 0x61,
     /// Usage ID `0x62`: "Internal Failure"
-    InternalFailure,
+    InternalFailure = 0x62,
     /// Usage ID `0x63`: "Voltag Out Of Range"
-    VoltagOutOfRange,
+    VoltagOutOfRange = 0x63,
     /// Usage ID `0x64`: "Frequency Out Of Range"
-    FrequencyOutOfRange,
+    FrequencyOutOfRange = 0x64,
     /// Usage ID `0x65`: "Overload"
-    Overload,
+    Overload = 0x65,
     /// Usage ID `0x66`: "Over Charged"
-    OverCharged,
+    OverCharged = 0x66,
     /// Usage ID `0x67`: "Over Temperature"
-    OverTemperature,
+    OverTemperature = 0x67,
     /// Usage ID `0x68`: "Shutdown Requested"
-    ShutdownRequested,
+    ShutdownRequested = 0x68,
     /// Usage ID `0x69`: "Shutdown Imminent"
-    ShutdownImminent,
+    ShutdownImminent = 0x69,
     /// Usage ID `0x6B`: "Switch On/Off"
-    SwitchOnOff,
+    SwitchOnOff = 0x6B,
     /// Usage ID `0x6C`: "Switchable"
-    Switchable,
+    Switchable = 0x6C,
     /// Usage ID `0x6D`: "Used"
-    Used,
+    Used = 0x6D,
     /// Usage ID `0x6E`: "Boost"
-    Boost,
+    Boost = 0x6E,
     /// Usage ID `0x6F`: "Buck"
-    Buck,
+    Buck = 0x6F,
     /// Usage ID `0x70`: "Initialized"
-    Initialized,
+    Initialized = 0x70,
     /// Usage ID `0x71`: "Tested"
-    Tested,
+    Tested = 0x71,
     /// Usage ID `0x72`: "Awaiting Power"
-    AwaitingPower,
+    AwaitingPower = 0x72,
     /// Usage ID `0x73`: "Communication Lost"
-    CommunicationLost,
+    CommunicationLost = 0x73,
     /// Usage ID `0xFD`: "iManufacturer"
-    iManufacturer,
+    iManufacturer = 0xFD,
     /// Usage ID `0xFE`: "iProduct"
-    iProduct,
+    iProduct = 0xFE,
     /// Usage ID `0xFF`: "iSerialNumber"
-    iSerialNumber,
+    iSerialNumber = 0xFF,
 }
 
 impl Power {
@@ -16993,85 +14678,7 @@ impl AsUsagePage for Power {
 
 impl From<&Power> for u16 {
     fn from(power: &Power) -> u16 {
-        match *power {
-            Power::iName => 1,
-            Power::PresentStatus => 2,
-            Power::ChangedStatus => 3,
-            Power::UPS => 4,
-            Power::PowerSupply => 5,
-            Power::BatterySystem => 16,
-            Power::BatterySystemId => 17,
-            Power::Battery => 18,
-            Power::BatteryId => 19,
-            Power::Charger => 20,
-            Power::ChargerId => 21,
-            Power::PowerConverter => 22,
-            Power::PowerConverterId => 23,
-            Power::OutletSystem => 24,
-            Power::OutletSystemId => 25,
-            Power::Input => 26,
-            Power::InputId => 27,
-            Power::Output => 28,
-            Power::OutputId => 29,
-            Power::Flow => 30,
-            Power::FlowId => 31,
-            Power::Outlet => 32,
-            Power::OutletId => 33,
-            Power::Gang => 34,
-            Power::GangId => 35,
-            Power::PowerSummary => 36,
-            Power::PowerSummaryId => 37,
-            Power::Voltage => 48,
-            Power::Current => 49,
-            Power::Frequency => 50,
-            Power::ApparentPower => 51,
-            Power::ActivePower => 52,
-            Power::PercentLoad => 53,
-            Power::Temperature => 54,
-            Power::Humidity => 55,
-            Power::BadCount => 56,
-            Power::ConfigVoltage => 64,
-            Power::ConfigCurrent => 65,
-            Power::ConfigFrequency => 66,
-            Power::ConfigApparentPower => 67,
-            Power::ConfigActivePower => 68,
-            Power::ConfigPercentLoad => 69,
-            Power::ConfigTemperature => 70,
-            Power::ConfigHumidity => 71,
-            Power::SwitchOnControl => 80,
-            Power::SwitchOffControl => 81,
-            Power::ToggleControl => 82,
-            Power::LowVoltageTransfer => 83,
-            Power::HighVoltageTransfer => 84,
-            Power::DelayBeforeReboot => 85,
-            Power::DelayBeforeStartup => 86,
-            Power::DelayBeforeShutdown => 87,
-            Power::Test => 88,
-            Power::ModuleReset => 89,
-            Power::AudibleAlarmControl => 90,
-            Power::Present => 96,
-            Power::Good => 97,
-            Power::InternalFailure => 98,
-            Power::VoltagOutOfRange => 99,
-            Power::FrequencyOutOfRange => 100,
-            Power::Overload => 101,
-            Power::OverCharged => 102,
-            Power::OverTemperature => 103,
-            Power::ShutdownRequested => 104,
-            Power::ShutdownImminent => 105,
-            Power::SwitchOnOff => 107,
-            Power::Switchable => 108,
-            Power::Used => 109,
-            Power::Boost => 110,
-            Power::Buck => 111,
-            Power::Initialized => 112,
-            Power::Tested => 113,
-            Power::AwaitingPower => 114,
-            Power::CommunicationLost => 115,
-            Power::iManufacturer => 253,
-            Power::iProduct => 254,
-            Power::iSerialNumber => 255,
-        }
+        *power as u16
     }
 }
 
@@ -17246,191 +14853,192 @@ impl BitOr<u16> for Power {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum BatterySystem {
     /// Usage ID `0x1`: "Smart Battery Battery Mode"
-    SmartBatteryBatteryMode,
+    SmartBatteryBatteryMode = 0x1,
     /// Usage ID `0x2`: "Smart Battery Battery Status"
-    SmartBatteryBatteryStatus,
+    SmartBatteryBatteryStatus = 0x2,
     /// Usage ID `0x3`: "Smart Battery Alarm Warning"
-    SmartBatteryAlarmWarning,
+    SmartBatteryAlarmWarning = 0x3,
     /// Usage ID `0x4`: "Smart Battery Charger Mode"
-    SmartBatteryChargerMode,
+    SmartBatteryChargerMode = 0x4,
     /// Usage ID `0x5`: "Smart Battery Charger Status"
-    SmartBatteryChargerStatus,
+    SmartBatteryChargerStatus = 0x5,
     /// Usage ID `0x6`: "Smart Battery Charger Spec Info"
-    SmartBatteryChargerSpecInfo,
+    SmartBatteryChargerSpecInfo = 0x6,
     /// Usage ID `0x7`: "Smart Battery Selector State"
-    SmartBatterySelectorState,
+    SmartBatterySelectorState = 0x7,
     /// Usage ID `0x8`: "Smart Battery Selector Presets"
-    SmartBatterySelectorPresets,
+    SmartBatterySelectorPresets = 0x8,
     /// Usage ID `0x9`: "Smart Battery Selector Info"
-    SmartBatterySelectorInfo,
+    SmartBatterySelectorInfo = 0x9,
     /// Usage ID `0x10`: "Optional Mfg Function 1"
-    OptionalMfgFunction1,
+    OptionalMfgFunction1 = 0x10,
     /// Usage ID `0x11`: "Optional Mfg Function 2"
-    OptionalMfgFunction2,
+    OptionalMfgFunction2 = 0x11,
     /// Usage ID `0x12`: "Optional Mfg Function 3"
-    OptionalMfgFunction3,
+    OptionalMfgFunction3 = 0x12,
     /// Usage ID `0x13`: "Optional Mfg Function 4"
-    OptionalMfgFunction4,
+    OptionalMfgFunction4 = 0x13,
     /// Usage ID `0x14`: "Optional Mfg Function 5"
-    OptionalMfgFunction5,
+    OptionalMfgFunction5 = 0x14,
     /// Usage ID `0x15`: "Connection To SM Bus"
-    ConnectionToSMBus,
+    ConnectionToSMBus = 0x15,
     /// Usage ID `0x16`: "Output Connection"
-    OutputConnection,
+    OutputConnection = 0x16,
     /// Usage ID `0x17`: "Charger Connection"
-    ChargerConnection,
+    ChargerConnection = 0x17,
     /// Usage ID `0x18`: "Battery Insertion"
-    BatteryInsertion,
+    BatteryInsertion = 0x18,
     /// Usage ID `0x19`: "Use Next"
-    UseNext,
+    UseNext = 0x19,
     /// Usage ID `0x1A`: "OK To Use"
-    OKToUse,
+    OKToUse = 0x1A,
     /// Usage ID `0x1B`: "Battery Supported"
-    BatterySupported,
+    BatterySupported = 0x1B,
     /// Usage ID `0x1C`: "Selector Revision"
-    SelectorRevision,
+    SelectorRevision = 0x1C,
     /// Usage ID `0x1D`: "Charging Indicator"
-    ChargingIndicator,
+    ChargingIndicator = 0x1D,
     /// Usage ID `0x28`: "Manufacturer Access"
-    ManufacturerAccess,
+    ManufacturerAccess = 0x28,
     /// Usage ID `0x29`: "Remaining Capacity Limit"
-    RemainingCapacityLimit,
+    RemainingCapacityLimit = 0x29,
     /// Usage ID `0x2A`: "Remaining Time Limit"
-    RemainingTimeLimit,
+    RemainingTimeLimit = 0x2A,
     /// Usage ID `0x2B`: "At Rate"
-    AtRate,
+    AtRate = 0x2B,
     /// Usage ID `0x2C`: "Capacity Mode"
-    CapacityMode,
+    CapacityMode = 0x2C,
     /// Usage ID `0x2D`: "Broadcast To Charger"
-    BroadcastToCharger,
+    BroadcastToCharger = 0x2D,
     /// Usage ID `0x2E`: "Primary Battery"
-    PrimaryBattery,
+    PrimaryBattery = 0x2E,
     /// Usage ID `0x2F`: "Charge Controller"
-    ChargeController,
+    ChargeController = 0x2F,
     /// Usage ID `0x40`: "Terminate Charge"
-    TerminateCharge,
+    TerminateCharge = 0x40,
     /// Usage ID `0x41`: "Terminate Discharge"
-    TerminateDischarge,
+    TerminateDischarge = 0x41,
     /// Usage ID `0x42`: "Below Remaining Capacity Limit"
-    BelowRemainingCapacityLimit,
+    BelowRemainingCapacityLimit = 0x42,
     /// Usage ID `0x43`: "Remaining Time Limit Expired"
-    RemainingTimeLimitExpired,
+    RemainingTimeLimitExpired = 0x43,
     /// Usage ID `0x44`: "Charging"
-    Charging,
+    Charging = 0x44,
     /// Usage ID `0x45`: "Discharging"
-    Discharging,
+    Discharging = 0x45,
     /// Usage ID `0x46`: "Fully Charged"
-    FullyCharged,
+    FullyCharged = 0x46,
     /// Usage ID `0x47`: "Fully Discharged"
-    FullyDischarged,
+    FullyDischarged = 0x47,
     /// Usage ID `0x48`: "Conditioning Flag"
-    ConditioningFlag,
+    ConditioningFlag = 0x48,
     /// Usage ID `0x49`: "At Rate OK"
-    AtRateOK,
+    AtRateOK = 0x49,
     /// Usage ID `0x4A`: "Smart Battery Error Code"
-    SmartBatteryErrorCode,
+    SmartBatteryErrorCode = 0x4A,
     /// Usage ID `0x4B`: "Need Replacement"
-    NeedReplacement,
+    NeedReplacement = 0x4B,
     /// Usage ID `0x60`: "At Rate Time To Full"
-    AtRateTimeToFull,
+    AtRateTimeToFull = 0x60,
     /// Usage ID `0x61`: "At Rate Time To Empty"
-    AtRateTimeToEmpty,
+    AtRateTimeToEmpty = 0x61,
     /// Usage ID `0x62`: "Average Current"
-    AverageCurrent,
+    AverageCurrent = 0x62,
     /// Usage ID `0x63`: "Max Error"
-    MaxError,
+    MaxError = 0x63,
     /// Usage ID `0x64`: "Relative State Of Charge"
-    RelativeStateOfCharge,
+    RelativeStateOfCharge = 0x64,
     /// Usage ID `0x65`: "Absolute State Of Charge"
-    AbsoluteStateOfCharge,
+    AbsoluteStateOfCharge = 0x65,
     /// Usage ID `0x66`: "Remaining Capacity"
-    RemainingCapacity,
+    RemainingCapacity = 0x66,
     /// Usage ID `0x67`: "Full Charge Capacity"
-    FullChargeCapacity,
+    FullChargeCapacity = 0x67,
     /// Usage ID `0x68`: "Run Time To Empty"
-    RunTimeToEmpty,
+    RunTimeToEmpty = 0x68,
     /// Usage ID `0x69`: "Average Time To Empty"
-    AverageTimeToEmpty,
+    AverageTimeToEmpty = 0x69,
     /// Usage ID `0x6A`: "Average Time To Full"
-    AverageTimeToFull,
+    AverageTimeToFull = 0x6A,
     /// Usage ID `0x6B`: "Cycle Count"
-    CycleCount,
+    CycleCount = 0x6B,
     /// Usage ID `0x80`: "Battery Pack Model Level"
-    BatteryPackModelLevel,
+    BatteryPackModelLevel = 0x80,
     /// Usage ID `0x81`: "Internal Charge Controller"
-    InternalChargeController,
+    InternalChargeController = 0x81,
     /// Usage ID `0x82`: "Primary Battery Support"
-    PrimaryBatterySupport,
+    PrimaryBatterySupport = 0x82,
     /// Usage ID `0x83`: "Design Capacity"
-    DesignCapacity,
+    DesignCapacity = 0x83,
     /// Usage ID `0x84`: "Specification Info"
-    SpecificationInfo,
+    SpecificationInfo = 0x84,
     /// Usage ID `0x85`: "Manufacture Date"
-    ManufactureDate,
+    ManufactureDate = 0x85,
     /// Usage ID `0x86`: "Serial Number"
-    SerialNumber,
+    SerialNumber = 0x86,
     /// Usage ID `0x87`: "iManufacturer Name"
-    iManufacturerName,
+    iManufacturerName = 0x87,
     /// Usage ID `0x88`: "iDevice Name"
-    iDeviceName,
+    iDeviceName = 0x88,
     /// Usage ID `0x89`: "iDevice Chemistry"
-    iDeviceChemistry,
+    iDeviceChemistry = 0x89,
     /// Usage ID `0x8A`: "Manufacturer Data"
-    ManufacturerData,
+    ManufacturerData = 0x8A,
     /// Usage ID `0x8B`: "Rechargable"
-    Rechargable,
+    Rechargable = 0x8B,
     /// Usage ID `0x8C`: "Warning Capacity Limit"
-    WarningCapacityLimit,
+    WarningCapacityLimit = 0x8C,
     /// Usage ID `0x8D`: "Capacity Granularity 1"
-    CapacityGranularity1,
+    CapacityGranularity1 = 0x8D,
     /// Usage ID `0x8E`: "Capacity Granularity 2"
-    CapacityGranularity2,
+    CapacityGranularity2 = 0x8E,
     /// Usage ID `0x8F`: "iOEM Information"
-    iOEMInformation,
+    iOEMInformation = 0x8F,
     /// Usage ID `0xC0`: "Inhibit Charge"
-    InhibitCharge,
+    InhibitCharge = 0xC0,
     /// Usage ID `0xC1`: "Enable Polling"
-    EnablePolling,
+    EnablePolling = 0xC1,
     /// Usage ID `0xC2`: "Reset To Zero"
-    ResetToZero,
+    ResetToZero = 0xC2,
     /// Usage ID `0xD0`: "AC Present"
-    ACPresent,
+    ACPresent = 0xD0,
     /// Usage ID `0xD1`: "Battery Present"
-    BatteryPresent,
+    BatteryPresent = 0xD1,
     /// Usage ID `0xD2`: "Power Fail"
-    PowerFail,
+    PowerFail = 0xD2,
     /// Usage ID `0xD3`: "Alarm Inhibited"
-    AlarmInhibited,
+    AlarmInhibited = 0xD3,
     /// Usage ID `0xD4`: "Thermistor Under Range"
-    ThermistorUnderRange,
+    ThermistorUnderRange = 0xD4,
     /// Usage ID `0xD5`: "Thermistor Hot"
-    ThermistorHot,
+    ThermistorHot = 0xD5,
     /// Usage ID `0xD6`: "Thermistor Cold"
-    ThermistorCold,
+    ThermistorCold = 0xD6,
     /// Usage ID `0xD7`: "Thermistor Over Range"
-    ThermistorOverRange,
+    ThermistorOverRange = 0xD7,
     /// Usage ID `0xD8`: "Voltage Out Of Range"
-    VoltageOutOfRange,
+    VoltageOutOfRange = 0xD8,
     /// Usage ID `0xD9`: "Current Out Of Range"
-    CurrentOutOfRange,
+    CurrentOutOfRange = 0xD9,
     /// Usage ID `0xDA`: "Current Not Regulated"
-    CurrentNotRegulated,
+    CurrentNotRegulated = 0xDA,
     /// Usage ID `0xDB`: "Voltage Not Regulated"
-    VoltageNotRegulated,
+    VoltageNotRegulated = 0xDB,
     /// Usage ID `0xDC`: "Master Mode"
-    MasterMode,
+    MasterMode = 0xDC,
     /// Usage ID `0xF0`: "Charger Selector Support"
-    ChargerSelectorSupport,
+    ChargerSelectorSupport = 0xF0,
     /// Usage ID `0xF1`: "Charger Spec"
-    ChargerSpec,
+    ChargerSpec = 0xF1,
     /// Usage ID `0xF2`: "Level 2"
-    Level2,
+    Level2 = 0xF2,
     /// Usage ID `0xF3`: "Level 3"
-    Level3,
+    Level3 = 0xF3,
 }
 
 impl BatterySystem {
@@ -17583,99 +15191,7 @@ impl AsUsagePage for BatterySystem {
 
 impl From<&BatterySystem> for u16 {
     fn from(batterysystem: &BatterySystem) -> u16 {
-        match *batterysystem {
-            BatterySystem::SmartBatteryBatteryMode => 1,
-            BatterySystem::SmartBatteryBatteryStatus => 2,
-            BatterySystem::SmartBatteryAlarmWarning => 3,
-            BatterySystem::SmartBatteryChargerMode => 4,
-            BatterySystem::SmartBatteryChargerStatus => 5,
-            BatterySystem::SmartBatteryChargerSpecInfo => 6,
-            BatterySystem::SmartBatterySelectorState => 7,
-            BatterySystem::SmartBatterySelectorPresets => 8,
-            BatterySystem::SmartBatterySelectorInfo => 9,
-            BatterySystem::OptionalMfgFunction1 => 16,
-            BatterySystem::OptionalMfgFunction2 => 17,
-            BatterySystem::OptionalMfgFunction3 => 18,
-            BatterySystem::OptionalMfgFunction4 => 19,
-            BatterySystem::OptionalMfgFunction5 => 20,
-            BatterySystem::ConnectionToSMBus => 21,
-            BatterySystem::OutputConnection => 22,
-            BatterySystem::ChargerConnection => 23,
-            BatterySystem::BatteryInsertion => 24,
-            BatterySystem::UseNext => 25,
-            BatterySystem::OKToUse => 26,
-            BatterySystem::BatterySupported => 27,
-            BatterySystem::SelectorRevision => 28,
-            BatterySystem::ChargingIndicator => 29,
-            BatterySystem::ManufacturerAccess => 40,
-            BatterySystem::RemainingCapacityLimit => 41,
-            BatterySystem::RemainingTimeLimit => 42,
-            BatterySystem::AtRate => 43,
-            BatterySystem::CapacityMode => 44,
-            BatterySystem::BroadcastToCharger => 45,
-            BatterySystem::PrimaryBattery => 46,
-            BatterySystem::ChargeController => 47,
-            BatterySystem::TerminateCharge => 64,
-            BatterySystem::TerminateDischarge => 65,
-            BatterySystem::BelowRemainingCapacityLimit => 66,
-            BatterySystem::RemainingTimeLimitExpired => 67,
-            BatterySystem::Charging => 68,
-            BatterySystem::Discharging => 69,
-            BatterySystem::FullyCharged => 70,
-            BatterySystem::FullyDischarged => 71,
-            BatterySystem::ConditioningFlag => 72,
-            BatterySystem::AtRateOK => 73,
-            BatterySystem::SmartBatteryErrorCode => 74,
-            BatterySystem::NeedReplacement => 75,
-            BatterySystem::AtRateTimeToFull => 96,
-            BatterySystem::AtRateTimeToEmpty => 97,
-            BatterySystem::AverageCurrent => 98,
-            BatterySystem::MaxError => 99,
-            BatterySystem::RelativeStateOfCharge => 100,
-            BatterySystem::AbsoluteStateOfCharge => 101,
-            BatterySystem::RemainingCapacity => 102,
-            BatterySystem::FullChargeCapacity => 103,
-            BatterySystem::RunTimeToEmpty => 104,
-            BatterySystem::AverageTimeToEmpty => 105,
-            BatterySystem::AverageTimeToFull => 106,
-            BatterySystem::CycleCount => 107,
-            BatterySystem::BatteryPackModelLevel => 128,
-            BatterySystem::InternalChargeController => 129,
-            BatterySystem::PrimaryBatterySupport => 130,
-            BatterySystem::DesignCapacity => 131,
-            BatterySystem::SpecificationInfo => 132,
-            BatterySystem::ManufactureDate => 133,
-            BatterySystem::SerialNumber => 134,
-            BatterySystem::iManufacturerName => 135,
-            BatterySystem::iDeviceName => 136,
-            BatterySystem::iDeviceChemistry => 137,
-            BatterySystem::ManufacturerData => 138,
-            BatterySystem::Rechargable => 139,
-            BatterySystem::WarningCapacityLimit => 140,
-            BatterySystem::CapacityGranularity1 => 141,
-            BatterySystem::CapacityGranularity2 => 142,
-            BatterySystem::iOEMInformation => 143,
-            BatterySystem::InhibitCharge => 192,
-            BatterySystem::EnablePolling => 193,
-            BatterySystem::ResetToZero => 194,
-            BatterySystem::ACPresent => 208,
-            BatterySystem::BatteryPresent => 209,
-            BatterySystem::PowerFail => 210,
-            BatterySystem::AlarmInhibited => 211,
-            BatterySystem::ThermistorUnderRange => 212,
-            BatterySystem::ThermistorHot => 213,
-            BatterySystem::ThermistorCold => 214,
-            BatterySystem::ThermistorOverRange => 215,
-            BatterySystem::VoltageOutOfRange => 216,
-            BatterySystem::CurrentOutOfRange => 217,
-            BatterySystem::CurrentNotRegulated => 218,
-            BatterySystem::VoltageNotRegulated => 219,
-            BatterySystem::MasterMode => 220,
-            BatterySystem::ChargerSelectorSupport => 240,
-            BatterySystem::ChargerSpec => 241,
-            BatterySystem::Level2 => 242,
-            BatterySystem::Level3 => 243,
-        }
+        *batterysystem as u16
     }
 }
 
@@ -17864,397 +15380,398 @@ impl BitOr<u16> for BatterySystem {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum BarcodeScanner {
     /// Usage ID `0x1`: "Barcode Badge Reader"
-    BarcodeBadgeReader,
+    BarcodeBadgeReader = 0x1,
     /// Usage ID `0x2`: "Barcode Scanner"
-    BarcodeScanner,
+    BarcodeScanner = 0x2,
     /// Usage ID `0x3`: "Dumb Bar Code Scanner"
-    DumbBarCodeScanner,
+    DumbBarCodeScanner = 0x3,
     /// Usage ID `0x4`: "Cordless Scanner Base"
-    CordlessScannerBase,
+    CordlessScannerBase = 0x4,
     /// Usage ID `0x5`: "Bar Code Scanner Cradle"
-    BarCodeScannerCradle,
+    BarCodeScannerCradle = 0x5,
     /// Usage ID `0x10`: "Attribute Report"
-    AttributeReport,
+    AttributeReport = 0x10,
     /// Usage ID `0x11`: "Settings Report"
-    SettingsReport,
+    SettingsReport = 0x11,
     /// Usage ID `0x12`: "Scanned Data Report"
-    ScannedDataReport,
+    ScannedDataReport = 0x12,
     /// Usage ID `0x13`: "Raw Scanned Data Report"
-    RawScannedDataReport,
+    RawScannedDataReport = 0x13,
     /// Usage ID `0x14`: "Trigger Report"
-    TriggerReport,
+    TriggerReport = 0x14,
     /// Usage ID `0x15`: "Status Report"
-    StatusReport,
+    StatusReport = 0x15,
     /// Usage ID `0x16`: "UPC/EAN Control Report"
-    UPCEANControlReport,
+    UPCEANControlReport = 0x16,
     /// Usage ID `0x17`: "EAN 2/3 Label Control Report"
-    EAN23LabelControlReport,
+    EAN23LabelControlReport = 0x17,
     /// Usage ID `0x18`: "Code 39 Control Report"
-    Code39ControlReport,
+    Code39ControlReport = 0x18,
     /// Usage ID `0x19`: "Interleaved 2 of 5 Control Report"
-    Interleaved2of5ControlReport,
+    Interleaved2of5ControlReport = 0x19,
     /// Usage ID `0x1A`: "Standard 2 of 5 Control Report"
-    Standard2of5ControlReport,
+    Standard2of5ControlReport = 0x1A,
     /// Usage ID `0x1B`: "MSI Plessey Control Report"
-    MSIPlesseyControlReport,
+    MSIPlesseyControlReport = 0x1B,
     /// Usage ID `0x1C`: "Codabar Control Report"
-    CodabarControlReport,
+    CodabarControlReport = 0x1C,
     /// Usage ID `0x1D`: "Code 128 Control Report"
-    Code128ControlReport,
+    Code128ControlReport = 0x1D,
     /// Usage ID `0x1E`: "Misc 1D Control Report"
-    Misc1DControlReport,
+    Misc1DControlReport = 0x1E,
     /// Usage ID `0x1F`: "2D Control Report"
-    TwoDControlReport,
+    TwoDControlReport = 0x1F,
     /// Usage ID `0x30`: "Aiming/Pointer Mode"
-    AimingPointerMode,
+    AimingPointerMode = 0x30,
     /// Usage ID `0x31`: "Bar Code Present Sensor"
-    BarCodePresentSensor,
+    BarCodePresentSensor = 0x31,
     /// Usage ID `0x32`: "Class 1A Laser"
-    Class1ALaser,
+    Class1ALaser = 0x32,
     /// Usage ID `0x33`: "Class 2 Laser"
-    Class2Laser,
+    Class2Laser = 0x33,
     /// Usage ID `0x34`: "Heater Present"
-    HeaterPresent,
+    HeaterPresent = 0x34,
     /// Usage ID `0x35`: "Contact Scanner"
-    ContactScanner,
+    ContactScanner = 0x35,
     /// Usage ID `0x36`: "Electronic Article Surveillance Notification"
-    ElectronicArticleSurveillanceNotification,
+    ElectronicArticleSurveillanceNotification = 0x36,
     /// Usage ID `0x37`: "Constant Electronic Article Surveillance"
-    ConstantElectronicArticleSurveillance,
+    ConstantElectronicArticleSurveillance = 0x37,
     /// Usage ID `0x38`: "Error Indication"
-    ErrorIndication,
+    ErrorIndication = 0x38,
     /// Usage ID `0x39`: "Fixed Beeper"
-    FixedBeeper,
+    FixedBeeper = 0x39,
     /// Usage ID `0x3A`: "Good Decode Indication"
-    GoodDecodeIndication,
+    GoodDecodeIndication = 0x3A,
     /// Usage ID `0x3B`: "Hands Free Scanning"
-    HandsFreeScanning,
+    HandsFreeScanning = 0x3B,
     /// Usage ID `0x3C`: "Intrinsically Safe"
-    IntrinsicallySafe,
+    IntrinsicallySafe = 0x3C,
     /// Usage ID `0x3D`: "Klasse Eins Laser"
-    KlasseEinsLaser,
+    KlasseEinsLaser = 0x3D,
     /// Usage ID `0x3E`: "Long Range Scanner"
-    LongRangeScanner,
+    LongRangeScanner = 0x3E,
     /// Usage ID `0x3F`: "Mirror Speed Control"
-    MirrorSpeedControl,
+    MirrorSpeedControl = 0x3F,
     /// Usage ID `0x40`: "Not On File Indication"
-    NotOnFileIndication,
+    NotOnFileIndication = 0x40,
     /// Usage ID `0x41`: "Programmable Beeper"
-    ProgrammableBeeper,
+    ProgrammableBeeper = 0x41,
     /// Usage ID `0x42`: "Triggerless"
-    Triggerless,
+    Triggerless = 0x42,
     /// Usage ID `0x43`: "Wand"
-    Wand,
+    Wand = 0x43,
     /// Usage ID `0x44`: "Water Resistant"
-    WaterResistant,
+    WaterResistant = 0x44,
     /// Usage ID `0x45`: "Multi-Range Scanner"
-    MultiRangeScanner,
+    MultiRangeScanner = 0x45,
     /// Usage ID `0x46`: "Proximity Sensor"
-    ProximitySensor,
+    ProximitySensor = 0x46,
     /// Usage ID `0x4D`: "Fragment Decoding"
-    FragmentDecoding,
+    FragmentDecoding = 0x4D,
     /// Usage ID `0x4E`: "Scanner Read Confidence"
-    ScannerReadConfidence,
+    ScannerReadConfidence = 0x4E,
     /// Usage ID `0x4F`: "Data Prefix"
-    DataPrefix,
+    DataPrefix = 0x4F,
     /// Usage ID `0x50`: "Prefix AIMI"
-    PrefixAIMI,
+    PrefixAIMI = 0x50,
     /// Usage ID `0x51`: "Prefix None"
-    PrefixNone,
+    PrefixNone = 0x51,
     /// Usage ID `0x52`: "Prefix Proprietary"
-    PrefixProprietary,
+    PrefixProprietary = 0x52,
     /// Usage ID `0x55`: "Active Time"
-    ActiveTime,
+    ActiveTime = 0x55,
     /// Usage ID `0x56`: "Aiming Laser Pattern"
-    AimingLaserPattern,
+    AimingLaserPattern = 0x56,
     /// Usage ID `0x57`: "Bar Code Present"
-    BarCodePresent,
+    BarCodePresent = 0x57,
     /// Usage ID `0x58`: "Beeper State"
-    BeeperState,
+    BeeperState = 0x58,
     /// Usage ID `0x59`: "Laser On Time"
-    LaserOnTime,
+    LaserOnTime = 0x59,
     /// Usage ID `0x5A`: "Laser State"
-    LaserState,
+    LaserState = 0x5A,
     /// Usage ID `0x5B`: "Lockout Time"
-    LockoutTime,
+    LockoutTime = 0x5B,
     /// Usage ID `0x5C`: "Motor State"
-    MotorState,
+    MotorState = 0x5C,
     /// Usage ID `0x5D`: "Motor Timeout"
-    MotorTimeout,
+    MotorTimeout = 0x5D,
     /// Usage ID `0x5E`: "Power On Reset Scanner"
-    PowerOnResetScanner,
+    PowerOnResetScanner = 0x5E,
     /// Usage ID `0x5F`: "Prevent Read of Barcodes"
-    PreventReadofBarcodes,
+    PreventReadofBarcodes = 0x5F,
     /// Usage ID `0x60`: "Initiate Barcode Read"
-    InitiateBarcodeRead,
+    InitiateBarcodeRead = 0x60,
     /// Usage ID `0x61`: "Trigger State"
-    TriggerState,
+    TriggerState = 0x61,
     /// Usage ID `0x62`: "Trigger Mode"
-    TriggerMode,
+    TriggerMode = 0x62,
     /// Usage ID `0x63`: "Trigger Mode Blinking Laser On"
-    TriggerModeBlinkingLaserOn,
+    TriggerModeBlinkingLaserOn = 0x63,
     /// Usage ID `0x64`: "Trigger Mode Continuous Laser On"
-    TriggerModeContinuousLaserOn,
+    TriggerModeContinuousLaserOn = 0x64,
     /// Usage ID `0x65`: "Trigger Mode Laser on while Pulled"
-    TriggerModeLaseronwhilePulled,
+    TriggerModeLaseronwhilePulled = 0x65,
     /// Usage ID `0x66`: "Trigger Mode Laser stays on after release"
-    TriggerModeLaserstaysonafterrelease,
+    TriggerModeLaserstaysonafterrelease = 0x66,
     /// Usage ID `0x6D`: "Commit Parameters to NVM"
-    CommitParameterstoNVM,
+    CommitParameterstoNVM = 0x6D,
     /// Usage ID `0x6E`: "Parameter Scanning"
-    ParameterScanning,
+    ParameterScanning = 0x6E,
     /// Usage ID `0x6F`: "Parameters Changed"
-    ParametersChanged,
+    ParametersChanged = 0x6F,
     /// Usage ID `0x70`: "Set parameter default values"
-    Setparameterdefaultvalues,
+    Setparameterdefaultvalues = 0x70,
     /// Usage ID `0x75`: "Scanner In Cradle"
-    ScannerInCradle,
+    ScannerInCradle = 0x75,
     /// Usage ID `0x76`: "Scanner In Range"
-    ScannerInRange,
+    ScannerInRange = 0x76,
     /// Usage ID `0x7A`: "Aim Duration"
-    AimDuration,
+    AimDuration = 0x7A,
     /// Usage ID `0x7B`: "Good Read Lamp Duration"
-    GoodReadLampDuration,
+    GoodReadLampDuration = 0x7B,
     /// Usage ID `0x7C`: "Good Read Lamp Intensity"
-    GoodReadLampIntensity,
+    GoodReadLampIntensity = 0x7C,
     /// Usage ID `0x7D`: "Good Read LED"
-    GoodReadLED,
+    GoodReadLED = 0x7D,
     /// Usage ID `0x7E`: "Good Read Tone Frequency"
-    GoodReadToneFrequency,
+    GoodReadToneFrequency = 0x7E,
     /// Usage ID `0x7F`: "Good Read Tone Length"
-    GoodReadToneLength,
+    GoodReadToneLength = 0x7F,
     /// Usage ID `0x80`: "Good Read Tone Volume"
-    GoodReadToneVolume,
+    GoodReadToneVolume = 0x80,
     /// Usage ID `0x82`: "No Read Message"
-    NoReadMessage,
+    NoReadMessage = 0x82,
     /// Usage ID `0x83`: "Not on File Volume"
-    NotonFileVolume,
+    NotonFileVolume = 0x83,
     /// Usage ID `0x84`: "Powerup Beep"
-    PowerupBeep,
+    PowerupBeep = 0x84,
     /// Usage ID `0x85`: "Sound Error Beep"
-    SoundErrorBeep,
+    SoundErrorBeep = 0x85,
     /// Usage ID `0x86`: "Sound Good Read Beep"
-    SoundGoodReadBeep,
+    SoundGoodReadBeep = 0x86,
     /// Usage ID `0x87`: "Sound Not On File Beep"
-    SoundNotOnFileBeep,
+    SoundNotOnFileBeep = 0x87,
     /// Usage ID `0x88`: "Good Read When to Write"
-    GoodReadWhentoWrite,
+    GoodReadWhentoWrite = 0x88,
     /// Usage ID `0x89`: "GRWTI After Decode"
-    GRWTIAfterDecode,
+    GRWTIAfterDecode = 0x89,
     /// Usage ID `0x8A`: "GRWTI Beep/Lamp after transmit"
-    GRWTIBeepLampaftertransmit,
+    GRWTIBeepLampaftertransmit = 0x8A,
     /// Usage ID `0x8B`: "GRWTI No Beep/Lamp use at all"
-    GRWTINoBeepLampuseatall,
+    GRWTINoBeepLampuseatall = 0x8B,
     /// Usage ID `0x91`: "Bookland EAN"
-    BooklandEAN,
+    BooklandEAN = 0x91,
     /// Usage ID `0x92`: "Convert EAN 8 to 13 Type"
-    ConvertEAN8to13Type,
+    ConvertEAN8to13Type = 0x92,
     /// Usage ID `0x93`: "Convert UPC A to EAN-13"
-    ConvertUPCAtoEAN13,
+    ConvertUPCAtoEAN13 = 0x93,
     /// Usage ID `0x94`: "Convert UPC-E to A"
-    ConvertUPCEtoA,
+    ConvertUPCEtoA = 0x94,
     /// Usage ID `0x95`: "EAN-13"
-    EAN13,
+    EAN13 = 0x95,
     /// Usage ID `0x96`: "EAN-8"
-    EAN8,
+    EAN8 = 0x96,
     /// Usage ID `0x97`: "EAN-99 128 Mandatory"
-    EAN99128Mandatory,
+    EAN99128Mandatory = 0x97,
     /// Usage ID `0x98`: "EAN-99 P5/128 Optional"
-    EAN99P5128Optional,
+    EAN99P5128Optional = 0x98,
     /// Usage ID `0x99`: "Enable EAN Two Label"
-    EnableEANTwoLabel,
+    EnableEANTwoLabel = 0x99,
     /// Usage ID `0x9A`: "UPC/EAN"
-    UPCEAN,
+    UPCEAN = 0x9A,
     /// Usage ID `0x9B`: "UPC/EAN Coupon Code"
-    UPCEANCouponCode,
+    UPCEANCouponCode = 0x9B,
     /// Usage ID `0x9C`: "UPC/EAN Periodicals"
-    UPCEANPeriodicals,
+    UPCEANPeriodicals = 0x9C,
     /// Usage ID `0x9D`: "UPC-A"
-    UPCA,
+    UPCA = 0x9D,
     /// Usage ID `0x9E`: "UPC-A with 128 Mandatory"
-    UPCAwith128Mandatory,
+    UPCAwith128Mandatory = 0x9E,
     /// Usage ID `0x9F`: "UPC-A with 128 Optional"
-    UPCAwith128Optional,
+    UPCAwith128Optional = 0x9F,
     /// Usage ID `0xA0`: "UPC-A with P5 Optional"
-    UPCAwithP5Optional,
+    UPCAwithP5Optional = 0xA0,
     /// Usage ID `0xA1`: "UPC-E"
-    UPCE,
+    UPCE = 0xA1,
     /// Usage ID `0xA2`: "UPC-E1"
-    UPCE1,
+    UPCE1 = 0xA2,
     /// Usage ID `0xA9`: "Periodical"
-    Periodical,
+    Periodical = 0xA9,
     /// Usage ID `0xAA`: "Periodical Auto-Discriminate +2"
-    PeriodicalAutoDiscriminatePlus2,
+    PeriodicalAutoDiscriminatePlus2 = 0xAA,
     /// Usage ID `0xAB`: "Periodical Only Decode with +2"
-    PeriodicalOnlyDecodewithPlus2,
+    PeriodicalOnlyDecodewithPlus2 = 0xAB,
     /// Usage ID `0xAC`: "Periodical Ignore +2"
-    PeriodicalIgnorePlus2,
+    PeriodicalIgnorePlus2 = 0xAC,
     /// Usage ID `0xAD`: "Periodical Auto-Discriminate +5"
-    PeriodicalAutoDiscriminatePlus5,
+    PeriodicalAutoDiscriminatePlus5 = 0xAD,
     /// Usage ID `0xAE`: "Periodical Only Decode with +5"
-    PeriodicalOnlyDecodewithPlus5,
+    PeriodicalOnlyDecodewithPlus5 = 0xAE,
     /// Usage ID `0xAF`: "Periodical Ignore +5"
-    PeriodicalIgnorePlus5,
+    PeriodicalIgnorePlus5 = 0xAF,
     /// Usage ID `0xB0`: "Check"
-    Check,
+    Check = 0xB0,
     /// Usage ID `0xB1`: "Check Disable Price"
-    CheckDisablePrice,
+    CheckDisablePrice = 0xB1,
     /// Usage ID `0xB2`: "Check Enable 4 digit Price"
-    CheckEnable4digitPrice,
+    CheckEnable4digitPrice = 0xB2,
     /// Usage ID `0xB3`: "Check Enable 5 digit Price"
-    CheckEnable5digitPrice,
+    CheckEnable5digitPrice = 0xB3,
     /// Usage ID `0xB4`: "Check Enable European 4 digit Price"
-    CheckEnableEuropean4digitPrice,
+    CheckEnableEuropean4digitPrice = 0xB4,
     /// Usage ID `0xB5`: "Check Enable European 5 digit Price"
-    CheckEnableEuropean5digitPrice,
+    CheckEnableEuropean5digitPrice = 0xB5,
     /// Usage ID `0xB7`: "EAN Two Label"
-    EANTwoLabel,
+    EANTwoLabel = 0xB7,
     /// Usage ID `0xB8`: "EAN Three Label"
-    EANThreeLabel,
+    EANThreeLabel = 0xB8,
     /// Usage ID `0xB9`: "EAN 8 Flag Digit 1"
-    EAN8FlagDigit1,
+    EAN8FlagDigit1 = 0xB9,
     /// Usage ID `0xBA`: "EAN 8 Flag Digit 2"
-    EAN8FlagDigit2,
+    EAN8FlagDigit2 = 0xBA,
     /// Usage ID `0xBB`: "EAN 8 Flag Digit 3"
-    EAN8FlagDigit3,
+    EAN8FlagDigit3 = 0xBB,
     /// Usage ID `0xBC`: "EAN 13 Flag Digit 1"
-    EAN13FlagDigit1,
+    EAN13FlagDigit1 = 0xBC,
     /// Usage ID `0xBD`: "EAN 13 Flag Digit 2"
-    EAN13FlagDigit2,
+    EAN13FlagDigit2 = 0xBD,
     /// Usage ID `0xBE`: "EAN 13 Flag Digit 3"
-    EAN13FlagDigit3,
+    EAN13FlagDigit3 = 0xBE,
     /// Usage ID `0xBF`: "Add EAN 2/3 Label Definition"
-    AddEAN23LabelDefinition,
+    AddEAN23LabelDefinition = 0xBF,
     /// Usage ID `0xC0`: "Clear all EAN 2/3 Label Definitions"
-    ClearallEAN23LabelDefinitions,
+    ClearallEAN23LabelDefinitions = 0xC0,
     /// Usage ID `0xC3`: "Codabar"
-    Codabar,
+    Codabar = 0xC3,
     /// Usage ID `0xC4`: "Code 128"
-    Code128,
+    Code128 = 0xC4,
     /// Usage ID `0xC7`: "Code 39"
-    Code39,
+    Code39 = 0xC7,
     /// Usage ID `0xC8`: "Code 93"
-    Code93,
+    Code93 = 0xC8,
     /// Usage ID `0xC9`: "Full ASCII Conversion"
-    FullASCIIConversion,
+    FullASCIIConversion = 0xC9,
     /// Usage ID `0xCA`: "Interleaved 2 of 5"
-    Interleaved2of5,
+    Interleaved2of5 = 0xCA,
     /// Usage ID `0xCB`: "Italian Pharmacy Code"
-    ItalianPharmacyCode,
+    ItalianPharmacyCode = 0xCB,
     /// Usage ID `0xCC`: "MSI/Plessey"
-    MSIPlessey,
+    MSIPlessey = 0xCC,
     /// Usage ID `0xCD`: "Standard 2 of 5 IATA"
-    Standard2of5IATA,
+    Standard2of5IATA = 0xCD,
     /// Usage ID `0xCE`: "Standard 2 of 5"
-    Standard2of5,
+    Standard2of5 = 0xCE,
     /// Usage ID `0xD3`: "Transmit Start/Stop"
-    TransmitStartStop,
+    TransmitStartStop = 0xD3,
     /// Usage ID `0xD4`: "Tri-Optic"
-    TriOptic,
+    TriOptic = 0xD4,
     /// Usage ID `0xD5`: "UCC/EAN-128"
-    UCCEAN128,
+    UCCEAN128 = 0xD5,
     /// Usage ID `0xD6`: "Check Digit"
-    CheckDigit,
+    CheckDigit = 0xD6,
     /// Usage ID `0xD7`: "Check Digit Disable"
-    CheckDigitDisable,
+    CheckDigitDisable = 0xD7,
     /// Usage ID `0xD8`: "Check Digit Enable Interleaved 2 of 5 OPCC"
-    CheckDigitEnableInterleaved2of5OPCC,
+    CheckDigitEnableInterleaved2of5OPCC = 0xD8,
     /// Usage ID `0xD9`: "Check Digit Enable Interleaved 2 of 5 USS"
-    CheckDigitEnableInterleaved2of5USS,
+    CheckDigitEnableInterleaved2of5USS = 0xD9,
     /// Usage ID `0xDA`: "Check Digit Enable Standard 2 of 5 OPCC"
-    CheckDigitEnableStandard2of5OPCC,
+    CheckDigitEnableStandard2of5OPCC = 0xDA,
     /// Usage ID `0xDB`: "Check Digit Enable Standard 2 of 5 USS"
-    CheckDigitEnableStandard2of5USS,
+    CheckDigitEnableStandard2of5USS = 0xDB,
     /// Usage ID `0xDC`: "Check Digit Enable One MSI Plessey"
-    CheckDigitEnableOneMSIPlessey,
+    CheckDigitEnableOneMSIPlessey = 0xDC,
     /// Usage ID `0xDD`: "Check Digit Enable Two MSI Plessey"
-    CheckDigitEnableTwoMSIPlessey,
+    CheckDigitEnableTwoMSIPlessey = 0xDD,
     /// Usage ID `0xDE`: "Check Digit Codabar Enable"
-    CheckDigitCodabarEnable,
+    CheckDigitCodabarEnable = 0xDE,
     /// Usage ID `0xDF`: "Check Digit Code 39 Enable"
-    CheckDigitCode39Enable,
+    CheckDigitCode39Enable = 0xDF,
     /// Usage ID `0xF0`: "Transmit Check Digit"
-    TransmitCheckDigit,
+    TransmitCheckDigit = 0xF0,
     /// Usage ID `0xF1`: "Disable Check Digit Transmit"
-    DisableCheckDigitTransmit,
+    DisableCheckDigitTransmit = 0xF1,
     /// Usage ID `0xF2`: "Enable Check Digit Transmit"
-    EnableCheckDigitTransmit,
+    EnableCheckDigitTransmit = 0xF2,
     /// Usage ID `0xFB`: "Symbology Identifier 1"
-    SymbologyIdentifier1,
+    SymbologyIdentifier1 = 0xFB,
     /// Usage ID `0xFC`: "Symbology Identifier 2"
-    SymbologyIdentifier2,
+    SymbologyIdentifier2 = 0xFC,
     /// Usage ID `0xFD`: "Symbology Identifier 3"
-    SymbologyIdentifier3,
+    SymbologyIdentifier3 = 0xFD,
     /// Usage ID `0xFE`: "Decoded Data"
-    DecodedData,
+    DecodedData = 0xFE,
     /// Usage ID `0xFF`: "Decode Data Continued"
-    DecodeDataContinued,
+    DecodeDataContinued = 0xFF,
     /// Usage ID `0x100`: "Bar Space Data"
-    BarSpaceData,
+    BarSpaceData = 0x100,
     /// Usage ID `0x101`: "Scanner Data Accuracy"
-    ScannerDataAccuracy,
+    ScannerDataAccuracy = 0x101,
     /// Usage ID `0x102`: "Raw Data Polarity"
-    RawDataPolarity,
+    RawDataPolarity = 0x102,
     /// Usage ID `0x103`: "Polarity Inverted Bar Code"
-    PolarityInvertedBarCode,
+    PolarityInvertedBarCode = 0x103,
     /// Usage ID `0x104`: "Polarity Normal Bar Code"
-    PolarityNormalBarCode,
+    PolarityNormalBarCode = 0x104,
     /// Usage ID `0x106`: "Minimum Length to Decode"
-    MinimumLengthtoDecode,
+    MinimumLengthtoDecode = 0x106,
     /// Usage ID `0x107`: "Maximum Length to Decode"
-    MaximumLengthtoDecode,
+    MaximumLengthtoDecode = 0x107,
     /// Usage ID `0x108`: "Discrete Length to Decode 1"
-    DiscreteLengthtoDecode1,
+    DiscreteLengthtoDecode1 = 0x108,
     /// Usage ID `0x109`: "Discrete Length to Decode 2"
-    DiscreteLengthtoDecode2,
+    DiscreteLengthtoDecode2 = 0x109,
     /// Usage ID `0x10A`: "Data Length Method"
-    DataLengthMethod,
+    DataLengthMethod = 0x10A,
     /// Usage ID `0x10B`: "DL Method Read any"
-    DLMethodReadany,
+    DLMethodReadany = 0x10B,
     /// Usage ID `0x10C`: "DL Method Check in Range"
-    DLMethodCheckinRange,
+    DLMethodCheckinRange = 0x10C,
     /// Usage ID `0x10D`: "DL Method Check for Discrete"
-    DLMethodCheckforDiscrete,
+    DLMethodCheckforDiscrete = 0x10D,
     /// Usage ID `0x110`: "Aztec Code"
-    AztecCode,
+    AztecCode = 0x110,
     /// Usage ID `0x111`: "BC412"
-    BC412,
+    BC412 = 0x111,
     /// Usage ID `0x112`: "Channel Code"
-    ChannelCode,
+    ChannelCode = 0x112,
     /// Usage ID `0x113`: "Code 16"
-    Code16,
+    Code16 = 0x113,
     /// Usage ID `0x114`: "Code 32"
-    Code32,
+    Code32 = 0x114,
     /// Usage ID `0x115`: "Code 49"
-    Code49,
+    Code49 = 0x115,
     /// Usage ID `0x116`: "Code One"
-    CodeOne,
+    CodeOne = 0x116,
     /// Usage ID `0x117`: "Colorcode"
-    Colorcode,
+    Colorcode = 0x117,
     /// Usage ID `0x118`: "Data Matrix"
-    DataMatrix,
+    DataMatrix = 0x118,
     /// Usage ID `0x119`: "MaxiCode"
-    MaxiCode,
+    MaxiCode = 0x119,
     /// Usage ID `0x11A`: "MicroPDF"
-    MicroPDF,
+    MicroPDF = 0x11A,
     /// Usage ID `0x11B`: "PDF-417"
-    PDF417,
+    PDF417 = 0x11B,
     /// Usage ID `0x11C`: "PosiCode"
-    PosiCode,
+    PosiCode = 0x11C,
     /// Usage ID `0x11D`: "QR Code"
-    QRCode,
+    QRCode = 0x11D,
     /// Usage ID `0x11E`: "SuperCode"
-    SuperCode,
+    SuperCode = 0x11E,
     /// Usage ID `0x11F`: "UltraCode"
-    UltraCode,
+    UltraCode = 0x11F,
     /// Usage ID `0x120`: "USD-5 (Slug Code)"
-    USD5SlugCode,
+    USD5SlugCode = 0x120,
     /// Usage ID `0x121`: "VeriCode"
-    VeriCode,
+    VeriCode = 0x121,
 }
 
 impl BarcodeScanner {
@@ -18524,202 +16041,7 @@ impl AsUsagePage for BarcodeScanner {
 
 impl From<&BarcodeScanner> for u16 {
     fn from(barcodescanner: &BarcodeScanner) -> u16 {
-        match *barcodescanner {
-            BarcodeScanner::BarcodeBadgeReader => 1,
-            BarcodeScanner::BarcodeScanner => 2,
-            BarcodeScanner::DumbBarCodeScanner => 3,
-            BarcodeScanner::CordlessScannerBase => 4,
-            BarcodeScanner::BarCodeScannerCradle => 5,
-            BarcodeScanner::AttributeReport => 16,
-            BarcodeScanner::SettingsReport => 17,
-            BarcodeScanner::ScannedDataReport => 18,
-            BarcodeScanner::RawScannedDataReport => 19,
-            BarcodeScanner::TriggerReport => 20,
-            BarcodeScanner::StatusReport => 21,
-            BarcodeScanner::UPCEANControlReport => 22,
-            BarcodeScanner::EAN23LabelControlReport => 23,
-            BarcodeScanner::Code39ControlReport => 24,
-            BarcodeScanner::Interleaved2of5ControlReport => 25,
-            BarcodeScanner::Standard2of5ControlReport => 26,
-            BarcodeScanner::MSIPlesseyControlReport => 27,
-            BarcodeScanner::CodabarControlReport => 28,
-            BarcodeScanner::Code128ControlReport => 29,
-            BarcodeScanner::Misc1DControlReport => 30,
-            BarcodeScanner::TwoDControlReport => 31,
-            BarcodeScanner::AimingPointerMode => 48,
-            BarcodeScanner::BarCodePresentSensor => 49,
-            BarcodeScanner::Class1ALaser => 50,
-            BarcodeScanner::Class2Laser => 51,
-            BarcodeScanner::HeaterPresent => 52,
-            BarcodeScanner::ContactScanner => 53,
-            BarcodeScanner::ElectronicArticleSurveillanceNotification => 54,
-            BarcodeScanner::ConstantElectronicArticleSurveillance => 55,
-            BarcodeScanner::ErrorIndication => 56,
-            BarcodeScanner::FixedBeeper => 57,
-            BarcodeScanner::GoodDecodeIndication => 58,
-            BarcodeScanner::HandsFreeScanning => 59,
-            BarcodeScanner::IntrinsicallySafe => 60,
-            BarcodeScanner::KlasseEinsLaser => 61,
-            BarcodeScanner::LongRangeScanner => 62,
-            BarcodeScanner::MirrorSpeedControl => 63,
-            BarcodeScanner::NotOnFileIndication => 64,
-            BarcodeScanner::ProgrammableBeeper => 65,
-            BarcodeScanner::Triggerless => 66,
-            BarcodeScanner::Wand => 67,
-            BarcodeScanner::WaterResistant => 68,
-            BarcodeScanner::MultiRangeScanner => 69,
-            BarcodeScanner::ProximitySensor => 70,
-            BarcodeScanner::FragmentDecoding => 77,
-            BarcodeScanner::ScannerReadConfidence => 78,
-            BarcodeScanner::DataPrefix => 79,
-            BarcodeScanner::PrefixAIMI => 80,
-            BarcodeScanner::PrefixNone => 81,
-            BarcodeScanner::PrefixProprietary => 82,
-            BarcodeScanner::ActiveTime => 85,
-            BarcodeScanner::AimingLaserPattern => 86,
-            BarcodeScanner::BarCodePresent => 87,
-            BarcodeScanner::BeeperState => 88,
-            BarcodeScanner::LaserOnTime => 89,
-            BarcodeScanner::LaserState => 90,
-            BarcodeScanner::LockoutTime => 91,
-            BarcodeScanner::MotorState => 92,
-            BarcodeScanner::MotorTimeout => 93,
-            BarcodeScanner::PowerOnResetScanner => 94,
-            BarcodeScanner::PreventReadofBarcodes => 95,
-            BarcodeScanner::InitiateBarcodeRead => 96,
-            BarcodeScanner::TriggerState => 97,
-            BarcodeScanner::TriggerMode => 98,
-            BarcodeScanner::TriggerModeBlinkingLaserOn => 99,
-            BarcodeScanner::TriggerModeContinuousLaserOn => 100,
-            BarcodeScanner::TriggerModeLaseronwhilePulled => 101,
-            BarcodeScanner::TriggerModeLaserstaysonafterrelease => 102,
-            BarcodeScanner::CommitParameterstoNVM => 109,
-            BarcodeScanner::ParameterScanning => 110,
-            BarcodeScanner::ParametersChanged => 111,
-            BarcodeScanner::Setparameterdefaultvalues => 112,
-            BarcodeScanner::ScannerInCradle => 117,
-            BarcodeScanner::ScannerInRange => 118,
-            BarcodeScanner::AimDuration => 122,
-            BarcodeScanner::GoodReadLampDuration => 123,
-            BarcodeScanner::GoodReadLampIntensity => 124,
-            BarcodeScanner::GoodReadLED => 125,
-            BarcodeScanner::GoodReadToneFrequency => 126,
-            BarcodeScanner::GoodReadToneLength => 127,
-            BarcodeScanner::GoodReadToneVolume => 128,
-            BarcodeScanner::NoReadMessage => 130,
-            BarcodeScanner::NotonFileVolume => 131,
-            BarcodeScanner::PowerupBeep => 132,
-            BarcodeScanner::SoundErrorBeep => 133,
-            BarcodeScanner::SoundGoodReadBeep => 134,
-            BarcodeScanner::SoundNotOnFileBeep => 135,
-            BarcodeScanner::GoodReadWhentoWrite => 136,
-            BarcodeScanner::GRWTIAfterDecode => 137,
-            BarcodeScanner::GRWTIBeepLampaftertransmit => 138,
-            BarcodeScanner::GRWTINoBeepLampuseatall => 139,
-            BarcodeScanner::BooklandEAN => 145,
-            BarcodeScanner::ConvertEAN8to13Type => 146,
-            BarcodeScanner::ConvertUPCAtoEAN13 => 147,
-            BarcodeScanner::ConvertUPCEtoA => 148,
-            BarcodeScanner::EAN13 => 149,
-            BarcodeScanner::EAN8 => 150,
-            BarcodeScanner::EAN99128Mandatory => 151,
-            BarcodeScanner::EAN99P5128Optional => 152,
-            BarcodeScanner::EnableEANTwoLabel => 153,
-            BarcodeScanner::UPCEAN => 154,
-            BarcodeScanner::UPCEANCouponCode => 155,
-            BarcodeScanner::UPCEANPeriodicals => 156,
-            BarcodeScanner::UPCA => 157,
-            BarcodeScanner::UPCAwith128Mandatory => 158,
-            BarcodeScanner::UPCAwith128Optional => 159,
-            BarcodeScanner::UPCAwithP5Optional => 160,
-            BarcodeScanner::UPCE => 161,
-            BarcodeScanner::UPCE1 => 162,
-            BarcodeScanner::Periodical => 169,
-            BarcodeScanner::PeriodicalAutoDiscriminatePlus2 => 170,
-            BarcodeScanner::PeriodicalOnlyDecodewithPlus2 => 171,
-            BarcodeScanner::PeriodicalIgnorePlus2 => 172,
-            BarcodeScanner::PeriodicalAutoDiscriminatePlus5 => 173,
-            BarcodeScanner::PeriodicalOnlyDecodewithPlus5 => 174,
-            BarcodeScanner::PeriodicalIgnorePlus5 => 175,
-            BarcodeScanner::Check => 176,
-            BarcodeScanner::CheckDisablePrice => 177,
-            BarcodeScanner::CheckEnable4digitPrice => 178,
-            BarcodeScanner::CheckEnable5digitPrice => 179,
-            BarcodeScanner::CheckEnableEuropean4digitPrice => 180,
-            BarcodeScanner::CheckEnableEuropean5digitPrice => 181,
-            BarcodeScanner::EANTwoLabel => 183,
-            BarcodeScanner::EANThreeLabel => 184,
-            BarcodeScanner::EAN8FlagDigit1 => 185,
-            BarcodeScanner::EAN8FlagDigit2 => 186,
-            BarcodeScanner::EAN8FlagDigit3 => 187,
-            BarcodeScanner::EAN13FlagDigit1 => 188,
-            BarcodeScanner::EAN13FlagDigit2 => 189,
-            BarcodeScanner::EAN13FlagDigit3 => 190,
-            BarcodeScanner::AddEAN23LabelDefinition => 191,
-            BarcodeScanner::ClearallEAN23LabelDefinitions => 192,
-            BarcodeScanner::Codabar => 195,
-            BarcodeScanner::Code128 => 196,
-            BarcodeScanner::Code39 => 199,
-            BarcodeScanner::Code93 => 200,
-            BarcodeScanner::FullASCIIConversion => 201,
-            BarcodeScanner::Interleaved2of5 => 202,
-            BarcodeScanner::ItalianPharmacyCode => 203,
-            BarcodeScanner::MSIPlessey => 204,
-            BarcodeScanner::Standard2of5IATA => 205,
-            BarcodeScanner::Standard2of5 => 206,
-            BarcodeScanner::TransmitStartStop => 211,
-            BarcodeScanner::TriOptic => 212,
-            BarcodeScanner::UCCEAN128 => 213,
-            BarcodeScanner::CheckDigit => 214,
-            BarcodeScanner::CheckDigitDisable => 215,
-            BarcodeScanner::CheckDigitEnableInterleaved2of5OPCC => 216,
-            BarcodeScanner::CheckDigitEnableInterleaved2of5USS => 217,
-            BarcodeScanner::CheckDigitEnableStandard2of5OPCC => 218,
-            BarcodeScanner::CheckDigitEnableStandard2of5USS => 219,
-            BarcodeScanner::CheckDigitEnableOneMSIPlessey => 220,
-            BarcodeScanner::CheckDigitEnableTwoMSIPlessey => 221,
-            BarcodeScanner::CheckDigitCodabarEnable => 222,
-            BarcodeScanner::CheckDigitCode39Enable => 223,
-            BarcodeScanner::TransmitCheckDigit => 240,
-            BarcodeScanner::DisableCheckDigitTransmit => 241,
-            BarcodeScanner::EnableCheckDigitTransmit => 242,
-            BarcodeScanner::SymbologyIdentifier1 => 251,
-            BarcodeScanner::SymbologyIdentifier2 => 252,
-            BarcodeScanner::SymbologyIdentifier3 => 253,
-            BarcodeScanner::DecodedData => 254,
-            BarcodeScanner::DecodeDataContinued => 255,
-            BarcodeScanner::BarSpaceData => 256,
-            BarcodeScanner::ScannerDataAccuracy => 257,
-            BarcodeScanner::RawDataPolarity => 258,
-            BarcodeScanner::PolarityInvertedBarCode => 259,
-            BarcodeScanner::PolarityNormalBarCode => 260,
-            BarcodeScanner::MinimumLengthtoDecode => 262,
-            BarcodeScanner::MaximumLengthtoDecode => 263,
-            BarcodeScanner::DiscreteLengthtoDecode1 => 264,
-            BarcodeScanner::DiscreteLengthtoDecode2 => 265,
-            BarcodeScanner::DataLengthMethod => 266,
-            BarcodeScanner::DLMethodReadany => 267,
-            BarcodeScanner::DLMethodCheckinRange => 268,
-            BarcodeScanner::DLMethodCheckforDiscrete => 269,
-            BarcodeScanner::AztecCode => 272,
-            BarcodeScanner::BC412 => 273,
-            BarcodeScanner::ChannelCode => 274,
-            BarcodeScanner::Code16 => 275,
-            BarcodeScanner::Code32 => 276,
-            BarcodeScanner::Code49 => 277,
-            BarcodeScanner::CodeOne => 278,
-            BarcodeScanner::Colorcode => 279,
-            BarcodeScanner::DataMatrix => 280,
-            BarcodeScanner::MaxiCode => 281,
-            BarcodeScanner::MicroPDF => 282,
-            BarcodeScanner::PDF417 => 283,
-            BarcodeScanner::PosiCode => 284,
-            BarcodeScanner::QRCode => 285,
-            BarcodeScanner::SuperCode => 286,
-            BarcodeScanner::UltraCode => 287,
-            BarcodeScanner::USD5SlugCode => 288,
-            BarcodeScanner::VeriCode => 289,
-        }
+        *barcodescanner as u16
     }
 }
 
@@ -19011,101 +16333,102 @@ impl BitOr<u16> for BarcodeScanner {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum Scales {
     /// Usage ID `0x1`: "Scales"
-    Scales,
+    Scales = 0x1,
     /// Usage ID `0x20`: "Scale Device"
-    ScaleDevice,
+    ScaleDevice = 0x20,
     /// Usage ID `0x21`: "Scale Class"
-    ScaleClass,
+    ScaleClass = 0x21,
     /// Usage ID `0x22`: "Scale Class I Metric"
-    ScaleClassIMetric,
+    ScaleClassIMetric = 0x22,
     /// Usage ID `0x23`: "Scale Class II Metric"
-    ScaleClassIIMetric,
+    ScaleClassIIMetric = 0x23,
     /// Usage ID `0x24`: "Scale Class III Metric"
-    ScaleClassIIIMetric,
+    ScaleClassIIIMetric = 0x24,
     /// Usage ID `0x25`: "Scale Class IIIL Metric"
-    ScaleClassIIILMetric,
+    ScaleClassIIILMetric = 0x25,
     /// Usage ID `0x26`: "Scale Class IV Metric"
-    ScaleClassIVMetric,
+    ScaleClassIVMetric = 0x26,
     /// Usage ID `0x27`: "Scale Class III English"
-    ScaleClassIIIEnglish,
+    ScaleClassIIIEnglish = 0x27,
     /// Usage ID `0x28`: "Scale Class IIIL English"
-    ScaleClassIIILEnglish,
+    ScaleClassIIILEnglish = 0x28,
     /// Usage ID `0x29`: "Scale Class IV English"
-    ScaleClassIVEnglish,
+    ScaleClassIVEnglish = 0x29,
     /// Usage ID `0x2A`: "Scale Class Generic"
-    ScaleClassGeneric,
+    ScaleClassGeneric = 0x2A,
     /// Usage ID `0x30`: "Scale Attribute Report"
-    ScaleAttributeReport,
+    ScaleAttributeReport = 0x30,
     /// Usage ID `0x31`: "Scale Control Report"
-    ScaleControlReport,
+    ScaleControlReport = 0x31,
     /// Usage ID `0x32`: "Scale Data Report"
-    ScaleDataReport,
+    ScaleDataReport = 0x32,
     /// Usage ID `0x33`: "Scale Status Report"
-    ScaleStatusReport,
+    ScaleStatusReport = 0x33,
     /// Usage ID `0x34`: "Scale Weight Limit Report"
-    ScaleWeightLimitReport,
+    ScaleWeightLimitReport = 0x34,
     /// Usage ID `0x35`: "Scale Statistics Report"
-    ScaleStatisticsReport,
+    ScaleStatisticsReport = 0x35,
     /// Usage ID `0x40`: "Data Weight"
-    DataWeight,
+    DataWeight = 0x40,
     /// Usage ID `0x41`: "Data Scaling"
-    DataScaling,
+    DataScaling = 0x41,
     /// Usage ID `0x50`: "Weight Unit"
-    WeightUnit,
+    WeightUnit = 0x50,
     /// Usage ID `0x51`: "Weight Unit Milligram"
-    WeightUnitMilligram,
+    WeightUnitMilligram = 0x51,
     /// Usage ID `0x52`: "Weight Unit Gram"
-    WeightUnitGram,
+    WeightUnitGram = 0x52,
     /// Usage ID `0x53`: "Weight Unit Kilogram"
-    WeightUnitKilogram,
+    WeightUnitKilogram = 0x53,
     /// Usage ID `0x54`: "Weight Unit Carats"
-    WeightUnitCarats,
+    WeightUnitCarats = 0x54,
     /// Usage ID `0x55`: "Weight Unit Taels"
-    WeightUnitTaels,
+    WeightUnitTaels = 0x55,
     /// Usage ID `0x56`: "Weight Unit Grains"
-    WeightUnitGrains,
+    WeightUnitGrains = 0x56,
     /// Usage ID `0x57`: "Weight Unit Pennyweights"
-    WeightUnitPennyweights,
+    WeightUnitPennyweights = 0x57,
     /// Usage ID `0x58`: "Weight Unit Metric Ton"
-    WeightUnitMetricTon,
+    WeightUnitMetricTon = 0x58,
     /// Usage ID `0x59`: "Weight Unit Avoir Ton"
-    WeightUnitAvoirTon,
+    WeightUnitAvoirTon = 0x59,
     /// Usage ID `0x5A`: "Weight Unit Troy Ounce"
-    WeightUnitTroyOunce,
+    WeightUnitTroyOunce = 0x5A,
     /// Usage ID `0x5B`: "Weight Unit Ounce"
-    WeightUnitOunce,
+    WeightUnitOunce = 0x5B,
     /// Usage ID `0x5C`: "Weight Unit Pound"
-    WeightUnitPound,
+    WeightUnitPound = 0x5C,
     /// Usage ID `0x60`: "Calibration Count"
-    CalibrationCount,
+    CalibrationCount = 0x60,
     /// Usage ID `0x61`: "Re-Zero Count"
-    ReZeroCount,
+    ReZeroCount = 0x61,
     /// Usage ID `0x70`: "Scale Status"
-    ScaleStatus,
+    ScaleStatus = 0x70,
     /// Usage ID `0x71`: "Scale Status Fault"
-    ScaleStatusFault,
+    ScaleStatusFault = 0x71,
     /// Usage ID `0x72`: "Scale Status Stable at Center of Zero"
-    ScaleStatusStableatCenterofZero,
+    ScaleStatusStableatCenterofZero = 0x72,
     /// Usage ID `0x73`: "Scale Status In Motion"
-    ScaleStatusInMotion,
+    ScaleStatusInMotion = 0x73,
     /// Usage ID `0x74`: "Scale Status Weight Stable"
-    ScaleStatusWeightStable,
+    ScaleStatusWeightStable = 0x74,
     /// Usage ID `0x75`: "Scale Status Under Zero"
-    ScaleStatusUnderZero,
+    ScaleStatusUnderZero = 0x75,
     /// Usage ID `0x76`: "Scale Status Over Weight Limit"
-    ScaleStatusOverWeightLimit,
+    ScaleStatusOverWeightLimit = 0x76,
     /// Usage ID `0x77`: "Scale Status Requires Calibration"
-    ScaleStatusRequiresCalibration,
+    ScaleStatusRequiresCalibration = 0x77,
     /// Usage ID `0x78`: "Scale Status Requires Rezeroing"
-    ScaleStatusRequiresRezeroing,
+    ScaleStatusRequiresRezeroing = 0x78,
     /// Usage ID `0x80`: "Zero Scale"
-    ZeroScale,
+    ZeroScale = 0x80,
     /// Usage ID `0x81`: "Enforced Zero Return"
-    EnforcedZeroReturn,
+    EnforcedZeroReturn = 0x81,
 }
 
 impl Scales {
@@ -19213,54 +16536,7 @@ impl AsUsagePage for Scales {
 
 impl From<&Scales> for u16 {
     fn from(scales: &Scales) -> u16 {
-        match *scales {
-            Scales::Scales => 1,
-            Scales::ScaleDevice => 32,
-            Scales::ScaleClass => 33,
-            Scales::ScaleClassIMetric => 34,
-            Scales::ScaleClassIIMetric => 35,
-            Scales::ScaleClassIIIMetric => 36,
-            Scales::ScaleClassIIILMetric => 37,
-            Scales::ScaleClassIVMetric => 38,
-            Scales::ScaleClassIIIEnglish => 39,
-            Scales::ScaleClassIIILEnglish => 40,
-            Scales::ScaleClassIVEnglish => 41,
-            Scales::ScaleClassGeneric => 42,
-            Scales::ScaleAttributeReport => 48,
-            Scales::ScaleControlReport => 49,
-            Scales::ScaleDataReport => 50,
-            Scales::ScaleStatusReport => 51,
-            Scales::ScaleWeightLimitReport => 52,
-            Scales::ScaleStatisticsReport => 53,
-            Scales::DataWeight => 64,
-            Scales::DataScaling => 65,
-            Scales::WeightUnit => 80,
-            Scales::WeightUnitMilligram => 81,
-            Scales::WeightUnitGram => 82,
-            Scales::WeightUnitKilogram => 83,
-            Scales::WeightUnitCarats => 84,
-            Scales::WeightUnitTaels => 85,
-            Scales::WeightUnitGrains => 86,
-            Scales::WeightUnitPennyweights => 87,
-            Scales::WeightUnitMetricTon => 88,
-            Scales::WeightUnitAvoirTon => 89,
-            Scales::WeightUnitTroyOunce => 90,
-            Scales::WeightUnitOunce => 91,
-            Scales::WeightUnitPound => 92,
-            Scales::CalibrationCount => 96,
-            Scales::ReZeroCount => 97,
-            Scales::ScaleStatus => 112,
-            Scales::ScaleStatusFault => 113,
-            Scales::ScaleStatusStableatCenterofZero => 114,
-            Scales::ScaleStatusInMotion => 115,
-            Scales::ScaleStatusWeightStable => 116,
-            Scales::ScaleStatusUnderZero => 117,
-            Scales::ScaleStatusOverWeightLimit => 118,
-            Scales::ScaleStatusRequiresCalibration => 119,
-            Scales::ScaleStatusRequiresRezeroing => 120,
-            Scales::ZeroScale => 128,
-            Scales::EnforcedZeroReturn => 129,
-        }
+        *scales as u16
     }
 }
 
@@ -19404,29 +16680,30 @@ impl BitOr<u16> for Scales {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum MagneticStripeReader {
     /// Usage ID `0x1`: "MSR Device Read-Only"
-    MSRDeviceReadOnly,
+    MSRDeviceReadOnly = 0x1,
     /// Usage ID `0x11`: "Track 1 Length"
-    Track1Length,
+    Track1Length = 0x11,
     /// Usage ID `0x12`: "Track 2 Length"
-    Track2Length,
+    Track2Length = 0x12,
     /// Usage ID `0x13`: "Track 3 Length"
-    Track3Length,
+    Track3Length = 0x13,
     /// Usage ID `0x14`: "Track JIS Length"
-    TrackJISLength,
+    TrackJISLength = 0x14,
     /// Usage ID `0x20`: "Track Data"
-    TrackData,
+    TrackData = 0x20,
     /// Usage ID `0x21`: "Track 1 Data"
-    Track1Data,
+    Track1Data = 0x21,
     /// Usage ID `0x22`: "Track 2 Data"
-    Track2Data,
+    Track2Data = 0x22,
     /// Usage ID `0x23`: "Track 3 Data"
-    Track3Data,
+    Track3Data = 0x23,
     /// Usage ID `0x24`: "Track JIS Data"
-    TrackJISData,
+    TrackJISData = 0x24,
 }
 
 impl MagneticStripeReader {
@@ -19498,18 +16775,7 @@ impl AsUsagePage for MagneticStripeReader {
 
 impl From<&MagneticStripeReader> for u16 {
     fn from(magneticstripereader: &MagneticStripeReader) -> u16 {
-        match *magneticstripereader {
-            MagneticStripeReader::MSRDeviceReadOnly => 1,
-            MagneticStripeReader::Track1Length => 17,
-            MagneticStripeReader::Track2Length => 18,
-            MagneticStripeReader::Track3Length => 19,
-            MagneticStripeReader::TrackJISLength => 20,
-            MagneticStripeReader::TrackData => 32,
-            MagneticStripeReader::Track1Data => 33,
-            MagneticStripeReader::Track2Data => 34,
-            MagneticStripeReader::Track3Data => 35,
-            MagneticStripeReader::TrackJISData => 36,
-        }
+        *magneticstripereader as u16
     }
 }
 
@@ -19617,13 +16883,14 @@ impl BitOr<u16> for MagneticStripeReader {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum CameraControl {
     /// Usage ID `0x20`: "Camera Auto-focus"
-    CameraAutofocus,
+    CameraAutofocus = 0x20,
     /// Usage ID `0x21`: "Camera Shutter"
-    CameraShutter,
+    CameraShutter = 0x21,
 }
 
 impl CameraControl {
@@ -19687,10 +16954,7 @@ impl AsUsagePage for CameraControl {
 
 impl From<&CameraControl> for u16 {
     fn from(cameracontrol: &CameraControl) -> u16 {
-        match *cameracontrol {
-            CameraControl::CameraAutofocus => 32,
-            CameraControl::CameraShutter => 33,
-        }
+        *cameracontrol as u16
     }
 }
 
@@ -19790,63 +17054,64 @@ impl BitOr<u16> for CameraControl {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum Arcade {
     /// Usage ID `0x1`: "General Purpose IO Card"
-    GeneralPurposeIOCard,
+    GeneralPurposeIOCard = 0x1,
     /// Usage ID `0x2`: "Coin Door"
-    CoinDoor,
+    CoinDoor = 0x2,
     /// Usage ID `0x3`: "Watchdog Timer"
-    WatchdogTimer,
+    WatchdogTimer = 0x3,
     /// Usage ID `0x30`: "General Purpose Analog Input State"
-    GeneralPurposeAnalogInputState,
+    GeneralPurposeAnalogInputState = 0x30,
     /// Usage ID `0x31`: "General Purpose Digital Input State"
-    GeneralPurposeDigitalInputState,
+    GeneralPurposeDigitalInputState = 0x31,
     /// Usage ID `0x32`: "General Purpose Optical Input State"
-    GeneralPurposeOpticalInputState,
+    GeneralPurposeOpticalInputState = 0x32,
     /// Usage ID `0x33`: "General Purpose Digital Output State"
-    GeneralPurposeDigitalOutputState,
+    GeneralPurposeDigitalOutputState = 0x33,
     /// Usage ID `0x34`: "Number of Coin Doors"
-    NumberofCoinDoors,
+    NumberofCoinDoors = 0x34,
     /// Usage ID `0x35`: "Coin Drawer Drop Count"
-    CoinDrawerDropCount,
+    CoinDrawerDropCount = 0x35,
     /// Usage ID `0x36`: "Coin Drawer Start"
-    CoinDrawerStart,
+    CoinDrawerStart = 0x36,
     /// Usage ID `0x37`: "Coin Drawer Service"
-    CoinDrawerService,
+    CoinDrawerService = 0x37,
     /// Usage ID `0x38`: "Coin Drawer Tilt"
-    CoinDrawerTilt,
+    CoinDrawerTilt = 0x38,
     /// Usage ID `0x39`: "Coin Door Test"
-    CoinDoorTest,
+    CoinDoorTest = 0x39,
     /// Usage ID `0x40`: "Coin Door Lockout"
-    CoinDoorLockout,
+    CoinDoorLockout = 0x40,
     /// Usage ID `0x41`: "Watchdog Timeout"
-    WatchdogTimeout,
+    WatchdogTimeout = 0x41,
     /// Usage ID `0x42`: "Watchdog Action"
-    WatchdogAction,
+    WatchdogAction = 0x42,
     /// Usage ID `0x43`: "Watchdog Reboot"
-    WatchdogReboot,
+    WatchdogReboot = 0x43,
     /// Usage ID `0x44`: "Watchdog Restart"
-    WatchdogRestart,
+    WatchdogRestart = 0x44,
     /// Usage ID `0x45`: "Alarm Input"
-    AlarmInput,
+    AlarmInput = 0x45,
     /// Usage ID `0x46`: "Coin Door Counter"
-    CoinDoorCounter,
+    CoinDoorCounter = 0x46,
     /// Usage ID `0x47`: "I/O Direction Mapping"
-    IODirectionMapping,
+    IODirectionMapping = 0x47,
     /// Usage ID `0x48`: "Set I/O Direction Mapping"
-    SetIODirectionMapping,
+    SetIODirectionMapping = 0x48,
     /// Usage ID `0x49`: "Extended Optical Input State"
-    ExtendedOpticalInputState,
+    ExtendedOpticalInputState = 0x49,
     /// Usage ID `0x4A`: "Pin Pad Input State"
-    PinPadInputState,
+    PinPadInputState = 0x4A,
     /// Usage ID `0x4B`: "Pin Pad Status"
-    PinPadStatus,
+    PinPadStatus = 0x4B,
     /// Usage ID `0x4C`: "Pin Pad Output"
-    PinPadOutput,
+    PinPadOutput = 0x4C,
     /// Usage ID `0x4D`: "Pin Pad Command"
-    PinPadCommand,
+    PinPadCommand = 0x4D,
 }
 
 impl Arcade {
@@ -19935,35 +17200,7 @@ impl AsUsagePage for Arcade {
 
 impl From<&Arcade> for u16 {
     fn from(arcade: &Arcade) -> u16 {
-        match *arcade {
-            Arcade::GeneralPurposeIOCard => 1,
-            Arcade::CoinDoor => 2,
-            Arcade::WatchdogTimer => 3,
-            Arcade::GeneralPurposeAnalogInputState => 48,
-            Arcade::GeneralPurposeDigitalInputState => 49,
-            Arcade::GeneralPurposeOpticalInputState => 50,
-            Arcade::GeneralPurposeDigitalOutputState => 51,
-            Arcade::NumberofCoinDoors => 52,
-            Arcade::CoinDrawerDropCount => 53,
-            Arcade::CoinDrawerStart => 54,
-            Arcade::CoinDrawerService => 55,
-            Arcade::CoinDrawerTilt => 56,
-            Arcade::CoinDoorTest => 57,
-            Arcade::CoinDoorLockout => 64,
-            Arcade::WatchdogTimeout => 65,
-            Arcade::WatchdogAction => 66,
-            Arcade::WatchdogReboot => 67,
-            Arcade::WatchdogRestart => 68,
-            Arcade::AlarmInput => 69,
-            Arcade::CoinDoorCounter => 70,
-            Arcade::IODirectionMapping => 71,
-            Arcade::SetIODirectionMapping => 72,
-            Arcade::ExtendedOpticalInputState => 73,
-            Arcade::PinPadInputState => 74,
-            Arcade::PinPadStatus => 75,
-            Arcade::PinPadOutput => 76,
-            Arcade::PinPadCommand => 77,
-        }
+        *arcade as u16
     }
 }
 
@@ -20088,15 +17325,16 @@ impl BitOr<u16> for Arcade {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum FIDOAlliance {
     /// Usage ID `0x1`: "U2F Authenticator Device"
-    U2FAuthenticatorDevice,
+    U2FAuthenticatorDevice = 0x1,
     /// Usage ID `0x20`: "Input Report Data"
-    InputReportData,
+    InputReportData = 0x20,
     /// Usage ID `0x21`: "Output Report Data"
-    OutputReportData,
+    OutputReportData = 0x21,
 }
 
 impl FIDOAlliance {
@@ -20161,11 +17399,7 @@ impl AsUsagePage for FIDOAlliance {
 
 impl From<&FIDOAlliance> for u16 {
     fn from(fidoalliance: &FIDOAlliance) -> u16 {
-        match *fidoalliance {
-            FIDOAlliance::U2FAuthenticatorDevice => 1,
-            FIDOAlliance::InputReportData => 32,
-            FIDOAlliance::OutputReportData => 33,
-        }
+        *fidoalliance as u16
     }
 }
 
@@ -20266,221 +17500,222 @@ impl BitOr<u16> for FIDOAlliance {
 /// ```
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum Wacom {
     /// Usage ID `0x1`: "Wacom Digitizer"
-    WacomDigitizer,
+    WacomDigitizer = 0x1,
     /// Usage ID `0x2`: "Wacom Pen"
-    WacomPen,
+    WacomPen = 0x2,
     /// Usage ID `0x3`: "Light Pen"
-    LightPen,
+    LightPen = 0x3,
     /// Usage ID `0x4`: "Touch Screen"
-    TouchScreen,
+    TouchScreen = 0x4,
     /// Usage ID `0x5`: "Touch Pad"
-    TouchPad,
+    TouchPad = 0x5,
     /// Usage ID `0x6`: "White Board"
-    WhiteBoard,
+    WhiteBoard = 0x6,
     /// Usage ID `0x7`: "Coordinate Measuring Machine"
-    CoordinateMeasuringMachine,
+    CoordinateMeasuringMachine = 0x7,
     /// Usage ID `0x8`: "3-D Digitizer"
-    ThreeDDigitizer,
+    ThreeDDigitizer = 0x8,
     /// Usage ID `0x9`: "Stereo Plotter"
-    StereoPlotter,
+    StereoPlotter = 0x9,
     /// Usage ID `0xA`: "Articulated Arm"
-    ArticulatedArm,
+    ArticulatedArm = 0xA,
     /// Usage ID `0xB`: "Armature"
-    Armature,
+    Armature = 0xB,
     /// Usage ID `0xC`: "Multiple Point Digitizer"
-    MultiplePointDigitizer,
+    MultiplePointDigitizer = 0xC,
     /// Usage ID `0xD`: "Free Space Wand"
-    FreeSpaceWand,
+    FreeSpaceWand = 0xD,
     /// Usage ID `0xE`: "Device Configuration"
-    DeviceConfiguration,
+    DeviceConfiguration = 0xE,
     /// Usage ID `0x20`: "Stylus"
-    Stylus,
+    Stylus = 0x20,
     /// Usage ID `0x21`: "Puck"
-    Puck,
+    Puck = 0x21,
     /// Usage ID `0x22`: "Finger"
-    Finger,
+    Finger = 0x22,
     /// Usage ID `0x23`: "Device Settings"
-    DeviceSettings,
+    DeviceSettings = 0x23,
     /// Usage ID `0x30`: "Tip Pressure"
-    TipPressure,
+    TipPressure = 0x30,
     /// Usage ID `0x31`: "Barrel Pressure"
-    BarrelPressure,
+    BarrelPressure = 0x31,
     /// Usage ID `0x32`: "In Range"
-    InRange,
+    InRange = 0x32,
     /// Usage ID `0x33`: "Touch"
-    Touch,
+    Touch = 0x33,
     /// Usage ID `0x34`: "Untouch"
-    Untouch,
+    Untouch = 0x34,
     /// Usage ID `0x35`: "Tap"
-    Tap,
+    Tap = 0x35,
     /// Usage ID `0x36`: "Wacom Sense"
-    WacomSense,
+    WacomSense = 0x36,
     /// Usage ID `0x37`: "Data Valid"
-    DataValid,
+    DataValid = 0x37,
     /// Usage ID `0x38`: "Transducer Index"
-    TransducerIndex,
+    TransducerIndex = 0x38,
     /// Usage ID `0x39`: "Wacom DigitizerFnKeys"
-    WacomDigitizerFnKeys,
+    WacomDigitizerFnKeys = 0x39,
     /// Usage ID `0x3A`: "Program Change Keys"
-    ProgramChangeKeys,
+    ProgramChangeKeys = 0x3A,
     /// Usage ID `0x3B`: "Battery Strength"
-    BatteryStrength,
+    BatteryStrength = 0x3B,
     /// Usage ID `0x3C`: "Invert"
-    Invert,
+    Invert = 0x3C,
     /// Usage ID `0x3D`: "X Tilt"
-    XTilt,
+    XTilt = 0x3D,
     /// Usage ID `0x3E`: "Y Tilt"
-    YTilt,
+    YTilt = 0x3E,
     /// Usage ID `0x3F`: "Azimuth"
-    Azimuth,
+    Azimuth = 0x3F,
     /// Usage ID `0x40`: "Altitude"
-    Altitude,
+    Altitude = 0x40,
     /// Usage ID `0x41`: "Twist"
-    Twist,
+    Twist = 0x41,
     /// Usage ID `0x42`: "Tip Switch"
-    TipSwitch,
+    TipSwitch = 0x42,
     /// Usage ID `0x43`: "Secondary Tip Switch"
-    SecondaryTipSwitch,
+    SecondaryTipSwitch = 0x43,
     /// Usage ID `0x44`: "Barrel Switch"
-    BarrelSwitch,
+    BarrelSwitch = 0x44,
     /// Usage ID `0x45`: "Eraser"
-    Eraser,
+    Eraser = 0x45,
     /// Usage ID `0x46`: "Tablet Pick"
-    TabletPick,
+    TabletPick = 0x46,
     /// Usage ID `0x47`: "Confidence"
-    Confidence,
+    Confidence = 0x47,
     /// Usage ID `0x48`: "Width"
-    Width,
+    Width = 0x48,
     /// Usage ID `0x49`: "Height"
-    Height,
+    Height = 0x49,
     /// Usage ID `0x51`: "Contact Id"
-    ContactId,
+    ContactId = 0x51,
     /// Usage ID `0x52`: "Inputmode"
-    Inputmode,
+    Inputmode = 0x52,
     /// Usage ID `0x53`: "Device Index"
-    DeviceIndex,
+    DeviceIndex = 0x53,
     /// Usage ID `0x54`: "Contact Count"
-    ContactCount,
+    ContactCount = 0x54,
     /// Usage ID `0x55`: "Contact Max"
-    ContactMax,
+    ContactMax = 0x55,
     /// Usage ID `0x56`: "Scan Time"
-    ScanTime,
+    ScanTime = 0x56,
     /// Usage ID `0x57`: "Surface Switch"
-    SurfaceSwitch,
+    SurfaceSwitch = 0x57,
     /// Usage ID `0x58`: "Button Switch"
-    ButtonSwitch,
+    ButtonSwitch = 0x58,
     /// Usage ID `0x59`: "Button Type"
-    ButtonType,
+    ButtonType = 0x59,
     /// Usage ID `0x5A`: "Secondary Barrel Switch"
-    SecondaryBarrelSwitch,
+    SecondaryBarrelSwitch = 0x5A,
     /// Usage ID `0x5B`: "Transducer Serial Number"
-    TransducerSerialNumber,
+    TransducerSerialNumber = 0x5B,
     /// Usage ID `0x5C`: "Wacom SerialHi"
-    WacomSerialHi,
+    WacomSerialHi = 0x5C,
     /// Usage ID `0x5D`: "Preferred Color is Locked"
-    PreferredColorisLocked,
+    PreferredColorisLocked = 0x5D,
     /// Usage ID `0x5E`: "Preferred Line Width"
-    PreferredLineWidth,
+    PreferredLineWidth = 0x5E,
     /// Usage ID `0x5F`: "Preferred Line Width is Locked"
-    PreferredLineWidthisLocked,
+    PreferredLineWidthisLocked = 0x5F,
     /// Usage ID `0x70`: "Preferred Line Style"
-    PreferredLineStyle,
+    PreferredLineStyle = 0x70,
     /// Usage ID `0x71`: "Preferred Line Style is Locked"
-    PreferredLineStyleisLocked,
+    PreferredLineStyleisLocked = 0x71,
     /// Usage ID `0x72`: "Ink"
-    Ink,
+    Ink = 0x72,
     /// Usage ID `0x73`: "Pencil"
-    Pencil,
+    Pencil = 0x73,
     /// Usage ID `0x74`: "Highlighter"
-    Highlighter,
+    Highlighter = 0x74,
     /// Usage ID `0x75`: "Chisel Marker"
-    ChiselMarker,
+    ChiselMarker = 0x75,
     /// Usage ID `0x76`: "Brush"
-    Brush,
+    Brush = 0x76,
     /// Usage ID `0x77`: "Wacom ToolType"
-    WacomToolType,
+    WacomToolType = 0x77,
     /// Usage ID `0x80`: "Digitizer Diagnostic"
-    DigitizerDiagnostic,
+    DigitizerDiagnostic = 0x80,
     /// Usage ID `0x81`: "Digitizer Error"
-    DigitizerError,
+    DigitizerError = 0x81,
     /// Usage ID `0x82`: "Err Normal Status"
-    ErrNormalStatus,
+    ErrNormalStatus = 0x82,
     /// Usage ID `0x83`: "Err Transducers Exceeded"
-    ErrTransducersExceeded,
+    ErrTransducersExceeded = 0x83,
     /// Usage ID `0x84`: "Err Full Trans Features Unavail"
-    ErrFullTransFeaturesUnavail,
+    ErrFullTransFeaturesUnavail = 0x84,
     /// Usage ID `0x85`: "Err Charge Low"
-    ErrChargeLow,
+    ErrChargeLow = 0x85,
     /// Usage ID `0x130`: "X"
-    X,
+    X = 0x130,
     /// Usage ID `0x131`: "Y"
-    Y,
+    Y = 0x131,
     /// Usage ID `0x132`: "Wacom Distance"
-    WacomDistance,
+    WacomDistance = 0x132,
     /// Usage ID `0x136`: "Wacom TouchStrip"
-    WacomTouchStrip,
+    WacomTouchStrip = 0x136,
     /// Usage ID `0x137`: "Wacom TouchStrip2"
-    WacomTouchStrip2,
+    WacomTouchStrip2 = 0x137,
     /// Usage ID `0x138`: "Wacom TouchRing"
-    WacomTouchRing,
+    WacomTouchRing = 0x138,
     /// Usage ID `0x139`: "Wacom TouchRingStatus"
-    WacomTouchRingStatus,
+    WacomTouchRingStatus = 0x139,
     /// Usage ID `0x401`: "Wacom Accelerometer X"
-    WacomAccelerometerX,
+    WacomAccelerometerX = 0x401,
     /// Usage ID `0x402`: "Wacom Accelerometer Y"
-    WacomAccelerometerY,
+    WacomAccelerometerY = 0x402,
     /// Usage ID `0x403`: "Wacom Accelerometer Z"
-    WacomAccelerometerZ,
+    WacomAccelerometerZ = 0x403,
     /// Usage ID `0x404`: "Wacom Battery Charging"
-    WacomBatteryCharging,
+    WacomBatteryCharging = 0x404,
     /// Usage ID `0x43B`: "Wacom Battery Level"
-    WacomBatteryLevel,
+    WacomBatteryLevel = 0x43B,
     /// Usage ID `0x454`: "Wacom TouchOnOff"
-    WacomTouchOnOff,
+    WacomTouchOnOff = 0x454,
     /// Usage ID `0x910`: "Wacom ExpressKey00"
-    WacomExpressKey00,
+    WacomExpressKey00 = 0x910,
     /// Usage ID `0x950`: "Wacom ExpressKeyCap00"
-    WacomExpressKeyCap00,
+    WacomExpressKeyCap00 = 0x950,
     /// Usage ID `0x980`: "Wacom Mode Change"
-    WacomModeChange,
+    WacomModeChange = 0x980,
     /// Usage ID `0x981`: "Wacom Button Desktop Center"
-    WacomButtonDesktopCenter,
+    WacomButtonDesktopCenter = 0x981,
     /// Usage ID `0x982`: "Wacom Button On Screen Keyboard"
-    WacomButtonOnScreenKeyboard,
+    WacomButtonOnScreenKeyboard = 0x982,
     /// Usage ID `0x983`: "Wacom Button Display Setting"
-    WacomButtonDisplaySetting,
+    WacomButtonDisplaySetting = 0x983,
     /// Usage ID `0x986`: "Wacom Button Touch On/Off"
-    WacomButtonTouchOnOff,
+    WacomButtonTouchOnOff = 0x986,
     /// Usage ID `0x990`: "Wacom Button Home"
-    WacomButtonHome,
+    WacomButtonHome = 0x990,
     /// Usage ID `0x991`: "Wacom Button Up"
-    WacomButtonUp,
+    WacomButtonUp = 0x991,
     /// Usage ID `0x992`: "Wacom Button Down"
-    WacomButtonDown,
+    WacomButtonDown = 0x992,
     /// Usage ID `0x993`: "Wacom Button Left"
-    WacomButtonLeft,
+    WacomButtonLeft = 0x993,
     /// Usage ID `0x994`: "Wacom Button Right"
-    WacomButtonRight,
+    WacomButtonRight = 0x994,
     /// Usage ID `0x995`: "Wacom Button Center"
-    WacomButtonCenter,
+    WacomButtonCenter = 0x995,
     /// Usage ID `0xD03`: "Wacom FingerWheel"
-    WacomFingerWheel,
+    WacomFingerWheel = 0xD03,
     /// Usage ID `0xD30`: "Wacom Offset Left"
-    WacomOffsetLeft,
+    WacomOffsetLeft = 0xD30,
     /// Usage ID `0xD31`: "Wacom Offset Top"
-    WacomOffsetTop,
+    WacomOffsetTop = 0xD31,
     /// Usage ID `0xD32`: "Wacom Offset Right"
-    WacomOffsetRight,
+    WacomOffsetRight = 0xD32,
     /// Usage ID `0xD33`: "Wacom Offset Bottom"
-    WacomOffsetBottom,
+    WacomOffsetBottom = 0xD33,
     /// Usage ID `0x1002`: "Wacom DataMode"
-    WacomDataMode,
+    WacomDataMode = 0x1002,
     /// Usage ID `0x1013`: "Wacom Digitizer Info"
-    WacomDigitizerInfo,
+    WacomDigitizerInfo = 0x1013,
 }
 
 impl Wacom {
@@ -20648,114 +17883,7 @@ impl AsUsagePage for Wacom {
 
 impl From<&Wacom> for u16 {
     fn from(wacom: &Wacom) -> u16 {
-        match *wacom {
-            Wacom::WacomDigitizer => 1,
-            Wacom::WacomPen => 2,
-            Wacom::LightPen => 3,
-            Wacom::TouchScreen => 4,
-            Wacom::TouchPad => 5,
-            Wacom::WhiteBoard => 6,
-            Wacom::CoordinateMeasuringMachine => 7,
-            Wacom::ThreeDDigitizer => 8,
-            Wacom::StereoPlotter => 9,
-            Wacom::ArticulatedArm => 10,
-            Wacom::Armature => 11,
-            Wacom::MultiplePointDigitizer => 12,
-            Wacom::FreeSpaceWand => 13,
-            Wacom::DeviceConfiguration => 14,
-            Wacom::Stylus => 32,
-            Wacom::Puck => 33,
-            Wacom::Finger => 34,
-            Wacom::DeviceSettings => 35,
-            Wacom::TipPressure => 48,
-            Wacom::BarrelPressure => 49,
-            Wacom::InRange => 50,
-            Wacom::Touch => 51,
-            Wacom::Untouch => 52,
-            Wacom::Tap => 53,
-            Wacom::WacomSense => 54,
-            Wacom::DataValid => 55,
-            Wacom::TransducerIndex => 56,
-            Wacom::WacomDigitizerFnKeys => 57,
-            Wacom::ProgramChangeKeys => 58,
-            Wacom::BatteryStrength => 59,
-            Wacom::Invert => 60,
-            Wacom::XTilt => 61,
-            Wacom::YTilt => 62,
-            Wacom::Azimuth => 63,
-            Wacom::Altitude => 64,
-            Wacom::Twist => 65,
-            Wacom::TipSwitch => 66,
-            Wacom::SecondaryTipSwitch => 67,
-            Wacom::BarrelSwitch => 68,
-            Wacom::Eraser => 69,
-            Wacom::TabletPick => 70,
-            Wacom::Confidence => 71,
-            Wacom::Width => 72,
-            Wacom::Height => 73,
-            Wacom::ContactId => 81,
-            Wacom::Inputmode => 82,
-            Wacom::DeviceIndex => 83,
-            Wacom::ContactCount => 84,
-            Wacom::ContactMax => 85,
-            Wacom::ScanTime => 86,
-            Wacom::SurfaceSwitch => 87,
-            Wacom::ButtonSwitch => 88,
-            Wacom::ButtonType => 89,
-            Wacom::SecondaryBarrelSwitch => 90,
-            Wacom::TransducerSerialNumber => 91,
-            Wacom::WacomSerialHi => 92,
-            Wacom::PreferredColorisLocked => 93,
-            Wacom::PreferredLineWidth => 94,
-            Wacom::PreferredLineWidthisLocked => 95,
-            Wacom::PreferredLineStyle => 112,
-            Wacom::PreferredLineStyleisLocked => 113,
-            Wacom::Ink => 114,
-            Wacom::Pencil => 115,
-            Wacom::Highlighter => 116,
-            Wacom::ChiselMarker => 117,
-            Wacom::Brush => 118,
-            Wacom::WacomToolType => 119,
-            Wacom::DigitizerDiagnostic => 128,
-            Wacom::DigitizerError => 129,
-            Wacom::ErrNormalStatus => 130,
-            Wacom::ErrTransducersExceeded => 131,
-            Wacom::ErrFullTransFeaturesUnavail => 132,
-            Wacom::ErrChargeLow => 133,
-            Wacom::X => 304,
-            Wacom::Y => 305,
-            Wacom::WacomDistance => 306,
-            Wacom::WacomTouchStrip => 310,
-            Wacom::WacomTouchStrip2 => 311,
-            Wacom::WacomTouchRing => 312,
-            Wacom::WacomTouchRingStatus => 313,
-            Wacom::WacomAccelerometerX => 1025,
-            Wacom::WacomAccelerometerY => 1026,
-            Wacom::WacomAccelerometerZ => 1027,
-            Wacom::WacomBatteryCharging => 1028,
-            Wacom::WacomBatteryLevel => 1083,
-            Wacom::WacomTouchOnOff => 1108,
-            Wacom::WacomExpressKey00 => 2320,
-            Wacom::WacomExpressKeyCap00 => 2384,
-            Wacom::WacomModeChange => 2432,
-            Wacom::WacomButtonDesktopCenter => 2433,
-            Wacom::WacomButtonOnScreenKeyboard => 2434,
-            Wacom::WacomButtonDisplaySetting => 2435,
-            Wacom::WacomButtonTouchOnOff => 2438,
-            Wacom::WacomButtonHome => 2448,
-            Wacom::WacomButtonUp => 2449,
-            Wacom::WacomButtonDown => 2450,
-            Wacom::WacomButtonLeft => 2451,
-            Wacom::WacomButtonRight => 2452,
-            Wacom::WacomButtonCenter => 2453,
-            Wacom::WacomFingerWheel => 3331,
-            Wacom::WacomOffsetLeft => 3376,
-            Wacom::WacomOffsetTop => 3377,
-            Wacom::WacomOffsetRight => 3378,
-            Wacom::WacomOffsetBottom => 3379,
-            Wacom::WacomDataMode => 4098,
-            Wacom::WacomDigitizerInfo => 4115,
-        }
+        *wacom as u16
     }
 }
 
@@ -21020,6 +18148,7 @@ impl From<&VendorDefinedPage> for u16 {
 }
 
 impl From<&Usage> for UsagePage {
+    #[allow(clippy::unneeded_struct_pattern)]
     fn from(usage: &Usage) -> UsagePage {
         match usage {
             Usage::GenericDesktop { .. } => UsagePage::GenericDesktop,
@@ -21070,6 +18199,7 @@ impl From<&Usage> for UsagePage {
 impl From<&UsagePage> for u16 {
     /// Returns the UsagePage as 16-bit value. This is equivalent to the
     /// upper 16 bits of a full 32-bit Usage value shifted down.
+    #[allow(clippy::unneeded_struct_pattern)]
     fn from(usage_page: &UsagePage) -> u16 {
         match usage_page {
             UsagePage::GenericDesktop { .. } => 1,

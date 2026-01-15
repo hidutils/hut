@@ -563,12 +563,13 @@ impl AsUsagePage for UsagePage {
 {% endif %}
 ///
 #[allow(non_camel_case_types)]
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
+#[repr(u16)]
 pub enum {{usage_page.name}} {
 {% for usage in usage_page.usages %}
     /// Usage ID `0x{{ '%X' % usage.value}}`: "{{usage.printable}}"
-    {{ usage.name }},
+    {{ usage.name }} = 0x{{ '%X' % usage.value}},
 {% endfor %}
 }
 
@@ -692,16 +693,14 @@ impl AsUsagePage for {{usage_page.name}} {
 
 impl From<&{{usage_page.name}}> for u16 {
     fn from({{usage_page.name.lower()}}: &{{usage_page.name}}) -> u16 {
-        match *{{usage_page.name.lower()}} {
         {% if usage_page.usage_page_type == "Defined" %}
-            {% for usage in usage_page.usages %}
-            {{usage_page.name}}::{{usage.name}} => {{usage.value}},
-            {% endfor %}
+        *{{usage_page.name.lower()}} as u16
         {% endif %}
         {% if usage_page.usage_page_type == "Generated" %}
+        match *{{usage_page.name.lower()}} {
             {{usage_page.name}}::{{usage_page.name}}({{usage_page.name_prefix|lower}}) => {{usage_page.name_prefix|lower}},
-        {% endif %}
         }
+        {% endif %}
     }
 }
 
@@ -869,6 +868,7 @@ impl From<&VendorDefinedPage> for u16 {
 }
 
 impl From<&Usage> for UsagePage {
+    #[allow(clippy::unneeded_struct_pattern)]
     fn from(usage: &Usage) -> UsagePage {
         match usage {
 {% for usage_page in usage_pages %}
@@ -883,6 +883,7 @@ impl From<&Usage> for UsagePage {
 impl From<&UsagePage> for u16 {
     /// Returns the UsagePage as 16-bit value. This is equivalent to the
     /// upper 16 bits of a full 32-bit Usage value shifted down.
+    #[allow(clippy::unneeded_struct_pattern)]
     fn from(usage_page: &UsagePage) -> u16 {
         match usage_page {
 {% for usage_page in usage_pages %}
