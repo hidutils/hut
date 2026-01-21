@@ -15,7 +15,7 @@ let usage = Usage::from(GenericDesktop::Mouse);
 
 let usage_page_value: u16 = 0x01; // Generic Desktop
 let usage_id_value: u16 = 0x02; // Mouse
-let usage_value: u32 = (usage_page_value as u32) << 16 | usage_id_value as u32;
+let usage_value: u32 = ((usage_page_value as u32) << 16) | usage_id_value as u32;
 
 let u: Usage = Usage::try_from(usage_value).unwrap();
 ```
