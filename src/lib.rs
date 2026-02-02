@@ -5239,6 +5239,8 @@ pub enum Consumer {
     Headphone = 0x5,
     /// Usage ID `0x6`: "Graphic Equalizer"
     GraphicEqualizer = 0x6,
+    /// Usage ID `0x7`: "Keyboard Backlight"
+    KeyboardBacklight = 0x7,
     /// Usage ID `0x20`: "+10"
     Plus10 = 0x20,
     /// Usage ID `0x21`: "+100"
@@ -5751,7 +5753,7 @@ pub enum Consumer {
     ALContactSync = 0x1C9,
     /// Usage ID `0x1CA`: "AL Navigation"
     ALNavigation = 0x1CA,
-    /// Usage ID `0x1CB`: "AL Context‐aware Desktop Assistant"
+    /// Usage ID `0x1CB`: "AL Context-aware Desktop Assistant"
     ALContextawareDesktopAssistant = 0x1CB,
     /// Usage ID `0x200`: "Generic GUI Application Controls"
     GenericGUIApplicationControls = 0x200,
@@ -6057,7 +6059,7 @@ pub enum Consumer {
     KeyboardKeyType = 0x2C2,
     /// Usage ID `0x2C3`: "Keyboard Physical Layout"
     KeyboardPhysicalLayout = 0x2C3,
-    /// Usage ID `0x2C4`: "Vendor‐Specific Keyboard Physical Layout"
+    /// Usage ID `0x2C4`: "Vendor-Specific Keyboard Physical Layout"
     VendorSpecificKeyboardPhysicalLayout = 0x2C4,
     /// Usage ID `0x2C5`: "Keyboard IETF Language Tag Index"
     KeyboardIETFLanguageTagIndex = 0x2C5,
@@ -6127,6 +6129,12 @@ pub enum Consumer {
     ContactStatusFlag = 0x513,
     /// Usage ID `0x514`: "Contact Misc."
     ContactMisc = 0x514,
+    /// Usage ID `0x515`: "Keyboard Brightness Next"
+    KeyboardBrightnessNext = 0x515,
+    /// Usage ID `0x516`: "Keyboard Brightness Previous"
+    KeyboardBrightnessPrevious = 0x516,
+    /// Usage ID `0x517`: "Keyboard Backlight Level Suggestion"
+    KeyboardBacklightLevelSuggestion = 0x517,
 }
 
 impl Consumer {
@@ -6139,6 +6147,7 @@ impl Consumer {
             Consumer::Microphone => "Microphone",
             Consumer::Headphone => "Headphone",
             Consumer::GraphicEqualizer => "Graphic Equalizer",
+            Consumer::KeyboardBacklight => "Keyboard Backlight",
             Consumer::Plus10 => "+10",
             Consumer::Plus100 => "+100",
             Consumer::AMPM => "AM/PM",
@@ -6395,7 +6404,7 @@ impl Consumer {
             Consumer::ALMessageStatus => "AL Message Status",
             Consumer::ALContactSync => "AL Contact Sync",
             Consumer::ALNavigation => "AL Navigation",
-            Consumer::ALContextawareDesktopAssistant => "AL Context‐aware Desktop Assistant",
+            Consumer::ALContextawareDesktopAssistant => "AL Context-aware Desktop Assistant",
             Consumer::GenericGUIApplicationControls => "Generic GUI Application Controls",
             Consumer::ACNew => "AC New",
             Consumer::ACOpen => "AC Open",
@@ -6551,7 +6560,7 @@ impl Consumer {
             Consumer::KeyboardKeyType => "Keyboard Key Type",
             Consumer::KeyboardPhysicalLayout => "Keyboard Physical Layout",
             Consumer::VendorSpecificKeyboardPhysicalLayout => {
-                "Vendor‐Specific Keyboard Physical Layout"
+                "Vendor-Specific Keyboard Physical Layout"
             }
             Consumer::KeyboardIETFLanguageTagIndex => "Keyboard IETF Language Tag Index",
             Consumer::ImplementedKeyboardInputAssistControls => {
@@ -6589,6 +6598,9 @@ impl Consumer {
             Consumer::ContactSpeedDialNumber => "Contact Speed Dial Number",
             Consumer::ContactStatusFlag => "Contact Status Flag",
             Consumer::ContactMisc => "Contact Misc.",
+            Consumer::KeyboardBrightnessNext => "Keyboard Brightness Next",
+            Consumer::KeyboardBrightnessPrevious => "Keyboard Brightness Previous",
+            Consumer::KeyboardBacklightLevelSuggestion => "Keyboard Backlight Level Suggestion",
         }
         .into()
     }
@@ -6706,6 +6718,7 @@ impl TryFrom<u16> for Consumer {
             4 => Ok(Consumer::Microphone),
             5 => Ok(Consumer::Headphone),
             6 => Ok(Consumer::GraphicEqualizer),
+            7 => Ok(Consumer::KeyboardBacklight),
             32 => Ok(Consumer::Plus10),
             33 => Ok(Consumer::Plus100),
             34 => Ok(Consumer::AMPM),
@@ -7150,6 +7163,9 @@ impl TryFrom<u16> for Consumer {
             1298 => Ok(Consumer::ContactSpeedDialNumber),
             1299 => Ok(Consumer::ContactStatusFlag),
             1300 => Ok(Consumer::ContactMisc),
+            1301 => Ok(Consumer::KeyboardBrightnessNext),
+            1302 => Ok(Consumer::KeyboardBrightnessPrevious),
+            1303 => Ok(Consumer::KeyboardBacklightLevelSuggestion),
             n => Err(HutError::UnknownUsageId { usage_id: n }),
         }
     }
