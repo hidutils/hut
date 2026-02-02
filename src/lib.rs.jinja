@@ -219,9 +219,9 @@
 #[cfg(feature = "std")]
 extern crate std;
 
+use core::ops::BitOr;
 #[cfg(feature = "std")]
 use std::{fmt, format, string::String, string::ToString};
-use core::ops::BitOr;
 
 /// Error raised if conversion between HUT elements fails.
 #[derive(Debug)]
@@ -244,7 +244,7 @@ pub enum HutError {
     UnknownUsage,
 }
 
-impl core::error::Error for HutError { }
+impl core::error::Error for HutError {}
 
 impl core::fmt::Display for HutError {
     fn fmt(&self, fmt: &mut core::fmt::Formatter) -> core::fmt::Result {
