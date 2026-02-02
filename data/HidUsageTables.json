@@ -1,8 +1,8 @@
 {
   "UsageTableVersion": 1,
-  "UsageTableRevision": 6,
+  "UsageTableRevision": 7,
   "UsageTableSubRevisionInternal": 0,
-  "LastGenerated": "2025-01-08T20:19:39.6034331-08:00",
+  "LastGenerated": "2025-11-29T20:04:14.3864671-08:00",
   "UsagePages": [
     {
       "Kind": "Defined",
@@ -3144,6 +3144,13 @@
           ]
         },
         {
+          "Id": 7,
+          "Name": "Keyboard Backlight",
+          "Kinds": [
+            "CA"
+          ]
+        },
+        {
           "Id": 32,
           "Name": "+10",
           "Kinds": [
@@ -4937,7 +4944,7 @@
         },
         {
           "Id": 459,
-          "Name": "AL Context‐aware Desktop Assistant",
+          "Name": "AL Context-aware Desktop Assistant",
           "Kinds": [
             "Sel"
           ]
@@ -6008,7 +6015,7 @@
         },
         {
           "Id": 708,
-          "Name": "Vendor‐Specific Keyboard Physical Layout",
+          "Name": "Vendor-Specific Keyboard Physical Layout",
           "Kinds": [
             "SV"
           ]
@@ -6249,6 +6256,27 @@
           "Name": "Contact Misc.",
           "Kinds": [
             "DV"
+          ]
+        },
+        {
+          "Id": 1301,
+          "Name": "Keyboard Brightness Next",
+          "Kinds": [
+            "OSC"
+          ]
+        },
+        {
+          "Id": 1302,
+          "Name": "Keyboard Brightness Previous",
+          "Kinds": [
+            "OSC"
+          ]
+        },
+        {
+          "Id": 1303,
+          "Name": "Keyboard Backlight Level Suggestion",
+          "Kinds": [
+            "SV"
           ]
         }
       ],
