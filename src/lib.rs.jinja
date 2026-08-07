@@ -114,6 +114,8 @@
 //!
 //! ```
 //! # use hut::*;
+//! # #[cfg(feature = "alloc")]
+//! # {
 //! let up = UsagePage::GenericDesktop;
 //! assert_eq!(up.name(), "Generic Desktop");
 //! let up = UsagePage::SimulationControls;
@@ -123,6 +125,7 @@
 //! assert_eq!(usage.name(), "Mouse");
 //! let usage = SimulationControls::CyclicControl;
 //! assert_eq!(usage.name(), "Cyclic Control");
+//! # }
 //! ```
 //!
 //! # Generated Usage Pages
@@ -168,6 +171,8 @@
 //!
 //! ```
 //! # use hut::*;
+//! # #[cfg(feature = "alloc")]
+//! # {
 //! let v = Usage::VendorDefinedPage {
 //!     vendor_page: VendorPage::try_from(0xff00 as u16).unwrap(),
 //!     usage: VendorDefinedPage::VendorUsage { usage_id: 0x01 },
@@ -179,6 +184,7 @@
 //!     } => println!("Vendor Usage ID {usage}"),
 //!     _ => {},
 //! }
+//! # }
 //! ```
 //!
 //! A notable exception is the [Wacom] (`0xFF0D`) which is technically a
@@ -216,12 +222,14 @@
 
 #![no_std]
 
-#[cfg(feature = "std")]
-extern crate std;
+#[cfg(feature = "alloc")]
+extern crate alloc;
 
 use core::ops::BitOr;
-#[cfg(feature = "std")]
-use std::{fmt, format, string::String, string::ToString};
+#[cfg(feature = "alloc")]
+use alloc::{format, string::String, string::ToString};
+#[cfg(feature = "alloc")]
+use core::fmt;
 
 /// Error raised if conversion between HUT elements fails.
 #[derive(Debug)]
@@ -496,7 +504,7 @@ impl UsagePage {
     /// let up = UsagePage::GenericDesktop;
     /// assert_eq!(up.name(), "Generic Desktop");
     /// ```
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
 {% for usage_page in usage_pages %}
@@ -558,7 +566,10 @@ impl AsUsagePage for UsagePage {
 /// assert_eq!(0x{{'%X' % usage_page.value}}, u1.usage_page_value());
 /// assert_eq!(0x{{'%X' % usage_page.usages[1].value}}, u1.usage_id_value());
 /// assert_eq!((0x{{'%X' % usage_page.value}} << 16) | 0x{{'%X' % usage_page.usages[1].value}}, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("{{usage_page.usages[1].printable}}", u1.name());
+/// # }
 /// ```
 {% endif %}
 ///
@@ -574,7 +585,7 @@ pub enum {{usage_page.name}} {
 }
 
 impl {{usage_page.name}} {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
 {% for usage in usage_page.usages %}
@@ -593,7 +604,7 @@ impl {{usage_page.name}} {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for {{usage_page.name}} {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -623,7 +634,10 @@ impl fmt::Display for {{usage_page.name}} {
 /// assert_eq!(0x{{'%X' % usage_page.value}}, u1.usage_page_value());
 /// assert_eq!(3, u1.usage_id_value());
 /// assert_eq!((0x{{'%X' % usage_page.value}} << 16) | 3, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("{{usage_page.name_prefix}} 3", u1.name());
+/// # }
 /// ```
 #[allow(non_camel_case_types)]
 #[derive(Debug)]
@@ -633,7 +647,7 @@ pub enum {{usage_page.name}} {
 }
 
 impl {{usage_page.name}} {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             {{usage_page.name}}::{{usage_page.name}}({{usage_page.name_prefix|lower}}) => format!("{{usage_page.name_prefix}} { {{-usage_page.name_prefix|lower-}} }"),
@@ -641,7 +655,7 @@ impl {{usage_page.name}} {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for {{usage_page.name}} {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -800,7 +814,7 @@ pub enum ReservedUsagePage {
 }
 
 impl ReservedUsagePage {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     fn name(&self) -> String {
         match self {
             ReservedUsagePage::Undefined => "Reserved Usage Undefined".to_string(),
@@ -811,7 +825,7 @@ impl ReservedUsagePage {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for ReservedUsagePage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -840,7 +854,7 @@ pub enum VendorDefinedPage {
 }
 
 impl VendorDefinedPage {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     fn name(&self) -> String {
         match self {
             VendorDefinedPage::Undefined => "Vendor Usage Undefined".to_string(),
@@ -851,7 +865,7 @@ impl VendorDefinedPage {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for VendorDefinedPage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -926,7 +940,7 @@ impl TryFrom<u32> for UsagePage {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for UsagePage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -966,12 +980,11 @@ pub enum Usage {
 }
 
 impl Usage {
-    #[cfg(feature = "std")]
     pub fn new_from_page_and_id(usage_page: u16, usage_id: u16) -> Result<Usage> {
         Usage::try_from(((usage_page as u32) << 16) | usage_id as u32)
     }
 
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
 {% for usage_page in usage_pages %}
@@ -1022,7 +1035,7 @@ impl AsUsagePage for Usage {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Usage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -1182,7 +1195,7 @@ mod tests {
         assert_eq!(hid_usage_page, up.usage_page_value());
     }
 
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     #[test]
     fn names() {
         assert_eq!(UsagePage::GenericDesktop.name().as_str(), "Generic Desktop");
