@@ -113,6 +113,8 @@
 //!
 //! ```
 //! # use hut::*;
+//! # #[cfg(feature = "alloc")]
+//! # {
 //! let up = UsagePage::GenericDesktop;
 //! assert_eq!(up.name(), "Generic Desktop");
 //! let up = UsagePage::SimulationControls;
@@ -122,6 +124,7 @@
 //! assert_eq!(usage.name(), "Mouse");
 //! let usage = SimulationControls::CyclicControl;
 //! assert_eq!(usage.name(), "Cyclic Control");
+//! # }
 //! ```
 //!
 //! # Generated Usage Pages
@@ -166,6 +169,8 @@
 //!
 //! ```
 //! # use hut::*;
+//! # #[cfg(feature = "alloc")]
+//! # {
 //! let v = Usage::VendorDefinedPage {
 //!     vendor_page: VendorPage::try_from(0xff00 as u16).unwrap(),
 //!     usage: VendorDefinedPage::VendorUsage { usage_id: 0x01 },
@@ -177,6 +182,7 @@
 //!     } => println!("Vendor Usage ID {usage}"),
 //!     _ => {},
 //! }
+//! # }
 //! ```
 //!
 //! A notable exception is the [Wacom] (`0xFF0D`) which is technically a
@@ -213,12 +219,14 @@
 #![allow(clippy::identity_op, clippy::eq_op, clippy::match_single_binding)]
 #![no_std]
 
-#[cfg(feature = "std")]
-extern crate std;
+#[cfg(feature = "alloc")]
+extern crate alloc;
 
+#[cfg(feature = "alloc")]
+use alloc::{format, string::String, string::ToString};
+#[cfg(feature = "alloc")]
+use core::fmt;
 use core::ops::BitOr;
-#[cfg(feature = "std")]
-use std::{fmt, format, string::String, string::ToString};
 
 /// Error raised if conversion between HUT elements fails.
 #[derive(Debug)]
@@ -599,7 +607,7 @@ impl UsagePage {
     /// let up = UsagePage::GenericDesktop;
     /// assert_eq!(up.name(), "Generic Desktop");
     /// ```
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             UsagePage::GenericDesktop => "Generic Desktop".into(),
@@ -690,7 +698,10 @@ impl AsUsagePage for UsagePage {
 /// assert_eq!(0x1, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x1 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Mouse", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -931,7 +942,7 @@ pub enum GenericDesktop {
 }
 
 impl GenericDesktop {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             GenericDesktop::Pointer => "Pointer",
@@ -1064,7 +1075,7 @@ impl GenericDesktop {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for GenericDesktop {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -1323,7 +1334,10 @@ impl BitOr<u16> for GenericDesktop {
 /// assert_eq!(0x2, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x2 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Automobile Simulation Device", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -1436,7 +1450,7 @@ pub enum SimulationControls {
 }
 
 impl SimulationControls {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             SimulationControls::FlightSimulationDevice => "Flight Simulation Device",
@@ -1495,7 +1509,7 @@ impl SimulationControls {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for SimulationControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -1690,7 +1704,10 @@ impl BitOr<u16> for SimulationControls {
 /// assert_eq!(0x3, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x3 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Body Suit", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -1725,7 +1742,7 @@ pub enum VRControls {
 }
 
 impl VRControls {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             VRControls::Belt => "Belt",
@@ -1745,7 +1762,7 @@ impl VRControls {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for VRControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -1901,7 +1918,10 @@ impl BitOr<u16> for VRControls {
 /// assert_eq!(0x4, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x4 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Golf Club", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -1980,7 +2000,7 @@ pub enum SportControls {
 }
 
 impl SportControls {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             SportControls::BaseballBat => "Baseball Bat",
@@ -2022,7 +2042,7 @@ impl SportControls {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for SportControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -2200,7 +2220,10 @@ impl BitOr<u16> for SportControls {
 /// assert_eq!(0x5, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x5 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Pinball Device", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -2269,7 +2292,7 @@ pub enum GameControls {
 }
 
 impl GameControls {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             GameControls::ThreeDGameController => "3D Game Controller",
@@ -2306,7 +2329,7 @@ impl GameControls {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for GameControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -2479,7 +2502,10 @@ impl BitOr<u16> for GameControls {
 /// assert_eq!(0x6, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0x6 << 16) | 0x20, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Battery Strength", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -2538,7 +2564,7 @@ pub enum GenericDeviceControls {
 }
 
 impl GenericDeviceControls {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             GenericDeviceControls::BackgroundNonuserControls => "Background/Nonuser Controls",
@@ -2572,7 +2598,7 @@ impl GenericDeviceControls {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for GenericDeviceControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -2740,7 +2766,10 @@ impl BitOr<u16> for GenericDeviceControls {
 /// assert_eq!(0x7, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x7 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("POSTFail", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -3187,7 +3216,7 @@ pub enum KeyboardKeypad {
 }
 
 impl KeyboardKeypad {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             KeyboardKeypad::ErrorRollOver => "ErrorRollOver",
@@ -3415,7 +3444,7 @@ impl KeyboardKeypad {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for KeyboardKeypad {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -3777,7 +3806,10 @@ impl BitOr<u16> for KeyboardKeypad {
 /// assert_eq!(0x8, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x8 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Caps Lock", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -3980,7 +4012,7 @@ pub enum LED {
 }
 
 impl LED {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             LED::NumLock => "Num Lock",
@@ -4084,7 +4116,7 @@ impl LED {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for LED {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -4328,7 +4360,10 @@ impl BitOr<u16> for LED {
 /// assert_eq!(0x9, u1.usage_page_value());
 /// assert_eq!(3, u1.usage_id_value());
 /// assert_eq!((0x9 << 16) | 3, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Button 3", u1.name());
+/// # }
 /// ```
 #[allow(non_camel_case_types)]
 #[derive(Debug)]
@@ -4338,7 +4373,7 @@ pub enum Button {
 }
 
 impl Button {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Button::Button(button) => format!("Button {button}"),
@@ -4346,7 +4381,7 @@ impl Button {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Button {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -4496,7 +4531,10 @@ impl BitOr<u16> for Button {
 /// assert_eq!(0xA, u1.usage_page_value());
 /// assert_eq!(3, u1.usage_id_value());
 /// assert_eq!((0xA << 16) | 3, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Instance 3", u1.name());
+/// # }
 /// ```
 #[allow(non_camel_case_types)]
 #[derive(Debug)]
@@ -4506,7 +4544,7 @@ pub enum Ordinal {
 }
 
 impl Ordinal {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Ordinal::Ordinal(instance) => format!("Instance {instance}"),
@@ -4514,7 +4552,7 @@ impl Ordinal {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Ordinal {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -4660,7 +4698,10 @@ impl BitOr<u16> for Ordinal {
 /// assert_eq!(0xB, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0xB << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Answering Machine", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -4869,7 +4910,7 @@ pub enum TelephonyDevice {
 }
 
 impl TelephonyDevice {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             TelephonyDevice::Phone => "Phone",
@@ -4976,7 +5017,7 @@ impl TelephonyDevice {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for TelephonyDevice {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -5219,7 +5260,10 @@ impl BitOr<u16> for TelephonyDevice {
 /// assert_eq!(0xC, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0xC << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Numeric Key Pad", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -6138,7 +6182,7 @@ pub enum Consumer {
 }
 
 impl Consumer {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Consumer::ConsumerControl => "Consumer Control",
@@ -6606,7 +6650,7 @@ impl Consumer {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Consumer {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -7204,7 +7248,10 @@ impl BitOr<u16> for Consumer {
 /// assert_eq!(0xD, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0xD << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Pen", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -7431,7 +7478,7 @@ pub enum Digitizers {
 }
 
 impl Digitizers {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Digitizers::Digitizer => "Digitizer",
@@ -7557,7 +7604,7 @@ impl Digitizers {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Digitizers {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -7809,7 +7856,10 @@ impl BitOr<u16> for Digitizers {
 /// assert_eq!(0xE, u1.usage_page_value());
 /// assert_eq!(0x10, u1.usage_id_value());
 /// assert_eq!((0xE << 16) | 0x10, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Waveform List", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -7878,7 +7928,7 @@ pub enum Haptics {
 }
 
 impl Haptics {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Haptics::SimpleHapticController => "Simple Haptic Controller",
@@ -7915,7 +7965,7 @@ impl Haptics {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Haptics {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -8088,7 +8138,10 @@ impl BitOr<u16> for Haptics {
 /// assert_eq!(0xF, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0xF << 16) | 0x20, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Normal", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -8309,7 +8362,7 @@ pub enum PhysicalInputDevice {
 }
 
 impl PhysicalInputDevice {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             PhysicalInputDevice::PhysicalInputDevice => "Physical Input Device",
@@ -8430,7 +8483,7 @@ impl PhysicalInputDevice {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for PhysicalInputDevice {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -8683,7 +8736,10 @@ impl BitOr<u16> for PhysicalInputDevice {
 /// assert_eq!(0x10, u1.usage_page_value());
 /// assert_eq!(3, u1.usage_id_value());
 /// assert_eq!((0x10 << 16) | 3, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("codepoint 3", u1.name());
+/// # }
 /// ```
 #[allow(non_camel_case_types)]
 #[derive(Debug)]
@@ -8693,7 +8749,7 @@ pub enum Unicode {
 }
 
 impl Unicode {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Unicode::Unicode(codepoint) => format!("codepoint {codepoint}"),
@@ -8701,7 +8757,7 @@ impl Unicode {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Unicode {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -8847,7 +8903,10 @@ impl BitOr<u16> for Unicode {
 /// assert_eq!(0x11, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x11 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("FirmwareTransfer", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -8878,7 +8937,7 @@ pub enum SoC {
 }
 
 impl SoC {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             SoC::SocControl => "SocControl",
@@ -8896,7 +8955,7 @@ impl SoC {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for SoC {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -9050,7 +9109,10 @@ impl BitOr<u16> for SoC {
 /// assert_eq!(0x12, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x12 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Head Tracker", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -9129,7 +9191,7 @@ pub enum EyeandHeadTrackers {
 }
 
 impl EyeandHeadTrackers {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             EyeandHeadTrackers::EyeTracker => "Eye Tracker",
@@ -9171,7 +9233,7 @@ impl EyeandHeadTrackers {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for EyeandHeadTrackers {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -9349,7 +9411,10 @@ impl BitOr<u16> for EyeandHeadTrackers {
 /// assert_eq!(0x14, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x14 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Auxiliary Display", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -9510,7 +9575,7 @@ pub enum AuxiliaryDisplay {
 }
 
 impl AuxiliaryDisplay {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             AuxiliaryDisplay::AlphanumericDisplay => "Alphanumeric Display",
@@ -9593,7 +9658,7 @@ impl AuxiliaryDisplay {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for AuxiliaryDisplay {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -9812,7 +9877,10 @@ impl BitOr<u16> for AuxiliaryDisplay {
 /// assert_eq!(0x20, u1.usage_page_value());
 /// assert_eq!(0x10, u1.usage_id_value());
 /// assert_eq!((0x20 << 16) | 0x10, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Biometric", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -11169,7 +11237,7 @@ pub enum Sensors {
 }
 
 impl Sensors {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Sensors::Sensor => "Sensor",
@@ -11960,7 +12028,7 @@ impl Sensors {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Sensors {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -12777,7 +12845,10 @@ impl BitOr<u16> for Sensors {
 /// assert_eq!(0x40, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0x40 << 16) | 0x20, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("VCR/Acquisition", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -12846,7 +12917,7 @@ pub enum MedicalInstrument {
 }
 
 impl MedicalInstrument {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             MedicalInstrument::MedicalUltrasound => "Medical Ultrasound",
@@ -12883,7 +12954,7 @@ impl MedicalInstrument {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for MedicalInstrument {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -13056,7 +13127,10 @@ impl BitOr<u16> for MedicalInstrument {
 /// assert_eq!(0x41, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x41 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Braille Row", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -13153,7 +13227,7 @@ pub enum BrailleDisplay {
 }
 
 impl BrailleDisplay {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             BrailleDisplay::BrailleDisplay => "Braille Display",
@@ -13204,7 +13278,7 @@ impl BrailleDisplay {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for BrailleDisplay {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -13391,7 +13465,10 @@ impl BitOr<u16> for BrailleDisplay {
 /// assert_eq!(0x59, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x59 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("LampArrayAttributesReport", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -13468,7 +13545,7 @@ pub enum LightingAndIllumination {
 }
 
 impl LightingAndIllumination {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             LightingAndIllumination::LampArray => "LampArray",
@@ -13517,7 +13594,7 @@ impl LightingAndIllumination {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for LightingAndIllumination {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -13694,7 +13771,10 @@ impl BitOr<u16> for LightingAndIllumination {
 /// assert_eq!(0x80, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x80 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("EDID Information", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -13713,7 +13793,7 @@ pub enum Monitor {
 }
 
 impl Monitor {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Monitor::MonitorControl => "Monitor Control",
@@ -13725,7 +13805,7 @@ impl Monitor {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Monitor {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -13877,7 +13957,10 @@ impl BitOr<u16> for Monitor {
 /// assert_eq!(0x81, u1.usage_page_value());
 /// assert_eq!(3, u1.usage_id_value());
 /// assert_eq!((0x81 << 16) | 3, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Enumerate 3", u1.name());
+/// # }
 /// ```
 #[allow(non_camel_case_types)]
 #[derive(Debug)]
@@ -13887,7 +13970,7 @@ pub enum MonitorEnumerated {
 }
 
 impl MonitorEnumerated {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             MonitorEnumerated::MonitorEnumerated(enumerate) => format!("Enumerate {enumerate}"),
@@ -13895,7 +13978,7 @@ impl MonitorEnumerated {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for MonitorEnumerated {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -14041,7 +14124,10 @@ impl BitOr<u16> for MonitorEnumerated {
 /// assert_eq!(0x82, u1.usage_page_value());
 /// assert_eq!(0x10, u1.usage_id_value());
 /// assert_eq!((0x82 << 16) | 0x10, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Brightness", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -14142,7 +14228,7 @@ pub enum VESAVirtualControls {
 }
 
 impl VESAVirtualControls {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             VESAVirtualControls::Degauss => "Degauss",
@@ -14205,7 +14291,7 @@ impl VESAVirtualControls {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for VESAVirtualControls {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -14394,7 +14480,10 @@ impl BitOr<u16> for VESAVirtualControls {
 /// assert_eq!(0x84, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x84 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Present Status", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -14559,7 +14648,7 @@ pub enum Power {
 }
 
 impl Power {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Power::iName => "iName",
@@ -14644,7 +14733,7 @@ impl Power {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Power {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -14865,7 +14954,10 @@ impl BitOr<u16> for Power {
 /// assert_eq!(0x85, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x85 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Smart Battery Battery Status", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -15058,7 +15150,7 @@ pub enum BatterySystem {
 }
 
 impl BatterySystem {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             BatterySystem::SmartBatteryBatteryMode => "Smart Battery Battery Mode",
@@ -15157,7 +15249,7 @@ impl BatterySystem {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for BatterySystem {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -15392,7 +15484,10 @@ impl BitOr<u16> for BatterySystem {
 /// assert_eq!(0x8C, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x8C << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Barcode Scanner", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -15791,7 +15886,7 @@ pub enum BarcodeScanner {
 }
 
 impl BarcodeScanner {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             BarcodeScanner::BarcodeBadgeReader => "Barcode Badge Reader",
@@ -16007,7 +16102,7 @@ impl BarcodeScanner {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for BarcodeScanner {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -16345,7 +16440,10 @@ impl BitOr<u16> for BarcodeScanner {
 /// assert_eq!(0x8D, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0x8D << 16) | 0x20, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Scale Device", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -16448,7 +16546,7 @@ pub enum Scales {
 }
 
 impl Scales {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Scales::Scales => "Scales",
@@ -16502,7 +16600,7 @@ impl Scales {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Scales {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -16692,7 +16790,10 @@ impl BitOr<u16> for Scales {
 /// assert_eq!(0x8E, u1.usage_page_value());
 /// assert_eq!(0x11, u1.usage_id_value());
 /// assert_eq!((0x8E << 16) | 0x11, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Track 1 Length", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -16723,7 +16824,7 @@ pub enum MagneticStripeReader {
 }
 
 impl MagneticStripeReader {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             MagneticStripeReader::MSRDeviceReadOnly => "MSR Device Read-Only",
@@ -16741,7 +16842,7 @@ impl MagneticStripeReader {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for MagneticStripeReader {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -16895,7 +16996,10 @@ impl BitOr<u16> for MagneticStripeReader {
 /// assert_eq!(0x90, u1.usage_page_value());
 /// assert_eq!(0x21, u1.usage_id_value());
 /// assert_eq!((0x90 << 16) | 0x21, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Camera Shutter", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -16910,7 +17014,7 @@ pub enum CameraControl {
 }
 
 impl CameraControl {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             CameraControl::CameraAutofocus => "Camera Auto-focus",
@@ -16920,7 +17024,7 @@ impl CameraControl {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for CameraControl {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -17066,7 +17170,10 @@ impl BitOr<u16> for CameraControl {
 /// assert_eq!(0x91, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0x91 << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Coin Door", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -17131,7 +17238,7 @@ pub enum Arcade {
 }
 
 impl Arcade {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Arcade::GeneralPurposeIOCard => "General Purpose IO Card",
@@ -17166,7 +17273,7 @@ impl Arcade {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Arcade {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -17337,7 +17444,10 @@ impl BitOr<u16> for Arcade {
 /// assert_eq!(0xF1D0, u1.usage_page_value());
 /// assert_eq!(0x20, u1.usage_id_value());
 /// assert_eq!((0xF1D0 << 16) | 0x20, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Input Report Data", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -17354,7 +17464,7 @@ pub enum FIDOAlliance {
 }
 
 impl FIDOAlliance {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             FIDOAlliance::U2FAuthenticatorDevice => "U2F Authenticator Device",
@@ -17365,7 +17475,7 @@ impl FIDOAlliance {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for FIDOAlliance {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -17512,7 +17622,10 @@ impl BitOr<u16> for FIDOAlliance {
 /// assert_eq!(0xFF0D, u1.usage_page_value());
 /// assert_eq!(0x2, u1.usage_id_value());
 /// assert_eq!((0xFF0D << 16) | 0x2, u1.usage_value());
+/// # #[cfg(feature = "alloc")]
+/// # {
 /// assert_eq!("Wacom Pen", u1.name());
+/// # }
 /// ```
 ///
 #[allow(non_camel_case_types)]
@@ -17735,7 +17848,7 @@ pub enum Wacom {
 }
 
 impl Wacom {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Wacom::WacomDigitizer => "Wacom Digitizer",
@@ -17849,7 +17962,7 @@ impl Wacom {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Wacom {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -18096,7 +18209,7 @@ pub enum ReservedUsagePage {
 }
 
 impl ReservedUsagePage {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     fn name(&self) -> String {
         match self {
             ReservedUsagePage::Undefined => "Reserved Usage Undefined".to_string(),
@@ -18107,7 +18220,7 @@ impl ReservedUsagePage {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for ReservedUsagePage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -18136,7 +18249,7 @@ pub enum VendorDefinedPage {
 }
 
 impl VendorDefinedPage {
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     fn name(&self) -> String {
         match self {
             VendorDefinedPage::Undefined => "Vendor Usage Undefined".to_string(),
@@ -18147,7 +18260,7 @@ impl VendorDefinedPage {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for VendorDefinedPage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -18322,7 +18435,7 @@ impl TryFrom<u32> for UsagePage {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for UsagePage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -18428,12 +18541,11 @@ pub enum Usage {
 }
 
 impl Usage {
-    #[cfg(feature = "std")]
     pub fn new_from_page_and_id(usage_page: u16, usage_id: u16) -> Result<Usage> {
         Usage::try_from(((usage_page as u32) << 16) | usage_id as u32)
     }
 
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     pub fn name(&self) -> String {
         match self {
             Usage::GenericDesktop(usage) => usage.name(),
@@ -18552,7 +18664,7 @@ impl AsUsagePage for Usage {
     }
 }
 
-#[cfg(feature = "std")]
+#[cfg(feature = "alloc")]
 impl fmt::Display for Usage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}", self.name())
@@ -18794,7 +18906,7 @@ mod tests {
         assert_eq!(hid_usage_page, up.usage_page_value());
     }
 
-    #[cfg(feature = "std")]
+    #[cfg(feature = "alloc")]
     #[test]
     fn names() {
         assert_eq!(UsagePage::GenericDesktop.name().as_str(), "Generic Desktop");

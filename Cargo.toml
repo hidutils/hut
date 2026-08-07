@@ -9,4 +9,5 @@ description = "The HID Usage Tables"
 
 [features]
 default = ["std"]
-std = []
+alloc = []
+std = ["alloc"]
