@@ -7,15 +7,16 @@
 #     $ python3 ./tools/hut-parser.py src/hut.rs.jinja > src/hut.rs && cargo build
 #
 
-from pathlib import Path
-from dataclasses import dataclass
 import argparse
 import enum
+import functools
+import json
 import os
 import re
 import sys
-import functools
-import json
+from dataclasses import dataclass
+from pathlib import Path
+
 import jinja2
 import jinja2.environment
 
@@ -176,7 +177,8 @@ def parse_data_files(datadir: Path):
     usage_pages = []
 
     for datafile in datadir.glob("*.json"):
-        js = json.load(open(datafile, "r"))
+        with open(datafile, "r") as f:
+            js = json.load(f)
         ups = [parse_usage_page(up) for up in js["UsagePages"]]
         usage_pages.extend(ups)
 
@@ -238,5 +240,8 @@ if __name__ == "__main__":
     hut = parse_data_files(args.datadir)
 
     stream = generate_source(usage_pages=hut, template=args.template)
-    file = sys.stdout if args.output == "-" else open(args.output, "w")
-    stream.dump(file)
+    if args.output == "-":
+        stream.dump(sys.stdout)
+    else:
+        with open(args.output, "w") as file:
+            stream.dump(file)
