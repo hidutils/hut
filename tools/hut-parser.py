@@ -177,7 +177,7 @@ def parse_data_files(datadir: Path):
     usage_pages = []
 
     for datafile in datadir.glob("*.json"):
-        with open(datafile, "r") as f:
+        with open(datafile, "r", encoding="utf-8") as f:
             js = json.load(f)
         ups = [parse_usage_page(up) for up in js["UsagePages"]]
         usage_pages.extend(ups)
@@ -243,5 +243,5 @@ if __name__ == "__main__":
     if args.output == "-":
         stream.dump(sys.stdout)
     else:
-        with open(args.output, "w") as file:
+        with open(args.output, "w", encoding="utf-8") as file:
             stream.dump(file)
